@@ -91,6 +91,7 @@ flutter:
     - assets/images/
     - assets/mockups/
     - assets/icons/
+    - assets/landing_page/
   fonts:
     - family: Be Vietnam Pro
       fonts:
