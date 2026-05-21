@@ -496,11 +496,14 @@ export const verifyPurchase = onCall(
                     };
 
                     if (packageType) {
-                        // Thêm vào mảng activeSubscriptions
-                        updateData.activeSubscriptions = admin.firestore.FieldValue.arrayUnion(packageType);
-                        // Cập nhật ngày hết hạn cho gói cụ thể
-                        updateData[`subscriptionsExpiry.${packageType}`] = admin.firestore.Timestamp.fromDate(expiryDate!);
-                        updateData[`subscriptionsStart.${packageType}`] = admin.firestore.FieldValue.serverTimestamp();
+                        // Mua bất kỳ gói nào cũng mở khóa cả 3 gói (gold, forex, crypto)
+                        updateData.activeSubscriptions = admin.firestore.FieldValue.arrayUnion('gold', 'forex', 'crypto');
+                        // Cập nhật ngày hết hạn cho cả 3 gói
+                        const packages = ['gold', 'forex', 'crypto'];
+                        for (const pkg of packages) {
+                            updateData[`subscriptionsExpiry.${pkg}`] = admin.firestore.Timestamp.fromDate(expiryDate!);
+                            updateData[`subscriptionsStart.${pkg}`] = admin.firestore.FieldValue.serverTimestamp();
+                        }
                     }
 
                     transaction.set(userRef, updateData, { merge: true });
@@ -1816,7 +1819,10 @@ export const telegramStatsWebhook = functions.https.onRequest(
             return;
         }
         const update = req.body;
-        const message = update.message || update.channel_post;
+        const message = update.message || 
+                        update.channel_post || 
+                        update.edited_message || 
+                        update.edited_channel_post;
         
         if (!message) {
             functions.logger.warn("⚠️ No message found in update.");
@@ -1831,7 +1837,7 @@ export const telegramStatsWebhook = functions.https.onRequest(
         }
 
         const text = message.text;
-        const messageDate = message.date; // Unix timestamp in seconds
+        const messageDate = message.edit_date || message.date; // Use edit_date if available
         
         if (!text) {
             res.status(200).send("OK");
@@ -1881,22 +1887,40 @@ export const telegramStatsWebhook = functions.https.onRequest(
                         timestamp: admin.firestore.Timestamp.fromMillis(messageDate * 1000)
                     };
 
-                    await firestore.collection("profit_stats").doc(docId).set({
+                    const docRef = firestore.collection("profit_stats").doc(docId);
+                    const docSnap = await docRef.get();
+                    const existingData = docSnap.data();
+
+                    let shouldUpdateXau = true;
+                    if (existingData && existingData.xau && existingData.xau.lastUpdated) {
+                        const existingLastUpdated = existingData.xau.lastUpdated.toMillis();
+                        const newTimestamp = messageDate * 1000;
+                        if (newTimestamp < existingLastUpdated) {
+                            shouldUpdateXau = false;
+                            functions.logger.log(`⚠️ Skip updating XAU object because incoming message timestamp (${newTimestamp}) is older than existing lastUpdated (${existingLastUpdated})`);
+                        }
+                    }
+
+                    // Prepare document update payload
+                    const updatePayload: any = {
                         date: admin.firestore.Timestamp.fromDate(dateObj),
-                        // Thêm vào mảng intraday
                         xau_intraday: admin.firestore.FieldValue.arrayUnion(intradaySnapshot),
-                        // Cập nhật giá trị tổng kết mới nhất cho XAU trong ngày
-                        xau: {
+                        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+                    };
+
+                    if (shouldUpdateXau) {
+                        updatePayload.xau = {
                             pips: pips,
                             tpCount: tpCount,
                             slCount: slCount,
                             exitCount: exitCount,
                             lastUpdated: intradaySnapshot.timestamp
-                        },
-                        updatedAt: admin.firestore.FieldValue.serverTimestamp()
-                    }, { merge: true });
+                        };
+                    }
+
+                    await docRef.set(updatePayload, { merge: true });
                     
-                    functions.logger.log(`✅ Đã cập nhật XAU [${docId}]: Pips=${pips}, TP=${tpCount}, SL=${slCount}, Exit=${exitCount}`);
+                    functions.logger.log(`✅ Đã cập nhật XAU [${docId}]: Pips=${pips}, TP=${tpCount}, SL=${slCount}, Exit=${exitCount}, shouldUpdateXau=${shouldUpdateXau}`);
                 } else {
                      functions.logger.warn("⚠️ Không khớp Regex XAU.", { 
                         hasDate: !!dateMatch, 
@@ -1943,18 +1967,39 @@ export const telegramStatsWebhook = functions.https.onRequest(
                         totalPips += parseFloat(exitMatch[2]);
                     }
 
-                    await firestore.collection("profit_stats").doc(docId).set({
+                    const docRef = firestore.collection("profit_stats").doc(docId);
+                    const docSnap = await docRef.get();
+                    const existingData = docSnap.data();
+
+                    let shouldUpdateAll = true;
+                    if (existingData && existingData.all && existingData.all.lastUpdated) {
+                        const existingLastUpdated = existingData.all.lastUpdated.toMillis();
+                        const newTimestamp = messageDate * 1000;
+                        if (newTimestamp < existingLastUpdated) {
+                            shouldUpdateAll = false;
+                            functions.logger.log(`⚠️ Skip updating ALL object because incoming message timestamp (${newTimestamp}) is older than existing lastUpdated (${existingLastUpdated})`);
+                        }
+                    }
+
+                    // Prepare document update payload
+                    const updatePayload: any = {
                         date: admin.firestore.Timestamp.fromDate(dateObj),
-                        all: {
+                        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+                    };
+
+                    if (shouldUpdateAll) {
+                        updatePayload.all = {
                             pips: totalPips,
                             tpCount: tpCount,
                             slCount: slCount,
-                            exitCount: exitCount
-                        },
-                        updatedAt: admin.firestore.FieldValue.serverTimestamp()
-                    }, { merge: true });
+                            exitCount: exitCount,
+                            lastUpdated: admin.firestore.Timestamp.fromMillis(messageDate * 1000)
+                        };
+                    }
 
-                    functions.logger.log(`Đã cập nhật Stats ALL (End of Day) cho ngày ${docId}: ${totalPips} pips`);
+                    await docRef.set(updatePayload, { merge: true });
+
+                    functions.logger.log(`Đã cập nhật Stats ALL (End of Day) cho ngày ${docId}: ${totalPips} pips, shouldUpdateAll=${shouldUpdateAll}`);
                  }
             }
 

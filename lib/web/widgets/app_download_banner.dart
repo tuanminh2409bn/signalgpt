@@ -8,13 +8,21 @@ class AppDownloadBanner extends StatelessWidget {
 
   const AppDownloadBanner({Key? key, required this.onClose}) : super(key: key);
 
-  void _launchStore() {
+  void _launchAndroidStore() {
     html.window.open('https://play.google.com/store/apps/details?id=com.signalgpt.ai', '_blank');
+  }
+
+  void _launchIOSStore() {
+    html.window.open('https://apps.apple.com/us/app/signal-gpt/id6749299894', '_blank');
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).languageCode;
+    final isVi = locale == 'vi';
+    final androidLabel = isVi ? 'Tải Android' : 'Download Android';
+    final iosLabel = isVi ? 'Tải iOS' : 'Download iOS';
     
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
@@ -105,7 +113,7 @@ class AppDownloadBanner extends StatelessWidget {
           const SizedBox(width: 16),
           
           // Right Side Text & Button
-          if (MediaQuery.of(context).size.width > 600) ...[
+          if (MediaQuery.of(context).size.width > 800) ...[
             Text(
               l10n.getTheAppForBestExperience,
               style: const TextStyle(
@@ -118,17 +126,37 @@ class AppDownloadBanner extends StatelessWidget {
             const SizedBox(width: 24),
           ],
           
-          GradientButton(
-            label: l10n.installApp,
-            onPressed: _launchStore,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            borderRadius: 12,
-            textStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              fontFamily: 'Be Vietnam Pro',
-              color: Colors.white,
-            ),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              GradientButton(
+                label: androidLabel,
+                onPressed: _launchAndroidStore,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                borderRadius: 12,
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  fontFamily: 'Be Vietnam Pro',
+                  color: Colors.white,
+                ),
+              ),
+              GradientButton(
+                label: iosLabel,
+                onPressed: _launchIOSStore,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                borderRadius: 12,
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  fontFamily: 'Be Vietnam Pro',
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
           const SizedBox(width: 24),
           

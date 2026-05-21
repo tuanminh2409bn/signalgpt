@@ -111,7 +111,7 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
                         const SizedBox(height: 12),
                         Center(child: _buildPlanToggle(l10n)),
                         
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 16),
                         
                         // Category Selection
                         ...List.generate(categories.length, (index) {

@@ -668,9 +668,9 @@ class _SettingContentState extends State<_SettingContent> {
     final activeSubs = userProvider.activeSubscriptions;
 
     final isElite = tier == 'elite';
-    final canToggleGold = isElite || activeSubs.contains('gold');
-    final canToggleForex = isElite || activeSubs.contains('forex');
-    final canToggleCrypto = isElite || activeSubs.contains('crypto');
+    final canToggleGold = isElite || activeSubs.isNotEmpty;
+    final canToggleForex = isElite || activeSubs.isNotEmpty;
+    final canToggleCrypto = isElite || activeSubs.isNotEmpty;
     final canToggleAll = isElite;
     
     final isFree = !canToggleGold && !canToggleForex && !canToggleCrypto;

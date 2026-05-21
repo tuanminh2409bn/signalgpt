@@ -2174,6 +2174,18 @@ abstract class AppLocalizations {
   /// **'SAVE 50%'**
   String get save50Percent;
 
+  /// No description provided for @save40Percent.
+  ///
+  /// In en, this message translates to:
+  /// **'SAVE 40%'**
+  String get save40Percent;
+
+  /// No description provided for @save65Percent.
+  ///
+  /// In en, this message translates to:
+  /// **'SAVE 65%'**
+  String get save65Percent;
+
   /// No description provided for @tryDemo.
   ///
   /// In en, this message translates to:
@@ -2387,7 +2399,7 @@ abstract class AppLocalizations {
   /// No description provided for @forexSignals.
   ///
   /// In en, this message translates to:
-  /// **'Currency pair Signals'**
+  /// **'CURRENCY PAIR Signals'**
   String get forexSignals;
 
   /// No description provided for @goldSignals.
@@ -2987,7 +2999,7 @@ abstract class AppLocalizations {
   /// No description provided for @assetForex.
   ///
   /// In en, this message translates to:
-  /// **'Currency pair'**
+  /// **'CURRENCY PAIR'**
   String get assetForex;
 
   /// No description provided for @tokens.
@@ -2999,7 +3011,7 @@ abstract class AppLocalizations {
   /// No description provided for @noForexAssets.
   ///
   /// In en, this message translates to:
-  /// **'No Currency pair assets available'**
+  /// **'No CURRENCY PAIR assets available'**
   String get noForexAssets;
 
   /// No description provided for @openApp.
@@ -3271,6 +3283,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'\$249.00'**
   String get priceLifetime;
+
+  /// No description provided for @priceLifetimeOld.
+  ///
+  /// In en, this message translates to:
+  /// **'\$712.00'**
+  String get priceLifetimeOld;
 
   /// No description provided for @durationLifetime.
   ///

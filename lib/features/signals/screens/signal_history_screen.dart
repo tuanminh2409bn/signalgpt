@@ -59,6 +59,17 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
     );
   }
 
+  void _updateStream() {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    setState(() {
+      _historyStream = _signalService.getSignals(
+        isLive: false,
+        userTier: userProvider.userTier ?? 'free',
+        limit: (_selectedStatus == 'ALL' && _selectedDate == null) ? 50 : 1000,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -260,7 +271,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
         if (_selectedStatus == 'TP1') return s.hitTps.contains(1) && !s.hitTps.contains(2);
         if (_selectedStatus == 'TP2') return s.hitTps.contains(2) && !s.hitTps.contains(3);
         if (_selectedStatus == 'TP3') return s.hitTps.contains(3);
-        if (_selectedStatus == 'SL') return (s.result ?? '').toUpperCase().contains('SL');
+        if (_selectedStatus == 'SL') return (s.result ?? '').toUpperCase().contains('SL') && s.hitTps.isEmpty;
         if (_selectedStatus == 'CANCELLED' || _selectedStatus == 'ĐÃ HỦY') return s.status == 'cancelled' || (s.result ?? '').toLowerCase().contains('cancel');
         if (_selectedStatus == 'EXIT' || _selectedStatus == 'ADMIN ĐÓNG') return (s.result ?? '').toLowerCase().contains('exit');
       }
@@ -298,13 +309,16 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
       'TP3': 'TP3',
       'SL': 'SL',
       'CANCELLED': l10n.cancelled,
-      'EXIT': l10n.signalClosed,
+      'EXIT': l10n.filterStatusExitByAdmin,
     };
 
     return CustomFilterDropdown<String>(
       value: _selectedStatus,
       items: _statusOptions.map((st) => CustomDropdownItem(value: st, label: statusMap[st] ?? st)).toList(),
-      onChanged: (v) => setState(() => _selectedStatus = v as String),
+      onChanged: (v) {
+        _selectedStatus = v as String;
+        _updateStream();
+      },
     );
   }
 
@@ -379,7 +393,8 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
                       firstDate: DateTime(2023),
                       lastDate: DateTime.now(),
                       onDateChanged: (date) {
-                        setState(() => _selectedDate = date);
+                        _selectedDate = date;
+                        _updateStream();
                         Navigator.pop(context);
                       },
                     ),

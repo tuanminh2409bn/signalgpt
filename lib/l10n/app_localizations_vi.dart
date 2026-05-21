@@ -1122,6 +1122,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get save50Percent => 'TIẾT KIỆM 50%';
 
   @override
+  String get save40Percent => 'TIẾT KIỆM 40%';
+
+  @override
+  String get save65Percent => 'TIẾT KIỆM 65%';
+
+  @override
   String get tryDemo => 'Dùng thử demo';
 
   @override
@@ -1233,7 +1239,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get cryptoSignals => 'Tín hiệu Crypto';
 
   @override
-  String get forexSignals => 'Tín hiệu Currency pair';
+  String get forexSignals => 'Tín hiệu CURRENCY PAIR';
 
   @override
   String get goldSignals => 'Tín hiệu Vàng';
@@ -1552,13 +1558,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get assetCrypto => 'Crypto';
 
   @override
-  String get assetForex => 'Cặp tiền tệ';
+  String get assetForex => 'CURRENCY PAIR';
 
   @override
   String get tokens => 'Token';
 
   @override
-  String get noForexAssets => 'Không có tài sản Cặp tiền tệ khả dụng';
+  String get noForexAssets => 'Không có tài sản CURRENCY PAIR khả dụng';
 
   @override
   String openApp(String appName) {
@@ -1703,6 +1709,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get priceLifetime => '\$249.00';
+
+  @override
+  String get priceLifetimeOld => '\$712.00';
 
   @override
   String get durationLifetime => 'Trọn đời';

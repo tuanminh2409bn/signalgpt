@@ -6,6 +6,7 @@ import 'package:minvest_forex_app/core/services/paypal_service_web.dart';
 import '../../theme/colors.dart';
 import '../../theme/text_styles.dart';
 import '../../theme/spacing.dart';
+import '../../theme/gradients.dart';
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
 import 'package:minvest_forex_app/web/theme/breakpoints.dart';
 
@@ -47,12 +48,13 @@ class _PricingSectionState extends State<PricingSection> {
       case PlanDuration.annually:
         price = appLocalizations.price12Months;
         oldPrice = appLocalizations.price12MonthsOld;
-        badge = appLocalizations.save50Percent;
+        badge = appLocalizations.save40Percent;
         suffix = '_12_months';
         break;
       case PlanDuration.lifetime:
         price = appLocalizations.priceLifetime;
-        oldPrice = null;
+        oldPrice = appLocalizations.priceLifetimeOld;
+        badge = appLocalizations.save65Percent;
         suffix = '_lifetime';
         break;
     }
@@ -71,7 +73,7 @@ class _PricingSectionState extends State<PricingSection> {
       ),
       _PlanData(
         id: 'forex$suffix',
-        title: 'FOREX',
+        title: 'CURRENCY PAIR',
         price: price,
         oldPrice: oldPrice,
         badge: badge,
@@ -121,14 +123,15 @@ class _PricingSectionState extends State<PricingSection> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: AppSpacing.sm),
-                      Text(
-                        subheading,
-                        style: AppTextStyles.body.copyWith(
-                          color: Colors.white, 
-                          fontSize: isMobile ? 18 : 16,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),            const SizedBox(height: AppSpacing.lg),
+            Text(
+              subheading,
+              style: AppTextStyles.body.copyWith(
+                color: Colors.white, 
+                fontSize: isMobile ? 18 : 16,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: AppSpacing.md),
             _toggle(context),
             const SizedBox(height: AppSpacing.lg),
             LayoutBuilder(
@@ -520,22 +523,29 @@ class _PricingCardContentState extends State<_PricingCardContent> {
 
   Widget _saveBadge(String text, bool isMobile, {bool useEllipsis = false}) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 24 : 16, 
-        vertical: isMobile ? 12 : 8
-      ),
+      padding: const EdgeInsets.all(1), // Border width
       decoration: BoxDecoration(
-        color: const Color(0xFF289EFF),
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(2), // 2px outer border radius
+        gradient: AppGradients.cta,
       ),
-      child: Text(
-        text,
-        overflow: useEllipsis ? TextOverflow.ellipsis : null,
-        maxLines: 1,
-        style: AppTextStyles.caption.copyWith(
-          color: Colors.white, 
-          fontWeight: FontWeight.w700,
-          fontSize: isMobile ? 18 : 14, // Tăng kích thước chữ
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: isMobile ? 14 : 10, 
+          vertical: isMobile ? 6 : 4
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(1), // 1px inner border radius
+          color: Colors.black, // Black background
+        ),
+        child: Text(
+          text,
+          overflow: useEllipsis ? TextOverflow.ellipsis : null,
+          maxLines: 1,
+          style: AppTextStyles.caption.copyWith(
+            color: Colors.white, // White text
+            fontWeight: FontWeight.w800,
+            fontSize: isMobile ? 14 : 11,
+          ),
         ),
       ),
     );

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:minvest_forex_app/core/providers/language_provider.dart';
 import 'package:minvest_forex_app/core/providers/user_provider.dart'; // Added Import
-import 'package:minvest_forex_app/core/utils/signal_access_helper.dart'; // Added Import
 import 'package:minvest_forex_app/features/signals/models/signal_model.dart';
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -216,15 +215,7 @@ class _TokenCounter extends StatelessWidget {
   const _TokenCounter({this.signal});
 
   bool _isSignalUnlocked(Signal signal, List<String> activeSubs) {
-    final symbol = signal.symbol.toUpperCase();
-    if (activeSubs.contains('gold') && symbol.contains('XAU')) return true;
-    
-    final isCrypto = symbol.contains('BTC') || symbol.contains('ETH') || symbol.contains('BNB') || symbol.contains('CRYPTO');
-    if (activeSubs.contains('crypto') && isCrypto) return true;
-
-    final isForex = symbol.contains('/') && !symbol.contains('XAU') && !isCrypto;
-    if (activeSubs.contains('forex') && isForex) return true;
-    
+    if (activeSubs.isNotEmpty) return true;
     return false;
   }
 

@@ -46,11 +46,11 @@ class SignalService {
   }
 
   /// Lấy tất cả tín hiệu (không lọc status) để Web tự chia tách Live mới nhất và Lịch sử.
-  Stream<List<Signal>> getAllSignals() {
+  Stream<List<Signal>> getAllSignals({int limit = 200}) {
     return _firestore
         .collection('signals')
         .orderBy('createdAt', descending: true)
-        .limit(200) // Lấy tối đa 200 bản ghi gần nhất
+        .limit(limit)
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) => Signal.fromFirestore(doc)).toList();

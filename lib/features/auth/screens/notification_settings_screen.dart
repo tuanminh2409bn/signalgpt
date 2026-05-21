@@ -102,8 +102,8 @@ class NotificationSettingsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 24),
                       _buildToggleSection(
-                        title: 'Forex Signals',
-                        subtitle: 'Turn on forex signals',
+                        title: 'Currency Pair Signals',
+                        subtitle: 'Turn on currency pair signals',
                         value: provider.isForexEnabled,
                         onChanged: (val) => provider.toggleForex(val),
                       ),

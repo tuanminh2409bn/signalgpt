@@ -1123,6 +1123,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get save50Percent => 'MEGTAKARÍTÁS 50%';
 
   @override
+  String get save40Percent => 'SAVE 40%';
+
+  @override
+  String get save65Percent => 'SAVE 65%';
+
+  @override
   String get tryDemo => 'Demo kipróbálása';
 
   @override
@@ -1553,13 +1559,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get assetCrypto => 'Crypto';
 
   @override
-  String get assetForex => 'Currency pair';
+  String get assetForex => 'CURRENCY PAIR';
 
   @override
   String get tokens => 'Tokens';
 
   @override
-  String get noForexAssets => 'No Currency pair assets available';
+  String get noForexAssets => 'No CURRENCY PAIR assets available';
 
   @override
   String openApp(String appName) {
@@ -1704,6 +1710,9 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get priceLifetime => '\$249.00';
+
+  @override
+  String get priceLifetimeOld => '\$712.00';
 
   @override
   String get durationLifetime => 'Lifetime';

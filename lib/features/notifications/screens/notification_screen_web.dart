@@ -199,13 +199,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
       if (isElite) {
         canViewContent = true;
       } else {
-        // Lấy symbol từ title EN (chuẩn) để phân loại
-        final enTitle = notification.getTitle('en');
-        final symbol = _extractSymbolFromTitle(enTitle);
-        final category = _getSignalCategory(symbol);
-        
-        // Kiểm tra xem user có gói cho category này không
-        if (activeSubs.contains(category)) {
+        // Kiểm tra xem user có gói cước hoạt động không
+        if (activeSubs.isNotEmpty) {
           canViewContent = true;
         } else {
           canViewContent = false;

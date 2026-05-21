@@ -362,6 +362,8 @@
   "bestPricesForPremiumAccess": "Giải Pháp Đầu Tư Với AI Tốt Nhất Với Mức Giá Hợp Lý Nhất",
   "choosePlanFitsNeeds": "Chọn gói phù hợp với nhu cầu đầu tư của bạn và bắt đầu tự động hóa bằng AI",
   "save50Percent": "TIẾT KIỆM 50%",
+  "save40Percent": "TIẾT KIỆM 40%",
+  "save65Percent": "TIẾT KIỆM 65%",
   "tryDemo": "Dùng thử demo",
   "pleaseEnterEmailPassword": "Vui lòng nhập email và mật khẩu",
   "loginFailed": "Đăng nhập thất bại: {error}",
@@ -411,7 +413,7 @@
   "chooseSignalNotificationTypes": "Chọn loại thông báo tín hiệu bạn muốn nhận qua thông báo đẩy trình duyệt",
   "allSignalNotifications": "Tất cả thông báo tín hiệu",
   "cryptoSignals": "Tín hiệu Crypto",
-  "forexSignals": "Tín hiệu Currency pair",
+  "forexSignals": "Tín hiệu CURRENCY PAIR",
   "goldSignals": "Tín hiệu Vàng",
   "updatePasswordSecure": "Cập nhật mật khẩu để giữ tài khoản của bạn an toàn",
   "searchLabel": "Tìm kiếm:",
@@ -543,9 +545,9 @@
   "upgradeToPro": "Nâng cấp Pro",
   "assetGold": "Vàng",
   "assetCrypto": "Crypto",
-  "assetForex": "Cặp tiền tệ",
+  "assetForex": "CURRENCY PAIR",
   "tokens": "Token",
-  "noForexAssets": "Không có tài sản Cặp tiền tệ khả dụng",
+  "noForexAssets": "Không có tài sản CURRENCY PAIR khả dụng",
   "openApp": "Mở {appName}",
   "@openApp": {
     "placeholders": {
@@ -605,6 +607,7 @@
   "installApp": "Cài đặt ngay",
   "reviews": "đánh giá",
   "priceLifetime": "$249.00",
+  "priceLifetimeOld": "$712.00",
   "durationLifetime": "Trọn đời",
   "orderInfoLifetime": "Thanh toán gói Elite trọn đời",
   "lifetime": "Trọn đời"

@@ -1117,7 +1117,7 @@ class _AssetDropdownState extends State<_AssetDropdown> {
                       if (val == AssetFilter.all) label = AppLocalizations.of(context)!.allAssets;
                       else if (val == AssetFilter.gold) label = 'Gold';
                       else if (val == AssetFilter.crypto) label = 'Crypto';
-                      else if (val == AssetFilter.forex) label = 'Forex';
+                      else if (val == AssetFilter.forex) label = 'CURRENCY PAIR';
                       return Align(alignment: Alignment.centerLeft, child: Text(label));
                     }).toList();
                   },
@@ -1132,7 +1132,7 @@ class _AssetDropdownState extends State<_AssetDropdown> {
                     if (val == AssetFilter.all) label = AppLocalizations.of(context)!.allAssets;
                     else if (val == AssetFilter.gold) label = 'Gold';
                     else if (val == AssetFilter.crypto) label = 'Crypto';
-                    else if (val == AssetFilter.forex) label = 'Forex';
+                    else if (val == AssetFilter.forex) label = 'CURRENCY PAIR';
 
                     return DropdownMenuItem<AssetFilter>(
                       value: val,
@@ -1593,9 +1593,9 @@ class _SignalGridLiveState extends State<_SignalGridLive> {
       SizedBox(
         width: columnWidth,
         child: forexLatest.isEmpty
-            ? const _EmptyColumn(title: 'FOREX', icon: Icons.verified)
+            ? const _EmptyColumn(title: 'CURRENCY PAIR', icon: Icons.verified)
             : _SignalColumnLive(
-                title: 'FOREX',
+                title: 'CURRENCY PAIR',
                 icon: Icons.verified,
                 signals: forexLatest,
                 page: 0,
@@ -1687,7 +1687,7 @@ class _SignalGridLiveState extends State<_SignalGridLive> {
       if (stacked) const SizedBox(height: 16),
       SizedBox(
         width: columnWidth,
-        child: const _EmptyColumn(title: 'FOREX', icon: Icons.verified),
+        child: const _EmptyColumn(title: 'CURRENCY PAIR', icon: Icons.verified),
       ),
     ];
 
@@ -1744,7 +1744,7 @@ class _SignalGridLiveState extends State<_SignalGridLive> {
          if (matchTarget == 'TP1') return s.hitTps.contains(1) && !s.hitTps.contains(2);
          
          final res = (s.result ?? '').toUpperCase();
-         if (matchTarget == 'SL') return res.contains('SL HIT');
+         if (matchTarget == 'SL') return res.contains('SL HIT') && s.hitTps.isEmpty;
          if (matchTarget == 'EXIT') return (res.contains('EXIT') || res.contains('MANUAL_EXIT') || res.contains('EXITED BY ADMIN')) && s.hitTps.isEmpty;
          
          return false;
@@ -2239,15 +2239,7 @@ class _SignalWebCard extends StatelessWidget {
   }
 
   bool _isSignalUnlocked(Signal signal, List<String> activeSubs) {
-    final symbol = signal.symbol.toUpperCase();
-    if (activeSubs.contains('gold') && symbol.contains('XAU')) return true;
-    
-    final isCrypto = symbol.contains('BTC') || symbol.contains('ETH') || symbol.contains('BNB') || symbol.contains('CRYPTO');
-    if (activeSubs.contains('crypto') && isCrypto) return true;
-
-    final isForex = symbol.contains('/') && !symbol.contains('XAU') && !isCrypto;
-    if (activeSubs.contains('forex') && isForex) return true;
-    
+    if (activeSubs.isNotEmpty) return true;
     return false;
   }
 
@@ -2814,7 +2806,7 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
 
         // 3. Forex (Placeholder - Chưa có dữ liệu tách biệt từ Tele)
         distribution.add(const _DistributionBarData(
-            label: 'Forex', 
+            label: 'CURRENCY PAIR', 
             value: 0.1, // Placeholder visual
             winRate: 0.0, 
             wins: 0, 
@@ -4024,7 +4016,7 @@ class _HistorySectionState extends State<_HistorySection> {
          if (matchTarget == 'TP1') return s.hitTps.contains(1) && !s.hitTps.contains(2);
          
          final res = (s.result ?? '').toUpperCase();
-         if (matchTarget == 'SL') return res.contains('SL HIT');
+         if (matchTarget == 'SL') return res.contains('SL HIT') && s.hitTps.isEmpty;
          if (matchTarget == 'EXIT') return (res.contains('EXIT') || res.contains('MANUAL_EXIT') || res.contains('EXITED BY ADMIN')) && s.hitTps.isEmpty;
          
          return false;
@@ -4065,7 +4057,7 @@ class _HistorySectionState extends State<_HistorySection> {
         ),
         const SizedBox(height: 16),
         StreamBuilder<List<Signal>>(
-          stream: SignalService().getAllSignals(),
+          stream: SignalService().getAllSignals(limit: widget.selectedStatus == 'ALL' ? 200 : 1000),
           builder: (context, snapshot) {
             final rows = <HistoryRow>[];
             final waiting = snapshot.connectionState == ConnectionState.waiting;

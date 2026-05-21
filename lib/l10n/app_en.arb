@@ -363,6 +363,8 @@
   "bestPricesForPremiumAccess": "Best Prices for Premium Access",
   "choosePlanFitsNeeds": "Choose a plan that fits your business needs and start automating with AI",
   "save50Percent": "SAVE 50%",
+  "save40Percent": "SAVE 40%",
+  "save65Percent": "SAVE 65%",
   "tryDemo": "Try demo",
   "pleaseEnterEmailPassword": "Please enter email and password",
   "loginFailed": "Login failed: {error}",
@@ -412,7 +414,7 @@
   "chooseSignalNotificationTypes": "Choose which types of signal notifications you want to receive via browser push",
   "allSignalNotifications": "All Signal Notifications",
   "cryptoSignals": "Crypto Signals",
-  "forexSignals": "Currency pair Signals",
+  "forexSignals": "CURRENCY PAIR Signals",
   "goldSignals": "Gold Signals",
   "updatePasswordSecure": "Update your password to keep your account secure",
   "searchLabel": "Search:",
@@ -540,9 +542,9 @@
   "upgradeToPro": "Upgrade To Pro",
   "assetGold": "Gold",
   "assetCrypto": "Crypto",
-  "assetForex": "Currency pair",
+  "assetForex": "CURRENCY PAIR",
   "tokens": "Tokens",
-  "noForexAssets": "No Currency pair assets available",
+  "noForexAssets": "No CURRENCY PAIR assets available",
   "openApp": "Open {appName}",
   "@openApp": {
     "placeholders": {
@@ -602,6 +604,7 @@
   "installApp": "Install App",
   "reviews": "reviews",
   "priceLifetime": "$249.00",
+  "priceLifetimeOld": "$712.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
   "lifetime": "Lifetime"
