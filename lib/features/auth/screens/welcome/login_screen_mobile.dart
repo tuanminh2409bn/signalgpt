@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:minvest_forex_app/features/auth/bloc/auth_bloc.dart';
 import 'package:minvest_forex_app/features/auth/screens/welcome/forgot_password_screen_mobile.dart';
 import 'package:minvest_forex_app/features/auth/screens/welcome/signup_screen_mobile.dart';
@@ -20,6 +23,56 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
   bool _obscurePassword = true;
 
   @override
+  void initState() {
+    super.initState();
+    _loadSavedCredentials();
+  }
+
+  Future<void> _loadSavedCredentials() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final rememberMe = prefs.getBool('remember_me') ?? false;
+      if (rememberMe) {
+        final email = prefs.getString('saved_email') ?? '';
+        final encodedPassword = prefs.getString('saved_password') ?? '';
+        String password = '';
+        if (encodedPassword.isNotEmpty) {
+          try {
+            password = utf8.decode(base64Decode(encodedPassword));
+          } catch (e) {
+            password = '';
+          }
+        }
+        setState(() {
+          _rememberMe = true;
+          _emailController.text = email;
+          _passwordController.text = password;
+        });
+      }
+    } catch (e) {
+      debugPrint('Lỗi khôi phục thông tin đăng nhập: $e');
+    }
+  }
+
+  Future<void> _saveOrClearCredentials() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      if (_rememberMe) {
+        await prefs.setBool('remember_me', true);
+        await prefs.setString('saved_email', _emailController.text);
+        final encodedPassword = base64Encode(utf8.encode(_passwordController.text));
+        await prefs.setString('saved_password', encodedPassword);
+      } else {
+        await prefs.setBool('remember_me', false);
+        await prefs.remove('saved_email');
+        await prefs.remove('saved_password');
+      }
+    } catch (e) {
+      debugPrint('Lỗi lưu/xóa thông tin đăng nhập: $e');
+    }
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
@@ -33,6 +86,12 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.authenticated) {
+             // Đăng nhập thành công, lưu hoặc xóa thông tin đăng nhập nếu không phải tài khoản anonymous (guest)
+             final currentUser = FirebaseAuth.instance.currentUser;
+             if (currentUser != null && !currentUser.isAnonymous && _emailController.text.isNotEmpty) {
+               _saveOrClearCredentials();
+             }
+             
              // Đăng nhập thành công, đóng màn hình Login để lộ AuthGate (MainScreen)
              if (mounted) {
                // Pop cho đến khi về màn hình gốc (AuthGate)

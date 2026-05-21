@@ -531,7 +531,7 @@ class _SignalScreenState extends State<SignalScreen> {
                                 color: Color(0xFF0CA3ED), size: 64),
                             const SizedBox(height: 16),
                             const Text(
-                              'Đăng nhập để xem tín hiệu',
+                              'Login to view signals',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -541,7 +541,7 @@ class _SignalScreenState extends State<SignalScreen> {
                             ),
                             const SizedBox(height: 8),
                             const Text(
-                              'Vui lòng đăng nhập tài khoản để xem tín hiệu Signal GPT và sử dụng đầy đủ tính năng.',
+                              'Please login to view Signal GPT signals and access all features.',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color(0xFF636363),
@@ -553,7 +553,7 @@ class _SignalScreenState extends State<SignalScreen> {
                               onPressed: () {
                                 context
                                     .read<AuthBloc>()
-                                    .add(SignOutRequested());
+                                    .add(const SignOutRequested());
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF0CA3ED),
@@ -563,7 +563,7 @@ class _SignalScreenState extends State<SignalScreen> {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
-                              child: const Text('Đăng nhập ngay',
+                              child: const Text('Login now',
                                   style: TextStyle(color: Colors.white)),
                             ),
                           ],

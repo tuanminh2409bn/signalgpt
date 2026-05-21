@@ -284,7 +284,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
               width: 342,
-              height: 180, 
               decoration: ShapeDecoration(
                 gradient: LinearGradient(
                   begin: const Alignment(0.00, 0.78),
@@ -309,63 +308,68 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   )
                 ],
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min, 
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 30, 24, 20),
-                    child: Text(
-                      l10n.confirmLogoutMessage,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'Be Vietnam Pro',
-                        fontWeight: FontWeight.w500,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context); // Close dialog
-                      Navigator.pop(context); // Back to Profile
-                      context.read<AuthBloc>().add(SignOutRequested(
-                        providersToReset: [
-                          context.read<UserProvider>(),
-                          context.read<NotificationProvider>(),
-                        ],
-                      ));
-                    },
-                    child: Container(
-                      width: 122,
-                      height: 44,
-                      decoration: ShapeDecoration(
-                        gradient: const LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xFF0CA3ED), Color(0xFF276EFB)],
-                        ),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        l10n.logout,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: 'Be Vietnam Pro',
-                          fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.none,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min, 
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(24, 30, 24, 20),
+                        child: Text(
+                          l10n.confirmLogoutMessage,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'Be Vietnam Pro',
+                            fontWeight: FontWeight.w500,
+                            decoration: TextDecoration.none,
+                          ),
                         ),
                       ),
-                    ),
+                      const SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context); // Close dialog
+                          Navigator.pop(context); // Back to Profile
+                          context.read<AuthBloc>().add(SignOutRequested(
+                            providersToReset: [
+                              context.read<UserProvider>(),
+                              context.read<NotificationProvider>(),
+                            ],
+                          ));
+                        },
+                        child: Container(
+                          width: 122,
+                          height: 44,
+                          decoration: ShapeDecoration(
+                            gradient: const LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Color(0xFF0CA3ED), Color(0xFF276EFB)],
+                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            l10n.logout,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: 'Be Vietnam Pro',
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                    ],
                   ),
-                  const SizedBox(height: 24),
-                ],
+                ),
               ),
             ),
           ),

@@ -496,6 +496,10 @@ export const verifyPurchase = onCall(
                     };
 
                     if (packageType) {
+                        // Tự động nâng cấp hạng tài khoản lên elite và cập nhật hạn sử dụng
+                        updateData.subscriptionTier = 'elite';
+                        updateData.subscriptionExpiryDate = admin.firestore.Timestamp.fromDate(expiryDate!);
+
                         // Mua bất kỳ gói nào cũng mở khóa cả 3 gói (gold, forex, crypto)
                         updateData.activeSubscriptions = admin.firestore.FieldValue.arrayUnion('gold', 'forex', 'crypto');
                         // Cập nhật ngày hết hạn cho cả 3 gói
@@ -653,12 +657,7 @@ async function verifyAppleLegacyReceipt(receiptData: string, sharedSecret: strin
 // =================================================================
 // === HỆ THỐNG GỬI THÔNG BÁO ===
 // =================================================================
-function isGoldenHour(): boolean {
-  const now = new Date();
-  const vietnamTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" }));
-  const hour = vietnamTime.getHours();
-  return hour >= 8 && hour < 17;
-}
+// Đã loại bỏ giới hạn isGoldenHour để gửi thông báo 24/7 cho VIP và DEMO
 
 const sendAndStoreNotifications = async (
     usersData: { id: string; token?: string; lang: string }[],
@@ -743,22 +742,21 @@ const sendAndStoreNotifications = async (
 
 async function triggerNotifications(payload: any) {
   functions.logger.log("[triggerNotifications] Bắt đầu trigger với payload:", payload);
-  const isGolden = isGoldenHour();
   const allEligibleUsersDocs: admin.firestore.DocumentSnapshot[] = [];
 
   const eliteQuery = firestore.collection("users").where("subscriptionTier", "==", "elite").get();
-  const timeRestrictedPromises: Promise<admin.firestore.QuerySnapshot>[] = [];
+  const vipQuery = firestore.collection("users").where("subscriptionTier", "==", "vip").get();
+  const demoQuery = firestore.collection("users").where("subscriptionTier", "==", "demo").where("notificationCount", "<", 8).get();
 
-  if (isGolden) {
-      functions.logger.log("[triggerNotifications] Đang trong giờ vàng, lấy thêm user VIP và DEMO.");
-      const vipQuery = firestore.collection("users").where("subscriptionTier", "==", "vip").get();
-      const demoQuery = firestore.collection("users").where("subscriptionTier", "==", "demo").where("notificationCount", "<", 8).get();
-      timeRestrictedPromises.push(vipQuery, demoQuery);
-  }
+  const [eliteSnapshot, vipSnapshot, demoSnapshot] = await Promise.all([
+      eliteQuery,
+      vipQuery,
+      demoQuery
+  ]);
 
-  const [eliteSnapshot, ...timeRestrictedSnapshots] = await Promise.all([eliteQuery, ...timeRestrictedPromises]);
   eliteSnapshot.forEach((doc) => allEligibleUsersDocs.push(doc));
-  timeRestrictedSnapshots.forEach((snapshot) => snapshot.forEach((doc) => allEligibleUsersDocs.push(doc)));
+  vipSnapshot.forEach((doc) => allEligibleUsersDocs.push(doc));
+  demoSnapshot.forEach((doc) => allEligibleUsersDocs.push(doc));
 
   if (allEligibleUsersDocs.length === 0) {
       functions.logger.warn("[triggerNotifications] Không có người dùng nào đủ điều kiện nhận thông báo.");

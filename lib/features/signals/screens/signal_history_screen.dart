@@ -51,21 +51,15 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
   }
 
   void _initStream() {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    _historyStream = _signalService.getSignals(
-      isLive: false,
-      userTier: userProvider.userTier ?? 'free',
-      limit: 50,
+    _historyStream = _signalService.getAllSignals(
+      limit: 200,
     );
   }
 
   void _updateStream() {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
     setState(() {
-      _historyStream = _signalService.getSignals(
-        isLive: false,
-        userTier: userProvider.userTier ?? 'free',
-        limit: (_selectedStatus == 'ALL' && _selectedDate == null) ? 50 : 1000,
+      _historyStream = _signalService.getAllSignals(
+        limit: (_selectedStatus == 'ALL' && _selectedDate == null) ? 200 : 1000,
       );
     });
   }
@@ -148,7 +142,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
                           color: Color(0xFF0CA3ED), size: 64),
                       const SizedBox(height: 16),
                       const Text(
-                        'Đăng nhập để xem lịch sử',
+                        'Login to view history',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -158,7 +152,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Lịch sử tín hiệu chỉ dành cho người dùng đã đăng nhập. Hãy đăng nhập để theo dõi hiệu quả từ Signal GPT.',
+                        'Signal history is only available for logged-in users. Please login to track performance from Signal GPT.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF636363),
@@ -170,7 +164,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
                         onPressed: () {
                           context
                               .read<AuthBloc>()
-                              .add(SignOutRequested());
+                              .add(const SignOutRequested());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF0CA3ED),
@@ -180,7 +174,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        child: const Text('Đăng nhập ngay',
+                        child: const Text('Login now',
                             style: TextStyle(color: Colors.white)),
                       ),
                     ],
@@ -256,28 +250,71 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
     );
   }
 
+  bool _isGold(Signal s) => s.symbol.toUpperCase().contains('XAU');
+  bool _isCrypto(Signal s) {
+    final sym = s.symbol.toUpperCase();
+    return sym.contains('BTC') || sym.contains('ETH') || sym.contains('BNB') || sym.contains('USDT') || sym.contains('CRYPTO');
+  }
+  bool _isForex(Signal s) {
+    final sym = s.symbol.toUpperCase();
+    return sym.contains('/') && !sym.contains('XAU') && !_isCrypto(s);
+  }
+
   List<Signal> _applyFilters(List<Signal> signals) {
-    return signals.where((s) {
-      if (_assetCategory == AssetCategory.gold && !s.symbol.contains('XAU')) return false;
-      if (_assetCategory == AssetCategory.crypto && !(s.symbol.contains('BTC') || s.symbol.contains('ETH'))) return false;
-      if (_assetCategory == AssetCategory.forex && (s.symbol.contains('XAU') || s.symbol.contains('BTC') || s.symbol.contains('ETH'))) return false;
+    Iterable<Signal> filtered = signals;
 
-      if (_selectedDate != null) {
+    // 1. Filter by asset category
+    if (_assetCategory == AssetCategory.gold) {
+      filtered = filtered.where(_isGold);
+    } else if (_assetCategory == AssetCategory.crypto) {
+      filtered = filtered.where(_isCrypto);
+    } else if (_assetCategory == AssetCategory.forex) {
+      filtered = filtered.where(_isForex);
+    }
+
+    // 2. Remove the latest running signal for each category (matching Web logic)
+    final goldLatestId = filtered.where(_isGold).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
+    final cryptoLatestId = filtered.where(_isCrypto).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
+    final forexLatestId = filtered.where(_isForex).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
+    final latestIds = {goldLatestId, cryptoLatestId, forexLatestId}.whereType<String>().toSet();
+
+    filtered = filtered.where((s) => !latestIds.contains(s.id));
+
+    // 3. Filter by date
+    if (_selectedDate != null) {
+      filtered = filtered.where((s) {
         final date = s.createdAt.toDate();
-        if (date.day != _selectedDate!.day || date.month != _selectedDate!.month || date.year != _selectedDate!.year) return false;
-      }
+        return date.day == _selectedDate!.day && date.month == _selectedDate!.month && date.year == _selectedDate!.year;
+      });
+    }
 
-      if (_selectedStatus != 'ALL' && _selectedStatus != 'TẤT CẢ') {
+    // 4. Filter by status
+    if (_selectedStatus != 'ALL' && _selectedStatus != 'TẤT CẢ') {
+      filtered = filtered.where((s) {
         if (_selectedStatus == 'TP1') return s.hitTps.contains(1) && !s.hitTps.contains(2);
         if (_selectedStatus == 'TP2') return s.hitTps.contains(2) && !s.hitTps.contains(3);
         if (_selectedStatus == 'TP3') return s.hitTps.contains(3);
-        if (_selectedStatus == 'SL') return (s.result ?? '').toUpperCase().contains('SL') && s.hitTps.isEmpty;
-        if (_selectedStatus == 'CANCELLED' || _selectedStatus == 'ĐÃ HỦY') return s.status == 'cancelled' || (s.result ?? '').toLowerCase().contains('cancel');
-        if (_selectedStatus == 'EXIT' || _selectedStatus == 'ADMIN ĐÓNG') return (s.result ?? '').toLowerCase().contains('exit');
-      }
+        
+        final res = (s.result ?? '').toUpperCase();
+        if (_selectedStatus == 'SL') return res.contains('SL HIT') && s.hitTps.isEmpty;
+        if (_selectedStatus == 'CANCELLED' || _selectedStatus == 'ĐÃ HỦY') {
+          final resLower = (s.result ?? '').toLowerCase();
+          return s.status.toLowerCase() == 'cancelled' || resLower.contains('cancelled') || resLower.contains('cancel');
+        }
+        if (_selectedStatus == 'EXIT' || _selectedStatus == 'ADMIN ĐÓNG') {
+          return (res.contains('EXIT') || res.contains('MANUAL_EXIT') || res.contains('EXITED BY ADMIN')) && s.hitTps.isEmpty;
+        }
+        return false;
+      });
+    } else {
+      // Default: Show all except CANCELLED (matching Web logic)
+      filtered = filtered.where((s) {
+        final res = (s.result ?? '').toLowerCase();
+        return s.status.toLowerCase() != 'cancelled' && !res.contains('cancelled') && !res.contains('cancel');
+      });
+    }
 
-      return true;
-    }).toList();
+    return filtered.toList();
   }
 
   Widget _buildAssetDropdown(AppLocalizations l10n) {

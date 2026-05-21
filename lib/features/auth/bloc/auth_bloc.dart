@@ -139,6 +139,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     } on SuspendedAccountException catch (e) {
       emit(AuthState.unauthenticated(errorMessage: e.reason));
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'Incorrect username or password.';
+      if (e.code == 'user-not-found' ||
+          e.code == 'wrong-password' ||
+          e.code == 'invalid-credential' ||
+          e.code == 'invalid-email') {
+        errorMessage = 'Incorrect username or password.';
+      } else {
+        errorMessage = e.message ?? 'Authentication failed.';
+      }
+      emit(AuthState.unauthenticated(errorMessage: errorMessage));
     } catch (e) {
       emit(AuthState.unauthenticated(errorMessage: e.toString()));
     }

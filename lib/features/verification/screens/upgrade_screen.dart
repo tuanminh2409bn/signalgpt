@@ -16,7 +16,7 @@ class UpgradeScreen extends StatefulWidget {
 
 class _UpgradeScreenState extends State<UpgradeScreen> {
   PlanDuration selectedDuration = PlanDuration.monthly;
-  final Set<int> selectedCategoryIndices = {0}; // 0: GOLD, 1: FOREX, 2: CRYPTO
+  int selectedCategoryIndex = 0; // 0: GOLD, 1: FOREX, 2: CRYPTO
 
   List<String> _getFeatures(AppLocalizations l10n) {
     return [
@@ -173,25 +173,21 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
                 Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: GestureDetector(
-                    onTap: isPurchasing || selectedCategoryIndices.isEmpty 
+                    onTap: isPurchasing 
                       ? null 
                       : () => _handleBuyNow(context, purchaseService),
                     child: Container(
                       width: double.infinity,
                       height: 50,
                       decoration: BoxDecoration(
-                        gradient: selectedCategoryIndices.isEmpty
-                          ? const LinearGradient(colors: [Color(0xFF333333), Color(0xFF444444)])
-                          : const LinearGradient(
-                              colors: [Color(0xFF0CA3ED), Color(0xFF276EFB)],
-                            ),
+                        gradient: const LinearGradient(
+                          colors: [Color(0xFF0CA3ED), Color(0xFF276EFB)],
+                        ),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        selectedCategoryIndices.length > 1 
-                          ? '${l10n.upgradeNow} (${selectedCategoryIndices.length})'
-                          : l10n.upgradeNow,
+                        l10n.upgradeNow,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -219,48 +215,46 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
   Future<void> _handleBuyNow(BuildContext context, PurchaseService purchaseService) async {
     final l10n = AppLocalizations.of(context)!;
     
-    // In-App Purchase doesn't support a "cart". We have to process them one by one.
-    // If multiple packages are selected, we will process them sequentially.
+    String categoryName = '';
+    if (selectedCategoryIndex == 0) {
+      categoryName = 'gold';
+    } else if (selectedCategoryIndex == 1) {
+      categoryName = 'forex';
+    } else if (selectedCategoryIndex == 2) {
+      categoryName = 'crypto';
+    }
+
+    String durationSuffix = '';
+    if (selectedDuration == PlanDuration.monthly) {
+      durationSuffix = Platform.isIOS ? 'monthly' : '1_month';
+    } else if (selectedDuration == PlanDuration.annually) {
+      durationSuffix = Platform.isIOS ? 'yearly' : '12_months';
+    } else {
+      durationSuffix = Platform.isIOS ? 'lifetime' : 'lifetime';
+    }
+
+    final String productId = Platform.isIOS ? '$categoryName.$durationSuffix' : '${categoryName}_$durationSuffix';
+
+    final productIndex = purchaseService.products.indexWhere((p) => p.id == productId);
+    if (productIndex == -1) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Product not found: $productId. Please ensure it is configured in stores.')),
+        );
+      }
+      return;
+    }
     
-    for (int index in selectedCategoryIndices) {
-      String categoryName = '';
-      if (index == 0) categoryName = 'gold';
-      else if (index == 1) categoryName = 'forex';
-      else if (index == 2) categoryName = 'crypto';
+    final product = purchaseService.products[productIndex];
 
-      String durationSuffix = '';
-      if (selectedDuration == PlanDuration.monthly) {
-        durationSuffix = Platform.isIOS ? 'monthly' : '1_month';
-      } else if (selectedDuration == PlanDuration.annually) {
-        durationSuffix = Platform.isIOS ? 'yearly' : '12_months';
-      } else {
-        durationSuffix = Platform.isIOS ? 'lifetime' : 'lifetime';
-      }
-
-      final String productId = Platform.isIOS ? '$categoryName.$durationSuffix' : '${categoryName}_$durationSuffix';
-
-      final productIndex = purchaseService.products.indexWhere((p) => p.id == productId);
-      if (productIndex == -1) {
-        if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Product not found: $productId. Please ensure it is configured in stores.')),
-          );
-        }
-        break;
-      }
-      
-      final product = purchaseService.products[productIndex];
-
-      try {
-        await purchaseService.buyProduct(product);
-        // Note: the actual update to user data happens in PurchaseService via verifyPurchase Cloud Function.
-      } catch (e) {
-        if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l10n.errorWithMessage(e.toString()))),
-          );
-        }
-        break; // Stop if one fails to prevent messy flow
+    try {
+      await purchaseService.buyProduct(product);
+      // Note: the actual update to user data happens in PurchaseService via verifyPurchase Cloud Function.
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.errorWithMessage(e.toString()))),
+        );
       }
     }
   }
@@ -297,22 +291,79 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
     );
   }
 
-  Widget _buildPlanToggle(AppLocalizations l10n) {
+  Widget _buildDiscountBadge(String text) {
     return Container(
-      width: 320,
-      height: 38,
+      padding: const EdgeInsets.all(1), // Gradient border width (1px)
       decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(23),
-        border: Border.all(color: const Color(0xFF289EFF)),
+        borderRadius: BorderRadius.circular(4), // Slightly rounded corners (web styling)
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFF04B3E9), // Light Blue
+            Color(0xFF2E60FF), // Blue
+            Color(0xFFD500F9), // Magenta/Pink
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
       ),
-      child: Row(
-        children: [
-          _buildToggleOption(l10n.monthly, PlanDuration.monthly),
-          _buildToggleOption(l10n.annually, PlanDuration.annually),
-          _buildToggleOption(l10n.lifetime, PlanDuration.lifetime),
-        ],
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(3), // Inner corner radius
+          color: Colors.black, // Solid black background matching the web design
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 8,
+            fontWeight: FontWeight.w800,
+            fontFamily: 'Be Vietnam Pro',
+          ),
+        ),
       ),
+    );
+  }
+
+  Widget _buildPlanToggle(AppLocalizations l10n) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          width: 320,
+          height: 38,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(23),
+            border: Border.all(color: const Color(0xFF289EFF)),
+          ),
+          child: Row(
+            children: [
+              _buildToggleOption(l10n.monthly, PlanDuration.monthly),
+              _buildToggleOption(l10n.annually, PlanDuration.annually),
+              _buildToggleOption(l10n.lifetime, PlanDuration.lifetime),
+            ],
+          ),
+        ),
+        // Annually Discount Badge
+        Positioned(
+          top: -12,
+          left: 106.67,
+          width: 106.67,
+          child: Center(
+            child: _buildDiscountBadge(l10n.save40Percent),
+          ),
+        ),
+        // Lifetime Discount Badge
+        Positioned(
+          top: -12,
+          left: 213.33,
+          width: 106.67,
+          child: Center(
+            child: _buildDiscountBadge(l10n.save65Percent),
+          ),
+        ),
+      ],
     );
   }
 
@@ -343,7 +394,7 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
   }
 
   Widget _buildCategoryItem(int index, String name, String price, AppLocalizations l10n) {
-    final isSelected = selectedCategoryIndices.contains(index);
+    final isSelected = selectedCategoryIndex == index;
     
     String durationText = '';
     if (selectedDuration == PlanDuration.monthly) {
@@ -357,13 +408,7 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          if (isSelected) {
-            if (selectedCategoryIndices.length > 1) {
-              selectedCategoryIndices.remove(index);
-            }
-          } else {
-            selectedCategoryIndices.add(index);
-          }
+          selectedCategoryIndex = index;
         });
       },
       child: Container(

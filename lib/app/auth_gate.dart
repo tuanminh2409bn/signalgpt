@@ -64,11 +64,18 @@ class _AuthGateState extends State<AuthGate> {
         }
       },
       builder: (context, state) {
-        // Nếu đang trong quá trình đăng xuất, hiển thị màn hình chờ đơn giản
-        if (state.status == AuthStatus.loggingOut) {
+        // Nếu đang khởi tạo, loading hoặc đang đăng xuất, hiển thị màn hình chờ đơn giản
+        if (state.status == AuthStatus.unknown ||
+            state.status == AuthStatus.loading ||
+            state.status == AuthStatus.loggingOut) {
           return const Scaffold(
             backgroundColor: Colors.black,
-            body: Center(child: CircularProgressIndicator(color: Color(0xFF276EFB))),
+            body: Center(
+              child: CircularProgressIndicator(
+                color: Color(0xFF276EFB),
+                strokeWidth: 2.5,
+              ),
+            ),
           );
         }
 
