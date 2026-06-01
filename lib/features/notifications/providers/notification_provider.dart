@@ -44,64 +44,45 @@ class NotificationProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> _updateTopicSubscription(String prefKey, String topicName, bool value) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool(prefKey, value);
+      
+      if (!kIsWeb) {
+        if (value) {
+          await FirebaseMessaging.instance.subscribeToTopic(topicName);
+        } else {
+          await FirebaseMessaging.instance.unsubscribeFromTopic(topicName);
+        }
+      }
+    } catch (e) {
+      debugPrint('Error updating topic subscription for $topicName: $e');
+    }
+  }
+
   Future<void> toggleAll(bool value) async {
     _isAllEnabled = value;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('notif_all', value);
-    
-    if (!kIsWeb) {
-      if (value) {
-        await FirebaseMessaging.instance.subscribeToTopic('all_signals');
-      } else {
-        await FirebaseMessaging.instance.unsubscribeFromTopic('all_signals');
-      }
-    }
     notifyListeners();
+    unawaited(_updateTopicSubscription('notif_all', 'all_signals', value));
   }
 
   Future<void> toggleGold(bool value) async {
     _isGoldEnabled = value;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('notif_gold', value);
-    
-    if (!kIsWeb) {
-      if (value) {
-        await FirebaseMessaging.instance.subscribeToTopic('gold_signals');
-      } else {
-        await FirebaseMessaging.instance.unsubscribeFromTopic('gold_signals');
-      }
-    }
     notifyListeners();
+    unawaited(_updateTopicSubscription('notif_gold', 'gold_signals', value));
   }
 
   Future<void> toggleCrypto(bool value) async {
     _isCryptoEnabled = value;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('notif_crypto', value);
-    
-    if (!kIsWeb) {
-      if (value) {
-        await FirebaseMessaging.instance.subscribeToTopic('crypto_signals');
-      } else {
-        await FirebaseMessaging.instance.unsubscribeFromTopic('crypto_signals');
-      }
-    }
     notifyListeners();
+    unawaited(_updateTopicSubscription('notif_crypto', 'crypto_signals', value));
   }
 
   Future<void> toggleForex(bool value) async {
     _isForexEnabled = value;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('notif_forex', value);
-    
-    if (!kIsWeb) {
-      if (value) {
-        await FirebaseMessaging.instance.subscribeToTopic('forex_signals');
-      } else {
-        await FirebaseMessaging.instance.unsubscribeFromTopic('forex_signals');
-      }
-    }
     notifyListeners();
+    unawaited(_updateTopicSubscription('notif_forex', 'forex_signals', value));
   }
 
   // 1. Xóa hàm khởi tạo cũ để provider không tự động lắng nghe nữa

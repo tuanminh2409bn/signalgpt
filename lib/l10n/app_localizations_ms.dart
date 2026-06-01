@@ -177,7 +177,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'Naik taraf untuk Lihat Analisis Penuh';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'Log masuk tanpa akaun';
 
   @override
   String get welcomeTo => 'Selamat datang ke';
@@ -1120,10 +1120,10 @@ class AppLocalizationsMs extends AppLocalizations {
   String get save50Percent => 'JIMAT 50%';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => 'JIMAT 40%';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => 'JIMAT 65%';
 
   @override
   String get tryDemo => 'Cuba demo';
@@ -1354,30 +1354,30 @@ class AppLocalizationsMs extends AppLocalizations {
       'This feature is only for VIP customers, please upgrade to receive notifications.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Tukar Kata Laluan';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'Kata Laluan Semasa';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Kata Laluan Baharu';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Sahkan Kata Laluan Baharu';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'Kata laluan tidak sepadan';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'Kata laluan berjaya dikemas kini';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'Gagal mengemas kini kata laluan:$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'Kata laluan semasa salah';
 
   @override
   String get signInRequired => 'Log Masuk Diperlukan';
@@ -1503,76 +1503,76 @@ class AppLocalizationsMs extends AppLocalizations {
   String get popupLoginExplore => 'Log in to explore this trading bulletin!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => 'Penafian';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'Maklumat pada signalgpt.ai adalah untuk tujuan rujukan dan perkongsian pengetahuan sahaja, dan tidak membentuk nasihat pelaburan. Pengguna bertanggungjawab sepenuhnya untuk keputusan perdagangan mereka sendiri.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'Buka Akaun Dagangan';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'Sokong Kami';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'Apl Nilai';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'Kongsi Apl';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'Butiran Akaun';
 
   @override
-  String get language => 'Language';
+  String get language => 'Bahasa';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'Syarat Penggunaan';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'Akaun';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'Akses The Exchange';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'Sokongan Dalam Talian';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Pilih Bahasa';
 
   @override
-  String get left => 'left';
+  String get left => 'kiri';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Naik taraf Kepada Pro';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'emas';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'Kripto';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'PASANGAN MATAWANG';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Token';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'Tiada aset CURRENCY PAIR tersedia';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return 'Buka$appName';
   }
 
   @override
   String get signalStatus => 'Status';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'MASUK';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1587,112 +1587,116 @@ class AppLocalizationsMs extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'Menganalisis';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'Gunakan Token untuk melihat Isyarat';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'Lihat Sekarang';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'Menunggu isyarat baharu...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'Gagal membuka kunci isyarat';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'Tidak cukup token';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'Isyarat baharu dimuat naik';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'Isyarat${symbol}baharu kini dimuat naik!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'Tingkatkan kepada Lihat Isyarat';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'Sejarah Isyarat';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'SEMUA';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'Pilih Tarikh';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'Tiada sejarah ditemui';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'tarikh';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'CARTA PASARAN';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'Analisis & Penjelasan';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'Tiada analisis terperinci tersedia untuk isyarat ini.';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'Papan Pemuka Ahli Gabungan';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'Pautan Rujukan';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'Salin Pautan';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'Kiraan Rujukan';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'Jumlah Pendapatan';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'Komisen menunggu';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'Rujukan Terkini';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'Tiada rujukan lagi.';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'Peranan ahli gabungan diperlukan. Sila hubungi admin.';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'Kod ahli gabungan belum diberikan lagi. Sila hubungi admin.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'Gunakan pautan ini untuk merujuk pengguna dan dapatkan 40% komisen seumur hidup.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'Pautan disalin ke papan keratan!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'Masukkan Kod Rujukan';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'Kod Rujukan';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'Hantar';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'Kod rujukan tidak sah.';
+
+  @override
+  String get referralCodeApplied => 'Kod rujukan berjaya digunakan!';
 
   @override
   String get getTheAppForBestExperience =>
@@ -1718,4 +1722,298 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get lifetime => 'Lifetime';
+
+  @override
+  String get loginNow => 'Log masuk sekarang';
+
+  @override
+  String get loginToViewSignals => 'Log masuk untuk melihat isyarat';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Sila log masuk untuk melihat isyarat GPT Isyarat dan mengakses semua ciri.';
+
+  @override
+  String get loginToViewHistory => 'Log masuk untuk melihat sejarah';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'Sejarah isyarat hanya tersedia untuk pengguna log masuk. Sila log masuk untuk menjejak prestasi daripada Signal GPT.';
+
+  @override
+  String get letsGetYouIn => 'Jom Masuk!';
+
+  @override
+  String get dontHaveAnAccount => 'Tiada akaun?';
+
+  @override
+  String get createAccount => 'Buat Akaun';
+
+  @override
+  String get createYourAccount => 'Buat akaun anda';
+
+  @override
+  String get login => 'Log masuk';
+
+  @override
+  String get rememberYourPassword => 'Ingat Kata Laluan Anda';
+
+  @override
+  String get signInWith => 'Log masuk dengan';
+
+  @override
+  String get getStarted => 'Mulakan';
+
+  @override
+  String get pleaseEnterEmail => 'Sila masukkan e-mel anda';
+
+  @override
+  String get pleaseEnterPassword => 'Sila masukkan kata laluan anda';
+
+  @override
+  String get pleaseEnterCurrentPassword =>
+      'Sila masukkan kata laluan semasa anda';
+
+  @override
+  String get pleaseEnterNewPassword => 'Sila masukkan kata laluan baharu anda';
+
+  @override
+  String get pleaseConfirmNewPassword => 'Sila sahkan kata laluan baharu anda';
+
+  @override
+  String get pleaseConfirmPassword => 'Sila sahkan kata laluan anda';
+
+  @override
+  String get passwordMinLength =>
+      'Kata laluan mestilah sekurang-kurangnya 6 aksara';
+
+  @override
+  String get savePassword => 'Simpan Kata Laluan';
+
+  @override
+  String get verifyYourEmail => 'Sahkan E-mel Anda';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'Sila masukkan kod 6 digit\ndihantar ke e-mel anda';
+
+  @override
+  String get pleaseEnterAllDigits => 'Sila masukkan kesemua 6 digit';
+
+  @override
+  String get invalidOrExpiredCode =>
+      'Kod pengesahan tidak sah atau tamat tempoh';
+
+  @override
+  String get anErrorOccurred => 'Ralat berlaku. Sila cuba lagi.';
+
+  @override
+  String get verificationCodeResent => 'Kod pengesahan dihantar semula!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Gagal menghantar semula kod:$error';
+  }
+
+  @override
+  String get resendCode => 'Hantar semula kod';
+
+  @override
+  String get verify => 'Sahkan';
+
+  @override
+  String get resetPassword => 'Tetapkan Semula Kata Laluan';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Sila masukkan alamat e-mel yang anda gunakan untuk mendaftar akaun anda\n\nKami akan menghantar kod pengesahan ke alamat e-mel anda.';
+
+  @override
+  String get sendButton => 'Hantar';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Jika anda tidak dapat menerima e-mel tersebut, sila hubungi kami e-mel @gmail.com';
+
+  @override
+  String get verificationCodeSentTo =>
+      'Kami telah menghantar kod pengesahan kepada';
+
+  @override
+  String get passwordResetSuccessful => 'Tetapan semula kata laluan berjaya!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Ralat:$message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'Akaun sudah wujud';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'E-mel${email}telah pun didaftarkan dalam sistem. Sila log masuk atau gunakan ciri terlupa kata laluan.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Ralat sistem:$error';
+  }
+
+  @override
+  String get confirmPassword => 'Sahkan Kata Laluan';
+
+  @override
+  String get referralCodeOptional => 'Kod Rujukan (Pilihan)';
+
+  @override
+  String get accountDeletedSuccessfully =>
+      'Akaun telah dipadamkan secara kekal.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Ralat semasa memadam akaun:$error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'Kata laluan berjaya ditukar!';
+
+  @override
+  String get errorChangingPassword =>
+      'Ralat menukar kata laluan. Sila semak kata laluan semasa anda.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Dayakan pemberitahuan dalam tetapan peranti untuk melihat kemas kini baharu pada skrin kunci';
+
+  @override
+  String get navigateToDeviceSettings => 'Navigasi ke tetapan peranti.';
+
+  @override
+  String get turnOffAllNotifications => 'Matikan semua pemberitahuan';
+
+  @override
+  String get pauseAllNotifications => 'Jeda semua pemberitahuan';
+
+  @override
+  String get turnOnCryptoSignals => 'Hidupkan isyarat crypto';
+
+  @override
+  String get turnOnCurrencyPairSignals => 'Hidupkan isyarat pasangan mata wang';
+
+  @override
+  String get turnOnGoldSignals => 'Hidupkan isyarat emas';
+
+  @override
+  String get currencyPairSignals => 'Isyarat Pasangan Mata Wang';
+
+  @override
+  String get termsOfUseContent =>
+      'Dengan mengakses atau menggunakan aplikasi ini, anda bersetuju untuk mematuhi Syarat Penggunaan. Apl ini disediakan untuk tujuan maklumat sahaja dan kami tidak menjamin ketepatan, kesempurnaan atau kebolehpercayaan sebarang kandungan atau isyarat yang dipaparkan. Anda bertanggungjawab sepenuhnya terhadap cara anda menggunakan maklumat yang diberikan dalam apl. Kami berhak untuk mengubah suai, menggantung, atau menamatkan perkhidmatan pada bila-bila masa tanpa notis terlebih dahulu. Penggunaan aplikasi yang berterusan merupakan penerimaan mana-mana syarat yang dikemas kini.';
+
+  @override
+  String get tradingHistoryTitle => 'Sejarah Dagangan';
+
+  @override
+  String get tp1Live => 'TP1 LIVE';
+
+  @override
+  String get tp2Live => 'TP2 LIVE';
+
+  @override
+  String get tp3Live => 'TP3 LIVE';
+
+  @override
+  String get stopLossTriggered => 'Hentikan kerugian dicetuskan';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Kemasukan:$price';
+  }
+
+  @override
+  String get signalGptTitle => 'Isyarat GPT';
+
+  @override
+  String get categoryGold => 'EMAS';
+
+  @override
+  String get categoryCrypto => 'CRYPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'Langganan akan diperbaharui secara automatik melainkan dibatalkan sekurang-kurangnya 24 jam sebelum tamat tempoh semasa. Anda boleh mengurus dan membatalkan langganan anda dalam tetapan akaun App Store anda. Pelan seumur hidup ialah pembelian sekali sahaja.';
+
+  @override
+  String get termsOfUseEula => 'Syarat Penggunaan (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Produk tidak ditemui:$productId. Sila pastikan ia dikonfigurasikan di kedai.';
+  }
+
+  @override
+  String get perYear => '/ tahun';
+
+  @override
+  String get tierDemoSignalQty => '7-8 sehari';
+
+  @override
+  String get elite1Month => 'ELITE 1 Bulan';
+
+  @override
+  String get elite12Months => 'ELITE 12 Bulan';
+
+  @override
+  String get statusPending => 'Belum selesai';
+
+  @override
+  String get statusFailed => 'gagal';
+
+  @override
+  String get yourReferralCode => 'Kod rujukan anda';
+
+  @override
+  String get referralCodeCopied => 'Kod rujukan disalin!';
+
+  @override
+  String get copyCode => 'Salin Kod';
+
+  @override
+  String get revenue => 'Hasil';
+
+  @override
+  String get availableCommission => 'Komisen yang ada';
+
+  @override
+  String get totalReceivedIncome => 'Jumlah pendapatan yang diterima';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Deposit: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Notis Penting';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Akaun anda telah berubah. Sila log masuk semula.';
+
+  @override
+  String get iUnderstand => 'saya faham';
+
+  @override
+  String get saveUpTo65Percent => 'JIMAT SEHINGGA 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Tahunan -40% • Sepanjang Hayat -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Muat naik gagal: Kebenaran ditolak. Semak Peraturan Storan.';
+
+  @override
+  String get failedToUploadImage =>
+      'Gagal memuat naik imej. Sila semak sambungan anda.';
 }

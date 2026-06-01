@@ -429,31 +429,31 @@
   "leaveMessagePart1": "メッセージを残してください。チームができるだけ早く返信します。また、連絡することもできます ",
   "chatWhatsApp": "WhatsApp",
   "leaveMessagePart2": " Signal GPT で迅速なサポートを受けられます。",
-  "currentPlan": "Current Plan",
-  "standard": "STANDARD",
-  "availableTokens": "Available Tokens",
-  "subscriptions": "Subscriptions",
-  "usesTokenPerView": "Uses 1 Token per view",
-  "unlimitedAccess": "Unlimited Access",
-  "activeElite": "Active (Elite)",
-  "active": "Active",
-  "inactive": "Inactive",
-  "transactionHistory": "Transaction History",
-  "noTransactionsFound": "No transactions found.",
-  "colDate": "Date",
-  "colProduct": "Product",
-  "colAmount": "Amount",
-  "colMethod": "Method",
-  "colStatus": "Status",
-  "statusSuccess": "Success",
-  "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "currentPlan": "現在のプラン",
+  "standard": "スタンダード",
+  "availableTokens": "利用可能なトークン",
+  "subscriptions": "サブスクリプション",
+  "usesTokenPerView": "閲覧ごとに1トークン使用",
+  "unlimitedAccess": "無制限アクセス",
+  "activeElite": "アクティブ (Elite)",
+  "active": "アクティブ",
+  "inactive": "非アクティブ",
+  "transactionHistory": "取引履歴",
+  "noTransactionsFound": "取引が見つかりません。",
+  "colDate": "日付",
+  "colProduct": "商品",
+  "colAmount": "金額",
+  "colMethod": "方法",
+  "colStatus": "ステータス",
+  "statusSuccess": "成功",
+  "featureForVipOnly": "この機能はVIPのお客様専用です。通知を受け取るにはアップグレードしてください。",
+  "changePassword": "パスワード変更",
+  "currentPassword": "現在のパスワード",
+  "newPassword": "新しいパスワード",
+  "confirmNewPassword": "新しいパスワードの確認",
+  "passwordsDoNotMatch": "パスワードが一致しません",
+  "passwordUpdateSuccess": "パスワードが正常に更新されました",
+  "passwordUpdateFailed": "パスワードの更新に失敗しました: {error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "現在のパスワードが正しくありません",
   "signInRequired": "ログインが必要です",
   "signInToExploreSignal": "サインインしてこの取引シグナルを探索してください！",
   "activeMember": "アクティブメンバー",
@@ -474,9 +474,9 @@
   "daily": "毎日",
   "weekly": "毎週",
   "lossRate": "損失率",
-  "signalProgress": "Signal Progress",
-  "statusHistory": "Status History",
-  "signalCreated": "Signal Created",
+  "signalProgress": "シグナル進捗",
+  "statusHistory": "ステータス履歴",
+  "signalCreated": "シグナル作成",
   "signalMatched": "シグナル一致",
   "targetReached": "目標達成",
   "freeSignalsInfo": "無料シグナル情報",
@@ -510,23 +510,260 @@
   },
   "passwordResetEmailSent": "パスワード再設定メールを送信しました！受信トレイを確認してください。",
   "pageOf": "/",
-  "keyFindings": "Key Findings",
-  "filterStatusLabel": "Status",
-  "filterStatusAll": "All Status",
-  "filterStatusTp1": "TP1 HIT",
-  "filterStatusTp2": "TP2 HIT",
-  "filterStatusTp3": "TP3 HIT",
-  "filterStatusSl": "SL HIT",
-  "filterStatusCancelled": "CANCELLED",
-  "filterStatusExitByAdmin": "EXIT BY ADMIN",
-  "popupMasterMarket": "Do you want to master the market?",
-  "popupLoginExplore": "Log in to explore this trading bulletin!",
-  "markAllRead": "Mark all as read",
-  "getTheAppForBestExperience": "Get the app for the best experience",
-  "installApp": "Install App",
-  "reviews": "reviews",
+  "keyFindings": "主要な発見",
+  "filterStatusLabel": "ステータス",
+  "filterStatusAll": "すべてのステータス",
+  "filterStatusTp1": "TP1 ヒット",
+  "filterStatusTp2": "TP2 ヒット",
+  "filterStatusTp3": "TP3 ヒット",
+  "filterStatusSl": "SL ヒット",
+  "filterStatusCancelled": "キャンセル済み",
+  "filterStatusExitByAdmin": "管理者により終了",
+  "popupMasterMarket": "市場をマスターしたいですか？",
+  "popupLoginExplore": "ログインしてこの取引速報を見よう！",
+  "markAllRead": "すべて既読にする",
+  "getTheAppForBestExperience": "最高の体験のためにアプリを入手",
+  "installApp": "アプリをインストール",
+  "reviews": "レビュー",
   "priceLifetime": "$249.00",
-  "durationLifetime": "Lifetime",
-  "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "priceLifetimeOld": "$712.00",
+  "durationLifetime": "永久",
+  "orderInfoLifetime": "Elite 永久パッケージの支払い",
+  "lifetime": "永久",
+
+  "loginWithoutAccount": "アカウントなしでログイン",
+  "save40Percent": "40%オフ",
+  "save65Percent": "65%オフ",
+  "disclaimer": "免責事項",
+  "disclaimerContent": "signalgpt.aiの情報は参考および知識共有を目的としたものであり、投資アドバイスを構成するものではありません。ユーザーは自身の取引判断に対して全責任を負います。",
+  "openTradingAccount": "取引口座を開設",
+  "supportUs": "サポートする",
+  "rateApp": "アプリを評価",
+  "shareApp": "アプリを共有",
+  "accountDetails": "アカウント詳細",
+  "language": "言語",
+  "termsOfUse": "利用規約",
+  "accounts": "アカウント",
+  "accessExchange": "取引所にアクセス",
+  "onlineSupport": "オンラインサポート",
+  "selectLanguage": "言語を選択",
+  "left": "残り",
+  "upgradeToPro": "Proにアップグレード",
+  "assetGold": "ゴールド",
+  "assetCrypto": "仮想通貨",
+  "assetForex": "通貨ペア",
+  "tokens": "トークン",
+  "noForexAssets": "通貨ペア資産はありません",
+  "openApp": "{appName} を開く",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "ステータス",
+  "signalEntryLabel": "エントリー",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "分析",
+  "useTokenToView": "トークンを使用してシグナルを表示",
+  "viewNow": "今すぐ見る",
+  "waitingNewSignals": "新しいシグナルを待機中...",
+  "failedUnlockSignal": "シグナルのロック解除に失敗しました",
+  "notEnoughTokens": "トークンが不足しています",
+  "newSignalUploaded": "新しいシグナルがアップロードされました",
+  "newSymbolSignalUploaded": "新しい {symbol} シグナルがアップロードされました！",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "アップグレードしてシグナルを表示",
+  "signalHistory": "シグナル履歴",
+  "allStatus": "すべて",
+  "selectDate": "日付を選択",
+  "noHistoryFound": "履歴が見つかりません",
+  "filterDate": "日付",
+  "marketChart": "マーケットチャート",
+  "analysisExplanation": "分析と解説",
+  "noDetailedAnalysis": "このシグナルの詳細な分析はありません。",
+  "affiliateDashboard": "アフィリエイトダッシュボード",
+  "referralLink": "紹介リンク",
+  "copyLink": "リンクをコピー",
+  "referralCount": "紹介数",
+  "totalEarnings": "総収益",
+  "pendingCommission": "保留中のコミッション",
+  "latestReferrals": "最新の紹介",
+  "noReferralsYet": "紹介はまだありません。",
+  "affiliateRoleRequired": "アフィリエイト権限が必要です。管理者にお問い合わせください。",
+  "affiliateCodeNotAssigned": "アフィリエイトコードがまだ割り当てられていません。管理者にお問い合わせください。",
+  "referralLinkDescription": "このリンクを使用してユーザーを紹介し、生涯40%のコミッションを獲得しましょう。",
+  "linkCopied": "リンクをクリップボードにコピーしました！",
+  "enterReferralCode": "紹介コードを入力",
+  "referralCode": "紹介コード",
+  "submit": "送信",
+  "invalidReferralCode": "無効な紹介コードです。",
+  "referralCodeApplied": "紹介コードが正常に適用されました！",
+
+  "loginNow": "今すぐログイン",
+  "loginToViewSignals": "ログインしてシグナルを表示",
+  "loginToViewSignalsDesc": "Signal GPTのシグナルを表示し、すべての機能にアクセスするにはログインしてください。",
+  "loginToViewHistory": "ログインして履歴を表示",
+  "loginToViewHistoryDesc": "シグナル履歴はログインユーザーのみ利用可能です。Signal GPTのパフォーマンスを追跡するにはログインしてください。",
+  "letsGetYouIn": "さあ、始めましょう！",
+  "dontHaveAnAccount": "アカウントをお持ちでないですか？ ",
+  "createAccount": "アカウント作成",
+  "createYourAccount": "アカウントを作成",
+  "login": "ログイン",
+  "rememberYourPassword": "パスワードを覚えていますか",
+  "signInWith": "でサインイン",
+  "getStarted": "始める",
+  "pleaseEnterEmail": "メールアドレスを入力してください",
+  "pleaseEnterPassword": "パスワードを入力してください",
+  "pleaseEnterCurrentPassword": "現在のパスワードを入力してください",
+  "pleaseEnterNewPassword": "新しいパスワードを入力してください",
+  "pleaseConfirmNewPassword": "新しいパスワードを確認してください",
+  "pleaseConfirmPassword": "パスワードを確認してください",
+  "passwordMinLength": "パスワードは6文字以上である必要があります",
+  "savePassword": "パスワードを保存",
+
+  "verifyYourEmail": "メールアドレスの確認",
+  "pleaseEnterVerificationCode": "メールに送信された6桁のコードを\n入力してください",
+  "pleaseEnterAllDigits": "6桁すべてを入力してください",
+  "invalidOrExpiredCode": "無効または期限切れの確認コードです",
+  "anErrorOccurred": "エラーが発生しました。もう一度お試しください。",
+  "verificationCodeResent": "確認コードを再送信しました！",
+  "failedToResendCode": "コードの再送信に失敗しました: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "コードを再送信",
+  "verify": "確認",
+
+  "resetPassword": "パスワードをリセット",
+  "forgotPasswordInstructions": "登録に使用したメールアドレスを入力してください\n\n確認コードをメールアドレスに送信します。",
+  "sendButton": "送信",
+  "unableToReceiveEmail": "メールを受信できない場合は、@gmail.com までお問い合わせください",
+  "verificationCodeSentTo": "確認コードを送信しました",
+  "passwordResetSuccessful": "パスワードのリセットに成功しました！",
+  "errorGeneric": "エラー: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "accountAlreadyExists": "アカウントは既に存在します",
+  "accountAlreadyExistsMessage": "メールアドレス {email} は既にシステムに登録されています。ログインするか、パスワードをお忘れの場合の機能をご利用ください。",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "システムエラー: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "パスワードの確認",
+  "referralCodeOptional": "紹介コード（任意）",
+
+  "accountDeletedSuccessfully": "アカウントは完全に削除されました。",
+  "accountDeleteError": "アカウント削除エラー: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "パスワードが正常に変更されました！",
+  "errorChangingPassword": "パスワードの変更エラー。現在のパスワードを確認してください。",
+
+  "enableNotificationsHint": "ロック画面で新しい更新を表示するには、デバイス設定で通知を有効にしてください",
+  "navigateToDeviceSettings": "デバイス設定に移動します。",
+  "turnOffAllNotifications": "すべての通知をオフにする",
+  "pauseAllNotifications": "すべての通知を一時停止",
+  "turnOnCryptoSignals": "仮想通貨シグナルをオンにする",
+  "turnOnCurrencyPairSignals": "通貨ペアシグナルをオンにする",
+  "turnOnGoldSignals": "ゴールドシグナルをオンにする",
+  "currencyPairSignals": "通貨ペアシグナル",
+
+  "termsOfUseContent": "このアプリケーションにアクセスまたは使用することにより、利用規約に同意したものとみなされます。本アプリは情報提供のみを目的としており、表示されるコンテンツやシグナルの正確性、完全性、信頼性を保証するものではありません。アプリ内で提供される情報の使用方法については、お客様ご自身の責任となります。当社は事前通知なしにサービスを変更、停止、または終了する権利を留保します。アプリの継続使用は、更新された規約への同意を構成します。",
+
+  "tradingHistoryTitle": "取引履歴",
+  "tp1Live": "TP1 ライブ",
+  "tp2Live": "TP2 ライブ",
+  "tp3Live": "TP3 ライブ",
+  "stopLossTriggered": "ストップロス発動",
+  "entryWithPrice": "エントリー: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+
+  "signalGptTitle": "Signal GPT",
+
+  "categoryGold": "ゴールド",
+  "categoryCrypto": "仮想通貨",
+  "subscriptionAutoRenewDisclaimer": "サブスクリプションは、現在の期間終了の24時間前までにキャンセルしない限り自動更新されます。App Storeのアカウント設定でサブスクリプションの管理およびキャンセルが可能です。永久プランは一回限りの購入です。",
+  "termsOfUseEula": "利用規約 (EULA)",
+  "productNotFound": "商品が見つかりません: {productId}。ストアで設定されているか確認してください。",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ 年",
+  "tierDemoSignalQty": "1日7〜8件",
+  "elite1Month": "ELITE 1ヶ月",
+  "elite12Months": "ELITE 12ヶ月",
+  "statusPending": "保留中",
+  "statusFailed": "失敗",
+
+  "yourReferralCode": "あなたの紹介コード",
+  "referralCodeCopied": "紹介コードをコピーしました！",
+  "copyCode": "コードをコピー",
+  "revenue": "収益",
+  "availableCommission": "利用可能なコミッション",
+  "totalReceivedIncome": "受取済み総収入",
+  "depositAmount": "入金: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+
+  "importantNotice": "重要なお知らせ",
+  "accountChangedPleaseRelogin": "アカウントが変更されました。再度ログインしてください。",
+  "iUnderstand": "了解しました",
+
+  "saveUpTo65Percent": "最大65%オフ",
+  "yearlyLifetimeDiscount": "年間 -40% • 永久 -65%",
+
+  "uploadFailedPermissionDenied": "アップロード失敗: アクセスが拒否されました。ストレージルールを確認してください。",
+  "failedToUploadImage": "画像のアップロードに失敗しました。接続を確認してください。"
 }

@@ -177,7 +177,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get upgradeToViewFullAnalysis => 'Päivitä nähdäksesi täyden analyysin';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'Kirjaudu ilman tiliä';
 
   @override
   String get welcomeTo => 'Tervetuloa';
@@ -559,7 +559,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get noNotificationsYet => 'Ei ilmoituksia vielä.';
 
   @override
-  String get markAllRead => 'Mark all as read';
+  String get markAllRead => 'Merkitse kaikki luetuiksi';
 
   @override
   String daysAgo(int count) {
@@ -1120,10 +1120,10 @@ class AppLocalizationsFi extends AppLocalizations {
   String get save50Percent => 'SÄÄSTÄ 50%';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => 'SÄÄSTÄ 40%';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => 'SÄÄSTÄ 65%';
 
   @override
   String get tryDemo => 'Kokeile demoa';
@@ -1298,85 +1298,85 @@ class AppLocalizationsFi extends AppLocalizations {
   String get leaveMessagePart2 => ' Signal GPT nopeaa tukea varten.';
 
   @override
-  String get currentPlan => 'Current Plan';
+  String get currentPlan => 'Nykyinen suunnitelma';
 
   @override
-  String get standard => 'STANDARD';
+  String get standard => 'STANDARDI';
 
   @override
-  String get availableTokens => 'Available Tokens';
+  String get availableTokens => 'Käytettävissä olevat tokenit';
 
   @override
-  String get subscriptions => 'Subscriptions';
+  String get subscriptions => 'Tilaukset';
 
   @override
-  String get usesTokenPerView => 'Uses 1 Token per view';
+  String get usesTokenPerView => 'Käyttää 1 tokenin per katselukerta';
 
   @override
-  String get unlimitedAccess => 'Unlimited Access';
+  String get unlimitedAccess => 'Rajoittamaton käyttöoikeus';
 
   @override
-  String get activeElite => 'Active (Elite)';
+  String get activeElite => 'Aktiivinen (Elite)';
 
   @override
-  String get active => 'Active';
+  String get active => 'Aktiivinen';
 
   @override
-  String get inactive => 'Inactive';
+  String get inactive => 'Ei aktiivinen';
 
   @override
-  String get transactionHistory => 'Transaction History';
+  String get transactionHistory => 'Tapahtumahistoria';
 
   @override
-  String get noTransactionsFound => 'No transactions found.';
+  String get noTransactionsFound => 'Tapahtumia ei löytynyt.';
 
   @override
-  String get colDate => 'Date';
+  String get colDate => 'Päivämäärä';
 
   @override
-  String get colProduct => 'Product';
+  String get colProduct => 'Tuote';
 
   @override
-  String get colAmount => 'Amount';
+  String get colAmount => 'Summa';
 
   @override
-  String get colMethod => 'Method';
+  String get colMethod => 'Tapa';
 
   @override
-  String get colStatus => 'Status';
+  String get colStatus => 'Tila';
 
   @override
-  String get statusSuccess => 'Success';
+  String get statusSuccess => 'Onnistunut';
 
   @override
   String get featureForVipOnly =>
-      'This feature is only for VIP customers, please upgrade to receive notifications.';
+      'Tämä ominaisuus on vain VIP-asiakkaille, päivitä saadaksesi ilmoituksia.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Vaihda salasana';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'Nykyinen salasana';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Uusi salasana';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Vahvista uusi salasana';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'Salasanat eivät täsmää';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'Salasana päivitetty onnistuneesti';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'Salasanan päivitys epäonnistui: $error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'Virheellinen nykyinen salasana';
 
   @override
   String get signInRequired => 'Kirjautuminen vaaditaan';
@@ -1416,13 +1416,13 @@ class AppLocalizationsFi extends AppLocalizations {
   String get lossRate => 'Tappioprosentti';
 
   @override
-  String get signalProgress => 'Signal Progress';
+  String get signalProgress => 'Signaalin edistyminen';
 
   @override
-  String get statusHistory => 'Status History';
+  String get statusHistory => 'Tilahistoria';
 
   @override
-  String get signalCreated => 'Signal Created';
+  String get signalCreated => 'Signaali luotu';
 
   @override
   String get signalMatched => 'Signaali täsmää';
@@ -1469,109 +1469,110 @@ class AppLocalizationsFi extends AppLocalizations {
   String get pageOf => '/';
 
   @override
-  String get keyFindings => 'Key Findings';
+  String get keyFindings => 'Keskeiset havainnot';
 
   @override
-  String get filterStatusLabel => 'Status';
+  String get filterStatusLabel => 'Tila';
 
   @override
-  String get filterStatusAll => 'All Status';
+  String get filterStatusAll => 'Kaikki tilat';
 
   @override
-  String get filterStatusTp1 => 'TP1 HIT';
+  String get filterStatusTp1 => 'TP1 OSUMA';
 
   @override
-  String get filterStatusTp2 => 'TP2 HIT';
+  String get filterStatusTp2 => 'TP2 OSUMA';
 
   @override
-  String get filterStatusTp3 => 'TP3 HIT';
+  String get filterStatusTp3 => 'TP3 OSUMA';
 
   @override
-  String get filterStatusSl => 'SL HIT';
+  String get filterStatusSl => 'SL OSUMA';
 
   @override
-  String get filterStatusCancelled => 'CANCELLED';
+  String get filterStatusCancelled => 'PERUUTETTU';
 
   @override
-  String get filterStatusExitByAdmin => 'EXIT BY ADMIN';
+  String get filterStatusExitByAdmin => 'YLLÄPITÄJÄN POISTAMA';
 
   @override
-  String get popupMasterMarket => 'Do you want to master the market?';
+  String get popupMasterMarket => 'Haluatko hallita markkinoita?';
 
   @override
-  String get popupLoginExplore => 'Log in to explore this trading bulletin!';
+  String get popupLoginExplore =>
+      'Kirjaudu sisään tutkiaksesi tätä kaupankäyntitiedotetta!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => 'Vastuuvapauslauseke';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'Tiedot osoitteessa signalgpt.ai ovat vain viite- ja tiedonjakotarkoituksiin, eivätkä ne muodosta sijoitusneuvontaa. Käyttäjät ovat yksin vastuussa omista kaupankäyntipäätöksistään.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'Avaa kaupankäyntitili';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'Tue meitä';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'Arvioi sovellus';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'Jaa sovellus';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'Tilin tiedot';
 
   @override
-  String get language => 'Language';
+  String get language => 'Kieli';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'Käyttöehdot';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'Tilit';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'Siirry pörssiin';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'Verkkotuki';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Valitse kieli';
 
   @override
-  String get left => 'left';
+  String get left => 'jäljellä';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Päivitä Pro-tasolle';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'Kulta';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'Krypto';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'VALUUTTAPARI';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Tokenit';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'Valuuttapariomaisuuksia ei ole saatavilla';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return 'Avaa $appName';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'Tila';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'SISÄÄNTULO';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1586,122 +1587,126 @@ class AppLocalizationsFi extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'Analysoi';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'Käytä token nähdäksesi signaalin';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'Katso nyt';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'Odotetaan uusia signaaleja...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'Signaalin avaus epäonnistui';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'Tokeneita ei ole tarpeeksi';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'Uusi signaali ladattu';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'Uusi $symbol signaali on nyt ladattu!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'Päivitä nähdäksesi signaalin';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'Signaalihistoria';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'KAIKKI';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'Valitse päivämäärä';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'Historiaa ei löytynyt';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'Päivämäärä';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'MARKKINAKAAVIO';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'Analyysi ja selitys';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'Tälle signaalille ei ole yksityiskohtaista analyysia saatavilla.';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'Kumppanien hallintapaneeli';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'Suosittelulinkki';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'Kopioi linkki';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'Suosittelujen määrä';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'Kokonaisansiot';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'Odottava provisio';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'Viimeisimmät suosittelut';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'Ei suositteluja vielä.';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'Kumppanirooli vaaditaan. Ota yhteyttä ylläpitäjään.';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'Kumppanikoodi ei ole vielä määritetty. Ota yhteyttä ylläpitäjään.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'Käytä tätä linkkiä käyttäjien suositteluun ja ansaitse 40% elinikäinen provisio.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'Linkki kopioitu leikepöydälle!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'Anna suosittelukoodi';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'Suosittelukoodi';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'Lähetä';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'Virheellinen suosittelukoodi.';
+
+  @override
+  String get referralCodeApplied => 'Suosittelukoodi käytetty onnistuneesti!';
 
   @override
   String get getTheAppForBestExperience =>
-      'Get the app for the best experience';
+      'Hanki sovellus parasta kokemusta varten';
 
   @override
-  String get installApp => 'Install App';
+  String get installApp => 'Asenna sovellus';
 
   @override
-  String get reviews => 'reviews';
+  String get reviews => 'arvostelut';
 
   @override
   String get priceLifetime => '\$249.00';
@@ -1710,11 +1715,301 @@ class AppLocalizationsFi extends AppLocalizations {
   String get priceLifetimeOld => '\$712.00';
 
   @override
-  String get durationLifetime => 'Lifetime';
+  String get durationLifetime => 'Elinikäinen';
 
   @override
-  String get orderInfoLifetime => 'Payment for Elite Lifetime package';
+  String get orderInfoLifetime => 'Maksu Elite Elinikäinen -paketista';
 
   @override
-  String get lifetime => 'Lifetime';
+  String get lifetime => 'Elinikäinen';
+
+  @override
+  String get loginNow => 'Kirjaudu nyt';
+
+  @override
+  String get loginToViewSignals => 'Kirjaudu nähdäksesi signaalit';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Kirjaudu sisään nähdäksesi Signal GPT -signaalit ja käyttääksesi kaikkia ominaisuuksia.';
+
+  @override
+  String get loginToViewHistory => 'Kirjaudu nähdäksesi historian';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'Signaalihistoria on saatavilla vain kirjautuneille käyttäjille. Kirjaudu seurataksesi Signal GPTin suorituskykyä.';
+
+  @override
+  String get letsGetYouIn => 'Kirjaudutaan sisään!';
+
+  @override
+  String get dontHaveAnAccount => 'Eikö sinulla ole tiliä? ';
+
+  @override
+  String get createAccount => 'Luo tili';
+
+  @override
+  String get createYourAccount => 'Luo tilisi';
+
+  @override
+  String get login => 'Kirjaudu';
+
+  @override
+  String get rememberYourPassword => 'Muista salasanasi';
+
+  @override
+  String get signInWith => 'Kirjaudu palvelulla';
+
+  @override
+  String get getStarted => 'Aloita';
+
+  @override
+  String get pleaseEnterEmail => 'Anna sähköpostiosoitteesi';
+
+  @override
+  String get pleaseEnterPassword => 'Anna salasanasi';
+
+  @override
+  String get pleaseEnterCurrentPassword => 'Anna nykyinen salasanasi';
+
+  @override
+  String get pleaseEnterNewPassword => 'Anna uusi salasanasi';
+
+  @override
+  String get pleaseConfirmNewPassword => 'Vahvista uusi salasanasi';
+
+  @override
+  String get pleaseConfirmPassword => 'Vahvista salasanasi';
+
+  @override
+  String get passwordMinLength => 'Salasanan on oltava vähintään 6 merkkiä';
+
+  @override
+  String get savePassword => 'Tallenna salasana';
+
+  @override
+  String get verifyYourEmail => 'Vahvista sähköpostisi';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'Anna 6-numeroinen koodi,\njoka lähetettiin sähköpostiisi';
+
+  @override
+  String get pleaseEnterAllDigits => 'Anna kaikki 6 numeroa';
+
+  @override
+  String get invalidOrExpiredCode =>
+      'Virheellinen tai vanhentunut vahvistuskoodi';
+
+  @override
+  String get anErrorOccurred => 'Tapahtui virhe. Yritä uudelleen.';
+
+  @override
+  String get verificationCodeResent => 'Vahvistuskoodi lähetetty uudelleen!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Koodin uudelleenlähetys epäonnistui: $error';
+  }
+
+  @override
+  String get resendCode => 'Lähetä koodi uudelleen';
+
+  @override
+  String get verify => 'Vahvista';
+
+  @override
+  String get resetPassword => 'Palauta salasana';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Anna sähköpostiosoite, jolla rekisteröidyit\n\nLähetämme vahvistuskoodin sähköpostiisi.';
+
+  @override
+  String get sendButton => 'Lähetä';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Jos et pysty vastaanottamaan sähköpostia, ota meihin yhteyttä osoitteessa @gmail.com';
+
+  @override
+  String get verificationCodeSentTo => 'Lähetimme vahvistuskoodin osoitteeseen';
+
+  @override
+  String get passwordResetSuccessful => 'Salasanan palautus onnistui!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Virhe: $message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'Tili on jo olemassa';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'Sähköposti $email on jo rekisteröity järjestelmään. Kirjaudu sisään tai käytä unohtunut salasana -toimintoa.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Järjestelmävirhe: $error';
+  }
+
+  @override
+  String get confirmPassword => 'Vahvista salasana';
+
+  @override
+  String get referralCodeOptional => 'Suosittelukoodi (valinnainen)';
+
+  @override
+  String get accountDeletedSuccessfully => 'Tili on poistettu pysyvästi.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Virhe tilin poistamisessa: $error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'Salasana vaihdettu onnistuneesti!';
+
+  @override
+  String get errorChangingPassword =>
+      'Virhe salasanan vaihtamisessa. Tarkista nykyinen salasanasi.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Ota ilmoitukset käyttöön laitteen asetuksissa nähdäksesi uudet päivitykset lukitusnäytöllä';
+
+  @override
+  String get navigateToDeviceSettings => 'Siirry laitteen asetuksiin.';
+
+  @override
+  String get turnOffAllNotifications => 'Kytke kaikki ilmoitukset pois päältä';
+
+  @override
+  String get pauseAllNotifications => 'Keskeytä kaikki ilmoitukset';
+
+  @override
+  String get turnOnCryptoSignals => 'Kytke krypto-signaalit päälle';
+
+  @override
+  String get turnOnCurrencyPairSignals => 'Kytke valuuttaparisignaalit päälle';
+
+  @override
+  String get turnOnGoldSignals => 'Kytke kultasignaalit päälle';
+
+  @override
+  String get currencyPairSignals => 'Valuuttaparisignaalit';
+
+  @override
+  String get termsOfUseContent =>
+      'Käyttämällä tätä sovellusta sitoudut noudattamaan käyttöehtoja. Tämä sovellus on tarkoitettu vain tiedotus tarkoituksiin, emmekä takaa minkään sisällön tai signaalien tarkkuutta, täydellisyyttä tai luotettavuutta. Olet yksin vastuussa siitä, miten käytät sovelluksessa tarjottuja tietoja. Pidätämme oikeuden muokata, keskeyttää tai lopettaa palvelun milloin tahansa ilman ennakkoilmoitusta. Sovelluksen jatkuva käyttö tarkoittaa päivitettyjen ehtojen hyväksymistä.';
+
+  @override
+  String get tradingHistoryTitle => 'Kaupankäyntihistoria';
+
+  @override
+  String get tp1Live => 'TP1 LIVE';
+
+  @override
+  String get tp2Live => 'TP2 LIVE';
+
+  @override
+  String get tp3Live => 'TP3 LIVE';
+
+  @override
+  String get stopLossTriggered => 'Stop loss laukaistu';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Sisääntulo: $price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signal GPT';
+
+  @override
+  String get categoryGold => 'KULTA';
+
+  @override
+  String get categoryCrypto => 'KRYPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'Tilaus uusiutuu automaattisesti, ellei sitä peruuteta vähintään 24 tuntia ennen nykyisen jakson päättymistä. Voit hallita ja peruuttaa tilauksesi App Store -tilisi asetuksissa. Elinikäinen suunnitelma on kertaosto.';
+
+  @override
+  String get termsOfUseEula => 'Käyttöehdot (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Tuotetta ei löytynyt: $productId. Varmista, että se on määritetty kaupoissa.';
+  }
+
+  @override
+  String get perYear => '/ vuosi';
+
+  @override
+  String get tierDemoSignalQty => '7-8 päivässä';
+
+  @override
+  String get elite1Month => 'ELITE 1 kuukausi';
+
+  @override
+  String get elite12Months => 'ELITE 12 kuukautta';
+
+  @override
+  String get statusPending => 'Odottaa';
+
+  @override
+  String get statusFailed => 'Epäonnistunut';
+
+  @override
+  String get yourReferralCode => 'Suosittelukoodisi';
+
+  @override
+  String get referralCodeCopied => 'Suosittelukoodi kopioitu!';
+
+  @override
+  String get copyCode => 'Kopioi koodi';
+
+  @override
+  String get revenue => 'Liikevaihto';
+
+  @override
+  String get availableCommission => 'Käytettävissä oleva provisio';
+
+  @override
+  String get totalReceivedIncome => 'Kokonais vastaanotetut tulot';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Talletus: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Tärkeä ilmoitus';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Tilisi on muuttunut. Kirjaudu sisään uudelleen.';
+
+  @override
+  String get iUnderstand => 'Ymmärrän';
+
+  @override
+  String get saveUpTo65Percent => 'SÄÄSTÄ JOPA 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Vuosittainen -40% • Elinikäinen -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Lataus epäonnistui: Käyttöoikeus evätty. Tarkista tallennussäännöt.';
+
+  @override
+  String get failedToUploadImage =>
+      'Kuvan lataus epäonnistui. Tarkista yhteytesi.';
 }

@@ -429,31 +429,31 @@
   "leaveMessagePart1": "Silakan tinggalkan pesan, tim kami akan merespons sesegera mungkin. Anda juga dapat menghubungi ",
   "chatWhatsApp": "WhatsApp",
   "leaveMessagePart2": " Signal GPT untuk dukungan cepat.",
-  "currentPlan": "Current Plan",
+  "currentPlan": "Paket Saat Ini",
   "standard": "STANDARD",
-  "availableTokens": "Available Tokens",
-  "subscriptions": "Subscriptions",
-  "usesTokenPerView": "Uses 1 Token per view",
-  "unlimitedAccess": "Unlimited Access",
-  "activeElite": "Active (Elite)",
-  "active": "Active",
-  "inactive": "Inactive",
-  "transactionHistory": "Transaction History",
-  "noTransactionsFound": "No transactions found.",
-  "colDate": "Date",
-  "colProduct": "Product",
-  "colAmount": "Amount",
-  "colMethod": "Method",
+  "availableTokens": "Token Tersedia",
+  "subscriptions": "Langganan",
+  "usesTokenPerView": "Menggunakan 1 Token per tampilan",
+  "unlimitedAccess": "Akses Tak Terbatas",
+  "activeElite": "Aktif (Elite)",
+  "active": "Aktif",
+  "inactive": "Tidak Aktif",
+  "transactionHistory": "Riwayat Transaksi",
+  "noTransactionsFound": "Tidak ada transaksi ditemukan.",
+  "colDate": "Tanggal",
+  "colProduct": "Produk",
+  "colAmount": "Jumlah",
+  "colMethod": "Metode",
   "colStatus": "Status",
-  "statusSuccess": "Success",
-  "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "statusSuccess": "Berhasil",
+  "featureForVipOnly": "Fitur ini hanya untuk pelanggan VIP, silakan tingkatkan untuk menerima pemberitahuan.",
+  "changePassword": "Ubah Kata Sandi",
+  "currentPassword": "Kata Sandi Saat Ini",
+  "newPassword": "Kata Sandi Baru",
+  "confirmNewPassword": "Konfirmasi Kata Sandi Baru",
+  "passwordsDoNotMatch": "Kata sandi tidak cocok",
+  "passwordUpdateSuccess": "Kata sandi berhasil diperbarui",
+  "passwordUpdateFailed": "Gagal memperbarui kata sandi:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Kata sandi saat ini salah",
   "signInRequired": "Diperlukan Masuk",
   "signInToExploreSignal": "Masuk untuk menjelajahi sinyal perdagangan ini!",
   "activeMember": "Anggota Aktif",
@@ -474,9 +474,9 @@
   "daily": "Harian",
   "weekly": "Mingguan",
   "lossRate": "Tingkat kerugian",
-  "signalProgress": "Signal Progress",
-  "statusHistory": "Status History",
-  "signalCreated": "Signal Created",
+  "signalProgress": "Progres Sinyal",
+  "statusHistory": "Riwayat Status",
+  "signalCreated": "Sinyal Dibuat",
   "signalMatched": "Sinyal Cocok",
   "targetReached": "Target tercapai",
   "freeSignalsInfo": "Info Sinyal Gratis",
@@ -510,23 +510,245 @@
   },
   "passwordResetEmailSent": "Email reset kata sandi telah dikirim! Silakan periksa kotak masuk Anda.",
   "pageOf": "/",
-  "keyFindings": "Key Findings",
+  "keyFindings": "Temuan Utama",
   "filterStatusLabel": "Status",
-  "filterStatusAll": "All Status",
+  "filterStatusAll": "Semua Status",
   "filterStatusTp1": "TP1 HIT",
   "filterStatusTp2": "TP2 HIT",
   "filterStatusTp3": "TP3 HIT",
   "filterStatusSl": "SL HIT",
-  "filterStatusCancelled": "CANCELLED",
-  "filterStatusExitByAdmin": "EXIT BY ADMIN",
-  "popupMasterMarket": "Do you want to master the market?",
-  "popupLoginExplore": "Log in to explore this trading bulletin!",
-  "markAllRead": "Mark all as read",
-  "getTheAppForBestExperience": "Get the app for the best experience",
-  "installApp": "Install App",
-  "reviews": "reviews",
+  "filterStatusCancelled": "DIBATALKAN",
+  "filterStatusExitByAdmin": "KELUAR OLEH ADMIN",
+  "popupMasterMarket": "Ingin menguasai pasar?",
+  "popupLoginExplore": "Masuk untuk menjelajahi buletin perdagangan ini!",
+  "markAllRead": "Tandai semua sudah dibaca",
+  "getTheAppForBestExperience": "Dapatkan aplikasi untuk pengalaman terbaik",
+  "installApp": "Instal Aplikasi",
+  "reviews": "Ulasan",
   "priceLifetime": "$249.00",
-  "durationLifetime": "Lifetime",
-  "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "priceLifetimeOld": "$712.00",
+  "durationLifetime": "Seumur Hidup",
+  "orderInfoLifetime": "Pembayaran untuk paket Elite Seumur Hidup",
+  "lifetime": "Seumur Hidup",
+  "loginWithoutAccount": "Masuk tanpa akun",
+  "loginNow": "Masuk sekarang",
+  "loginToViewSignals": "Masuk untuk melihat sinyal",
+  "loginToViewSignalsDesc": "Silakan masuk untuk melihat sinyal Signal GPT dan mengakses semua fitur.",
+  "loginToViewHistory": "Masuk untuk melihat riwayat",
+  "loginToViewHistoryDesc": "Riwayat sinyal hanya tersedia untuk pengguna yang sudah masuk. Silakan masuk untuk melacak kinerja dari Signal GPT.",
+  "letsGetYouIn": "Mari Masuk!",
+  "dontHaveAnAccount": "Belum punya akun? ",
+  "createAccount": "Buat Akun",
+  "createYourAccount": "Buat akun Anda",
+  "login": "Masuk",
+  "rememberYourPassword": "Ingat Kata Sandi Anda",
+  "signInWith": "Masuk dengan",
+  "getStarted": "Mulai",
+  "pleaseEnterEmail": "Silakan masukkan email Anda",
+  "pleaseEnterPassword": "Silakan masukkan kata sandi Anda",
+  "pleaseEnterCurrentPassword": "Silakan masukkan kata sandi Anda saat ini",
+  "pleaseEnterNewPassword": "Silakan masukkan kata sandi baru Anda",
+  "pleaseConfirmNewPassword": "Silakan konfirmasi kata sandi baru Anda",
+  "pleaseConfirmPassword": "Silakan konfirmasi kata sandi Anda",
+  "passwordMinLength": "Kata sandi harus minimal 6 karakter",
+  "savePassword": "Simpan Kata Sandi",
+  "verifyYourEmail": "Verifikasi Email Anda",
+  "pleaseEnterVerificationCode": "Silakan masukkan kode 6 digit\nyang dikirim ke email Anda",
+  "pleaseEnterAllDigits": "Silakan masukkan semua 6 digit",
+  "invalidOrExpiredCode": "Kode verifikasi tidak valid atau sudah kedaluwarsa",
+  "anErrorOccurred": "Terjadi kesalahan. Silakan coba lagi.",
+  "verificationCodeResent": "Kode verifikasi dikirim ulang!",
+  "failedToResendCode": "Gagal mengirim ulang kode: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Kirim ulang kode",
+  "verify": "Verifikasi",
+  "resetPassword": "Reset Kata Sandi",
+  "forgotPasswordInstructions": "Silakan masukkan alamat email yang Anda gunakan untuk mendaftar\n\nKami akan mengirim kode verifikasi ke alamat email Anda.",
+  "sendButton": "Kirim",
+  "unableToReceiveEmail": "Jika Anda tidak dapat menerima email, silakan hubungi kami di @gmail.com",
+  "verificationCodeSentTo": "Kami telah mengirim kode verifikasi ke",
+  "passwordResetSuccessful": "Reset kata sandi berhasil!",
+  "errorGeneric": "Kesalahan: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "Akun sudah ada",
+  "accountAlreadyExistsMessage": "Email {email} sudah terdaftar di sistem. Silakan masuk atau gunakan fitur lupa kata sandi.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Kesalahan sistem: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Konfirmasi Kata Sandi",
+  "referralCodeOptional": "Kode Referral (Opsional)",
+  "accountDeletedSuccessfully": "Akun telah dihapus secara permanen.",
+  "accountDeleteError": "Kesalahan menghapus akun: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Kata sandi berhasil diubah!",
+  "errorChangingPassword": "Kesalahan mengubah kata sandi. Silakan periksa kata sandi Anda saat ini.",
+  "enableNotificationsHint": "Aktifkan pemberitahuan di pengaturan perangkat untuk melihat pembaruan baru di layar kunci",
+  "navigateToDeviceSettings": "Buka pengaturan perangkat.",
+  "turnOffAllNotifications": "Matikan semua pemberitahuan",
+  "pauseAllNotifications": "Jeda semua pemberitahuan",
+  "turnOnCryptoSignals": "Aktifkan sinyal kripto",
+  "turnOnCurrencyPairSignals": "Aktifkan sinyal pasangan mata uang",
+  "turnOnGoldSignals": "Aktifkan sinyal emas",
+  "currencyPairSignals": "Sinyal Pasangan Mata Uang",
+  "termsOfUseContent": "Dengan mengakses atau menggunakan aplikasi ini, Anda setuju untuk mematuhi Syarat Penggunaan. Aplikasi ini disediakan hanya untuk tujuan informasi, dan kami tidak menjamin keakuratan, kelengkapan, atau keandalan konten atau sinyal yang ditampilkan. Anda bertanggung jawab sepenuhnya atas cara Anda menggunakan informasi yang disediakan dalam aplikasi. Kami berhak untuk mengubah, menangguhkan, atau menghentikan layanan kapan saja tanpa pemberitahuan sebelumnya. Penggunaan aplikasi yang berkelanjutan merupakan penerimaan terhadap syarat yang diperbarui.",
+  "tradingHistoryTitle": "Riwayat Perdagangan",
+  "tp1Live": "TP1 LANGSUNG",
+  "tp2Live": "TP2 LANGSUNG",
+  "tp3Live": "TP3 LANGSUNG",
+  "stopLossTriggered": "Stop loss terpicu",
+  "entryWithPrice": "Masuk: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Signal GPT",
+  "categoryGold": "EMAS",
+  "categoryCrypto": "KRIPTO",
+  "subscriptionAutoRenewDisclaimer": "Langganan akan diperpanjang secara otomatis kecuali dibatalkan setidaknya 24 jam sebelum akhir periode saat ini. Anda dapat mengelola dan membatalkan langganan di pengaturan akun App Store. Paket Seumur Hidup adalah pembelian satu kali.",
+  "termsOfUseEula": "Syarat Penggunaan (EULA)",
+  "productNotFound": "Produk tidak ditemukan: {productId}. Pastikan sudah dikonfigurasi di toko.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ tahun",
+  "tierDemoSignalQty": "7-8 per hari",
+  "elite1Month": "ELITE 1 Bulan",
+  "elite12Months": "ELITE 12 Bulan",
+  "statusPending": "Menunggu",
+  "statusFailed": "Gagal",
+  "yourReferralCode": "Kode referral Anda",
+  "referralCodeCopied": "Kode referral disalin!",
+  "copyCode": "Salin Kode",
+  "revenue": "Pendapatan",
+  "availableCommission": "Komisi tersedia",
+  "totalReceivedIncome": "Total pendapatan diterima",
+  "depositAmount": "Deposit: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "Pemberitahuan Penting",
+  "accountChangedPleaseRelogin": "Akun Anda telah berubah. Silakan masuk kembali.",
+  "iUnderstand": "Saya mengerti",
+  "saveUpTo65Percent": "HEMAT HINGGA 65%",
+  "yearlyLifetimeDiscount": "Tahunan -40% • Seumur Hidup -65%",
+  "uploadFailedPermissionDenied": "Unggah gagal: Izin ditolak. Periksa Aturan Penyimpanan.",
+  "failedToUploadImage": "Gagal mengunggah gambar. Silakan periksa koneksi Anda.",
+  "disclaimer": "Penafian",
+  "disclaimerContent": "Informasi di signalgpt.ai hanya untuk tujuan referensi dan berbagi pengetahuan, dan bukan merupakan saran investasi. Pengguna bertanggung jawab sepenuhnya atas keputusan perdagangan mereka sendiri.",
+  "openTradingAccount": "Buka Akun Perdagangan",
+  "supportUs": "Dukung Kami",
+  "rateApp": "Nilai Aplikasi",
+  "shareApp": "Bagikan Aplikasi",
+  "accountDetails": "Detail Akun",
+  "language": "Bahasa",
+  "termsOfUse": "Syarat Penggunaan",
+  "accounts": "Akun",
+  "accessExchange": "Akses Bursa",
+  "onlineSupport": "Dukungan Online",
+  "selectLanguage": "Pilih Bahasa",
+  "left": "tersisa",
+  "upgradeToPro": "Tingkatkan ke Pro",
+  "assetGold": "Emas",
+  "assetCrypto": "Kripto",
+  "assetForex": "PASANGAN MATA UANG",
+  "tokens": "Token",
+  "noForexAssets": "Tidak ada aset PASANGAN MATA UANG tersedia",
+  "openApp": "Buka {appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Status",
+  "signalEntryLabel": "MASUK",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Analisis",
+  "useTokenToView": "Gunakan Token untuk melihat Sinyal",
+  "viewNow": "Lihat Sekarang",
+  "waitingNewSignals": "Menunggu sinyal baru...",
+  "failedUnlockSignal": "Gagal membuka sinyal",
+  "notEnoughTokens": "Token tidak cukup",
+  "newSignalUploaded": "Sinyal baru diunggah",
+  "newSymbolSignalUploaded": "Sinyal {symbol} baru telah diunggah!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Tingkatkan untuk Melihat Sinyal",
+  "signalHistory": "Riwayat Sinyal",
+  "allStatus": "SEMUA",
+  "selectDate": "Pilih Tanggal",
+  "noHistoryFound": "Tidak ada riwayat ditemukan",
+  "filterDate": "Tanggal",
+  "marketChart": "GRAFIK PASAR",
+  "analysisExplanation": "Analisis & Penjelasan",
+  "noDetailedAnalysis": "Tidak ada analisis terperinci tersedia untuk sinyal ini.",
+  "affiliateDashboard": "Dasbor Afiliasi",
+  "referralLink": "Tautan Referral",
+  "copyLink": "Salin Tautan",
+  "referralCount": "Jumlah Referral",
+  "totalEarnings": "Total Pendapatan",
+  "pendingCommission": "Komisi Tertunda",
+  "latestReferrals": "Referral Terbaru",
+  "noReferralsYet": "Belum ada referral.",
+  "affiliateRoleRequired": "Peran afiliasi diperlukan. Silakan hubungi admin.",
+  "affiliateCodeNotAssigned": "Kode afiliasi belum ditetapkan. Silakan hubungi admin.",
+  "referralLinkDescription": "Gunakan tautan ini untuk merujuk pengguna dan dapatkan komisi seumur hidup 40%.",
+  "linkCopied": "Tautan disalin ke clipboard!",
+  "enterReferralCode": "Masukkan Kode Referral",
+  "referralCode": "Kode Referral",
+  "submit": "Kirim",
+  "invalidReferralCode": "Kode referral tidak valid.",
+  "referralCodeApplied": "Kode referral berhasil diterapkan!",
+  "save40Percent": "HEMAT 40%",
+  "save65Percent": "HEMAT 65%"
 }

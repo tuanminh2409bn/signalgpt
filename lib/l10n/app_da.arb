@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "Skift adgangskode",
+  "currentPassword": "Nuværende adgangskode",
+  "newPassword": "Ny adgangskode",
+  "confirmNewPassword": "Bekræft ny adgangskode",
+  "passwordsDoNotMatch": "Adgangskoder stemmer ikke overens",
+  "passwordUpdateSuccess": "Adgangskoden blev opdateret",
+  "passwordUpdateFailed": "Kunne ikke opdatere adgangskoden:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Forkert aktuel adgangskode",
   "signInRequired": "Log ind påkrævet",
   "signInToExploreSignal": "Log ind for at udforske dette handelssignal!",
   "activeMember": "Aktivt medlem",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "Log ind uden en konto",
+  "save40Percent": "SPAR 40 %",
+  "save65Percent": "SPAR 65 %",
+  "disclaimer": "Ansvarsfraskrivelse",
+  "disclaimerContent": "Oplysningerne på signalgpt.ai er kun til reference og videndelingsformål og udgør ikke investeringsrådgivning. Brugere er alene ansvarlige for deres egne handelsbeslutninger.",
+  "openTradingAccount": "Åbn en handelskonto",
+  "supportUs": "Støt os",
+  "rateApp": "Bedøm app",
+  "shareApp": "Del appen",
+  "accountDetails": "Kontooplysninger",
+  "language": "Sprog",
+  "termsOfUse": "Vilkår for brug",
+  "accounts": "Regnskaber",
+  "accessExchange": "Få adgang til Exchange",
+  "onlineSupport": "Online support",
+  "selectLanguage": "Vælg sprog",
+  "left": "venstre",
+  "upgradeToPro": "Opgrader til Pro",
+  "assetGold": "Guld",
+  "assetCrypto": "Krypto",
+  "assetForex": "VALUTAPAR",
+  "tokens": "Poletter",
+  "noForexAssets": "Ingen VALUTAPAR-aktiver tilgængelige",
+  "openApp": "Åbn{appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Status",
+  "signalEntryLabel": "INDGANG",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Analysere",
+  "useTokenToView": "Brug Token til at se Signal",
+  "viewNow": "Se nu",
+  "waitingNewSignals": "Venter på nye signaler...",
+  "failedUnlockSignal": "Signalet kunne ikke låses op",
+  "notEnoughTokens": "Ikke nok tokens",
+  "newSignalUploaded": "Nyt signal uploadet",
+  "newSymbolSignalUploaded": "Nyt{symbol}-signal er nu uploadet!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Opgrader til View Signal",
+  "signalHistory": "Signal historie",
+  "allStatus": "ALLE",
+  "selectDate": "Vælg dato",
+  "noHistoryFound": "Ingen historik fundet",
+  "filterDate": "Dato",
+  "marketChart": "MARKEDSKORT",
+  "analysisExplanation": "Analyse & forklaring",
+  "noDetailedAnalysis": "Ingen detaljeret analyse tilgængelig for dette signal.",
+  "affiliateDashboard": "Affiliate Dashboard",
+  "referralLink": "Henvisningslink",
+  "copyLink": "Kopiér link",
+  "referralCount": "Optælling af henvisninger",
+  "totalEarnings": "Samlet indtjening",
+  "pendingCommission": "Afventende kommission",
+  "latestReferrals": "Seneste henvisninger",
+  "noReferralsYet": "Ingen henvisninger endnu.",
+  "affiliateRoleRequired": "Affiliate rolle påkrævet. Kontakt venligst admin.",
+  "affiliateCodeNotAssigned": "Affiliatekode er ikke tildelt endnu. Kontakt venligst admin.",
+  "referralLinkDescription": "Brug dette link til at henvise brugere og tjene 40 % livstidskommission.",
+  "linkCopied": "Link kopieret til udklipsholder!",
+  "enterReferralCode": "Indtast henvisningskode",
+  "referralCode": "Henvisningskode",
+  "submit": "Indsend",
+  "invalidReferralCode": "Ugyldig henvisningskode.",
+  "referralCodeApplied": "Henvisningskoden blev anvendt!",
+  "priceLifetimeOld": "$712,00",
+  "loginNow": "Log ind nu",
+  "loginToViewSignals": "Log ind for at se signaler",
+  "loginToViewSignalsDesc": "Log venligst ind for at se Signal GPT-signaler og få adgang til alle funktioner.",
+  "loginToViewHistory": "Log ind for at se historie",
+  "loginToViewHistoryDesc": "Signalhistorik er kun tilgængelig for loggede brugere. Log venligst ind for at spore ydeevne fra Signal GPT.",
+  "letsGetYouIn": "Lad os få dig ind!",
+  "dontHaveAnAccount": "Har du ikke en konto?",
+  "createAccount": "Opret konto",
+  "createYourAccount": "Opret din konto",
+  "login": "Log ind",
+  "rememberYourPassword": "Husk din adgangskode",
+  "signInWith": "Log ind med",
+  "getStarted": "Kom i gang",
+  "pleaseEnterEmail": "Indtast venligst din e-mail",
+  "pleaseEnterPassword": "Indtast venligst din adgangskode",
+  "pleaseEnterCurrentPassword": "Indtast venligst din nuværende adgangskode",
+  "pleaseEnterNewPassword": "Indtast venligst din nye adgangskode",
+  "pleaseConfirmNewPassword": "Bekræft venligst din nye adgangskode",
+  "pleaseConfirmPassword": "Bekræft venligst din adgangskode",
+  "passwordMinLength": "Adgangskoden skal være på mindst 6 tegn",
+  "savePassword": "Gem adgangskode",
+  "verifyYourEmail": "Bekræft din e-mail",
+  "pleaseEnterVerificationCode": "Indtast venligst den 6-cifrede kode\nsendt til din e-mail",
+  "pleaseEnterAllDigits": "Indtast venligst alle 6 cifre",
+  "invalidOrExpiredCode": "Ugyldig eller udløbet bekræftelseskode",
+  "anErrorOccurred": "Der opstod en fejl. Prøv venligst igen.",
+  "verificationCodeResent": "Bekræftelseskoden er sendt igen!",
+  "failedToResendCode": "Kunne ikke sende kode igen:{error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Send kode igen",
+  "verify": "Verificere",
+  "resetPassword": "Nulstil adgangskode",
+  "forgotPasswordInstructions": "Indtast venligst den e-mailadresse, du brugte til at oprette din konto\n\nVi sender en bekræftelseskode til din e-mailadresse.",
+  "sendButton": "Sende",
+  "unableToReceiveEmail": "Hvis du ikke er i stand til at modtage e-mailen, bedes du kontakte os på e-mail @gmail.com",
+  "verificationCodeSentTo": "Vi har sendt en bekræftelseskode til",
+  "passwordResetSuccessful": "Nulstilling af adgangskode lykkedes!",
+  "errorGeneric": "Fejl:{message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "Kontoen eksisterer allerede",
+  "accountAlreadyExistsMessage": "E-mail{email}er allerede blevet registreret i systemet. Log venligst ind eller brug funktionen glemt adgangskode.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Systemfejl:{error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Bekræft adgangskode",
+  "referralCodeOptional": "Henvisningskode (valgfrit)",
+  "accountDeletedSuccessfully": "Kontoen er blevet permanent slettet.",
+  "accountDeleteError": "Fejl ved sletning af konto:{error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Adgangskoden blev ændret!",
+  "errorChangingPassword": "Fejl ved ændring af adgangskode. Tjek venligst din nuværende adgangskode.",
+  "enableNotificationsHint": "Aktiver meddelelser i enhedsindstillinger for at se nye opdateringer på låseskærmen",
+  "navigateToDeviceSettings": "Naviger til enhedsindstillingerne.",
+  "turnOffAllNotifications": "Slå alle notifikationer fra",
+  "pauseAllNotifications": "Sæt alle meddelelser på pause",
+  "turnOnCryptoSignals": "Slå kryptosignaler til",
+  "turnOnCurrencyPairSignals": "Slå valutaparsignaler til",
+  "turnOnGoldSignals": "Tænd for guldsignaler",
+  "currencyPairSignals": "Valutaparsignaler",
+  "termsOfUseContent": "Ved at tilgå eller bruge denne applikation accepterer du at overholde vilkårene for brug. Denne app leveres kun til informationsformål, og vi garanterer ikke nøjagtigheden, fuldstændigheden eller pålideligheden af ​​noget indhold eller de viste signaler. Du er alene ansvarlig for, hvordan du bruger de oplysninger, der gives i appen. Vi forbeholder os retten til at ændre, suspendere eller afslutte tjenesten til enhver tid uden forudgående varsel. Fortsat brug af appen udgør accept af eventuelle opdaterede vilkår.",
+  "tradingHistoryTitle": "Handelshistorie",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "Stop loss udløst",
+  "entryWithPrice": "Indgang:{price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Signal GPT",
+  "categoryGold": "GULD",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "Abonnementet fornyes automatisk, medmindre det opsiges mindst 24 timer før udgangen af ​​den aktuelle periode. Du kan administrere og annullere dine abonnementer i dine App Store-kontoindstillinger. Livstidsplan er et engangskøb.",
+  "termsOfUseEula": "Vilkår for brug (EULA)",
+  "productNotFound": "Produkt ikke fundet:{productId}. Sørg for, at den er konfigureret i butikkerne.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ år",
+  "tierDemoSignalQty": "7-8 om dagen",
+  "elite1Month": "ELITE 1 måned",
+  "elite12Months": "ELITE 12 måneder",
+  "statusPending": "Indtil",
+  "statusFailed": "Mislykkedes",
+  "yourReferralCode": "Din henvisningskode",
+  "referralCodeCopied": "Henvisningskode kopieret!",
+  "copyCode": "Kopiér kode",
+  "revenue": "Indtægter",
+  "availableCommission": "Tilgængelig kommission",
+  "totalReceivedIncome": "Samlet modtaget indkomst",
+  "depositAmount": "Depositum: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "Vigtig meddelelse",
+  "accountChangedPleaseRelogin": "Din konto er ændret. Log venligst ind igen.",
+  "iUnderstand": "Jeg forstår",
+  "saveUpTo65Percent": "SPAR OP TIL 65 %",
+  "yearlyLifetimeDiscount": "Årlig -40 % • Levetid -65 %",
+  "uploadFailedPermissionDenied": "Upload mislykkedes: Tilladelse nægtet. Tjek opbevaringsregler.",
+  "failedToUploadImage": "Kunne ikke uploade billede. Tjek venligst din forbindelse."
 }

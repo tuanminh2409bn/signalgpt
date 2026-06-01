@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:minvest_forex_app/features/signals/models/signal_model.dart';
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
 
 class SignalTradingHistoryScreen extends StatelessWidget {
   final Signal signal;
@@ -11,6 +12,7 @@ class SignalTradingHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -29,8 +31,8 @@ class SignalTradingHistoryScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                const Text(
-                  'Trading History ',
+                Text(
+                  l10n.tradingHistoryTitle,
                   style: TextStyle(
                     color: Color(0xFF636363),
                     fontSize: 18,
@@ -42,9 +44,9 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 // TP3 (Nếu có)
                 if (signal.hitTps.contains(3))
                   _buildHistoryEvent(
-                    title: 'TP3 LIVE',
+                    title: l10n.tp3Live,
                     price: signal.takeProfits.length > 2 ? signal.takeProfits[2].toString() : '-',
-                    description: 'Target reached',
+                    description: l10n.targetReached,
                     time: signal.createdAt.toDate().add(const Duration(hours: 3)),
                     isPriceGreen: true,
                   ),
@@ -52,9 +54,9 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 // TP2 (Nếu có)
                 if (signal.hitTps.contains(2))
                   _buildHistoryEvent(
-                    title: 'TP2 LIVE',
+                    title: l10n.tp2Live,
                     price: signal.takeProfits.length > 1 ? signal.takeProfits[1].toString() : '-',
-                    description: 'Target reached',
+                    description: l10n.targetReached,
                     time: signal.createdAt.toDate().add(const Duration(hours: 2)),
                     isPriceGreen: true,
                   ),
@@ -62,9 +64,9 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 // TP1 (Nếu có)
                 if (signal.hitTps.contains(1))
                   _buildHistoryEvent(
-                    title: 'TP1 LIVE',
+                    title: l10n.tp1Live,
                     price: signal.takeProfits.isNotEmpty ? signal.takeProfits[0].toString() : '-',
-                    description: 'Target reached',
+                    description: l10n.targetReached,
                     time: signal.createdAt.toDate().add(const Duration(hours: 1)),
                     isPriceGreen: true,
                   ),
@@ -72,9 +74,9 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 // SL Hit (Nếu có)
                 if (signal.result?.toLowerCase() == 'sl hit')
                   _buildHistoryEvent(
-                    title: 'SL HIT',
+                    title: l10n.signalStatusSlHit,
                     price: signal.stopLoss.toString(),
-                    description: 'Stop loss triggered',
+                    description: l10n.stopLossTriggered,
                     time: signal.createdAt.toDate().add(const Duration(hours: 1)),
                     isPriceGreen: false,
                     titleColor: const Color(0xFFE3001E),
@@ -83,18 +85,18 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 // Matched
                 if (signal.isMatched)
                   _buildHistoryEvent(
-                    title: 'Signal Matched',
+                    title: l10n.signalMatched,
                     price: '',
-                    description: 'Matched',
+                    description: l10n.matched,
                     time: signal.matchedAt?.toDate() ?? signal.createdAt.toDate().add(const Duration(minutes: 30)),
                     titleColor: const Color(0xFF276EFB),
                   ),
 
                 // Created
                 _buildHistoryEvent(
-                  title: 'Signal Created',
+                  title: l10n.signalCreated,
                   price: '',
-                  description: 'Entry: ${signal.entryPrice}',
+                  description: l10n.entryWithPrice(signal.entryPrice.toString()),
                   time: signal.createdAt.toDate(),
                 ),
               ],
@@ -123,28 +125,34 @@ class SignalTradingHistoryScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: titleColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  if (price.isNotEmpty) ...[
-                    const SizedBox(width: 8),
-                    Text(
-                      price,
-                      style: TextStyle(
-                        color: isPriceGreen ? const Color(0xFF00BB32) : const Color(0xFFE3001E),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
+              Expanded(
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                          color: titleColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    if (price.isNotEmpty) ...[
+                      const SizedBox(width: 8),
+                      Text(
+                        price,
+                        style: TextStyle(
+                          color: isPriceGreen ? const Color(0xFF00BB32) : const Color(0xFFE3001E),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ],
           ),
@@ -152,14 +160,17 @@ class SignalTradingHistoryScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                description,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w300, // Đổi từ w250 sang w300
+              Expanded(
+                child: Text(
+                  description,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
               ),
+              const SizedBox(width: 8),
               Text(
                 formattedTime,
                 style: const TextStyle(

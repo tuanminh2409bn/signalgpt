@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minvest_forex_app/features/auth/bloc/auth_bloc.dart';
 import 'package:minvest_forex_app/features/auth/services/auth_service.dart';
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
+import 'package:minvest_forex_app/core/utils/error_utils.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   final String email;
@@ -38,7 +40,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Future<void> _verifyCode() async {
     String code = _otpController.text;
     if (code.length < 6) {
-      setState(() => _errorMessage = 'Please enter all 6 digits');
+      setState(() => _errorMessage = AppLocalizations.of(context)!.pleaseEnterAllDigits);
       return;
     }
 
@@ -63,13 +65,13 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         }
       } else {
         setState(() {
-          _errorMessage = 'Invalid or expired verification code';
+          _errorMessage = AppLocalizations.of(context)!.invalidOrExpiredCode;
           _isLoading = false;
         });
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'An error occurred. Please try again.';
+        _errorMessage = AppLocalizations.of(context)!.anErrorOccurred;
         _isLoading = false;
       });
     }
@@ -81,13 +83,13 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       await context.read<AuthService>().requestSignupVerificationCode(widget.email);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Verification code resent!')),
+          SnackBar(content: Text(AppLocalizations.of(context)!.verificationCodeResent)),
         );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to resend code: $e')),
+          SnackBar(content: Text(AppLocalizations.of(context)!.failedToResendCode(ErrorUtils.getFriendlyErrorMessage(e)))),
         );
       }
     } finally {
@@ -97,6 +99,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.black,
       body: BlocListener<AuthBloc, AuthState>(
@@ -125,8 +128,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                const Text(
-                  'Verify Your Email',
+                Text(
+                  l10n.verifyYourEmail,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -135,8 +138,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                  'Please enter the 6 digit code\nsent to your email',
+                Text(
+                  l10n.pleaseEnterVerificationCode,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF9A9A9A),
@@ -194,8 +197,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 
                 GestureDetector(
                   onTap: _isLoading ? null : _resendCode,
-                  child: const Text(
-                    'Resend code',
+                  child: Text(
+                    l10n.resendCode,
                     style: TextStyle(
                       color: Color(0xFF9A9A9A),
                       fontSize: 18,
@@ -228,8 +231,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                             width: 20,
                             child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                           )
-                        : const Text(
-                            'Verify',
+                        : Text(
+                            l10n.verify,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -245,10 +248,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 Row(
                   children: [
                     Expanded(child: Divider(color: Colors.white.withOpacity(0.3), thickness: 1)),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        'or',
+                        l10n.or,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF636363),
@@ -262,8 +265,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 
                 const SizedBox(height: 20),
                 
-                const Text(
-                  'Sign in with',
+                Text(
+                  l10n.signInWith,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF636363),

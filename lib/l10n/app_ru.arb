@@ -429,31 +429,31 @@
   "leaveMessagePart1": "Пожалуйста, оставьте сообщение, наша команда ответит как можно скорее. Вы также можете связаться ",
   "chatWhatsApp": "WhatsApp",
   "leaveMessagePart2": " Signal GPT для быстрой поддержки.",
-  "currentPlan": "Current Plan",
-  "standard": "STANDARD",
-  "availableTokens": "Available Tokens",
-  "subscriptions": "Subscriptions",
-  "usesTokenPerView": "Uses 1 Token per view",
-  "unlimitedAccess": "Unlimited Access",
-  "activeElite": "Active (Elite)",
-  "active": "Active",
-  "inactive": "Inactive",
-  "transactionHistory": "Transaction History",
-  "noTransactionsFound": "No transactions found.",
-  "colDate": "Date",
-  "colProduct": "Product",
-  "colAmount": "Amount",
-  "colMethod": "Method",
-  "colStatus": "Status",
-  "statusSuccess": "Success",
-  "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "currentPlan": "Текущий план",
+  "standard": "СТАНДАРТ",
+  "availableTokens": "Доступные токены",
+  "subscriptions": "Подписки",
+  "usesTokenPerView": "Используется 1 токен за просмотр",
+  "unlimitedAccess": "Неограниченный доступ",
+  "activeElite": "Активный (Elite)",
+  "active": "Активный",
+  "inactive": "Неактивный",
+  "transactionHistory": "История транзакций",
+  "noTransactionsFound": "Транзакции не найдены.",
+  "colDate": "Дата",
+  "colProduct": "Продукт",
+  "colAmount": "Сумма",
+  "colMethod": "Метод",
+  "colStatus": "Статус",
+  "statusSuccess": "Успешно",
+  "featureForVipOnly": "Эта функция доступна только для VIP-клиентов, пожалуйста, обновите, чтобы получать уведомления.",
+  "changePassword": "Изменить пароль",
+  "currentPassword": "Текущий пароль",
+  "newPassword": "Новый пароль",
+  "confirmNewPassword": "Подтвердите новый пароль",
+  "passwordsDoNotMatch": "Пароли не совпадают",
+  "passwordUpdateSuccess": "Пароль успешно обновлен",
+  "passwordUpdateFailed": "Не удалось обновить пароль: {error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Неверный текущий пароль",
   "signInRequired": "Требуется вход",
   "signInToExploreSignal": "Войдите, чтобы изучить этот торговый сигнал!",
   "activeMember": "Активный участник",
@@ -474,9 +474,9 @@
   "daily": "Ежедневно",
   "weekly": "Еженедельно",
   "lossRate": "Уровень убытков",
-  "signalProgress": "Signal Progress",
-  "statusHistory": "Status History",
-  "signalCreated": "Signal Created",
+  "signalProgress": "Прогресс сигнала",
+  "statusHistory": "История статусов",
+  "signalCreated": "Сигнал создан",
   "signalMatched": "Сигнал совпал",
   "targetReached": "Цель достигнута",
   "freeSignalsInfo": "Инфо о бесплатных сигналах",
@@ -510,23 +510,261 @@
   },
   "passwordResetEmailSent": "Письмо для сброса пароля отправлено! Пожалуйста, проверьте свой почтовый ящик.",
   "pageOf": "/",
-  "keyFindings": "Key Findings",
-  "filterStatusLabel": "Status",
-  "filterStatusAll": "All Status",
-  "filterStatusTp1": "TP1 HIT",
-  "filterStatusTp2": "TP2 HIT",
-  "filterStatusTp3": "TP3 HIT",
-  "filterStatusSl": "SL HIT",
-  "filterStatusCancelled": "CANCELLED",
-  "filterStatusExitByAdmin": "EXIT BY ADMIN",
-  "popupMasterMarket": "Do you want to master the market?",
-  "popupLoginExplore": "Log in to explore this trading bulletin!",
-  "markAllRead": "Mark all as read",
-  "getTheAppForBestExperience": "Get the app for the best experience",
-  "installApp": "Install App",
-  "reviews": "reviews",
+  "keyFindings": "Ключевые выводы",
+  "filterStatusLabel": "Статус",
+  "filterStatusAll": "Все статусы",
+  "filterStatusTp1": "TP1 ДОСТИГНУТ",
+  "filterStatusTp2": "TP2 ДОСТИГНУТ",
+  "filterStatusTp3": "TP3 ДОСТИГНУТ",
+  "filterStatusSl": "SL ДОСТИГНУТ",
+  "filterStatusCancelled": "ОТМЕНЕНО",
+  "filterStatusExitByAdmin": "ВЫХОД АДМИНОМ",
+  "popupMasterMarket": "Хотите освоить рынок?",
+  "popupLoginExplore": "Войдите, чтобы изучить этот торговый бюллетень!",
+  "markAllRead": "Отметить все как прочитанное",
+  "getTheAppForBestExperience": "Скачайте приложение для лучшего опыта",
+  "installApp": "Установить приложение",
+  "reviews": "отзывы",
   "priceLifetime": "$249.00",
-  "durationLifetime": "Lifetime",
-  "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "priceLifetimeOld": "$712.00",
+  "durationLifetime": "Пожизненно",
+  "orderInfoLifetime": "Оплата пакета Elite Пожизненно",
+  "lifetime": "Пожизненно",
+
+  "loginWithoutAccount": "Войти без аккаунта",
+  "loginNow": "Войти сейчас",
+  "loginToViewSignals": "Войдите для просмотра сигналов",
+  "loginToViewSignalsDesc": "Пожалуйста, войдите для просмотра сигналов Signal GPT и доступа ко всем функциям.",
+  "loginToViewHistory": "Войдите для просмотра истории",
+  "loginToViewHistoryDesc": "История сигналов доступна только для авторизованных пользователей. Пожалуйста, войдите, чтобы отслеживать эффективность Signal GPT.",
+  "letsGetYouIn": "Давайте войдем!",
+  "dontHaveAnAccount": "Нет аккаунта? ",
+  "createAccount": "Создать аккаунт",
+  "createYourAccount": "Создайте свой аккаунт",
+  "login": "Вход",
+  "rememberYourPassword": "Запомните свой пароль",
+  "signInWith": "Войти через",
+  "getStarted": "Начать",
+  "pleaseEnterEmail": "Пожалуйста, введите ваш email",
+  "pleaseEnterPassword": "Пожалуйста, введите ваш пароль",
+  "pleaseEnterCurrentPassword": "Пожалуйста, введите текущий пароль",
+  "pleaseEnterNewPassword": "Пожалуйста, введите новый пароль",
+  "pleaseConfirmNewPassword": "Пожалуйста, подтвердите новый пароль",
+  "pleaseConfirmPassword": "Пожалуйста, подтвердите пароль",
+  "passwordMinLength": "Пароль должен содержать не менее 6 символов",
+  "savePassword": "Сохранить пароль",
+
+  "verifyYourEmail": "Подтвердите ваш email",
+  "pleaseEnterVerificationCode": "Пожалуйста, введите 6-значный код,\nотправленный на ваш email",
+  "pleaseEnterAllDigits": "Пожалуйста, введите все 6 цифр",
+  "invalidOrExpiredCode": "Неверный или просроченный код подтверждения",
+  "anErrorOccurred": "Произошла ошибка. Пожалуйста, попробуйте снова.",
+  "verificationCodeResent": "Код подтверждения отправлен повторно!",
+  "failedToResendCode": "Не удалось повторно отправить код: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Отправить код повторно",
+  "verify": "Подтвердить",
+
+  "resetPassword": "Сбросить пароль",
+  "forgotPasswordInstructions": "Пожалуйста, введите адрес электронной почты, который вы использовали при регистрации\n\nМы отправим код подтверждения на ваш email.",
+  "sendButton": "Отправить",
+  "unableToReceiveEmail": "Если вы не можете получить письмо, пожалуйста, свяжитесь с нами по email @gmail.com",
+  "verificationCodeSentTo": "Мы отправили код подтверждения на",
+  "passwordResetSuccessful": "Пароль успешно сброшен!",
+  "errorGeneric": "Ошибка: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "accountAlreadyExists": "Аккаунт уже существует",
+  "accountAlreadyExistsMessage": "Email {email} уже зарегистрирован в системе. Пожалуйста, войдите или воспользуйтесь функцией восстановления пароля.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Системная ошибка: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Подтвердите пароль",
+  "referralCodeOptional": "Реферальный код (необязательно)",
+
+  "accountDeletedSuccessfully": "Аккаунт был безвозвратно удален.",
+  "accountDeleteError": "Ошибка удаления аккаунта: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Пароль успешно изменен!",
+  "errorChangingPassword": "Ошибка смены пароля. Пожалуйста, проверьте текущий пароль.",
+
+  "enableNotificationsHint": "Включите уведомления в настройках устройства, чтобы видеть новые обновления на экране блокировки",
+  "navigateToDeviceSettings": "Перейти в настройки устройства.",
+  "turnOffAllNotifications": "Отключить все уведомления",
+  "pauseAllNotifications": "Приостановить все уведомления",
+  "turnOnCryptoSignals": "Включить крипто-сигналы",
+  "turnOnCurrencyPairSignals": "Включить сигналы валютных пар",
+  "turnOnGoldSignals": "Включить сигналы золота",
+  "currencyPairSignals": "Сигналы валютных пар",
+
+  "termsOfUseContent": "Получая доступ к этому приложению или используя его, вы соглашаетесь соблюдать Условия использования. Это приложение предоставляется исключительно в информационных целях, и мы не гарантируем точность, полноту или надежность какого-либо контента или отображаемых сигналов. Вы несете полную ответственность за использование информации, предоставленной в приложении. Мы оставляем за собой право изменять, приостанавливать или прекращать работу сервиса в любое время без предварительного уведомления. Продолжение использования приложения означает принятие любых обновленных условий.",
+
+  "tradingHistoryTitle": "История торговли",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "Сработал стоп-лосс",
+  "entryWithPrice": "Вход: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+
+  "signalGptTitle": "Signal GPT",
+
+  "categoryGold": "ЗОЛОТО",
+  "categoryCrypto": "КРИПТО",
+  "subscriptionAutoRenewDisclaimer": "Подписка автоматически продлевается, если не отменена как минимум за 24 часа до окончания текущего периода. Вы можете управлять и отменять подписки в настройках вашего аккаунта App Store. Пожизненный план — это единоразовая покупка.",
+  "termsOfUseEula": "Условия использования (EULA)",
+  "productNotFound": "Продукт не найден: {productId}. Пожалуйста, убедитесь, что он настроен в магазинах.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ год",
+  "tierDemoSignalQty": "7-8 в день",
+  "elite1Month": "ELITE 1 месяц",
+  "elite12Months": "ELITE 12 месяцев",
+  "statusPending": "В ожидании",
+  "statusFailed": "Неудачно",
+
+  "yourReferralCode": "Ваш реферальный код",
+  "referralCodeCopied": "Реферальный код скопирован!",
+  "copyCode": "Скопировать код",
+  "revenue": "Доход",
+  "availableCommission": "Доступная комиссия",
+  "totalReceivedIncome": "Общий полученный доход",
+  "depositAmount": "Депозит: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+
+  "importantNotice": "Важное уведомление",
+  "accountChangedPleaseRelogin": "Ваш аккаунт был изменен. Пожалуйста, войдите снова.",
+  "iUnderstand": "Я понимаю",
+
+  "saveUpTo65Percent": "СЭКОНОМЬТЕ ДО 65%",
+  "yearlyLifetimeDiscount": "Годовой -40% • Пожизненный -65%",
+
+  "uploadFailedPermissionDenied": "Загрузка не удалась: Доступ запрещен. Проверьте правила хранилища.",
+  "failedToUploadImage": "Не удалось загрузить изображение. Пожалуйста, проверьте подключение.",
+
+  "disclaimer": "Отказ от ответственности",
+  "disclaimerContent": "Информация на signalgpt.ai предназначена исключительно для справочных и образовательных целей и не является инвестиционной рекомендацией. Пользователи несут полную ответственность за свои торговые решения.",
+  "openTradingAccount": "Открыть торговый счет",
+  "supportUs": "Поддержите нас",
+  "rateApp": "Оценить приложение",
+  "shareApp": "Поделиться приложением",
+  "accountDetails": "Данные аккаунта",
+  "language": "Язык",
+  "termsOfUse": "Условия использования",
+  "accounts": "Аккаунты",
+  "accessExchange": "Перейти на биржу",
+  "onlineSupport": "Онлайн-поддержка",
+  "selectLanguage": "Выбрать язык",
+  "left": "осталось",
+  "upgradeToPro": "Обновить до Pro",
+  "assetGold": "Золото",
+  "assetCrypto": "Крипто",
+  "assetForex": "ВАЛЮТНЫЕ ПАРЫ",
+  "tokens": "Токены",
+  "noForexAssets": "Нет доступных активов валютных пар",
+  "openApp": "Открыть {appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Статус",
+  "signalEntryLabel": "ВХОД",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Анализировать",
+  "useTokenToView": "Используйте токен для просмотра сигнала",
+  "viewNow": "Смотреть сейчас",
+  "waitingNewSignals": "Ожидание новых сигналов...",
+  "failedUnlockSignal": "Не удалось разблокировать сигнал",
+  "notEnoughTokens": "Недостаточно токенов",
+  "newSignalUploaded": "Загружен новый сигнал",
+  "newSymbolSignalUploaded": "Новый сигнал {symbol} загружен!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Обновите для просмотра сигнала",
+  "signalHistory": "История сигналов",
+  "allStatus": "ВСЕ",
+  "selectDate": "Выбрать дату",
+  "noHistoryFound": "История не найдена",
+  "filterDate": "Дата",
+  "marketChart": "РЫНОЧНЫЙ ГРАФИК",
+  "analysisExplanation": "Анализ и объяснение",
+  "noDetailedAnalysis": "Подробный анализ для этого сигнала недоступен.",
+  "affiliateDashboard": "Панель партнера",
+  "referralLink": "Реферальная ссылка",
+  "copyLink": "Скопировать ссылку",
+  "referralCount": "Количество рефералов",
+  "totalEarnings": "Общий доход",
+  "pendingCommission": "Ожидающая комиссия",
+  "latestReferrals": "Последние рефералы",
+  "noReferralsYet": "Рефералов пока нет.",
+  "affiliateRoleRequired": "Требуется роль партнера. Пожалуйста, свяжитесь с администратором.",
+  "affiliateCodeNotAssigned": "Партнерский код еще не назначен. Пожалуйста, свяжитесь с администратором.",
+  "referralLinkDescription": "Используйте эту ссылку для привлечения пользователей и получения 40% пожизненной комиссии.",
+  "linkCopied": "Ссылка скопирована в буфер обмена!",
+  "enterReferralCode": "Введите реферальный код",
+  "referralCode": "Реферальный код",
+  "submit": "Отправить",
+  "invalidReferralCode": "Неверный реферальный код.",
+  "referralCodeApplied": "Реферальный код успешно применен!",
+
+  "save40Percent": "СЭКОНОМЬТЕ 40%",
+  "save65Percent": "СЭКОНОМЬТЕ 65%"
 }

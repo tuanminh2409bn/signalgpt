@@ -70,9 +70,9 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
         setState(() {
           _currentState = VerificationState.failure;
           if (e is FirebaseException && e.code == 'permission-denied') {
-            _errorMessage = "Upload failed: Permission denied. Check Storage Rules.";
+            _errorMessage = AppLocalizations.of(context)!.uploadFailedPermissionDenied;
           } else {
-            _errorMessage = "Failed to upload image. Please check your connection.";
+            _errorMessage = AppLocalizations.of(context)!.failedToUploadImage;
           }
         });
       }
@@ -312,9 +312,9 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
 
   Map<String, String> _getTierInfo(String tier, AppLocalizations l10n) {
     switch (tier.toLowerCase()) {
-      case 'demo': return {l10n.signalTime: '8h-17h', l10n.lotPerWeek: '0.05', l10n.signalQty: '7-8 per day'};
-      case 'vip': return {l10n.signalTime: '8h-17h', l10n.lotPerWeek: '0.3', l10n.signalQty: 'full'};
-      case 'elite': return {l10n.signalTime: 'fulltime', l10n.lotPerWeek: '0.5', l10n.signalQty: 'full'};
+      case 'demo': return {l10n.signalTime: '8h-17h', l10n.lotPerWeek: '0.05', l10n.signalQty: l10n.tierDemoSignalQty};
+      case 'vip': return {l10n.signalTime: '8h-17h', l10n.lotPerWeek: '0.3', l10n.signalQty: l10n.tableValueFull};
+      case 'elite': return {l10n.signalTime: l10n.tableValueFulltime, l10n.lotPerWeek: '0.5', l10n.signalQty: l10n.tableValueFull};
       default: return {l10n.signalTime: 'N/A', l10n.lotPerWeek: 'N/A', l10n.signalQty: 'N/A'};
     }
   }

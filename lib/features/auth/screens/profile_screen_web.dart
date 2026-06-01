@@ -24,22 +24,24 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late int _tabIndex;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final args = ModalRoute.of(context)?.settings.arguments;
-    if (args is int) {
-      _tabIndex = args;
-    } else {
-      _tabIndex = widget.initialTabIndex;
-    }
-  }
+  bool _isInitialized = false;
 
   @override
   void initState() {
     super.initState();
     _tabIndex = widget.initialTabIndex;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInitialized) {
+      final args = ModalRoute.of(context)?.settings.arguments;
+      if (args is int) {
+        _tabIndex = args;
+      }
+      _isInitialized = true;
+    }
   }
 
   @override
@@ -464,13 +466,15 @@ class _OverviewContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 8,
+          runSpacing: 4,
           children: [
             Text(
               title,
               style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: -0.9),
             ),
-            const SizedBox(width: 8),
             if (isActive || isElite)
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -787,9 +791,9 @@ class _SettingContentState extends State<_SettingContent> {
                         style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
                       ),
                       const SizedBox(height: 4),
-                      const Text(
-                        'Nhập mã giới thiệu để nhận ưu đãi từ đối tác của chúng tôi.',
-                        style: TextStyle(color: Color(0xFFAAAAAA), fontSize: 14),
+                      Text(
+                        appLocalizations.referralCodeDescription,
+                        style: const TextStyle(color: Color(0xFFAAAAAA), fontSize: 14),
                       ),
                     ],
                   ),

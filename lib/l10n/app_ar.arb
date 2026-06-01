@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "تغيير كلمة المرور",
+  "currentPassword": "كلمة المرور الحالية",
+  "newPassword": "كلمة المرور الجديدة",
+  "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
+  "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+  "passwordUpdateSuccess": "تم تحديث كلمة المرور بنجاح",
+  "passwordUpdateFailed": "فشل تحديث كلمة المرور:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "كلمة المرور الحالية غير صحيحة",
   "signInRequired": "تسجيل الدخول مطلوب",
   "signInToExploreSignal": "قم بتسجيل الدخول لاستكشاف إشارة التداول هذه!",
   "activeMember": "عضو نشط",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "تسجيل الدخول بدون حساب",
+  "save40Percent": "وفر 40%",
+  "save65Percent": "وفر 65%",
+  "disclaimer": "إخلاء المسؤولية",
+  "disclaimerContent": "المعلومات على signalgpt.ai هي لأغراض المرجعية ومشاركة المعرفة فقط، ولا تشكل نصيحة استثمارية. المستخدمون مسؤولون بالكامل عن قرارات التداول الخاصة بهم.",
+  "openTradingAccount": "افتح حساب تداول",
+  "supportUs": "ادعمنا",
+  "rateApp": "قيم التطبيق",
+  "shareApp": "شارك التطبيق",
+  "accountDetails": "تفاصيل الحساب",
+  "language": "اللغة",
+  "termsOfUse": "شروط الاستخدام",
+  "accounts": "الحسابات",
+  "accessExchange": "الوصول إلى البورصة",
+  "onlineSupport": "الدعم عبر الإنترنت",
+  "selectLanguage": "اختر اللغة",
+  "left": "متبقي",
+  "upgradeToPro": "الترقية إلى Pro",
+  "assetGold": "ذهب",
+  "assetCrypto": "عملات مشفرة",
+  "assetForex": "زوج عملات",
+  "tokens": "رموز",
+  "noForexAssets": "لا توجد أصول أزواج عملات متاحة",
+  "openApp": "فتح {appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "الحالة",
+  "signalEntryLabel": "ENTRY",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "تحليل",
+  "useTokenToView": "استخدم رمزًا لعرض الإشارة",
+  "viewNow": "عرض الآن",
+  "waitingNewSignals": "في انتظار إشارات جديدة...",
+  "failedUnlockSignal": "فشل فتح الإشارة",
+  "notEnoughTokens": "الرموز غير كافية",
+  "newSignalUploaded": "تم تحميل إشارة جديدة",
+  "newSymbolSignalUploaded": "تم تحميل إشارة {symbol} جديدة الآن!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "قم بالترقية لعرض الإشارة",
+  "signalHistory": "سجل الإشارات",
+  "allStatus": "الكل",
+  "selectDate": "حدد التاريخ",
+  "noHistoryFound": "لم يتم العثور على سجل",
+  "filterDate": "التاريخ",
+  "marketChart": "مخطط السوق",
+  "analysisExplanation": "التحليل والتفسير",
+  "noDetailedAnalysis": "لا يوجد تحليل مفصل متاح لهذه الإشارة.",
+  "affiliateDashboard": "لوحة التابعين",
+  "referralLink": "رابط الإحالة",
+  "copyLink": "نسخ الرابط",
+  "referralCount": "عدد الإحالات",
+  "totalEarnings": "إجمالي الأرباح",
+  "pendingCommission": "العمولة المعلقة",
+  "latestReferrals": "أحدث الإحالات",
+  "noReferralsYet": "لا توجد إحالات بعد.",
+  "affiliateRoleRequired": "دور التابع مطلوب. يرجى الاتصال بالمسؤول.",
+  "affiliateCodeNotAssigned": "لم يتم تعيين رمز التابع بعد. يرجى الاتصال بالمسؤول.",
+  "referralLinkDescription": "استخدم هذا الرابط لإحالة المستخدمين وكسب عمولة 40% مدى الحياة.",
+  "linkCopied": "تم نسخ الرابط إلى الحافظة!",
+  "enterReferralCode": "أدخل رمز الإحالة",
+  "referralCode": "رمز الإحالة",
+  "submit": "إرسال",
+  "invalidReferralCode": "رمز إحالة غير صالح.",
+  "referralCodeApplied": "تم تطبيق رمز الإحالة بنجاح!",
+  "priceLifetimeOld": "$712.00",
+  "loginNow": "تسجيل الدخول الآن",
+  "loginToViewSignals": "سجل الدخول لعرض الإشارات",
+  "loginToViewSignalsDesc": "يرجى تسجيل الدخول لعرض إشارات Signal GPT والوصول إلى جميع الميزات.",
+  "loginToViewHistory": "سجل الدخول لعرض السجل",
+  "loginToViewHistoryDesc": "سجل الإشارات متاح فقط للمستخدمين المسجلين. يرجى تسجيل الدخول لتتبع الأداء من Signal GPT.",
+  "letsGetYouIn": "هيا بنا!",
+  "dontHaveAnAccount": "ليس لديك حساب؟ ",
+  "createAccount": "إنشاء حساب",
+  "createYourAccount": "أنشئ حسابك",
+  "login": "تسجيل الدخول",
+  "rememberYourPassword": "تذكر كلمة المرور",
+  "signInWith": "تسجيل الدخول باستخدام",
+  "getStarted": "ابدأ الآن",
+  "pleaseEnterEmail": "يرجى إدخال بريدك الإلكتروني",
+  "pleaseEnterPassword": "يرجى إدخال كلمة المرور",
+  "pleaseEnterCurrentPassword": "يرجى إدخال كلمة المرور الحالية",
+  "pleaseEnterNewPassword": "يرجى إدخال كلمة المرور الجديدة",
+  "pleaseConfirmNewPassword": "يرجى تأكيد كلمة المرور الجديدة",
+  "pleaseConfirmPassword": "يرجى تأكيد كلمة المرور",
+  "passwordMinLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+  "savePassword": "حفظ كلمة المرور",
+  "verifyYourEmail": "تحقق من بريدك الإلكتروني",
+  "pleaseEnterVerificationCode": "يرجى إدخال الرمز المكون من 6 أرقام\\nالمرسل إلى بريدك الإلكتروني",
+  "pleaseEnterAllDigits": "يرجى إدخال جميع الأرقام الستة",
+  "invalidOrExpiredCode": "رمز تحقق غير صالح أو منتهي الصلاحية",
+  "anErrorOccurred": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+  "verificationCodeResent": "تم إعادة إرسال رمز التحقق!",
+  "failedToResendCode": "فشل إعادة إرسال الرمز: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "إعادة إرسال الرمز",
+  "verify": "تحقق",
+  "resetPassword": "إعادة تعيين كلمة المرور",
+  "forgotPasswordInstructions": "يرجى إدخال عنوان البريد الإلكتروني الذي استخدمته لإنشاء حسابك\\n\\nسنرسل رمز تحقق إلى بريدك الإلكتروني.",
+  "sendButton": "إرسال",
+  "unableToReceiveEmail": "إذا لم تتمكن من استلام البريد الإلكتروني، يرجى الاتصال بنا عبر البريد @gmail.com",
+  "verificationCodeSentTo": "لقد أرسلنا رمز تحقق إلى",
+  "passwordResetSuccessful": "تم إعادة تعيين كلمة المرور بنجاح!",
+  "errorGeneric": "خطأ: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "الحساب موجود بالفعل",
+  "accountAlreadyExistsMessage": "البريد الإلكتروني {email} مسجل بالفعل في النظام. يرجى تسجيل الدخول أو استخدام ميزة نسيت كلمة المرور.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "خطأ في النظام: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "تأكيد كلمة المرور",
+  "referralCodeOptional": "رمز الإحالة (اختياري)",
+  "accountDeletedSuccessfully": "تم حذف الحساب نهائيًا.",
+  "accountDeleteError": "خطأ في حذف الحساب: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح!",
+  "errorChangingPassword": "خطأ في تغيير كلمة المرور. يرجى التحقق من كلمة المرور الحالية.",
+  "enableNotificationsHint": "قم بتمكين الإشعارات في إعدادات الجهاز لعرض التحديثات الجديدة على شاشة القفل",
+  "navigateToDeviceSettings": "انتقل إلى إعدادات الجهاز.",
+  "turnOffAllNotifications": "إيقاف جميع الإشعارات",
+  "pauseAllNotifications": "إيقاف جميع الإشعارات مؤقتًا",
+  "turnOnCryptoSignals": "تشغيل إشارات العملات المشفرة",
+  "turnOnCurrencyPairSignals": "تشغيل إشارات أزواج العملات",
+  "turnOnGoldSignals": "تشغيل إشارات الذهب",
+  "currencyPairSignals": "إشارات أزواج العملات",
+  "termsOfUseContent": "من خلال الوصول إلى هذا التطبيق أو استخدامه، فإنك توافق على الامتثال لشروط الاستخدام. يتم توفير هذا التطبيق لأغراض إعلامية فقط، ونحن لا نضمن دقة أو اكتمال أو موثوقية أي محتوى أو إشارات معروضة. أنت مسؤول بالكامل عن كيفية استخدامك للمعلومات المقدمة داخل التطبيق. نحتفظ بالحق في تعديل الخدمة أو تعليقها أو إنهائها في أي وقت دون إشعار مسبق. يعتبر الاستخدام المستمر للتطبيق قبولًا لأي شروط محدثة.",
+  "tradingHistoryTitle": "سجل التداول",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "تم تفعيل إيقاف الخسارة",
+  "entryWithPrice": "الدخول: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Signal GPT",
+  "categoryGold": "GOLD",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "سيتم تجديد الاشتراك تلقائيًا ما لم يتم إلغاؤه قبل 24 ساعة على الأقل من نهاية الفترة الحالية. يمكنك إدارة اشتراكاتك وإلغائها في إعدادات حساب App Store. خطة مدى الحياة هي عملية شراء لمرة واحدة.",
+  "termsOfUseEula": "شروط الاستخدام (EULA)",
+  "productNotFound": "المنتج غير موجود: {productId}. يرجى التأكد من تكوينه في المتاجر.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ سنة",
+  "tierDemoSignalQty": "7-8 يوميًا",
+  "elite1Month": "ELITE شهر واحد",
+  "elite12Months": "ELITE 12 شهرًا",
+  "statusPending": "قيد الانتظار",
+  "statusFailed": "فشل",
+  "yourReferralCode": "رمز الإحالة الخاص بك",
+  "referralCodeCopied": "تم نسخ رمز الإحالة!",
+  "copyCode": "نسخ الرمز",
+  "revenue": "الإيرادات",
+  "availableCommission": "العمولة المتاحة",
+  "totalReceivedIncome": "إجمالي الدخل المستلم",
+  "depositAmount": "الإيداع: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "إشعار مهم",
+  "accountChangedPleaseRelogin": "تم تغيير حسابك. يرجى تسجيل الدخول مرة أخرى.",
+  "iUnderstand": "أفهم",
+  "saveUpTo65Percent": "وفر حتى 65%",
+  "yearlyLifetimeDiscount": "سنوي -40% • مدى الحياة -65%",
+  "uploadFailedPermissionDenied": "فشل التحميل: تم رفض الإذن. تحقق من قواعد التخزين.",
+  "failedToUploadImage": "فشل تحميل الصورة. يرجى التحقق من اتصالك."
 }

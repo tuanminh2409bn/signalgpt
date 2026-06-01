@@ -9,6 +9,7 @@ import 'package:minvest_forex_app/core/providers/user_provider.dart';
 import 'package:minvest_forex_app/features/auth/services/auth_service.dart';
 import 'package:minvest_forex_app/features/notifications/providers/notification_provider.dart';
 import 'package:minvest_forex_app/services/session_service.dart';
+import 'package:minvest_forex_app/core/utils/error_utils.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -77,7 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // Nếu có lỗi, quay lại trạng thái đã xác thực và báo lỗi
       emit(AuthState.authenticated(
         currentUser, // Dùng user đã lấy từ state
-        errorMessage: 'Lỗi xóa tài khoản: ${e.toString()}',
+        errorMessage: 'Lỗi xóa tài khoản: ${ErrorUtils.getFriendlyErrorMessage(e)}',
       ));
     }
   }
@@ -90,19 +91,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       for (var provider in event.providersToReset) {
         if (provider is UserProvider) {
-          await provider.stopListeningAndReset();
+          unawaited(provider.stopListeningAndReset());
         }
         if (provider is NotificationProvider) {
-          await provider.stopListeningAndReset();
+          unawaited(provider.stopListeningAndReset());
         }
       }
 
-      print("AuthBloc: Dọn dẹp provider hoàn tất.");
+      print("AuthBloc: Dọn dẹp provider đã được kích hoạt chạy ngầm.");
       await _authService.signOut();
       print("AuthBloc: Đã đăng xuất khỏi Firebase.");
     } catch (e) {
       print("AuthBloc: Lỗi trong quá trình đăng xuất: $e");
-      emit(AuthState.unauthenticated(errorMessage: e.toString()));
+      emit(AuthState.unauthenticated(errorMessage: ErrorUtils.getFriendlyErrorMessage(e)));
     }
   }
 
@@ -139,19 +140,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     } on SuspendedAccountException catch (e) {
       emit(AuthState.unauthenticated(errorMessage: e.reason));
-    } on FirebaseAuthException catch (e) {
-      String errorMessage = 'Incorrect username or password.';
-      if (e.code == 'user-not-found' ||
-          e.code == 'wrong-password' ||
-          e.code == 'invalid-credential' ||
-          e.code == 'invalid-email') {
-        errorMessage = 'Incorrect username or password.';
-      } else {
-        errorMessage = e.message ?? 'Authentication failed.';
-      }
-      emit(AuthState.unauthenticated(errorMessage: errorMessage));
     } catch (e) {
-      emit(AuthState.unauthenticated(errorMessage: e.toString()));
+      emit(AuthState.unauthenticated(errorMessage: ErrorUtils.getFriendlyErrorMessage(e)));
     }
   }
 

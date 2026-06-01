@@ -1,5 +1,6 @@
 // lib/app/session_gate.dart
 import 'package:flutter/material.dart';
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
 import 'package:minvest_forex_app/core/providers/user_provider.dart';
 import 'package:minvest_forex_app/features/auth/bloc/auth_bloc.dart';
 import 'package:minvest_forex_app/features/notifications/providers/notification_provider.dart';
@@ -24,6 +25,8 @@ class _SessionGateState extends State<SessionGate> {
     final navigatorContext = navigatorKey.currentContext;
     if (navigatorContext == null) return;
 
+    final l10n = AppLocalizations.of(navigatorContext)!;
+
     setState(() {
       _isSessionResetDialogShowing = true;
     });
@@ -34,8 +37,8 @@ class _SessionGateState extends State<SessionGate> {
       builder: (dialogContext) => PopScope(
         canPop: false,
         child: AlertDialog(
-          title: const Text('Thông báo quan trọng'),
-          content: Text(userProvider.sessionResetReason ?? 'Tài khoản của bạn có sự thay đổi. Vui lòng đăng nhập lại.'),
+          title: Text(l10n.importantNotice),
+          content: Text(userProvider.sessionResetReason ?? l10n.accountChangedPleaseRelogin),
           actions: [
             TextButton(
               onPressed: () async {
@@ -54,7 +57,7 @@ class _SessionGateState extends State<SessionGate> {
                   ));
                 }
               },
-              child: const Text('Tôi đã hiểu'),
+              child: Text(l10n.iUnderstand),
             ),
           ],
         ),

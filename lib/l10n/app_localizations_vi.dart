@@ -1686,6 +1686,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get enterReferralCode => 'Nhập mã giới thiệu';
 
   @override
+  String get referralCodeDescription =>
+      'Nhập mã giới thiệu để nhận ưu đãi từ đối tác của chúng tôi.';
+
+  @override
   String get referralCode => 'Mã giới thiệu';
 
   @override
@@ -1721,4 +1725,293 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get lifetime => 'Trọn đời';
+
+  @override
+  String get loginNow => 'Đăng nhập ngay';
+
+  @override
+  String get loginToViewSignals => 'Đăng nhập để xem tín hiệu';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Vui lòng đăng nhập để xem tín hiệu Signal GPT và truy cập tất cả tính năng.';
+
+  @override
+  String get loginToViewHistory => 'Đăng nhập để xem lịch sử';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'Lịch sử tín hiệu chỉ dành cho người dùng đã đăng nhập. Vui lòng đăng nhập để theo dõi hiệu suất từ Signal GPT.';
+
+  @override
+  String get letsGetYouIn => 'Hãy Bắt Đầu Nào!';
+
+  @override
+  String get dontHaveAnAccount => 'Chưa có tài khoản? ';
+
+  @override
+  String get createAccount => 'Tạo Tài Khoản';
+
+  @override
+  String get createYourAccount => 'Tạo tài khoản của bạn';
+
+  @override
+  String get login => 'Đăng nhập';
+
+  @override
+  String get rememberYourPassword => 'Ghi nhớ mật khẩu';
+
+  @override
+  String get signInWith => 'Đăng nhập với';
+
+  @override
+  String get getStarted => 'Bắt Đầu';
+
+  @override
+  String get pleaseEnterEmail => 'Vui lòng nhập email của bạn';
+
+  @override
+  String get pleaseEnterPassword => 'Vui lòng nhập mật khẩu của bạn';
+
+  @override
+  String get pleaseEnterCurrentPassword => 'Vui lòng nhập mật khẩu hiện tại';
+
+  @override
+  String get pleaseEnterNewPassword => 'Vui lòng nhập mật khẩu mới';
+
+  @override
+  String get pleaseConfirmNewPassword => 'Vui lòng xác nhận mật khẩu mới';
+
+  @override
+  String get pleaseConfirmPassword => 'Vui lòng xác nhận mật khẩu';
+
+  @override
+  String get passwordMinLength => 'Mật khẩu phải có ít nhất 6 ký tự';
+
+  @override
+  String get savePassword => 'Lưu mật khẩu';
+
+  @override
+  String get verifyYourEmail => 'Xác Minh Email';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'Vui lòng nhập mã 6 chữ số\nđã gửi đến email của bạn';
+
+  @override
+  String get pleaseEnterAllDigits => 'Vui lòng nhập đủ 6 chữ số';
+
+  @override
+  String get invalidOrExpiredCode => 'Mã xác minh không hợp lệ hoặc đã hết hạn';
+
+  @override
+  String get anErrorOccurred => 'Đã xảy ra lỗi. Vui lòng thử lại.';
+
+  @override
+  String get verificationCodeResent => 'Đã gửi lại mã xác minh!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Gửi lại mã thất bại: $error';
+  }
+
+  @override
+  String get resendCode => 'Gửi lại mã';
+
+  @override
+  String get verify => 'Xác minh';
+
+  @override
+  String get resetPassword => 'Đặt Lại Mật Khẩu';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Vui lòng nhập địa chỉ email bạn đã dùng để đăng ký tài khoản\n\nChúng tôi sẽ gửi mã xác minh đến địa chỉ email của bạn.';
+
+  @override
+  String get sendButton => 'Gửi';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Nếu bạn không nhận được email, vui lòng liên hệ chúng tôi qua email @gmail.com';
+
+  @override
+  String get verificationCodeSentTo => 'Chúng tôi đã gửi mã xác minh đến';
+
+  @override
+  String get passwordResetSuccessful => 'Đặt lại mật khẩu thành công!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Lỗi: $message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'Tài khoản đã tồn tại';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'Email $email đã được đăng ký trong hệ thống. Vui lòng đăng nhập hoặc sử dụng tính năng quên mật khẩu.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Lỗi hệ thống: $error';
+  }
+
+  @override
+  String get confirmPassword => 'Xác nhận mật khẩu';
+
+  @override
+  String get referralCodeOptional => 'Mã giới thiệu (Tùy chọn)';
+
+  @override
+  String get accountDeletedSuccessfully => 'Tài khoản đã được xóa vĩnh viễn.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Lỗi xóa tài khoản: $error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'Đổi mật khẩu thành công!';
+
+  @override
+  String get errorChangingPassword =>
+      'Lỗi đổi mật khẩu. Vui lòng kiểm tra mật khẩu hiện tại.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Bật thông báo trong cài đặt thiết bị để xem các cập nhật mới trên màn hình khóa';
+
+  @override
+  String get navigateToDeviceSettings => 'Đi đến cài đặt thiết bị.';
+
+  @override
+  String get turnOffAllNotifications => 'Tắt tất cả thông báo';
+
+  @override
+  String get pauseAllNotifications => 'Tạm dừng tất cả thông báo';
+
+  @override
+  String get turnOnCryptoSignals => 'Bật tín hiệu Crypto';
+
+  @override
+  String get turnOnCurrencyPairSignals => 'Bật tín hiệu cặp tiền tệ';
+
+  @override
+  String get turnOnGoldSignals => 'Bật tín hiệu Vàng';
+
+  @override
+  String get currencyPairSignals => 'Tín hiệu Cặp Tiền Tệ';
+
+  @override
+  String get termsOfUseContent =>
+      'Bằng việc truy cập hoặc sử dụng ứng dụng này, bạn đồng ý tuân thủ Điều khoản Sử dụng. Ứng dụng này chỉ được cung cấp cho mục đích thông tin và chúng tôi không đảm bảo tính chính xác, đầy đủ hoặc độ tin cậy của bất kỳ nội dung hoặc tín hiệu nào được hiển thị. Bạn hoàn toàn chịu trách nhiệm về cách sử dụng thông tin được cung cấp trong ứng dụng. Chúng tôi có quyền sửa đổi, tạm ngừng hoặc chấm dứt dịch vụ bất kỳ lúc nào mà không cần báo trước. Việc tiếp tục sử dụng ứng dụng đồng nghĩa với việc chấp nhận mọi điều khoản đã được cập nhật.';
+
+  @override
+  String get tradingHistoryTitle => 'Lịch Sử Giao Dịch';
+
+  @override
+  String get tp1Live => 'TP1 LIVE';
+
+  @override
+  String get tp2Live => 'TP2 LIVE';
+
+  @override
+  String get tp3Live => 'TP3 LIVE';
+
+  @override
+  String get stopLossTriggered => 'Đã chạm dừng lỗ';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Vào lệnh: $price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signal GPT';
+
+  @override
+  String get categoryGold => 'VÀNG';
+
+  @override
+  String get categoryCrypto => 'CRYPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'Gói đăng ký sẽ tự động gia hạn trừ khi bị hủy ít nhất 24 giờ trước khi kết thúc giai đoạn hiện tại. Bạn có thể quản lý và hủy gói đăng ký trong cài đặt tài khoản App Store. Gói trọn đời là thanh toán một lần.';
+
+  @override
+  String get termsOfUseEula => 'Điều khoản Sử dụng (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Không tìm thấy sản phẩm: $productId. Vui lòng đảm bảo sản phẩm đã được cấu hình trên cửa hàng.';
+  }
+
+  @override
+  String get perYear => '/ năm';
+
+  @override
+  String get tierDemoSignalQty => '7-8 mỗi ngày';
+
+  @override
+  String get elite1Month => 'ELITE 1 Tháng';
+
+  @override
+  String get elite12Months => 'ELITE 12 Tháng';
+
+  @override
+  String get statusPending => 'Đang chờ';
+
+  @override
+  String get statusFailed => 'Thất bại';
+
+  @override
+  String get yourReferralCode => 'Mã giới thiệu của bạn';
+
+  @override
+  String get referralCodeCopied => 'Đã sao chép mã giới thiệu!';
+
+  @override
+  String get copyCode => 'Sao Chép Mã';
+
+  @override
+  String get revenue => 'Doanh thu';
+
+  @override
+  String get availableCommission => 'Hoa hồng khả dụng';
+
+  @override
+  String get totalReceivedIncome => 'Tổng thu nhập đã nhận';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Nạp tiền: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Thông Báo Quan Trọng';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Tài khoản của bạn đã thay đổi. Vui lòng đăng nhập lại.';
+
+  @override
+  String get iUnderstand => 'Tôi hiểu';
+
+  @override
+  String get saveUpTo65Percent => 'TIẾT KIỆM ĐẾN 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Năm -40% • Trọn đời -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Tải lên thất bại: Không có quyền truy cập. Vui lòng kiểm tra Quyền Lưu trữ.';
+
+  @override
+  String get failedToUploadImage =>
+      'Tải ảnh lên thất bại. Vui lòng kiểm tra kết nối mạng.';
 }

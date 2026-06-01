@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "เปลี่ยนรหัสผ่าน",
+  "currentPassword": "รหัสผ่านปัจจุบัน",
+  "newPassword": "รหัสผ่านใหม่",
+  "confirmNewPassword": "ยืนยันรหัสผ่านใหม่",
+  "passwordsDoNotMatch": "รหัสผ่านไม่ตรงกัน",
+  "passwordUpdateSuccess": "อัปเดตรหัสผ่านเรียบร้อยแล้ว",
+  "passwordUpdateFailed": "ไม่สามารถอัปเดตรหัสผ่าน:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "รหัสผ่านปัจจุบันไม่ถูกต้อง",
   "signInRequired": "ต้องเข้าสู่ระบบ",
   "signInToExploreSignal": "ลงชื่อเข้าใช้เพื่อสำรวจสัญญาณการซื้อขายนี้!",
   "activeMember": "สมาชิกที่ใช้งานอยู่",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "เข้าสู่ระบบโดยไม่มีบัญชี",
+  "save40Percent": "ประหยัด 40%",
+  "save65Percent": "ประหยัด 65%",
+  "disclaimer": "ข้อสงวนสิทธิ์",
+  "disclaimerContent": "ข้อมูลบน signalgpt.ai มีวัตถุประสงค์เพื่อการอ้างอิงและแบ่งปันความรู้เท่านั้น และไม่ถือเป็นคำแนะนำในการลงทุน ผู้ใช้ต้องรับผิดชอบต่อการตัดสินใจซื้อขายของตนเองแต่เพียงผู้เดียว",
+  "openTradingAccount": "เปิดบัญชีซื้อขาย",
+  "supportUs": "สนับสนุนเรา",
+  "rateApp": "ให้คะแนนแอป",
+  "shareApp": "แชร์แอป",
+  "accountDetails": "รายละเอียดบัญชี",
+  "language": "ภาษา",
+  "termsOfUse": "เงื่อนไขการใช้งาน",
+  "accounts": "บัญชี",
+  "accessExchange": "เข้าถึงการแลกเปลี่ยน",
+  "onlineSupport": "การสนับสนุนออนไลน์",
+  "selectLanguage": "เลือกภาษา",
+  "left": "ซ้าย",
+  "upgradeToPro": "อัปเกรดเป็น Pro",
+  "assetGold": "ทอง",
+  "assetCrypto": "การเข้ารหัสลับ",
+  "assetForex": "คู่สกุลเงิน",
+  "tokens": "โทเค็น",
+  "noForexAssets": "ไม่มีสินทรัพย์คู่สกุลเงิน",
+  "openApp": "เปิด{appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "สถานะ",
+  "signalEntryLabel": "รายการ",
+  "signalSlLabel": "สล",
+  "signalTp1Label": "ทีพี1",
+  "signalTp2Label": "ทีพี2",
+  "signalTp3Label": "ทีพี3",
+  "analyze": "วิเคราะห์",
+  "useTokenToView": "ใช้โทเค็นเพื่อดูสัญญาณ",
+  "viewNow": "ดูเลย",
+  "waitingNewSignals": "รอสัญญาณใหม่...",
+  "failedUnlockSignal": "ไม่สามารถปลดล็อคสัญญาณได้",
+  "notEnoughTokens": "โทเค็นไม่เพียงพอ",
+  "newSignalUploaded": "อัปโหลดสัญญาณใหม่แล้ว",
+  "newSymbolSignalUploaded": "อัปโหลดสัญญาณ{symbol}ใหม่แล้ว!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "อัปเกรดเป็นดูสัญญาณ",
+  "signalHistory": "ประวัติสัญญาณ",
+  "allStatus": "ทั้งหมด",
+  "selectDate": "เลือกวันที่",
+  "noHistoryFound": "ไม่พบประวัติ",
+  "filterDate": "วันที่",
+  "marketChart": "แผนภูมิตลาด",
+  "analysisExplanation": "การวิเคราะห์และคำอธิบาย",
+  "noDetailedAnalysis": "ไม่มีการวิเคราะห์โดยละเอียดสำหรับสัญญาณนี้",
+  "affiliateDashboard": "แดชบอร์ดพันธมิตร",
+  "referralLink": "ลิงค์ผู้อ้างอิง",
+  "copyLink": "คัดลอกลิงค์",
+  "referralCount": "จำนวนผู้อ้างอิง",
+  "totalEarnings": "รายได้รวม",
+  "pendingCommission": "ค่าคอมมิชชั่นที่รอดำเนินการ",
+  "latestReferrals": "การอ้างอิงล่าสุด",
+  "noReferralsYet": "ยังไม่มีการอ้างอิง",
+  "affiliateRoleRequired": "ต้องการบทบาทพันธมิตร กรุณาติดต่อผู้ดูแลระบบ.",
+  "affiliateCodeNotAssigned": "ยังไม่ได้กำหนดรหัสพันธมิตร กรุณาติดต่อผู้ดูแลระบบ.",
+  "referralLinkDescription": "ใช้ลิงก์นี้เพื่อแนะนำผู้ใช้และรับค่าคอมมิชชันตลอดชีพ 40%",
+  "linkCopied": "คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว!",
+  "enterReferralCode": "ป้อนรหัสอ้างอิง",
+  "referralCode": "รหัสอ้างอิง",
+  "submit": "ส่ง",
+  "invalidReferralCode": "รหัสอ้างอิงไม่ถูกต้อง",
+  "referralCodeApplied": "ใช้รหัสอ้างอิงสำเร็จแล้ว!",
+  "priceLifetimeOld": "$712.00",
+  "loginNow": "เข้าสู่ระบบตอนนี้",
+  "loginToViewSignals": "เข้าสู่ระบบเพื่อดูสัญญาณ",
+  "loginToViewSignalsDesc": "กรุณาเข้าสู่ระบบเพื่อดูสัญญาณสัญญาณ GPT และเข้าถึงคุณสมบัติทั้งหมด",
+  "loginToViewHistory": "เข้าสู่ระบบเพื่อดูประวัติ",
+  "loginToViewHistoryDesc": "ประวัติสัญญาณใช้ได้เฉพาะกับผู้ใช้ที่เข้าสู่ระบบเท่านั้น กรุณาเข้าสู่ระบบเพื่อติดตามประสิทธิภาพจาก Signal GPT",
+  "letsGetYouIn": "เชิญคุณเข้ามาได้เลย!",
+  "dontHaveAnAccount": "ยังไม่มีบัญชี?",
+  "createAccount": "สร้างบัญชี",
+  "createYourAccount": "สร้างบัญชีของคุณ",
+  "login": "เข้าสู่ระบบ",
+  "rememberYourPassword": "จำรหัสผ่านของคุณ",
+  "signInWith": "เข้าสู่ระบบด้วย",
+  "getStarted": "เริ่มต้นเลย",
+  "pleaseEnterEmail": "กรุณากรอกอีเมล์ของคุณ",
+  "pleaseEnterPassword": "กรุณากรอกรหัสผ่านของคุณ",
+  "pleaseEnterCurrentPassword": "กรุณากรอกรหัสผ่านปัจจุบันของคุณ",
+  "pleaseEnterNewPassword": "กรุณากรอกรหัสผ่านใหม่ของคุณ",
+  "pleaseConfirmNewPassword": "กรุณายืนยันรหัสผ่านใหม่ของคุณ",
+  "pleaseConfirmPassword": "กรุณายืนยันรหัสผ่านของคุณ",
+  "passwordMinLength": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+  "savePassword": "บันทึกรหัสผ่าน",
+  "verifyYourEmail": "ยืนยันอีเมลของคุณ",
+  "pleaseEnterVerificationCode": "กรุณากรอกรหัส 6 หลัก\nส่งไปยังอีเมลของคุณ",
+  "pleaseEnterAllDigits": "กรุณากรอกให้ครบ 6 หลัก",
+  "invalidOrExpiredCode": "รหัสยืนยันไม่ถูกต้องหรือหมดอายุ",
+  "anErrorOccurred": "เกิดข้อผิดพลาด โปรดลองอีกครั้ง",
+  "verificationCodeResent": "รหัสยืนยันถูกส่งอีกครั้ง!",
+  "failedToResendCode": "ไม่สามารถส่งรหัสอีกครั้ง:{error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "ส่งรหัสอีกครั้ง",
+  "verify": "ตรวจสอบ",
+  "resetPassword": "รีเซ็ตรหัสผ่าน",
+  "forgotPasswordInstructions": "กรุณากรอกที่อยู่อีเมลที่คุณใช้ในการลงทะเบียนบัญชีของคุณ\n\nเราจะส่งรหัสยืนยันไปยังที่อยู่อีเมลของคุณ",
+  "sendButton": "ส่ง",
+  "unableToReceiveEmail": "หากคุณไม่สามารถรับอีเมลได้ โปรดติดต่อเราที่อีเมล @gmail.com",
+  "verificationCodeSentTo": "เราได้ส่งรหัสยืนยันไปที่",
+  "passwordResetSuccessful": "รีเซ็ตรหัสผ่านสำเร็จ!",
+  "errorGeneric": "ข้อผิดพลาด:{message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "มีบัญชีอยู่แล้ว",
+  "accountAlreadyExistsMessage": "อีเมล{email}ได้รับการลงทะเบียนในระบบแล้ว กรุณาเข้าสู่ระบบหรือใช้คุณสมบัติลืมรหัสผ่าน",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "ข้อผิดพลาดของระบบ:{error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "ยืนยันรหัสผ่าน",
+  "referralCodeOptional": "รหัสอ้างอิง (ไม่บังคับ)",
+  "accountDeletedSuccessfully": "บัญชีถูกลบอย่างถาวรแล้ว",
+  "accountDeleteError": "เกิดข้อผิดพลาดในการลบบัญชี:{error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว!",
+  "errorChangingPassword": "เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน กรุณาตรวจสอบรหัสผ่านปัจจุบันของคุณ",
+  "enableNotificationsHint": "เปิดใช้งานการแจ้งเตือนในการตั้งค่าอุปกรณ์เพื่อดูการอัปเดตใหม่บนหน้าจอล็อค",
+  "navigateToDeviceSettings": "นำทางไปยังการตั้งค่าอุปกรณ์",
+  "turnOffAllNotifications": "ปิดการแจ้งเตือนทั้งหมด",
+  "pauseAllNotifications": "หยุดการแจ้งเตือนทั้งหมดชั่วคราว",
+  "turnOnCryptoSignals": "เปิดสัญญาณการเข้ารหัสลับ",
+  "turnOnCurrencyPairSignals": "เปิดสัญญาณคู่สกุลเงิน",
+  "turnOnGoldSignals": "เปิดสัญญาณทอง",
+  "currencyPairSignals": "สัญญาณคู่สกุลเงิน",
+  "termsOfUseContent": "การเข้าถึงหรือใช้แอปพลิเคชันนี้แสดงว่าคุณตกลงที่จะปฏิบัติตามข้อกำหนดการใช้งาน แอปนี้จัดทำขึ้นเพื่อวัตถุประสงค์ในการให้ข้อมูลเท่านั้น และเราไม่รับประกันความถูกต้อง ความสมบูรณ์ หรือความน่าเชื่อถือของเนื้อหาหรือสัญญาณใดๆ ที่แสดง คุณเป็นผู้รับผิดชอบแต่เพียงผู้เดียวต่อวิธีการใช้ข้อมูลที่ให้ไว้ในแอป เราขอสงวนสิทธิ์ในการแก้ไข ระงับ หรือยกเลิกบริการได้ตลอดเวลาโดยไม่ต้องแจ้งให้ทราบล่วงหน้า การใช้แอปต่อไปถือเป็นการยอมรับข้อกำหนดที่อัปเดต",
+  "tradingHistoryTitle": "ประวัติการซื้อขาย",
+  "tp1Live": "ทีพี1 ไลฟ์",
+  "tp2Live": "ทีพี2 ไลฟ์",
+  "tp3Live": "ทีพี3 ไลฟ์",
+  "stopLossTriggered": "หยุดการสูญเสียที่ถูกทริกเกอร์",
+  "entryWithPrice": "รายการ:{price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "สัญญาณ GPT",
+  "categoryGold": "ทอง",
+  "categoryCrypto": "คริปโต",
+  "subscriptionAutoRenewDisclaimer": "การสมัครสมาชิกจะต่ออายุโดยอัตโนมัติเว้นแต่จะยกเลิกอย่างน้อย 24 ชั่วโมงก่อนสิ้นสุดช่วงเวลาปัจจุบัน คุณสามารถจัดการและยกเลิกการสมัครสมาชิกของคุณได้ในการตั้งค่าบัญชี App Store แผนอายุการใช้งานเป็นการซื้อครั้งเดียว",
+  "termsOfUseEula": "ข้อกำหนดการใช้งาน (EULA)",
+  "productNotFound": "ไม่พบผลิตภัณฑ์:{productId}โปรดตรวจสอบให้แน่ใจว่ามีการกำหนดค่าในร้านค้า",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ ปี",
+  "tierDemoSignalQty": "7-8 ต่อวัน",
+  "elite1Month": "ชั้นยอด 1 เดือน",
+  "elite12Months": "ชั้นสูง 12 เดือน",
+  "statusPending": "รอดำเนินการ",
+  "statusFailed": "ล้มเหลว",
+  "yourReferralCode": "รหัสอ้างอิงของคุณ",
+  "referralCodeCopied": "คัดลอกรหัสอ้างอิงแล้ว!",
+  "copyCode": "คัดลอกรหัส",
+  "revenue": "รายได้",
+  "availableCommission": "ค่าคอมมิชชั่นที่มีอยู่",
+  "totalReceivedIncome": "รวมรายได้ที่ได้รับ",
+  "depositAmount": "เงินฝาก: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "ประกาศสำคัญ",
+  "accountChangedPleaseRelogin": "บัญชีของคุณมีการเปลี่ยนแปลง กรุณาเข้าสู่ระบบอีกครั้ง",
+  "iUnderstand": "ฉันเข้าใจ",
+  "saveUpTo65Percent": "ประหยัดสูงสุดถึง 65%",
+  "yearlyLifetimeDiscount": "รายปี -40% • อายุการใช้งาน -65%",
+  "uploadFailedPermissionDenied": "การอัปโหลดล้มเหลว: การอนุญาตถูกปฏิเสธ ตรวจสอบกฎการจัดเก็บ",
+  "failedToUploadImage": "ล้มเหลวในการอัปโหลดภาพ กรุณาตรวจสอบการเชื่อมต่อของคุณ"
 }

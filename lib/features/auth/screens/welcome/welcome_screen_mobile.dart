@@ -4,13 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minvest_forex_app/features/auth/bloc/auth_bloc.dart';
 import 'package:minvest_forex_app/features/auth/screens/welcome/login_screen_mobile.dart';
 import 'package:minvest_forex_app/features/auth/screens/welcome/signup_screen_mobile.dart';
-// Removed unused import
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.black,
       body: BlocListener<AuthBloc, AuthState>(
@@ -47,10 +48,10 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(height: 100),
                   
                   // Title
-                  const Text(
-                    'Let’s Get You In!',
+                  Text(
+                    l10n.letsGetYouIn,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
@@ -62,7 +63,7 @@ class WelcomeScreen extends StatelessWidget {
                   // Social Login Buttons
                   _SocialButton(
                     iconPath: 'assets/images/facebook_logo.png',
-                    text: 'Continue With Facebook',
+                    text: l10n.continueByFacebook,
                     color: const Color(0xFF1877F2),
                     iconSize: 32, // Tăng thêm kích thước Facebook
                     onPressed: () => context.read<AuthBloc>().add(SignInWithFacebookRequested()),
@@ -72,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
                   
                   _SocialButton(
                     iconPath: 'assets/images/google_logo.png',
-                    text: 'Continue With Google',
+                    text: l10n.continueByGoogle,
                     color: Colors.white,
                     iconSize: 26, // Tăng kích thước Google
                     onPressed: () => context.read<AuthBloc>().add(SignInWithGoogleRequested()),
@@ -83,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
                   if (Platform.isIOS)
                     _SocialButton(
                       iconPath: 'assets/images/apple_logo.png',
-                      text: 'Continue With Apple',
+                      text: l10n.continueByApple,
                       color: const Color(0xFF121212),
                       iconSize: 22, // Giảm kích thước Apple
                       onPressed: () => context.read<AuthBloc>().add(SignInWithAppleRequested()),
@@ -95,11 +96,11 @@ class WelcomeScreen extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(child: Divider(color: Colors.white.withOpacity(0.3), thickness: 1)),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          'or',
-                          style: TextStyle(
+                          l10n.or,
+                          style: const TextStyle(
                             color: Color(0xFF636363),
                             fontSize: 18,
                           ),
@@ -130,9 +131,9 @@ class WelcomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       alignment: Alignment.center,
-                      child: const Text(
-                        'Sign In',
-                        style: TextStyle(
+                      child: Text(
+                        l10n.signIn,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -149,9 +150,9 @@ class WelcomeScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Don’t have an account? ',
-                          style: TextStyle(
+                        Text(
+                          l10n.dontHaveAnAccount,
+                          style: const TextStyle(
                             color: Color(0xFF636363),
                             fontSize: 16,
                           ),
@@ -162,9 +163,9 @@ class WelcomeScreen extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => const SignupScreenMobile()),
                             );
                           },
-                          child: const Text(
-                            'Create Account',
-                            style: TextStyle(
+                          child: Text(
+                            l10n.createAccount,
+                            style: const TextStyle(
                               color: Color(0xFF0094FF),
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -237,13 +238,18 @@ class _SocialButton extends StatelessWidget {
             children: [
               Image.asset(iconPath, width: iconSize, height: iconSize),
               const SizedBox(width: 12),
-              Text(
-                text,
-                style: const TextStyle(
-                  color: Colors.white, // Quay lại màu trắng để dễ đọc trên nền tối
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'Be Vietnam Pro',
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    text,
+                    style: const TextStyle(
+                      color: Colors.white, // Quay lại màu trắng để dễ đọc trên nền tối
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Be Vietnam Pro',
+                    ),
+                  ),
                 ),
               ),
             ],

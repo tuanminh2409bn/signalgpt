@@ -180,7 +180,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Aggiorna per visualizzare l\'analisi completa';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'Accedi senza un account';
 
   @override
   String get welcomeTo => 'Benvenuto in';
@@ -1130,10 +1130,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get save50Percent => 'RISPARMIA 50%';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => 'RISPARMIA IL 40%';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => 'RISPARMIA IL 65%';
 
   @override
   String get tryDemo => 'Prova demo';
@@ -1366,30 +1366,30 @@ class AppLocalizationsIt extends AppLocalizations {
       'This feature is only for VIP customers, please upgrade to receive notifications.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Cambiare la password';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'password attuale';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Nuova parola d\'ordine';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Conferma nuova password';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'Le password non corrispondono';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'Password aggiornata con successo';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'Impossibile aggiornare la password:$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'Password attuale errata';
 
   @override
   String get signInRequired => 'Accesso richiesto';
@@ -1519,72 +1519,72 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'Le informazioni su signalgpt.ai sono solo a scopo di riferimento e di condivisione delle conoscenze e non costituiscono una consulenza di investimento. Gli utenti sono gli unici responsabili delle proprie decisioni commerciali.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'Apri un conto di trading';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'Sostienici';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'Valuta l\'app';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'Condividi l\'app';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'Dettagli dell\'account';
 
   @override
-  String get language => 'Language';
+  String get language => 'Lingua';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'Termini di utilizzo';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'Conti';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'Accedi allo scambio';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'Supporto in linea';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Seleziona lingua';
 
   @override
-  String get left => 'left';
+  String get left => 'Sinistra';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Passa a Pro';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'Oro';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'Criptovaluta';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'COPPIA DI VALUTE';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Gettoni';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'Nessun asset COPPIA VALUTE disponibile';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return 'Apri$appName';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'Stato';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'ISCRIZIONE';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1599,112 +1599,117 @@ class AppLocalizationsIt extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'Analizzare';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'Usa il token per visualizzare il segnale';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'Visualizza ora';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'In attesa di nuovi segnali...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'Impossibile sbloccare il segnale';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'Gettoni insufficienti';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'Nuovo segnale caricato';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'Il nuovo segnale$symbolè ora caricato!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'Aggiorna a Visualizza segnale';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'Cronologia del segnale';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'TUTTO';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'Seleziona Data';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'Nessuna cronologia trovata';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'Data';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'GRAFICO DEL MERCATO';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'Analisi e spiegazione';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'Nessuna analisi dettagliata disponibile per questo segnale.';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'Dashboard di affiliazione';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'Collegamento di riferimento';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'Copia collegamento';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'Conteggio dei rinvii';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'Guadagni totali';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'Commissione pendente';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'Ultimi referral';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'Nessun riferimento ancora.';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'È richiesto il ruolo di affiliato. Si prega di contattare l\'amministratore.';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'Codice affiliato non ancora assegnato. Si prega di contattare l\'amministratore.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'Utilizza questo collegamento per segnalare utenti e guadagnare una commissione a vita del 40%.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'Link copiato negli appunti!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'Inserisci il codice di riferimento';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'Codice di riferimento';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'Invia';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'Codice di riferimento non valido.';
+
+  @override
+  String get referralCodeApplied =>
+      'Il codice referral è stato applicato con successo!';
 
   @override
   String get getTheAppForBestExperience =>
@@ -1720,7 +1725,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get priceLifetime => '\$249.00';
 
   @override
-  String get priceLifetimeOld => '\$712.00';
+  String get priceLifetimeOld => '\$ 712,00';
 
   @override
   String get durationLifetime => 'Lifetime';
@@ -1730,4 +1735,301 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get lifetime => 'Lifetime';
+
+  @override
+  String get loginNow => 'Accedi ora';
+
+  @override
+  String get loginToViewSignals => 'Accedi per visualizzare i segnali';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Effettua il login per visualizzare i segnali GPT di Signal e accedere a tutte le funzionalità.';
+
+  @override
+  String get loginToViewHistory => 'Accedi per visualizzare la cronologia';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'La cronologia dei segnali è disponibile solo per gli utenti che hanno effettuato l\'accesso. Effettua l\'accesso per monitorare le prestazioni di Signal GPT.';
+
+  @override
+  String get letsGetYouIn => 'Ti facciamo entrare!';
+
+  @override
+  String get dontHaveAnAccount => 'Non hai un account?';
+
+  @override
+  String get createAccount => 'Creare un account';
+
+  @override
+  String get createYourAccount => 'Crea il tuo account';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get rememberYourPassword => 'Ricorda la tua password';
+
+  @override
+  String get signInWith => 'Accedi con';
+
+  @override
+  String get getStarted => 'Inizia';
+
+  @override
+  String get pleaseEnterEmail => 'Per favore inserisci la tua email';
+
+  @override
+  String get pleaseEnterPassword => 'Inserisci la tua password';
+
+  @override
+  String get pleaseEnterCurrentPassword => 'Inserisci la tua password attuale';
+
+  @override
+  String get pleaseEnterNewPassword => 'Inserisci la tua nuova password';
+
+  @override
+  String get pleaseConfirmNewPassword =>
+      'Per favore conferma la tua nuova password';
+
+  @override
+  String get pleaseConfirmPassword => 'Per favore conferma la tua password';
+
+  @override
+  String get passwordMinLength =>
+      'La password deve contenere almeno 6 caratteri';
+
+  @override
+  String get savePassword => 'Salva password';
+
+  @override
+  String get verifyYourEmail => 'Verifica la tua email';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'Inserisci il codice a 6 cifre\ninviato alla tua email';
+
+  @override
+  String get pleaseEnterAllDigits => 'Inserisci tutte e 6 le cifre';
+
+  @override
+  String get invalidOrExpiredCode => 'Codice di verifica non valido o scaduto';
+
+  @override
+  String get anErrorOccurred =>
+      'Si è verificato un errore. Per favore riprova.';
+
+  @override
+  String get verificationCodeResent => 'Codice di verifica rinviato!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Impossibile inviare nuovamente il codice:$error';
+  }
+
+  @override
+  String get resendCode => 'Invia nuovamente il codice';
+
+  @override
+  String get verify => 'Verificare';
+
+  @override
+  String get resetPassword => 'Reimposta password';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Inserisci l\'indirizzo email che hai utilizzato per registrare il tuo account\n\nInvieremo un codice di verifica al tuo indirizzo email.';
+
+  @override
+  String get sendButton => 'Inviare';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Se non riesci a ricevere l\'e-mail, contattaci all\'indirizzo email @gmail.com';
+
+  @override
+  String get verificationCodeSentTo =>
+      'Abbiamo inviato un codice di verifica a';
+
+  @override
+  String get passwordResetSuccessful =>
+      'Reimpostazione della password riuscita!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Errore:$message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'L\'account esiste già';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'L\'e-mail$emailè già stata registrata nel sistema. Effettua il login o utilizza la funzione password dimenticata.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Errore di sistema:$error';
+  }
+
+  @override
+  String get confirmPassword => 'Conferma password';
+
+  @override
+  String get referralCodeOptional => 'Codice di riferimento (facoltativo)';
+
+  @override
+  String get accountDeletedSuccessfully =>
+      'L\'account è stato eliminato definitivamente.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Errore durante l\'eliminazione dell\'account:$error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'Password modificata con successo!';
+
+  @override
+  String get errorChangingPassword =>
+      'Errore durante la modifica della password. Controlla la tua password attuale.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Abilita le notifiche nelle impostazioni del dispositivo per visualizzare i nuovi aggiornamenti nella schermata di blocco';
+
+  @override
+  String get navigateToDeviceSettings =>
+      'Passare alle impostazioni del dispositivo.';
+
+  @override
+  String get turnOffAllNotifications => 'Disattiva tutte le notifiche';
+
+  @override
+  String get pauseAllNotifications => 'Metti in pausa tutte le notifiche';
+
+  @override
+  String get turnOnCryptoSignals => 'Attiva i segnali crittografici';
+
+  @override
+  String get turnOnCurrencyPairSignals =>
+      'Attiva i segnali delle coppie di valute';
+
+  @override
+  String get turnOnGoldSignals => 'Attiva i segnali dorati';
+
+  @override
+  String get currencyPairSignals => 'Segnali di coppia di valute';
+
+  @override
+  String get termsOfUseContent =>
+      'Accedendo o utilizzando questa applicazione, l\'utente accetta di rispettare i Termini di utilizzo. Questa app viene fornita solo a scopo informativo e non garantiamo l\'accuratezza, la completezza o l\'affidabilità di qualsiasi contenuto o segnale visualizzato. Sei l\'unico responsabile del modo in cui utilizzi le informazioni fornite all\'interno dell\'app. Ci riserviamo il diritto di modificare, sospendere o interrompere il servizio in qualsiasi momento senza preavviso. L\'uso continuato dell\'app implica l\'accettazione di eventuali termini aggiornati.';
+
+  @override
+  String get tradingHistoryTitle => 'Storia del trading';
+
+  @override
+  String get tp1Live => 'TP1 IN DIRETTA';
+
+  @override
+  String get tp2Live => 'TP2 IN DIRETTA';
+
+  @override
+  String get tp3Live => 'TP3 IN DIRETTA';
+
+  @override
+  String get stopLossTriggered => 'Stop loss attivato';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Voce:$price';
+  }
+
+  @override
+  String get signalGptTitle => 'Segnale GPT';
+
+  @override
+  String get categoryGold => 'ORO';
+
+  @override
+  String get categoryCrypto => 'CRIPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'L\'abbonamento si rinnoverà automaticamente a meno che non venga annullato almeno 24 ore prima della fine del periodo corrente. Puoi gestire e annullare i tuoi abbonamenti nelle impostazioni del tuo account App Store. Il piano a vita è un acquisto una tantum.';
+
+  @override
+  String get termsOfUseEula => 'Condizioni d\'uso (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Prodotto non trovato:$productId. Assicurati che sia configurato nei negozi.';
+  }
+
+  @override
+  String get perYear => '/ anno';
+
+  @override
+  String get tierDemoSignalQty => '7-8 al giorno';
+
+  @override
+  String get elite1Month => 'ELITE 1 mese';
+
+  @override
+  String get elite12Months => 'ELITE 12 mesi';
+
+  @override
+  String get statusPending => 'In attesa di';
+
+  @override
+  String get statusFailed => 'Fallito';
+
+  @override
+  String get yourReferralCode => 'Il tuo codice di riferimento';
+
+  @override
+  String get referralCodeCopied => 'Codice di riferimento copiato!';
+
+  @override
+  String get copyCode => 'Copia codice';
+
+  @override
+  String get revenue => 'Reddito';
+
+  @override
+  String get availableCommission => 'Commissione disponibile';
+
+  @override
+  String get totalReceivedIncome => 'Reddito totale ricevuto';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Deposito: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Avviso importante';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Il tuo account è cambiato. Effettua nuovamente l\'accesso.';
+
+  @override
+  String get iUnderstand => 'Capisco';
+
+  @override
+  String get saveUpTo65Percent => 'RISPARMIA FINO AL 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Annuale -40% • A vita -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Caricamento non riuscito: autorizzazione negata. Controlla le regole di archiviazione.';
+
+  @override
+  String get failedToUploadImage =>
+      'Impossibile caricare l\'immagine. Per favore controlla la tua connessione.';
 }

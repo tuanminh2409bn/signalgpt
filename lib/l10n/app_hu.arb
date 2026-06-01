@@ -429,31 +429,31 @@
   "leaveMessagePart1": "Kérjük, hagyjon üzenetet, csapatunk a lehető leghamarabb válaszol. Kapcsolatba léphet ",
   "chatWhatsApp": "WhatsApp",
   "leaveMessagePart2": " Signal GPT a gyors támogatásért.",
-  "currentPlan": "Current Plan",
+  "currentPlan": "Jelenlegi terv",
   "standard": "STANDARD",
-  "availableTokens": "Available Tokens",
-  "subscriptions": "Subscriptions",
-  "usesTokenPerView": "Uses 1 Token per view",
-  "unlimitedAccess": "Unlimited Access",
-  "activeElite": "Active (Elite)",
-  "active": "Active",
-  "inactive": "Inactive",
-  "transactionHistory": "Transaction History",
-  "noTransactionsFound": "No transactions found.",
-  "colDate": "Date",
-  "colProduct": "Product",
-  "colAmount": "Amount",
-  "colMethod": "Method",
-  "colStatus": "Status",
-  "statusSuccess": "Success",
-  "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "availableTokens": "Elérhető tokenek",
+  "subscriptions": "Előfizetések",
+  "usesTokenPerView": "1 token megtekintésenként",
+  "unlimitedAccess": "Korlátlan hozzáférés",
+  "activeElite": "Aktív (Elite)",
+  "active": "Aktív",
+  "inactive": "Inaktív",
+  "transactionHistory": "Tranzakciós előzmények",
+  "noTransactionsFound": "Nem találhatók tranzakciók.",
+  "colDate": "Dátum",
+  "colProduct": "Termék",
+  "colAmount": "Összeg",
+  "colMethod": "Módszer",
+  "colStatus": "Állapot",
+  "statusSuccess": "Sikeres",
+  "featureForVipOnly": "Ez a funkció csak VIP ügyfelek számára érhető el, kérjük, frissítsen az értesítések fogadásához.",
+  "changePassword": "Jelszó módosítása",
+  "currentPassword": "Jelenlegi jelszó",
+  "newPassword": "Új jelszó",
+  "confirmNewPassword": "Új jelszó megerősítése",
+  "passwordsDoNotMatch": "A jelszavak nem egyeznek",
+  "passwordUpdateSuccess": "A jelszó sikeresen frissítve",
+  "passwordUpdateFailed": "Nem sikerült frissíteni a jelszót:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Helytelen jelenlegi jelszó",
   "signInRequired": "Bejelentkezés szükséges",
   "signInToExploreSignal": "Jelentkezzen be, hogy felfedezze ezt a kereskedési jelet!",
   "activeMember": "Aktív tag",
@@ -474,9 +474,9 @@
   "daily": "Napi",
   "weekly": "Heti",
   "lossRate": "Veszteségarány",
-  "signalProgress": "Signal Progress",
-  "statusHistory": "Status History",
-  "signalCreated": "Signal Created",
+  "signalProgress": "Jelzés haladása",
+  "statusHistory": "Állapot előzmények",
+  "signalCreated": "Jelzés létrehozva",
   "signalMatched": "Jel egyezés",
   "targetReached": "Cél elérve",
   "freeSignalsInfo": "Ingyenes jelek info",
@@ -510,23 +510,245 @@
   },
   "passwordResetEmailSent": "Jelszó-visszaállító e-mail elküldve! Kérjük, ellenőrizze a bejövő leveleit.",
   "pageOf": "/",
-  "keyFindings": "Key Findings",
+  "keyFindings": "Fő megállapítások",
   "filterStatusLabel": "Status",
-  "filterStatusAll": "All Status",
+  "filterStatusAll": "Összes állapot",
   "filterStatusTp1": "TP1 HIT",
   "filterStatusTp2": "TP2 HIT",
   "filterStatusTp3": "TP3 HIT",
   "filterStatusSl": "SL HIT",
-  "filterStatusCancelled": "CANCELLED",
-  "filterStatusExitByAdmin": "EXIT BY ADMIN",
-  "popupMasterMarket": "Do you want to master the market?",
-  "popupLoginExplore": "Log in to explore this trading bulletin!",
-  "markAllRead": "Mark all as read",
-  "getTheAppForBestExperience": "Get the app for the best experience",
-  "installApp": "Install App",
-  "reviews": "reviews",
+  "filterStatusCancelled": "VISSZAVONVA",
+  "filterStatusExitByAdmin": "ADMIN ÁLTAL KILÉPVE",
+  "popupMasterMarket": "Szeretné elsajátítani a piacot?",
+  "popupLoginExplore": "Jelentkezzen be a kereskedési hírlevél felfedezéséhez!",
+  "markAllRead": "Összes olvasottnak jelölése",
+  "getTheAppForBestExperience": "Töltse le az alkalmazást a legjobb élményért",
+  "installApp": "Alkalmazás telepítése",
+  "reviews": "Értékelések",
   "priceLifetime": "$249.00",
-  "durationLifetime": "Lifetime",
-  "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "priceLifetimeOld": "$712.00",
+  "durationLifetime": "Élethosszig",
+  "orderInfoLifetime": "Fizetés Elite Élethosszig csomagért",
+  "lifetime": "Élethosszig",
+  "loginWithoutAccount": "Bejelentkezés fiók nélkül",
+  "loginNow": "Bejelentkezés most",
+  "loginToViewSignals": "Jelentkezzen be a jelzések megtekintéséhez",
+  "loginToViewSignalsDesc": "Kérjük, jelentkezzen be a Signal GPT jelzések megtekintéséhez és az összes funkció eléréséhez.",
+  "loginToViewHistory": "Jelentkezzen be az előzmények megtekintéséhez",
+  "loginToViewHistoryDesc": "A jelzéselőzmények csak bejelentkezett felhasználók számára érhetők el. Kérjük, jelentkezzen be a Signal GPT teljesítményének nyomon követéséhez.",
+  "letsGetYouIn": "Lépjen be!",
+  "dontHaveAnAccount": "Nincs fiókja? ",
+  "createAccount": "Fiók létrehozása",
+  "createYourAccount": "Hozza létre fiókját",
+  "login": "Bejelentkezés",
+  "rememberYourPassword": "Jelszó megjegyzése",
+  "signInWith": "Bejelentkezés ezzel",
+  "getStarted": "Kezdés",
+  "pleaseEnterEmail": "Kérjük, adja meg e-mail címét",
+  "pleaseEnterPassword": "Kérjük, adja meg jelszavát",
+  "pleaseEnterCurrentPassword": "Kérjük, adja meg jelenlegi jelszavát",
+  "pleaseEnterNewPassword": "Kérjük, adja meg új jelszavát",
+  "pleaseConfirmNewPassword": "Kérjük, erősítse meg új jelszavát",
+  "pleaseConfirmPassword": "Kérjük, erősítse meg jelszavát",
+  "passwordMinLength": "A jelszónak legalább 6 karakter hosszúnak kell lennie",
+  "savePassword": "Jelszó mentése",
+  "verifyYourEmail": "E-mail ellenőrzése",
+  "pleaseEnterVerificationCode": "Kérjük, adja meg a 6 számjegyű kódot,\namelyit az e-mail címére küldtünk",
+  "pleaseEnterAllDigits": "Kérjük, adja meg mind a 6 számjegyet",
+  "invalidOrExpiredCode": "Érvénytelen vagy lejárt ellenőrző kód",
+  "anErrorOccurred": "Hiba történt. Kérjük, próbálja újra.",
+  "verificationCodeResent": "Ellenőrző kód újraküldve!",
+  "failedToResendCode": "Kód újraküldése sikertelen: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Kód újraküldése",
+  "verify": "Ellenőrzés",
+  "resetPassword": "Jelszó visszaállítása",
+  "forgotPasswordInstructions": "Kérjük, adja meg a regisztrációkor használt e-mail címet\n\nEllenőrző kódot küldünk az e-mail címére.",
+  "sendButton": "Küldés",
+  "unableToReceiveEmail": "Ha nem kapja meg az e-mailt, kérjük, lépjen kapcsolatba velünk: @gmail.com",
+  "verificationCodeSentTo": "Ellenőrző kódot küldtünk a következő címre:",
+  "passwordResetSuccessful": "Jelszó sikeresen visszaállítva!",
+  "errorGeneric": "Hiba: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "A fiók már létezik",
+  "accountAlreadyExistsMessage": "A(z) {email} e-mail cím már regisztrálva van a rendszerben. Kérjük, jelentkezzen be vagy használja az elfelejtett jelszó funkciót.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Rendszerhiba: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Jelszó megerősítése",
+  "referralCodeOptional": "Ajánló kód (Opcionális)",
+  "accountDeletedSuccessfully": "A fiók véglegesen törölve lett.",
+  "accountDeleteError": "Hiba a fiók törlésekor: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Jelszó sikeresen módosítva!",
+  "errorChangingPassword": "Hiba a jelszó módosításakor. Kérjük, ellenőrizze jelenlegi jelszavát.",
+  "enableNotificationsHint": "Engedélyezze az értesítéseket az eszközbeállításokban az új frissítések megtekintéséhez a zárolási képernyőn",
+  "navigateToDeviceSettings": "Navigáljon az eszközbeállításokhoz.",
+  "turnOffAllNotifications": "Összes értesítés kikapcsolása",
+  "pauseAllNotifications": "Összes értesítés szüneteltetése",
+  "turnOnCryptoSignals": "Kripto jelzések bekapcsolása",
+  "turnOnCurrencyPairSignals": "Devizapár jelzések bekapcsolása",
+  "turnOnGoldSignals": "Arany jelzések bekapcsolása",
+  "currencyPairSignals": "Devizapár jelzések",
+  "termsOfUseContent": "Az alkalmazás elérésével vagy használatával Ön elfogadja a Felhasználási Feltételeket. Ez az alkalmazás kizárólag tájékoztatási célokat szolgál, és nem garantáljuk a megjelenített tartalom vagy jelzések pontosságát, teljességét vagy megbízhatóságát. Ön kizárólag felelős az alkalmazásban nyújtott információk felhasználásáért. Fenntartjuk a jogot a szolgáltatás módosítására, felfüggesztésére vagy megszüntetésére előzetes értesítés nélkül. Az alkalmazás további használata a frissített feltételek elfogadását jelenti.",
+  "tradingHistoryTitle": "Kereskedési előzmények",
+  "tp1Live": "TP1 ÉLŐ",
+  "tp2Live": "TP2 ÉLŐ",
+  "tp3Live": "TP3 ÉLŐ",
+  "stopLossTriggered": "Stop loss aktiválva",
+  "entryWithPrice": "Belépés: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Signal GPT",
+  "categoryGold": "ARANY",
+  "categoryCrypto": "KRIPTO",
+  "subscriptionAutoRenewDisclaimer": "Az előfizetés automatikusan megújul, hacsak nem mondja le legalább 24 órával az aktuális időszak vége előtt. Előfizetéseit az App Store fiókbeállításaiban kezelheti és lemondhatja. Az Élethosszig terv egyszeri vásárlás.",
+  "termsOfUseEula": "Felhasználási Feltételek (EULA)",
+  "productNotFound": "Termék nem található: {productId}. Kérjük, győződjön meg arról, hogy konfigurálva van az áruházakban.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ év",
+  "tierDemoSignalQty": "7-8 naponta",
+  "elite1Month": "ELITE 1 Hónap",
+  "elite12Months": "ELITE 12 Hónap",
+  "statusPending": "Függőben",
+  "statusFailed": "Sikertelen",
+  "yourReferralCode": "Az Ön ajánló kódja",
+  "referralCodeCopied": "Ajánló kód másolva!",
+  "copyCode": "Kód másolása",
+  "revenue": "Bevétel",
+  "availableCommission": "Elérhető jutalék",
+  "totalReceivedIncome": "Összesen kapott jövedelem",
+  "depositAmount": "Befizetés: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "Fontos közlemény",
+  "accountChangedPleaseRelogin": "Fiókja megváltozott. Kérjük, jelentkezzen be újra.",
+  "iUnderstand": "Megértettem",
+  "saveUpTo65Percent": "MEGTAKARÍTÁS AKÁR 65%",
+  "yearlyLifetimeDiscount": "Éves -40% • Élethosszig -65%",
+  "uploadFailedPermissionDenied": "Feltöltés sikertelen: Hozzáférés megtagadva. Ellenőrizze a tárhelybeállításokat.",
+  "failedToUploadImage": "Kép feltöltése sikertelen. Kérjük, ellenőrizze a kapcsolatot.",
+  "disclaimer": "Jogi nyilatkozat",
+  "disclaimerContent": "A signalgpt.ai oldalon található információk kizárólag tájékoztatási és ismeretmegosztási célokat szolgálnak, és nem minősülnek befektetési tanácsnak. A felhasználók kizárólag saját kereskedési döntéseikért felelősek.",
+  "openTradingAccount": "Kereskedési számla nyitása",
+  "supportUs": "Támogasson minket",
+  "rateApp": "Alkalmazás értékelése",
+  "shareApp": "Alkalmazás megosztása",
+  "accountDetails": "Fiók részletei",
+  "language": "Nyelv",
+  "termsOfUse": "Felhasználási feltételek",
+  "accounts": "Fiókok",
+  "accessExchange": "Hozzáférés a tőzsdéhez",
+  "onlineSupport": "Online támogatás",
+  "selectLanguage": "Nyelv kiválasztása",
+  "left": "maradt",
+  "upgradeToPro": "Frissítés Pro-ra",
+  "assetGold": "Arany",
+  "assetCrypto": "Kripto",
+  "assetForex": "DEVIZAPÁR",
+  "tokens": "Tokenek",
+  "noForexAssets": "Nincsenek elérhető DEVIZAPÁR eszközök",
+  "openApp": "{appName} megnyitása",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Állapot",
+  "signalEntryLabel": "BELÉPÉS",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Elemzés",
+  "useTokenToView": "Token használata a jelzés megtekintéséhez",
+  "viewNow": "Megtekintés most",
+  "waitingNewSignals": "Új jelzésekre várunk...",
+  "failedUnlockSignal": "Jelzés feloldása sikertelen",
+  "notEnoughTokens": "Nincs elég token",
+  "newSignalUploaded": "Új jelzés feltöltve",
+  "newSymbolSignalUploaded": "Új {symbol} jelzés feltöltve!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Frissítés a jelzés megtekintéséhez",
+  "signalHistory": "Jelzéselőzmények",
+  "allStatus": "ÖSSZES",
+  "selectDate": "Dátum kiválasztása",
+  "noHistoryFound": "Nem találhatók előzmények",
+  "filterDate": "Dátum",
+  "marketChart": "PIACI DIAGRAM",
+  "analysisExplanation": "Elemzés és magyarázat",
+  "noDetailedAnalysis": "Nem érhető el részletes elemzés ehhez a jelzéshez.",
+  "affiliateDashboard": "Affiliate vezérlőpult",
+  "referralLink": "Ajánló link",
+  "copyLink": "Link másolása",
+  "referralCount": "Ajánlások száma",
+  "totalEarnings": "Összes bevétel",
+  "pendingCommission": "Függő jutalék",
+  "latestReferrals": "Legújabb ajánlások",
+  "noReferralsYet": "Még nincsenek ajánlások.",
+  "affiliateRoleRequired": "Affiliate szerep szükséges. Kérjük, lépjen kapcsolatba az adminisztrátorral.",
+  "affiliateCodeNotAssigned": "Affiliate kód még nincs hozzárendelve. Kérjük, lépjen kapcsolatba az adminisztrátorral.",
+  "referralLinkDescription": "Használja ezt a linket felhasználók ajánlásához és 40% élethosszig tartó jutalék szerzéséhez.",
+  "linkCopied": "Link vágólapra másolva!",
+  "enterReferralCode": "Ajánló kód megadása",
+  "referralCode": "Ajánló kód",
+  "submit": "Küldés",
+  "invalidReferralCode": "Érvénytelen ajánló kód.",
+  "referralCodeApplied": "Ajánló kód sikeresen alkalmazva!",
+  "save40Percent": "MEGTAKARÍTÁS 40%",
+  "save65Percent": "MEGTAKARÍTÁS 65%"
 }

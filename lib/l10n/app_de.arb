@@ -429,31 +429,31 @@
   "leaveMessagePart1": "Bitte hinterlassen Sie eine Nachricht, unser Team wird so schnell wie möglich antworten. Sie können auch ",
   "chatWhatsApp": "WhatsApp",
   "leaveMessagePart2": " Signal GPT für schnellen Support kontaktieren.",
-  "currentPlan": "Current Plan",
+  "currentPlan": "Aktueller Plan",
   "standard": "STANDARD",
-  "availableTokens": "Available Tokens",
-  "subscriptions": "Subscriptions",
-  "usesTokenPerView": "Uses 1 Token per view",
-  "unlimitedAccess": "Unlimited Access",
-  "activeElite": "Active (Elite)",
-  "active": "Active",
-  "inactive": "Inactive",
-  "transactionHistory": "Transaction History",
-  "noTransactionsFound": "No transactions found.",
-  "colDate": "Date",
-  "colProduct": "Product",
-  "colAmount": "Amount",
-  "colMethod": "Method",
+  "availableTokens": "Verfügbare Token",
+  "subscriptions": "Abonnements",
+  "usesTokenPerView": "Verbraucht 1 Token pro Ansicht",
+  "unlimitedAccess": "Unbegrenzter Zugang",
+  "activeElite": "Aktiv (Elite)",
+  "active": "Aktiv",
+  "inactive": "Inaktiv",
+  "transactionHistory": "Transaktionshistorie",
+  "noTransactionsFound": "Keine Transaktionen gefunden.",
+  "colDate": "Datum",
+  "colProduct": "Produkt",
+  "colAmount": "Betrag",
+  "colMethod": "Methode",
   "colStatus": "Status",
-  "statusSuccess": "Success",
-  "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "statusSuccess": "Erfolgreich",
+  "featureForVipOnly": "Diese Funktion ist nur für VIP-Kunden, bitte upgraden Sie, um Benachrichtigungen zu erhalten.",
+  "changePassword": "Kennwort ändern",
+  "currentPassword": "Aktuelles Passwort",
+  "newPassword": "Neues Passwort",
+  "confirmNewPassword": "Bestätigen Sie das neue Passwort",
+  "passwordsDoNotMatch": "Passwörter stimmen nicht überein",
+  "passwordUpdateSuccess": "Passwort erfolgreich aktualisiert",
+  "passwordUpdateFailed": "Passwort konnte nicht aktualisiert werden:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Falsches aktuelles Passwort",
   "signInRequired": "Anmeldung erforderlich",
   "signInToExploreSignal": "Melden Sie sich an, um dieses Handelssignal zu erkunden!",
   "activeMember": "Aktives Mitglied",
@@ -474,9 +474,9 @@
   "daily": "Täglich",
   "weekly": "Wöchentlich",
   "lossRate": "Verlustrate",
-  "signalProgress": "Signal Progress",
-  "statusHistory": "Status History",
-  "signalCreated": "Signal Created",
+  "signalProgress": "Signalfortschritt",
+  "statusHistory": "Statusverlauf",
+  "signalCreated": "Signal erstellt",
   "signalMatched": "Signal Übereinstimmung",
   "targetReached": "Ziel erreicht",
   "freeSignalsInfo": "Kostenlose Signal-Info",
@@ -508,25 +508,247 @@
       }
     }
   },
-  "passwordResetEmailSent": "E-Mail zum Zurücksetzen của Passwords gesendet! Bitte kiểm tra Sie Ihren Posteingang.",
+  "passwordResetEmailSent": "E-Mail zum Zurücksetzen des Passworts gesendet! Bitte überprüfen Sie Ihren Posteingang.",
   "pageOf": "/",
-  "keyFindings": "Key Findings",
+  "keyFindings": "Wichtige Erkenntnisse",
   "filterStatusLabel": "Status",
-  "filterStatusAll": "All Status",
+  "filterStatusAll": "Alle Status",
   "filterStatusTp1": "TP1 HIT",
   "filterStatusTp2": "TP2 HIT",
   "filterStatusTp3": "TP3 HIT",
   "filterStatusSl": "SL HIT",
-  "filterStatusCancelled": "CANCELLED",
-  "filterStatusExitByAdmin": "EXIT BY ADMIN",
-  "popupMasterMarket": "Do you want to master the market?",
-  "popupLoginExplore": "Log in to explore this trading bulletin!",
-  "markAllRead": "Mark all as read",
-  "getTheAppForBestExperience": "Get the app for the best experience",
-  "installApp": "Install App",
-  "reviews": "reviews",
+  "filterStatusCancelled": "STORNIERT",
+  "filterStatusExitByAdmin": "VON ADMIN BEENDET",
+  "popupMasterMarket": "Möchten Sie den Markt meistern?",
+  "popupLoginExplore": "Melden Sie sich an, um dieses Handels-Bulletin zu erkunden!",
+  "markAllRead": "Alle als gelesen markieren",
+  "getTheAppForBestExperience": "Laden Sie die App für das beste Erlebnis herunter",
+  "installApp": "App installieren",
+  "reviews": "Bewertungen",
   "priceLifetime": "$249.00",
-  "durationLifetime": "Lifetime",
-  "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "priceLifetimeOld": "$712.00",
+  "durationLifetime": "Lebenslang",
+  "orderInfoLifetime": "Zahlung für Elite Lebenslang-Paket",
+  "lifetime": "Lebenslang",
+  "loginWithoutAccount": "Ohne Konto anmelden",
+  "loginNow": "Jetzt anmelden",
+  "loginToViewSignals": "Anmelden, um Signale zu sehen",
+  "loginToViewSignalsDesc": "Bitte melden Sie sich an, um Signal GPT-Signale zu sehen und auf alle Funktionen zuzugreifen.",
+  "loginToViewHistory": "Anmelden, um Verlauf zu sehen",
+  "loginToViewHistoryDesc": "Der Signalverlauf ist nur für angemeldete Benutzer verfügbar. Bitte melden Sie sich an, um die Leistung von Signal GPT zu verfolgen.",
+  "letsGetYouIn": "Lassen Sie uns anfangen!",
+  "dontHaveAnAccount": "Noch kein Konto? ",
+  "createAccount": "Konto erstellen",
+  "createYourAccount": "Erstellen Sie Ihr Konto",
+  "login": "Anmelden",
+  "rememberYourPassword": "Passwort merken",
+  "signInWith": "Anmelden mit",
+  "getStarted": "Loslegen",
+  "pleaseEnterEmail": "Bitte geben Sie Ihre E-Mail ein",
+  "pleaseEnterPassword": "Bitte geben Sie Ihr Passwort ein",
+  "pleaseEnterCurrentPassword": "Bitte geben Sie Ihr aktuelles Passwort ein",
+  "pleaseEnterNewPassword": "Bitte geben Sie Ihr neues Passwort ein",
+  "pleaseConfirmNewPassword": "Bitte bestätigen Sie Ihr neues Passwort",
+  "pleaseConfirmPassword": "Bitte bestätigen Sie Ihr Passwort",
+  "passwordMinLength": "Passwort muss mindestens 6 Zeichen lang sein",
+  "savePassword": "Passwort speichern",
+  "verifyYourEmail": "Bestätigen Sie Ihre E-Mail",
+  "pleaseEnterVerificationCode": "Bitte geben Sie den 6-stelligen Code ein,\nder an Ihre E-Mail gesendet wurde",
+  "pleaseEnterAllDigits": "Bitte geben Sie alle 6 Ziffern ein",
+  "invalidOrExpiredCode": "Ungültiger oder abgelaufener Bestätigungscode",
+  "anErrorOccurred": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+  "verificationCodeResent": "Bestätigungscode erneut gesendet!",
+  "failedToResendCode": "Code erneut senden fehlgeschlagen: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Code erneut senden",
+  "verify": "Bestätigen",
+  "resetPassword": "Passwort zurücksetzen",
+  "forgotPasswordInstructions": "Bitte geben Sie die E-Mail-Adresse ein, mit der Sie sich registriert haben\n\nWir senden einen Bestätigungscode an Ihre E-Mail-Adresse.",
+  "sendButton": "Senden",
+  "unableToReceiveEmail": "Falls Sie die E-Mail nicht erhalten können, kontaktieren Sie uns bitte unter @gmail.com",
+  "verificationCodeSentTo": "Wir haben einen Bestätigungscode gesendet an",
+  "passwordResetSuccessful": "Passwort erfolgreich zurückgesetzt!",
+  "errorGeneric": "Fehler: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "Konto existiert bereits",
+  "accountAlreadyExistsMessage": "Die E-Mail {email} wurde bereits im System registriert. Bitte melden Sie sich an oder nutzen Sie die Passwort-vergessen-Funktion.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Systemfehler: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Passwort bestätigen",
+  "referralCodeOptional": "Empfehlungscode (Optional)",
+  "accountDeletedSuccessfully": "Konto wurde dauerhaft gelöscht.",
+  "accountDeleteError": "Fehler beim Löschen des Kontos: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Passwort erfolgreich geändert!",
+  "errorChangingPassword": "Fehler beim Ändern des Passworts. Bitte überprüfen Sie Ihr aktuelles Passwort.",
+  "enableNotificationsHint": "Aktivieren Sie Benachrichtigungen in den Geräteeinstellungen, um neue Updates auf dem Sperrbildschirm zu sehen",
+  "navigateToDeviceSettings": "Zu den Geräteeinstellungen navigieren.",
+  "turnOffAllNotifications": "Alle Benachrichtigungen ausschalten",
+  "pauseAllNotifications": "Alle Benachrichtigungen pausieren",
+  "turnOnCryptoSignals": "Krypto-Signale einschalten",
+  "turnOnCurrencyPairSignals": "Währungspaar-Signale einschalten",
+  "turnOnGoldSignals": "Gold-Signale einschalten",
+  "currencyPairSignals": "Währungspaar-Signale",
+  "termsOfUseContent": "Durch den Zugriff auf oder die Nutzung dieser Anwendung stimmen Sie den Nutzungsbedingungen zu. Diese App dient nur zu Informationszwecken und wir garantieren nicht die Richtigkeit, Vollständigkeit oder Zuverlässigkeit von Inhalten oder angezeigten Signalen. Sie sind allein verantwortlich für die Nutzung der in der App bereitgestellten Informationen. Wir behalten uns das Recht vor, den Dienst jederzeit ohne vorherige Ankündigung zu ändern, auszusetzen oder einzustellen. Die fortgesetzte Nutzung der App stellt die Annahme aller aktualisierten Bedingungen dar.",
+  "tradingHistoryTitle": "Handelshistorie",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "Stop Loss ausgelöst",
+  "entryWithPrice": "Einstieg: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Signal GPT",
+  "categoryGold": "GOLD",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "Das Abonnement verlängert sich automatisch, es sei denn, es wird mindestens 24 Stunden vor Ende des aktuellen Zeitraums gekündigt. Sie können Ihre Abonnements in den Einstellungen Ihres App Store-Kontos verwalten und kündigen. Der Lebenslang-Plan ist ein einmaliger Kauf.",
+  "termsOfUseEula": "Nutzungsbedingungen (EULA)",
+  "productNotFound": "Produkt nicht gefunden: {productId}. Bitte stellen Sie sicher, dass es in den Stores konfiguriert ist.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ Jahr",
+  "tierDemoSignalQty": "7-8 pro Tag",
+  "elite1Month": "ELITE 1 Monat",
+  "elite12Months": "ELITE 12 Monate",
+  "statusPending": "Ausstehend",
+  "statusFailed": "Fehlgeschlagen",
+  "yourReferralCode": "Ihr Empfehlungscode",
+  "referralCodeCopied": "Empfehlungscode kopiert!",
+  "copyCode": "Code kopieren",
+  "revenue": "Umsatz",
+  "availableCommission": "Verfügbare Provision",
+  "totalReceivedIncome": "Gesamtes erhaltenes Einkommen",
+  "depositAmount": "Einzahlung: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "Wichtiger Hinweis",
+  "accountChangedPleaseRelogin": "Ihr Konto hat sich geändert. Bitte melden Sie sich erneut an.",
+  "iUnderstand": "Ich verstehe",
+  "saveUpTo65Percent": "SPAREN SIE BIS ZU 65%",
+  "yearlyLifetimeDiscount": "Jährlich -40% • Lebenslang -65%",
+  "uploadFailedPermissionDenied": "Upload fehlgeschlagen: Zugriff verweigert. Überprüfen Sie die Speicherregeln.",
+  "failedToUploadImage": "Bild-Upload fehlgeschlagen. Bitte überprüfen Sie Ihre Verbindung.",
+  "disclaimer": "Haftungsausschluss",
+  "disclaimerContent": "Die Informationen auf signalgpt.ai dienen nur Referenz- und Wissenszwecken und stellen keine Anlageberatung dar. Benutzer sind allein für ihre eigenen Handelsentscheidungen verantwortlich.",
+  "openTradingAccount": "Ein Handelskonto eröffnen",
+  "supportUs": "Unterstützen Sie uns",
+  "rateApp": "App bewerten",
+  "shareApp": "App teilen",
+  "accountDetails": "Kontodetails",
+  "language": "Sprache",
+  "termsOfUse": "Nutzungsbedingungen",
+  "accounts": "Konten",
+  "accessExchange": "Zugang zur Börse",
+  "onlineSupport": "Online-Support",
+  "selectLanguage": "Sprache auswählen",
+  "left": "übrig",
+  "upgradeToPro": "Auf Pro upgraden",
+  "assetGold": "Gold",
+  "assetCrypto": "Krypto",
+  "assetForex": "WÄHRUNGSPAAR",
+  "tokens": "Token",
+  "noForexAssets": "Keine WÄHRUNGSPAAR-Vermögenswerte verfügbar",
+  "openApp": "{appName} öffnen",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Status",
+  "signalEntryLabel": "EINSTIEG",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Analysieren",
+  "useTokenToView": "Token verwenden, um Signal zu sehen",
+  "viewNow": "Jetzt ansehen",
+  "waitingNewSignals": "Warten auf neue Signale...",
+  "failedUnlockSignal": "Signal freischalten fehlgeschlagen",
+  "notEnoughTokens": "Nicht genug Token",
+  "newSignalUploaded": "Neues Signal hochgeladen",
+  "newSymbolSignalUploaded": "Neues {symbol}-Signal wurde hochgeladen!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Upgrade, um Signal zu sehen",
+  "signalHistory": "Signalverlauf",
+  "allStatus": "ALLE",
+  "selectDate": "Datum auswählen",
+  "noHistoryFound": "Kein Verlauf gefunden",
+  "filterDate": "Datum",
+  "marketChart": "MARKTTABELLE",
+  "analysisExplanation": "Analyse & Erklärung",
+  "noDetailedAnalysis": "Keine detaillierte Analyse für dieses Signal verfügbar.",
+  "affiliateDashboard": "Affiliate-Dashboard",
+  "referralLink": "Empfehlungslink",
+  "copyLink": "Link kopieren",
+  "referralCount": "Empfehlungsanzahl",
+  "totalEarnings": "Gesamteinnahmen",
+  "pendingCommission": "Ausstehende Provision",
+  "latestReferrals": "Neueste Empfehlungen",
+  "noReferralsYet": "Noch keine Empfehlungen.",
+  "affiliateRoleRequired": "Affiliate-Rolle erforderlich. Bitte kontaktieren Sie den Administrator.",
+  "affiliateCodeNotAssigned": "Affiliate-Code noch nicht zugewiesen. Bitte kontaktieren Sie den Administrator.",
+  "referralLinkDescription": "Verwenden Sie diesen Link, um Benutzer zu empfehlen und 40% lebenslange Provision zu verdienen.",
+  "linkCopied": "Link in die Zwischenablage kopiert!",
+  "enterReferralCode": "Empfehlungscode eingeben",
+  "referralCode": "Empfehlungscode",
+  "submit": "Absenden",
+  "invalidReferralCode": "Ungültiger Empfehlungscode.",
+  "referralCodeApplied": "Empfehlungscode erfolgreich angewendet!",
+  "save40Percent": "SPAREN SIE 40%",
+  "save65Percent": "SPAREN SIE 65%"
 }

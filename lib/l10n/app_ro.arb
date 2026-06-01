@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "Schimbaţi parola",
+  "currentPassword": "Parola actuală",
+  "newPassword": "Parolă Nouă",
+  "confirmNewPassword": "Confirmați parola nouă",
+  "passwordsDoNotMatch": "Parolele nu se potrivesc",
+  "passwordUpdateSuccess": "Parola a fost actualizată cu succes",
+  "passwordUpdateFailed": "Nu s-a putut actualiza parola:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Parolă actuală incorectă",
   "signInRequired": "Autentificare necesară",
   "signInToExploreSignal": "Conectați-vă pentru a explora acest semnal de tranzacționare!",
   "activeMember": "Membru activ",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "Conectați-vă fără cont",
+  "save40Percent": "Economisiți 40%",
+  "save65Percent": "Economisiți 65%",
+  "disclaimer": "Disclaimer",
+  "disclaimerContent": "Informațiile de pe signalgpt.ai sunt doar în scop de referință și de schimb de cunoștințe și nu constituie sfaturi de investiții. Utilizatorii sunt singurii responsabili pentru propriile decizii comerciale.",
+  "openTradingAccount": "Deschide un cont de tranzacționare",
+  "supportUs": "Sprijină-ne",
+  "rateApp": "Evaluați aplicația",
+  "shareApp": "Partajați aplicația",
+  "accountDetails": "Detaliile contului",
+  "language": "Limbă",
+  "termsOfUse": "Termeni de utilizare",
+  "accounts": "Conturi",
+  "accessExchange": "Accesați Exchange",
+  "onlineSupport": "Suport online",
+  "selectLanguage": "Selectați Limbă",
+  "left": "stânga",
+  "upgradeToPro": "Upgrade la Pro",
+  "assetGold": "Aur",
+  "assetCrypto": "Cripto",
+  "assetForex": "PERECHEA VALUTĂ",
+  "tokens": "Jetoane",
+  "noForexAssets": "Nu sunt disponibile active PERECHII DE VALUTĂ",
+  "openApp": "Deschide{appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Stare",
+  "signalEntryLabel": "INTRARE",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Analiza",
+  "useTokenToView": "Folosiți Token pentru a vedea Signal",
+  "viewNow": "Vezi acum",
+  "waitingNewSignals": "Asteptam noi semnale...",
+  "failedUnlockSignal": "Nu s-a deblocat semnalul",
+  "notEnoughTokens": "Nu sunt suficiente jetoane",
+  "newSignalUploaded": "Semnal nou încărcat",
+  "newSymbolSignalUploaded": "Noul semnal{symbol}este acum încărcat!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Faceți upgrade la View Signal",
+  "signalHistory": "Istoricul semnalelor",
+  "allStatus": "TOATE",
+  "selectDate": "Selectați Data",
+  "noHistoryFound": "Nu a fost găsit niciun istoric",
+  "filterDate": "Data",
+  "marketChart": "GRAFUL PIEȚEI",
+  "analysisExplanation": "Analiză și explicație",
+  "noDetailedAnalysis": "Nu este disponibilă o analiză detaliată pentru acest semnal.",
+  "affiliateDashboard": "Tabloul de bord afiliat",
+  "referralLink": "Link de recomandare",
+  "copyLink": "Copiați linkul",
+  "referralCount": "Număr de referințe",
+  "totalEarnings": "Câștigurile totale",
+  "pendingCommission": "Comisia în așteptare",
+  "latestReferrals": "Ultimele recomandări",
+  "noReferralsYet": "Nicio recomandare încă.",
+  "affiliateRoleRequired": "Este necesar rol de afiliat. Vă rugăm să contactați admin.",
+  "affiliateCodeNotAssigned": "Codul de afiliat nu a fost încă atribuit. Vă rugăm să contactați admin.",
+  "referralLinkDescription": "Utilizați acest link pentru a recomanda utilizatori și pentru a câștiga 40% comision pe viață.",
+  "linkCopied": "Link copiat în clipboard!",
+  "enterReferralCode": "Introdu codul de recomandare",
+  "referralCode": "Cod de recomandare",
+  "submit": "Trimiteți",
+  "invalidReferralCode": "Cod de recomandare nevalid.",
+  "referralCodeApplied": "Codul de recomandare aplicat cu succes!",
+  "priceLifetimeOld": "712,00 USD",
+  "loginNow": "Conectați-vă acum",
+  "loginToViewSignals": "Conectați-vă pentru a vizualiza semnalele",
+  "loginToViewSignalsDesc": "Vă rugăm să vă conectați pentru a vedea semnalele GPT Signal și pentru a accesa toate funcțiile.",
+  "loginToViewHistory": "Conectați-vă pentru a vedea istoricul",
+  "loginToViewHistoryDesc": "Istoricul semnalelor este disponibil numai pentru utilizatorii conectați. Vă rugăm să vă conectați pentru a urmări performanța de la Signal GPT.",
+  "letsGetYouIn": "Hai să te introducem!",
+  "dontHaveAnAccount": "Nu ai un cont?",
+  "createAccount": "Creează cont",
+  "createYourAccount": "Creați-vă contul",
+  "login": "Log in",
+  "rememberYourPassword": "Amintiți-vă parola",
+  "signInWith": "Conectați-vă cu",
+  "getStarted": "Începeți",
+  "pleaseEnterEmail": "Vă rugăm să introduceți adresa dvs. de e-mail",
+  "pleaseEnterPassword": "Vă rugăm să introduceți parola",
+  "pleaseEnterCurrentPassword": "Vă rugăm să introduceți parola dvs. actuală",
+  "pleaseEnterNewPassword": "Vă rugăm să introduceți noua parolă",
+  "pleaseConfirmNewPassword": "Vă rugăm să confirmați noua parolă",
+  "pleaseConfirmPassword": "Vă rugăm să vă confirmați parola",
+  "passwordMinLength": "Parola trebuie să aibă cel puțin 6 caractere",
+  "savePassword": "Salvați parola",
+  "verifyYourEmail": "Verificați-vă adresa de e-mail",
+  "pleaseEnterVerificationCode": "Vă rugăm să introduceți codul din 6 cifre\ntrimis pe adresa ta de email",
+  "pleaseEnterAllDigits": "Vă rugăm să introduceți toate cele 6 cifre",
+  "invalidOrExpiredCode": "Cod de verificare nevalid sau expirat",
+  "anErrorOccurred": "A apărut o eroare. Vă rugăm să încercați din nou.",
+  "verificationCodeResent": "Codul de verificare a fost remis!",
+  "failedToResendCode": "Nu s-a retrimis codul:{error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Retrimiteți codul",
+  "verify": "Verifica",
+  "resetPassword": "Resetează parola",
+  "forgotPasswordInstructions": "Vă rugăm să introduceți adresa de e-mail pe care ați folosit-o pentru a vă înregistra contul\n\nVă vom trimite un cod de verificare la adresa dvs. de e-mail.",
+  "sendButton": "Trimite",
+  "unableToReceiveEmail": "Dacă nu puteți primi e-mailul, vă rugăm să ne contactați e-mail @gmail.com",
+  "verificationCodeSentTo": "Am trimis un cod de verificare către",
+  "passwordResetSuccessful": "Resetarea parolei cu succes!",
+  "errorGeneric": "Eroare:{message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "Contul există deja",
+  "accountAlreadyExistsMessage": "E-mailul{email}a fost deja înregistrat în sistem. Vă rugăm să vă autentificați sau să utilizați funcția de parolă uitată.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Eroare de sistem:{error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Confirmați parola",
+  "referralCodeOptional": "Cod de recomandare (Opțional)",
+  "accountDeletedSuccessfully": "Contul a fost șters definitiv.",
+  "accountDeleteError": "Eroare la ștergerea contului:{error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Parola a fost schimbată cu succes!",
+  "errorChangingPassword": "Eroare la schimbarea parolei. Vă rugăm să verificați parola curentă.",
+  "enableNotificationsHint": "Activați notificările în setările dispozitivului pentru a vedea noile actualizări pe ecranul de blocare",
+  "navigateToDeviceSettings": "Navigați la setările dispozitivului.",
+  "turnOffAllNotifications": "Dezactivează toate notificările",
+  "pauseAllNotifications": "Întrerupeți toate notificările",
+  "turnOnCryptoSignals": "Activați semnalele cripto",
+  "turnOnCurrencyPairSignals": "Activați semnalele perechilor valutare",
+  "turnOnGoldSignals": "Porniți semnalele de aur",
+  "currencyPairSignals": "Semnale perechi valutare",
+  "termsOfUseContent": "Prin accesarea sau utilizarea acestei aplicații, sunteți de acord să respectați Termenii de utilizare. Această aplicație este furnizată doar în scop informativ și nu garantăm acuratețea, completitudinea sau fiabilitatea oricărui conținut sau semnale afișate. Sunteți singurul responsabil pentru modul în care utilizați informațiile furnizate în aplicație. Ne rezervăm dreptul de a modifica, suspenda sau rezilia serviciul în orice moment, fără notificare prealabilă. Utilizarea continuă a aplicației reprezintă acceptarea oricăror termeni actualizați.",
+  "tradingHistoryTitle": "Istoricul tranzacționării",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "Stop loss declanșat",
+  "entryWithPrice": "Intrare:{price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Semnal GPT",
+  "categoryGold": "AUR",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "Abonamentul se va reînnoi automat dacă nu este anulat cu cel puțin 24 de ore înainte de sfârșitul perioadei curente. Vă puteți gestiona și anula abonamentele din setările contului din App Store. Planul pe viață este o achiziție unică.",
+  "termsOfUseEula": "Termeni de utilizare (EULA)",
+  "productNotFound": "Produsul nu a fost găsit:{productId}. Vă rugăm să vă asigurați că este configurat în magazine.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/an",
+  "tierDemoSignalQty": "7-8 pe zi",
+  "elite1Month": "ELITE 1 lună",
+  "elite12Months": "ELITE 12 luni",
+  "statusPending": "În așteptare",
+  "statusFailed": "A eșuat",
+  "yourReferralCode": "Codul dvs. de recomandare",
+  "referralCodeCopied": "Codul de recomandare a fost copiat!",
+  "copyCode": "Copiați codul",
+  "revenue": "Venituri",
+  "availableCommission": "Comision disponibil",
+  "totalReceivedIncome": "Venitul total primit",
+  "depositAmount": "Depozit: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "Notă importantă",
+  "accountChangedPleaseRelogin": "Contul dvs. s-a schimbat. Vă rugăm să vă conectați din nou.",
+  "iUnderstand": "Am înțeles",
+  "saveUpTo65Percent": "Economisiți până la 65%",
+  "yearlyLifetimeDiscount": "Anual -40% • Durata de viață -65%",
+  "uploadFailedPermissionDenied": "Încărcarea eșuată: permisiunea a fost refuzată. Verificați regulile de stocare.",
+  "failedToUploadImage": "Nu s-a putut încărca imaginea. Vă rugăm să vă verificați conexiunea."
 }

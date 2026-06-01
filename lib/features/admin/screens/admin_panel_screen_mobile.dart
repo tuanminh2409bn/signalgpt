@@ -99,28 +99,71 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
       firstDate: DateTime.now().subtract(const Duration(days: 365 * 2)),
       lastDate: DateTime.now().add(const Duration(days: 365 * 5)),
       helpText: 'Ngày BẮT ĐẦU gói ${packageKey.toUpperCase()}',
+      cancelText: 'Hủy Gói',
     );
 
-    if (!mounted || startDate == null) return;
+    if (!mounted) return;
 
-    final DateTime? expiryDate = await showDatePicker(
-      context: context,
-      initialDate: currentExpiry?.toDate() ?? startDate.add(const Duration(days: 30)),
-      firstDate: startDate,
-      lastDate: DateTime.now().add(const Duration(days: 365 * 5)),
-      helpText: 'Ngày HẾT HẠN gói ${packageKey.toUpperCase()}',
-    );
+    if (startDate != null) {
+      final DateTime? expiryDate = await showDatePicker(
+        context: context,
+        initialDate: currentExpiry?.toDate() ?? startDate.add(const Duration(days: 30)),
+        firstDate: startDate,
+        lastDate: DateTime.now().add(const Duration(days: 365 * 5)),
+        helpText: 'Ngày HẾT HẠN gói ${packageKey.toUpperCase()}',
+      );
 
-    if (!mounted || expiryDate == null) return;
+      if (!mounted || expiryDate == null) return;
 
-    await FirebaseFirestore.instance.collection('users').doc(userId).update({
-      'subscriptionsStart.$packageKey': Timestamp.fromDate(startDate),
-      'subscriptionsExpiry.$packageKey': Timestamp.fromDate(expiryDate),
-      'activeSubscriptions': FieldValue.arrayUnion([packageKey]),
-    });
-    
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Đã cập nhật gói ${packageKey.toUpperCase()}!')));
+      final Map<String, dynamic> updates = {
+        'subscriptionsStart.$packageKey': Timestamp.fromDate(startDate),
+        'subscriptionsExpiry.$packageKey': Timestamp.fromDate(expiryDate),
+        'activeSubscriptions': FieldValue.arrayUnion([packageKey]),
+      };
+
+      if (packageKey == 'elite') {
+        updates['subscriptionTier'] = 'elite';
+        updates['subscriptionExpiryDate'] = Timestamp.fromDate(expiryDate);
+        updates['activeSubscriptions'] = FieldValue.arrayUnion(['elite', 'gold', 'forex', 'crypto']);
+      }
+
+      await FirebaseFirestore.instance.collection('users').doc(userId).update(updates);
+      
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Đã cập nhật gói ${packageKey.toUpperCase()}!')));
+      }
+    } else {
+      if (currentStart != null || currentExpiry != null) {
+        final confirmDelete = await showDialog<bool>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Xóa gói ${packageKey.toUpperCase()}?'),
+            content: const Text('Người dùng sẽ mất quyền truy cập vào gói này.'),
+            actions: [
+              TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Hủy')),
+              TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Xóa', style: TextStyle(color: Colors.red))),
+            ],
+          ),
+        );
+
+        if (confirmDelete == true) {
+          final Map<String, dynamic> updates = {
+            'subscriptionsStart.$packageKey': FieldValue.delete(),
+            'subscriptionsExpiry.$packageKey': FieldValue.delete(),
+            'activeSubscriptions': FieldValue.arrayRemove([packageKey]),
+          };
+
+          if (packageKey == 'elite') {
+            updates['subscriptionTier'] = 'free';
+            updates['subscriptionExpiryDate'] = FieldValue.delete();
+            updates['activeSubscriptions'] = FieldValue.arrayRemove(['elite', 'gold', 'forex', 'crypto']);
+          }
+
+          await FirebaseFirestore.instance.collection('users').doc(userId).update(updates);
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Đã xóa gói ${packageKey.toUpperCase()}!')));
+        }
+      }
     }
   }
 
@@ -230,20 +273,10 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
                           const Divider(height: 24),
                           _buildActionRow('Token Balance', tokens.toString(), Colors.blue, () => _updateTokenBalance(userId, tokens is int ? tokens : 0)),
                           const Divider(height: 24),
-                          _buildPackageRow(userId, 'GOLD', 
-                            _getPackageDate(userData, 'subscriptionsStart', 'gold'), 
-                            _getPackageDate(userData, 'subscriptionsExpiry', 'gold'), 
-                            activeSubs.contains('gold')),
-                          const Divider(height: 16),
-                          _buildPackageRow(userId, 'CURRENCY PAIR', 
-                            _getPackageDate(userData, 'subscriptionsStart', 'forex'), 
-                            _getPackageDate(userData, 'subscriptionsExpiry', 'forex'), 
-                            activeSubs.contains('forex')),
-                          const Divider(height: 16),
-                          _buildPackageRow(userId, 'CRYPTO', 
-                            _getPackageDate(userData, 'subscriptionsStart', 'crypto'), 
-                            _getPackageDate(userData, 'subscriptionsExpiry', 'crypto'), 
-                            activeSubs.contains('crypto')),
+                          _buildPackageRow(userId, 'ELITE PLAN', 
+                            _getPackageDate(userData, 'subscriptionsStart', 'elite'), 
+                            _getPackageDate(userData, 'subscriptionsExpiry', 'elite'), 
+                            activeSubs.contains('elite')),
                           const SizedBox(height: 8),
                           Align(
                             alignment: Alignment.centerRight,

@@ -177,7 +177,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Frissítés a teljes elemzés megtekintéséhez';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'Bejelentkezés fiók nélkül';
 
   @override
   String get welcomeTo => 'Üdvözöljük a';
@@ -561,7 +561,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get noNotificationsYet => 'Még nincsenek értesítések.';
 
   @override
-  String get markAllRead => 'Mark all as read';
+  String get markAllRead => 'Összes olvasottnak jelölése';
 
   @override
   String daysAgo(int count) {
@@ -1123,10 +1123,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get save50Percent => 'MEGTAKARÍTÁS 50%';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => 'MEGTAKARÍTÁS 40%';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => 'MEGTAKARÍTÁS 65%';
 
   @override
   String get tryDemo => 'Demo kipróbálása';
@@ -1303,85 +1303,85 @@ class AppLocalizationsHu extends AppLocalizations {
   String get leaveMessagePart2 => ' Signal GPT a gyors támogatásért.';
 
   @override
-  String get currentPlan => 'Current Plan';
+  String get currentPlan => 'Jelenlegi terv';
 
   @override
   String get standard => 'STANDARD';
 
   @override
-  String get availableTokens => 'Available Tokens';
+  String get availableTokens => 'Elérhető tokenek';
 
   @override
-  String get subscriptions => 'Subscriptions';
+  String get subscriptions => 'Előfizetések';
 
   @override
-  String get usesTokenPerView => 'Uses 1 Token per view';
+  String get usesTokenPerView => '1 token megtekintésenként';
 
   @override
-  String get unlimitedAccess => 'Unlimited Access';
+  String get unlimitedAccess => 'Korlátlan hozzáférés';
 
   @override
-  String get activeElite => 'Active (Elite)';
+  String get activeElite => 'Aktív (Elite)';
 
   @override
-  String get active => 'Active';
+  String get active => 'Aktív';
 
   @override
-  String get inactive => 'Inactive';
+  String get inactive => 'Inaktív';
 
   @override
-  String get transactionHistory => 'Transaction History';
+  String get transactionHistory => 'Tranzakciós előzmények';
 
   @override
-  String get noTransactionsFound => 'No transactions found.';
+  String get noTransactionsFound => 'Nem találhatók tranzakciók.';
 
   @override
-  String get colDate => 'Date';
+  String get colDate => 'Dátum';
 
   @override
-  String get colProduct => 'Product';
+  String get colProduct => 'Termék';
 
   @override
-  String get colAmount => 'Amount';
+  String get colAmount => 'Összeg';
 
   @override
-  String get colMethod => 'Method';
+  String get colMethod => 'Módszer';
 
   @override
-  String get colStatus => 'Status';
+  String get colStatus => 'Állapot';
 
   @override
-  String get statusSuccess => 'Success';
+  String get statusSuccess => 'Sikeres';
 
   @override
   String get featureForVipOnly =>
-      'This feature is only for VIP customers, please upgrade to receive notifications.';
+      'Ez a funkció csak VIP ügyfelek számára érhető el, kérjük, frissítsen az értesítések fogadásához.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Jelszó módosítása';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'Jelenlegi jelszó';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Új jelszó';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Új jelszó megerősítése';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'A jelszavak nem egyeznek';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'A jelszó sikeresen frissítve';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'Nem sikerült frissíteni a jelszót:$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'Helytelen jelenlegi jelszó';
 
   @override
   String get signInRequired => 'Bejelentkezés szükséges';
@@ -1421,13 +1421,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get lossRate => 'Veszteségarány';
 
   @override
-  String get signalProgress => 'Signal Progress';
+  String get signalProgress => 'Jelzés haladása';
 
   @override
-  String get statusHistory => 'Status History';
+  String get statusHistory => 'Állapot előzmények';
 
   @override
-  String get signalCreated => 'Signal Created';
+  String get signalCreated => 'Jelzés létrehozva';
 
   @override
   String get signalMatched => 'Jel egyezés';
@@ -1474,13 +1474,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get pageOf => '/';
 
   @override
-  String get keyFindings => 'Key Findings';
+  String get keyFindings => 'Fő megállapítások';
 
   @override
   String get filterStatusLabel => 'Status';
 
   @override
-  String get filterStatusAll => 'All Status';
+  String get filterStatusAll => 'Összes állapot';
 
   @override
   String get filterStatusTp1 => 'TP1 HIT';
@@ -1495,88 +1495,89 @@ class AppLocalizationsHu extends AppLocalizations {
   String get filterStatusSl => 'SL HIT';
 
   @override
-  String get filterStatusCancelled => 'CANCELLED';
+  String get filterStatusCancelled => 'VISSZAVONVA';
 
   @override
-  String get filterStatusExitByAdmin => 'EXIT BY ADMIN';
+  String get filterStatusExitByAdmin => 'ADMIN ÁLTAL KILÉPVE';
 
   @override
-  String get popupMasterMarket => 'Do you want to master the market?';
+  String get popupMasterMarket => 'Szeretné elsajátítani a piacot?';
 
   @override
-  String get popupLoginExplore => 'Log in to explore this trading bulletin!';
+  String get popupLoginExplore =>
+      'Jelentkezzen be a kereskedési hírlevél felfedezéséhez!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => 'Jogi nyilatkozat';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'A signalgpt.ai oldalon található információk kizárólag tájékoztatási és ismeretmegosztási célokat szolgálnak, és nem minősülnek befektetési tanácsnak. A felhasználók kizárólag saját kereskedési döntéseikért felelősek.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'Kereskedési számla nyitása';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'Támogasson minket';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'Alkalmazás értékelése';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'Alkalmazás megosztása';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'Fiók részletei';
 
   @override
-  String get language => 'Language';
+  String get language => 'Nyelv';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'Felhasználási feltételek';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'Fiókok';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'Hozzáférés a tőzsdéhez';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'Online támogatás';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Nyelv kiválasztása';
 
   @override
-  String get left => 'left';
+  String get left => 'maradt';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Frissítés Pro-ra';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'Arany';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'Kripto';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'DEVIZAPÁR';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Tokenek';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'Nincsenek elérhető DEVIZAPÁR eszközök';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return '$appName megnyitása';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'Állapot';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'BELÉPÉS';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1591,122 +1592,126 @@ class AppLocalizationsHu extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'Elemzés';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'Token használata a jelzés megtekintéséhez';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'Megtekintés most';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'Új jelzésekre várunk...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'Jelzés feloldása sikertelen';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'Nincs elég token';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'Új jelzés feltöltve';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'Új $symbol jelzés feltöltve!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'Frissítés a jelzés megtekintéséhez';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'Jelzéselőzmények';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'ÖSSZES';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'Dátum kiválasztása';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'Nem találhatók előzmények';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'Dátum';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'PIACI DIAGRAM';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'Elemzés és magyarázat';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'Nem érhető el részletes elemzés ehhez a jelzéshez.';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'Affiliate vezérlőpult';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'Ajánló link';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'Link másolása';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'Ajánlások száma';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'Összes bevétel';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'Függő jutalék';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'Legújabb ajánlások';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'Még nincsenek ajánlások.';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'Affiliate szerep szükséges. Kérjük, lépjen kapcsolatba az adminisztrátorral.';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'Affiliate kód még nincs hozzárendelve. Kérjük, lépjen kapcsolatba az adminisztrátorral.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'Használja ezt a linket felhasználók ajánlásához és 40% élethosszig tartó jutalék szerzéséhez.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'Link vágólapra másolva!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'Ajánló kód megadása';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'Ajánló kód';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'Küldés';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'Érvénytelen ajánló kód.';
+
+  @override
+  String get referralCodeApplied => 'Ajánló kód sikeresen alkalmazva!';
 
   @override
   String get getTheAppForBestExperience =>
-      'Get the app for the best experience';
+      'Töltse le az alkalmazást a legjobb élményért';
 
   @override
-  String get installApp => 'Install App';
+  String get installApp => 'Alkalmazás telepítése';
 
   @override
-  String get reviews => 'reviews';
+  String get reviews => 'Értékelések';
 
   @override
   String get priceLifetime => '\$249.00';
@@ -1715,11 +1720,304 @@ class AppLocalizationsHu extends AppLocalizations {
   String get priceLifetimeOld => '\$712.00';
 
   @override
-  String get durationLifetime => 'Lifetime';
+  String get durationLifetime => 'Élethosszig';
 
   @override
-  String get orderInfoLifetime => 'Payment for Elite Lifetime package';
+  String get orderInfoLifetime => 'Fizetés Elite Élethosszig csomagért';
 
   @override
-  String get lifetime => 'Lifetime';
+  String get lifetime => 'Élethosszig';
+
+  @override
+  String get loginNow => 'Bejelentkezés most';
+
+  @override
+  String get loginToViewSignals => 'Jelentkezzen be a jelzések megtekintéséhez';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Kérjük, jelentkezzen be a Signal GPT jelzések megtekintéséhez és az összes funkció eléréséhez.';
+
+  @override
+  String get loginToViewHistory =>
+      'Jelentkezzen be az előzmények megtekintéséhez';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'A jelzéselőzmények csak bejelentkezett felhasználók számára érhetők el. Kérjük, jelentkezzen be a Signal GPT teljesítményének nyomon követéséhez.';
+
+  @override
+  String get letsGetYouIn => 'Lépjen be!';
+
+  @override
+  String get dontHaveAnAccount => 'Nincs fiókja? ';
+
+  @override
+  String get createAccount => 'Fiók létrehozása';
+
+  @override
+  String get createYourAccount => 'Hozza létre fiókját';
+
+  @override
+  String get login => 'Bejelentkezés';
+
+  @override
+  String get rememberYourPassword => 'Jelszó megjegyzése';
+
+  @override
+  String get signInWith => 'Bejelentkezés ezzel';
+
+  @override
+  String get getStarted => 'Kezdés';
+
+  @override
+  String get pleaseEnterEmail => 'Kérjük, adja meg e-mail címét';
+
+  @override
+  String get pleaseEnterPassword => 'Kérjük, adja meg jelszavát';
+
+  @override
+  String get pleaseEnterCurrentPassword =>
+      'Kérjük, adja meg jelenlegi jelszavát';
+
+  @override
+  String get pleaseEnterNewPassword => 'Kérjük, adja meg új jelszavát';
+
+  @override
+  String get pleaseConfirmNewPassword => 'Kérjük, erősítse meg új jelszavát';
+
+  @override
+  String get pleaseConfirmPassword => 'Kérjük, erősítse meg jelszavát';
+
+  @override
+  String get passwordMinLength =>
+      'A jelszónak legalább 6 karakter hosszúnak kell lennie';
+
+  @override
+  String get savePassword => 'Jelszó mentése';
+
+  @override
+  String get verifyYourEmail => 'E-mail ellenőrzése';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'Kérjük, adja meg a 6 számjegyű kódot,\namelyit az e-mail címére küldtünk';
+
+  @override
+  String get pleaseEnterAllDigits => 'Kérjük, adja meg mind a 6 számjegyet';
+
+  @override
+  String get invalidOrExpiredCode => 'Érvénytelen vagy lejárt ellenőrző kód';
+
+  @override
+  String get anErrorOccurred => 'Hiba történt. Kérjük, próbálja újra.';
+
+  @override
+  String get verificationCodeResent => 'Ellenőrző kód újraküldve!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Kód újraküldése sikertelen: $error';
+  }
+
+  @override
+  String get resendCode => 'Kód újraküldése';
+
+  @override
+  String get verify => 'Ellenőrzés';
+
+  @override
+  String get resetPassword => 'Jelszó visszaállítása';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Kérjük, adja meg a regisztrációkor használt e-mail címet\n\nEllenőrző kódot küldünk az e-mail címére.';
+
+  @override
+  String get sendButton => 'Küldés';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Ha nem kapja meg az e-mailt, kérjük, lépjen kapcsolatba velünk: @gmail.com';
+
+  @override
+  String get verificationCodeSentTo =>
+      'Ellenőrző kódot küldtünk a következő címre:';
+
+  @override
+  String get passwordResetSuccessful => 'Jelszó sikeresen visszaállítva!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Hiba: $message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'A fiók már létezik';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'A(z) $email e-mail cím már regisztrálva van a rendszerben. Kérjük, jelentkezzen be vagy használja az elfelejtett jelszó funkciót.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Rendszerhiba: $error';
+  }
+
+  @override
+  String get confirmPassword => 'Jelszó megerősítése';
+
+  @override
+  String get referralCodeOptional => 'Ajánló kód (Opcionális)';
+
+  @override
+  String get accountDeletedSuccessfully => 'A fiók véglegesen törölve lett.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Hiba a fiók törlésekor: $error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'Jelszó sikeresen módosítva!';
+
+  @override
+  String get errorChangingPassword =>
+      'Hiba a jelszó módosításakor. Kérjük, ellenőrizze jelenlegi jelszavát.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Engedélyezze az értesítéseket az eszközbeállításokban az új frissítések megtekintéséhez a zárolási képernyőn';
+
+  @override
+  String get navigateToDeviceSettings => 'Navigáljon az eszközbeállításokhoz.';
+
+  @override
+  String get turnOffAllNotifications => 'Összes értesítés kikapcsolása';
+
+  @override
+  String get pauseAllNotifications => 'Összes értesítés szüneteltetése';
+
+  @override
+  String get turnOnCryptoSignals => 'Kripto jelzések bekapcsolása';
+
+  @override
+  String get turnOnCurrencyPairSignals => 'Devizapár jelzések bekapcsolása';
+
+  @override
+  String get turnOnGoldSignals => 'Arany jelzések bekapcsolása';
+
+  @override
+  String get currencyPairSignals => 'Devizapár jelzések';
+
+  @override
+  String get termsOfUseContent =>
+      'Az alkalmazás elérésével vagy használatával Ön elfogadja a Felhasználási Feltételeket. Ez az alkalmazás kizárólag tájékoztatási célokat szolgál, és nem garantáljuk a megjelenített tartalom vagy jelzések pontosságát, teljességét vagy megbízhatóságát. Ön kizárólag felelős az alkalmazásban nyújtott információk felhasználásáért. Fenntartjuk a jogot a szolgáltatás módosítására, felfüggesztésére vagy megszüntetésére előzetes értesítés nélkül. Az alkalmazás további használata a frissített feltételek elfogadását jelenti.';
+
+  @override
+  String get tradingHistoryTitle => 'Kereskedési előzmények';
+
+  @override
+  String get tp1Live => 'TP1 ÉLŐ';
+
+  @override
+  String get tp2Live => 'TP2 ÉLŐ';
+
+  @override
+  String get tp3Live => 'TP3 ÉLŐ';
+
+  @override
+  String get stopLossTriggered => 'Stop loss aktiválva';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Belépés: $price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signal GPT';
+
+  @override
+  String get categoryGold => 'ARANY';
+
+  @override
+  String get categoryCrypto => 'KRIPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'Az előfizetés automatikusan megújul, hacsak nem mondja le legalább 24 órával az aktuális időszak vége előtt. Előfizetéseit az App Store fiókbeállításaiban kezelheti és lemondhatja. Az Élethosszig terv egyszeri vásárlás.';
+
+  @override
+  String get termsOfUseEula => 'Felhasználási Feltételek (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Termék nem található: $productId. Kérjük, győződjön meg arról, hogy konfigurálva van az áruházakban.';
+  }
+
+  @override
+  String get perYear => '/ év';
+
+  @override
+  String get tierDemoSignalQty => '7-8 naponta';
+
+  @override
+  String get elite1Month => 'ELITE 1 Hónap';
+
+  @override
+  String get elite12Months => 'ELITE 12 Hónap';
+
+  @override
+  String get statusPending => 'Függőben';
+
+  @override
+  String get statusFailed => 'Sikertelen';
+
+  @override
+  String get yourReferralCode => 'Az Ön ajánló kódja';
+
+  @override
+  String get referralCodeCopied => 'Ajánló kód másolva!';
+
+  @override
+  String get copyCode => 'Kód másolása';
+
+  @override
+  String get revenue => 'Bevétel';
+
+  @override
+  String get availableCommission => 'Elérhető jutalék';
+
+  @override
+  String get totalReceivedIncome => 'Összesen kapott jövedelem';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Befizetés: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Fontos közlemény';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Fiókja megváltozott. Kérjük, jelentkezzen be újra.';
+
+  @override
+  String get iUnderstand => 'Megértettem';
+
+  @override
+  String get saveUpTo65Percent => 'MEGTAKARÍTÁS AKÁR 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Éves -40% • Élethosszig -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Feltöltés sikertelen: Hozzáférés megtagadva. Ellenőrizze a tárhelybeállításokat.';
+
+  @override
+  String get failedToUploadImage =>
+      'Kép feltöltése sikertelen. Kérjük, ellenőrizze a kapcsolatot.';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
 import 'package:minvest_forex_app/features/auth/screens/welcome/welcome_screen.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -6,6 +7,7 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: Stack(
         children: [
@@ -36,12 +38,12 @@ class IntroScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   
                   // Slogan (Xuống dòng sau dấu "-")
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Text(
-                      'The Ultimate AI Engine –\nDesigned by Expert Traders.',
+                      l10n.heroSubtitle,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -73,9 +75,9 @@ class IntroScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(6),
                         ),
                         alignment: Alignment.center,
-                        child: const Text(
-                          'Get Started',
-                          style: TextStyle(
+                        child: Text(
+                          l10n.getStarted,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

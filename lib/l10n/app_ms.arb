@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "Tukar Kata Laluan",
+  "currentPassword": "Kata Laluan Semasa",
+  "newPassword": "Kata Laluan Baharu",
+  "confirmNewPassword": "Sahkan Kata Laluan Baharu",
+  "passwordsDoNotMatch": "Kata laluan tidak sepadan",
+  "passwordUpdateSuccess": "Kata laluan berjaya dikemas kini",
+  "passwordUpdateFailed": "Gagal mengemas kini kata laluan:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Kata laluan semasa salah",
   "signInRequired": "Log Masuk Diperlukan",
   "signInToExploreSignal": "Log masuk untuk meneroka isyarat dagangan ini!",
   "activeMember": "Ahli aktif",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "Log masuk tanpa akaun",
+  "save40Percent": "JIMAT 40%",
+  "save65Percent": "JIMAT 65%",
+  "disclaimer": "Penafian",
+  "disclaimerContent": "Maklumat pada signalgpt.ai adalah untuk tujuan rujukan dan perkongsian pengetahuan sahaja, dan tidak membentuk nasihat pelaburan. Pengguna bertanggungjawab sepenuhnya untuk keputusan perdagangan mereka sendiri.",
+  "openTradingAccount": "Buka Akaun Dagangan",
+  "supportUs": "Sokong Kami",
+  "rateApp": "Apl Nilai",
+  "shareApp": "Kongsi Apl",
+  "accountDetails": "Butiran Akaun",
+  "language": "Bahasa",
+  "termsOfUse": "Syarat Penggunaan",
+  "accounts": "Akaun",
+  "accessExchange": "Akses The Exchange",
+  "onlineSupport": "Sokongan Dalam Talian",
+  "selectLanguage": "Pilih Bahasa",
+  "left": "kiri",
+  "upgradeToPro": "Naik taraf Kepada Pro",
+  "assetGold": "emas",
+  "assetCrypto": "Kripto",
+  "assetForex": "PASANGAN MATAWANG",
+  "tokens": "Token",
+  "noForexAssets": "Tiada aset CURRENCY PAIR tersedia",
+  "openApp": "Buka{appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Status",
+  "signalEntryLabel": "MASUK",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Menganalisis",
+  "useTokenToView": "Gunakan Token untuk melihat Isyarat",
+  "viewNow": "Lihat Sekarang",
+  "waitingNewSignals": "Menunggu isyarat baharu...",
+  "failedUnlockSignal": "Gagal membuka kunci isyarat",
+  "notEnoughTokens": "Tidak cukup token",
+  "newSignalUploaded": "Isyarat baharu dimuat naik",
+  "newSymbolSignalUploaded": "Isyarat{symbol}baharu kini dimuat naik!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Tingkatkan kepada Lihat Isyarat",
+  "signalHistory": "Sejarah Isyarat",
+  "allStatus": "SEMUA",
+  "selectDate": "Pilih Tarikh",
+  "noHistoryFound": "Tiada sejarah ditemui",
+  "filterDate": "tarikh",
+  "marketChart": "CARTA PASARAN",
+  "analysisExplanation": "Analisis & Penjelasan",
+  "noDetailedAnalysis": "Tiada analisis terperinci tersedia untuk isyarat ini.",
+  "affiliateDashboard": "Papan Pemuka Ahli Gabungan",
+  "referralLink": "Pautan Rujukan",
+  "copyLink": "Salin Pautan",
+  "referralCount": "Kiraan Rujukan",
+  "totalEarnings": "Jumlah Pendapatan",
+  "pendingCommission": "Komisen menunggu",
+  "latestReferrals": "Rujukan Terkini",
+  "noReferralsYet": "Tiada rujukan lagi.",
+  "affiliateRoleRequired": "Peranan ahli gabungan diperlukan. Sila hubungi admin.",
+  "affiliateCodeNotAssigned": "Kod ahli gabungan belum diberikan lagi. Sila hubungi admin.",
+  "referralLinkDescription": "Gunakan pautan ini untuk merujuk pengguna dan dapatkan 40% komisen seumur hidup.",
+  "linkCopied": "Pautan disalin ke papan keratan!",
+  "enterReferralCode": "Masukkan Kod Rujukan",
+  "referralCode": "Kod Rujukan",
+  "submit": "Hantar",
+  "invalidReferralCode": "Kod rujukan tidak sah.",
+  "referralCodeApplied": "Kod rujukan berjaya digunakan!",
+  "priceLifetimeOld": "$712.00",
+  "loginNow": "Log masuk sekarang",
+  "loginToViewSignals": "Log masuk untuk melihat isyarat",
+  "loginToViewSignalsDesc": "Sila log masuk untuk melihat isyarat GPT Isyarat dan mengakses semua ciri.",
+  "loginToViewHistory": "Log masuk untuk melihat sejarah",
+  "loginToViewHistoryDesc": "Sejarah isyarat hanya tersedia untuk pengguna log masuk. Sila log masuk untuk menjejak prestasi daripada Signal GPT.",
+  "letsGetYouIn": "Jom Masuk!",
+  "dontHaveAnAccount": "Tiada akaun?",
+  "createAccount": "Buat Akaun",
+  "createYourAccount": "Buat akaun anda",
+  "login": "Log masuk",
+  "rememberYourPassword": "Ingat Kata Laluan Anda",
+  "signInWith": "Log masuk dengan",
+  "getStarted": "Mulakan",
+  "pleaseEnterEmail": "Sila masukkan e-mel anda",
+  "pleaseEnterPassword": "Sila masukkan kata laluan anda",
+  "pleaseEnterCurrentPassword": "Sila masukkan kata laluan semasa anda",
+  "pleaseEnterNewPassword": "Sila masukkan kata laluan baharu anda",
+  "pleaseConfirmNewPassword": "Sila sahkan kata laluan baharu anda",
+  "pleaseConfirmPassword": "Sila sahkan kata laluan anda",
+  "passwordMinLength": "Kata laluan mestilah sekurang-kurangnya 6 aksara",
+  "savePassword": "Simpan Kata Laluan",
+  "verifyYourEmail": "Sahkan E-mel Anda",
+  "pleaseEnterVerificationCode": "Sila masukkan kod 6 digit\ndihantar ke e-mel anda",
+  "pleaseEnterAllDigits": "Sila masukkan kesemua 6 digit",
+  "invalidOrExpiredCode": "Kod pengesahan tidak sah atau tamat tempoh",
+  "anErrorOccurred": "Ralat berlaku. Sila cuba lagi.",
+  "verificationCodeResent": "Kod pengesahan dihantar semula!",
+  "failedToResendCode": "Gagal menghantar semula kod:{error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Hantar semula kod",
+  "verify": "Sahkan",
+  "resetPassword": "Tetapkan Semula Kata Laluan",
+  "forgotPasswordInstructions": "Sila masukkan alamat e-mel yang anda gunakan untuk mendaftar akaun anda\n\nKami akan menghantar kod pengesahan ke alamat e-mel anda.",
+  "sendButton": "Hantar",
+  "unableToReceiveEmail": "Jika anda tidak dapat menerima e-mel tersebut, sila hubungi kami e-mel @gmail.com",
+  "verificationCodeSentTo": "Kami telah menghantar kod pengesahan kepada",
+  "passwordResetSuccessful": "Tetapan semula kata laluan berjaya!",
+  "errorGeneric": "Ralat:{message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "Akaun sudah wujud",
+  "accountAlreadyExistsMessage": "E-mel{email}telah pun didaftarkan dalam sistem. Sila log masuk atau gunakan ciri terlupa kata laluan.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Ralat sistem:{error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Sahkan Kata Laluan",
+  "referralCodeOptional": "Kod Rujukan (Pilihan)",
+  "accountDeletedSuccessfully": "Akaun telah dipadamkan secara kekal.",
+  "accountDeleteError": "Ralat semasa memadam akaun:{error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Kata laluan berjaya ditukar!",
+  "errorChangingPassword": "Ralat menukar kata laluan. Sila semak kata laluan semasa anda.",
+  "enableNotificationsHint": "Dayakan pemberitahuan dalam tetapan peranti untuk melihat kemas kini baharu pada skrin kunci",
+  "navigateToDeviceSettings": "Navigasi ke tetapan peranti.",
+  "turnOffAllNotifications": "Matikan semua pemberitahuan",
+  "pauseAllNotifications": "Jeda semua pemberitahuan",
+  "turnOnCryptoSignals": "Hidupkan isyarat crypto",
+  "turnOnCurrencyPairSignals": "Hidupkan isyarat pasangan mata wang",
+  "turnOnGoldSignals": "Hidupkan isyarat emas",
+  "currencyPairSignals": "Isyarat Pasangan Mata Wang",
+  "termsOfUseContent": "Dengan mengakses atau menggunakan aplikasi ini, anda bersetuju untuk mematuhi Syarat Penggunaan. Apl ini disediakan untuk tujuan maklumat sahaja dan kami tidak menjamin ketepatan, kesempurnaan atau kebolehpercayaan sebarang kandungan atau isyarat yang dipaparkan. Anda bertanggungjawab sepenuhnya terhadap cara anda menggunakan maklumat yang diberikan dalam apl. Kami berhak untuk mengubah suai, menggantung, atau menamatkan perkhidmatan pada bila-bila masa tanpa notis terlebih dahulu. Penggunaan aplikasi yang berterusan merupakan penerimaan mana-mana syarat yang dikemas kini.",
+  "tradingHistoryTitle": "Sejarah Dagangan",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "Hentikan kerugian dicetuskan",
+  "entryWithPrice": "Kemasukan:{price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Isyarat GPT",
+  "categoryGold": "EMAS",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "Langganan akan diperbaharui secara automatik melainkan dibatalkan sekurang-kurangnya 24 jam sebelum tamat tempoh semasa. Anda boleh mengurus dan membatalkan langganan anda dalam tetapan akaun App Store anda. Pelan seumur hidup ialah pembelian sekali sahaja.",
+  "termsOfUseEula": "Syarat Penggunaan (EULA)",
+  "productNotFound": "Produk tidak ditemui:{productId}. Sila pastikan ia dikonfigurasikan di kedai.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ tahun",
+  "tierDemoSignalQty": "7-8 sehari",
+  "elite1Month": "ELITE 1 Bulan",
+  "elite12Months": "ELITE 12 Bulan",
+  "statusPending": "Belum selesai",
+  "statusFailed": "gagal",
+  "yourReferralCode": "Kod rujukan anda",
+  "referralCodeCopied": "Kod rujukan disalin!",
+  "copyCode": "Salin Kod",
+  "revenue": "Hasil",
+  "availableCommission": "Komisen yang ada",
+  "totalReceivedIncome": "Jumlah pendapatan yang diterima",
+  "depositAmount": "Deposit: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "Notis Penting",
+  "accountChangedPleaseRelogin": "Akaun anda telah berubah. Sila log masuk semula.",
+  "iUnderstand": "saya faham",
+  "saveUpTo65Percent": "JIMAT SEHINGGA 65%",
+  "yearlyLifetimeDiscount": "Tahunan -40% • Sepanjang Hayat -65%",
+  "uploadFailedPermissionDenied": "Muat naik gagal: Kebenaran ditolak. Semak Peraturan Storan.",
+  "failedToUploadImage": "Gagal memuat naik imej. Sila semak sambungan anda."
 }

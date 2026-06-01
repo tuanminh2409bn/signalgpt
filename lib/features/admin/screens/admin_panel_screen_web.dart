@@ -327,11 +327,19 @@ class _UserManagementViewState extends State<UserManagementView> {
       if (!mounted) return;
 
       if (expiryDate != null) {
-        await FirebaseFirestore.instance.collection('users').doc(userId).update({
+        final Map<String, dynamic> updates = {
           'subscriptionsStart.$packageKey': Timestamp.fromDate(startDate),
           'subscriptionsExpiry.$packageKey': Timestamp.fromDate(expiryDate),
           'activeSubscriptions': FieldValue.arrayUnion([packageKey]),
-        });
+        };
+
+        if (packageKey == 'elite') {
+          updates['subscriptionTier'] = 'elite';
+          updates['subscriptionExpiryDate'] = Timestamp.fromDate(expiryDate);
+          updates['activeSubscriptions'] = FieldValue.arrayUnion(['elite', 'gold', 'forex', 'crypto']);
+        }
+
+        await FirebaseFirestore.instance.collection('users').doc(userId).update(updates);
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Đã cập nhật ngày cho gói ${packageKey.toUpperCase()}!')));
       }
@@ -350,11 +358,19 @@ class _UserManagementViewState extends State<UserManagementView> {
         );
 
         if (confirmDelete == true) {
-          await FirebaseFirestore.instance.collection('users').doc(userId).update({
+          final Map<String, dynamic> updates = {
             'subscriptionsStart.$packageKey': FieldValue.delete(),
             'subscriptionsExpiry.$packageKey': FieldValue.delete(),
             'activeSubscriptions': FieldValue.arrayRemove([packageKey]),
-          });
+          };
+
+          if (packageKey == 'elite') {
+            updates['subscriptionTier'] = 'free';
+            updates['subscriptionExpiryDate'] = FieldValue.delete();
+            updates['activeSubscriptions'] = FieldValue.arrayRemove(['elite', 'gold', 'forex', 'crypto']);
+          }
+
+          await FirebaseFirestore.instance.collection('users').doc(userId).update(updates);
           if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Đã xóa gói ${packageKey.toUpperCase()}!')));
         }
@@ -462,9 +478,7 @@ class _UserManagementViewState extends State<UserManagementView> {
                           Expanded(flex: 3, child: Text('User Info', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
                           Expanded(flex: 2, child: Text('Role (Tier)', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
                           Expanded(flex: 1, child: Text('Tokens', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
-                          Expanded(flex: 2, child: Text('Gold', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
-                          Expanded(flex: 2, child: Text('Forex', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
-                          Expanded(flex: 2, child: Text('Crypto', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
+                          Expanded(flex: 2, child: Text('Elite Plan', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
                           Expanded(flex: 2, child: Text('Registered', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
                         ],
                       ),
@@ -573,23 +587,9 @@ class _UserManagementViewState extends State<UserManagementView> {
                                   ),
                                   Expanded(
                                     flex: 2,
-                                    child: _buildPackageCell(userId, 'gold', 
-                                      _getPackageDate(userData, 'subscriptionsStart', 'gold'), 
-                                      _getPackageDate(userData, 'subscriptionsExpiry', 'gold'), 
-                                      activeSubs),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: _buildPackageCell(userId, 'forex', 
-                                      _getPackageDate(userData, 'subscriptionsStart', 'forex'), 
-                                      _getPackageDate(userData, 'subscriptionsExpiry', 'forex'), 
-                                      activeSubs),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: _buildPackageCell(userId, 'crypto', 
-                                      _getPackageDate(userData, 'subscriptionsStart', 'crypto'), 
-                                      _getPackageDate(userData, 'subscriptionsExpiry', 'crypto'), 
+                                    child: _buildPackageCell(userId, 'elite', 
+                                      _getPackageDate(userData, 'subscriptionsStart', 'elite'), 
+                                      _getPackageDate(userData, 'subscriptionsExpiry', 'elite'), 
                                       activeSubs),
                                   ),
                                   Expanded(

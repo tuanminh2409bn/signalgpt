@@ -3236,6 +3236,12 @@ abstract class AppLocalizations {
   /// **'Enter Referral Code'**
   String get enterReferralCode;
 
+  /// No description provided for @referralCodeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter referral code to receive exclusive offers from our partners.'**
+  String get referralCodeDescription;
+
   /// No description provided for @referralCode.
   ///
   /// In en, this message translates to:
@@ -3307,6 +3313,528 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Lifetime'**
   String get lifetime;
+
+  /// No description provided for @loginNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Login now'**
+  String get loginNow;
+
+  /// No description provided for @loginToViewSignals.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to view signals'**
+  String get loginToViewSignals;
+
+  /// No description provided for @loginToViewSignalsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Please login to view Signal GPT signals and access all features.'**
+  String get loginToViewSignalsDesc;
+
+  /// No description provided for @loginToViewHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to view history'**
+  String get loginToViewHistory;
+
+  /// No description provided for @loginToViewHistoryDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Signal history is only available for logged-in users. Please login to track performance from Signal GPT.'**
+  String get loginToViewHistoryDesc;
+
+  /// No description provided for @letsGetYouIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Get You In!'**
+  String get letsGetYouIn;
+
+  /// No description provided for @dontHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? '**
+  String get dontHaveAnAccount;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get createAccount;
+
+  /// No description provided for @createYourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get createYourAccount;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @rememberYourPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember Your Password'**
+  String get rememberYourPassword;
+
+  /// No description provided for @signInWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with'**
+  String get signInWith;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @pleaseEnterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get pleaseEnterEmail;
+
+  /// No description provided for @pleaseEnterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get pleaseEnterPassword;
+
+  /// No description provided for @pleaseEnterCurrentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your current password'**
+  String get pleaseEnterCurrentPassword;
+
+  /// No description provided for @pleaseEnterNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your new password'**
+  String get pleaseEnterNewPassword;
+
+  /// No description provided for @pleaseConfirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your new password'**
+  String get pleaseConfirmNewPassword;
+
+  /// No description provided for @pleaseConfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your password'**
+  String get pleaseConfirmPassword;
+
+  /// No description provided for @passwordMinLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get passwordMinLength;
+
+  /// No description provided for @savePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Password'**
+  String get savePassword;
+
+  /// No description provided for @verifyYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Your Email'**
+  String get verifyYourEmail;
+
+  /// No description provided for @pleaseEnterVerificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the 6 digit code\nsent to your email'**
+  String get pleaseEnterVerificationCode;
+
+  /// No description provided for @pleaseEnterAllDigits.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter all 6 digits'**
+  String get pleaseEnterAllDigits;
+
+  /// No description provided for @invalidOrExpiredCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid or expired verification code'**
+  String get invalidOrExpiredCode;
+
+  /// No description provided for @anErrorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred. Please try again.'**
+  String get anErrorOccurred;
+
+  /// No description provided for @verificationCodeResent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code resent!'**
+  String get verificationCodeResent;
+
+  /// No description provided for @failedToResendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to resend code: {error}'**
+  String failedToResendCode(String error);
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get resendCode;
+
+  /// No description provided for @verify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get verify;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPassword;
+
+  /// No description provided for @forgotPasswordInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Please input the email address you used to sign up your account\n\nWe will send a verification code to your email address.'**
+  String get forgotPasswordInstructions;
+
+  /// No description provided for @sendButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get sendButton;
+
+  /// No description provided for @unableToReceiveEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'If you are unable to receive the email, please contact us email @gmail.com'**
+  String get unableToReceiveEmail;
+
+  /// No description provided for @verificationCodeSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent a verification code to'**
+  String get verificationCodeSentTo;
+
+  /// No description provided for @passwordResetSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset successful!'**
+  String get passwordResetSuccessful;
+
+  /// No description provided for @errorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {message}'**
+  String errorGeneric(String message);
+
+  /// No description provided for @accountAlreadyExists.
+  ///
+  /// In en, this message translates to:
+  /// **'Account already exists'**
+  String get accountAlreadyExists;
+
+  /// No description provided for @accountAlreadyExistsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Email {email} has already been registered in the system. Please login or use the forgot password feature.'**
+  String accountAlreadyExistsMessage(String email);
+
+  /// No description provided for @systemError.
+  ///
+  /// In en, this message translates to:
+  /// **'System error: {error}'**
+  String systemError(String error);
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @referralCodeOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral Code (Optional)'**
+  String get referralCodeOptional;
+
+  /// No description provided for @accountDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Account has been permanently deleted.'**
+  String get accountDeletedSuccessfully;
+
+  /// No description provided for @accountDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error deleting account: {error}'**
+  String accountDeleteError(String error);
+
+  /// No description provided for @passwordChangedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed successfully!'**
+  String get passwordChangedSuccessfully;
+
+  /// No description provided for @errorChangingPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Error changing password. Please check your current password.'**
+  String get errorChangingPassword;
+
+  /// No description provided for @enableNotificationsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable notifications in device settings to view new updates on the lock screen'**
+  String get enableNotificationsHint;
+
+  /// No description provided for @navigateToDeviceSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigate to the device settings.'**
+  String get navigateToDeviceSettings;
+
+  /// No description provided for @turnOffAllNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off all notifications'**
+  String get turnOffAllNotifications;
+
+  /// No description provided for @pauseAllNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause all notifications'**
+  String get pauseAllNotifications;
+
+  /// No description provided for @turnOnCryptoSignals.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on crypto signals'**
+  String get turnOnCryptoSignals;
+
+  /// No description provided for @turnOnCurrencyPairSignals.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on currency pair signals'**
+  String get turnOnCurrencyPairSignals;
+
+  /// No description provided for @turnOnGoldSignals.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on gold signals'**
+  String get turnOnGoldSignals;
+
+  /// No description provided for @currencyPairSignals.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency Pair Signals'**
+  String get currencyPairSignals;
+
+  /// No description provided for @termsOfUseContent.
+  ///
+  /// In en, this message translates to:
+  /// **'By accessing or using this application, you agree to comply with the Terms of Use. This app is provided for informational purposes only, and we do not guarantee the accuracy, completeness, or reliability of any content or signals displayed. You are solely responsible for how you use the information that is provided within the app. We reserve the right to modify, suspend, or terminate the service at any time without prior notice. Continued use of the app constitutes acceptance of any updated terms.'**
+  String get termsOfUseContent;
+
+  /// No description provided for @tradingHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trading History'**
+  String get tradingHistoryTitle;
+
+  /// No description provided for @tp1Live.
+  ///
+  /// In en, this message translates to:
+  /// **'TP1 LIVE'**
+  String get tp1Live;
+
+  /// No description provided for @tp2Live.
+  ///
+  /// In en, this message translates to:
+  /// **'TP2 LIVE'**
+  String get tp2Live;
+
+  /// No description provided for @tp3Live.
+  ///
+  /// In en, this message translates to:
+  /// **'TP3 LIVE'**
+  String get tp3Live;
+
+  /// No description provided for @stopLossTriggered.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop loss triggered'**
+  String get stopLossTriggered;
+
+  /// No description provided for @entryWithPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry: {price}'**
+  String entryWithPrice(String price);
+
+  /// No description provided for @signalGptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Signal GPT'**
+  String get signalGptTitle;
+
+  /// No description provided for @categoryGold.
+  ///
+  /// In en, this message translates to:
+  /// **'GOLD'**
+  String get categoryGold;
+
+  /// No description provided for @categoryCrypto.
+  ///
+  /// In en, this message translates to:
+  /// **'CRYPTO'**
+  String get categoryCrypto;
+
+  /// No description provided for @subscriptionAutoRenewDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription will automatically renew unless canceled at least 24 hours before the end of the current period. You can manage and cancel your subscriptions in your App Store account settings. Lifetime plan is a one-time purchase.'**
+  String get subscriptionAutoRenewDisclaimer;
+
+  /// No description provided for @termsOfUseEula.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use (EULA)'**
+  String get termsOfUseEula;
+
+  /// No description provided for @productNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Product not found: {productId}. Please ensure it is configured in stores.'**
+  String productNotFound(String productId);
+
+  /// No description provided for @perYear.
+  ///
+  /// In en, this message translates to:
+  /// **'/ year'**
+  String get perYear;
+
+  /// No description provided for @tierDemoSignalQty.
+  ///
+  /// In en, this message translates to:
+  /// **'7-8 per day'**
+  String get tierDemoSignalQty;
+
+  /// No description provided for @elite1Month.
+  ///
+  /// In en, this message translates to:
+  /// **'ELITE 1 Month'**
+  String get elite1Month;
+
+  /// No description provided for @elite12Months.
+  ///
+  /// In en, this message translates to:
+  /// **'ELITE 12 Months'**
+  String get elite12Months;
+
+  /// No description provided for @statusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get statusPending;
+
+  /// No description provided for @statusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get statusFailed;
+
+  /// No description provided for @yourReferralCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Your referral code'**
+  String get yourReferralCode;
+
+  /// No description provided for @referralCodeCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral code copied!'**
+  String get referralCodeCopied;
+
+  /// No description provided for @copyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Code'**
+  String get copyCode;
+
+  /// No description provided for @revenue.
+  ///
+  /// In en, this message translates to:
+  /// **'Revenue'**
+  String get revenue;
+
+  /// No description provided for @availableCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'Available commission'**
+  String get availableCommission;
+
+  /// No description provided for @totalReceivedIncome.
+  ///
+  /// In en, this message translates to:
+  /// **'Total received income'**
+  String get totalReceivedIncome;
+
+  /// No description provided for @depositAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit: \${amount}'**
+  String depositAmount(String amount);
+
+  /// No description provided for @importantNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Important Notice'**
+  String get importantNotice;
+
+  /// No description provided for @accountChangedPleaseRelogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account has changed. Please log in again.'**
+  String get accountChangedPleaseRelogin;
+
+  /// No description provided for @iUnderstand.
+  ///
+  /// In en, this message translates to:
+  /// **'I understand'**
+  String get iUnderstand;
+
+  /// No description provided for @saveUpTo65Percent.
+  ///
+  /// In en, this message translates to:
+  /// **'SAVE UP TO 65%'**
+  String get saveUpTo65Percent;
+
+  /// No description provided for @yearlyLifetimeDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly -40% • Lifetime -65%'**
+  String get yearlyLifetimeDiscount;
+
+  /// No description provided for @uploadFailedPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload failed: Permission denied. Check Storage Rules.'**
+  String get uploadFailedPermissionDenied;
+
+  /// No description provided for @failedToUploadImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to upload image. Please check your connection.'**
+  String get failedToUploadImage;
 }
 
 class _AppLocalizationsDelegate

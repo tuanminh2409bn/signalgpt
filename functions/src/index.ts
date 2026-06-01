@@ -20,24 +20,12 @@ admin.initializeApp();
 const firestore = admin.firestore();
 
 const PRODUCT_PRICES: { [key: string]: number } = {
-  'gold_1_month': 11.99,
-  'gold_12_months': 89,
-  'gold_lifetime': 249,
-  'forex_1_month': 11.99,
-  'forex_12_months': 89,
-  'forex_lifetime': 249,
-  'crypto_1_month': 11.99,
-  'crypto_12_months': 89,
-  'crypto_lifetime': 249,
-  'gold.monthly': 11.99,
-  'gold.yearly': 89,
-  'gold.lifetime': 249,
-  'forex.monthly': 11.99,
-  'forex.yearly': 89,
-  'forex.lifetime': 249,
-  'crypto.monthly': 11.99,
-  'crypto.yearly': 89,
-  'crypto.lifetime': 249,
+  'elite_1_month': 11.99,
+  'elite_12_months': 89,
+  'elite_lifetime': 249,
+  'elite.monthly': 11.99,
+  'elite.yearly': 89,
+  'elite.lifetime': 249,
 };
 
 const APPLE_VERIFY_RECEIPT_URL_PRODUCTION = "https://buy.itunes.apple.com/verifyReceipt";
@@ -225,6 +213,9 @@ export const telegramWebhook = functions.https.onRequest(
         } else if (updateText.includes("exit at price") || updateText.includes("exit lệnh") || updateText.includes("exit tại giá")) {
             updatePayload = { ...updatePayload, status: "closed", result: "Exited by Admin", closedAt: admin.firestore.FieldValue.serverTimestamp() };
             logMessage = `Tín hiệu ${signalDoc.id} đã được đóng bởi admin.`;
+        } else if (updateText.includes("exit timeout") || updateText.includes("exit")) {
+            updatePayload = { ...updatePayload, status: "closed", result: "Exit", closedAt: admin.firestore.FieldValue.serverTimestamp() };
+            logMessage = `Tín hiệu ${signalDoc.id} đã Exit.`;
         } else if (updateText.includes("cancel:") || updateText.includes("bỏ tín hiệu") || updateText.includes("canceled")) {
             updatePayload = { ...updatePayload, status: "closed", result: "Cancelled", closedAt: admin.firestore.FieldValue.serverTimestamp() };
             logMessage = `Tín hiệu ${signalDoc.id} đã bị hủy.`;
@@ -487,9 +478,7 @@ export const verifyPurchase = onCall(
 
                     // Xác định loại gói dựa trên productId
                     let packageType: string | null = null;
-                    if (verifiedProductId.includes('gold')) packageType = 'gold';
-                    else if (verifiedProductId.includes('forex')) packageType = 'forex';
-                    else if (verifiedProductId.includes('crypto')) packageType = 'crypto';
+                    if (verifiedProductId.includes('elite')) packageType = 'elite';
 
                     const updateData: any = {
                         totalPaidAmount: admin.firestore.FieldValue.increment(amountPaid),
@@ -744,19 +733,8 @@ async function triggerNotifications(payload: any) {
   functions.logger.log("[triggerNotifications] Bắt đầu trigger với payload:", payload);
   const allEligibleUsersDocs: admin.firestore.DocumentSnapshot[] = [];
 
-  const eliteQuery = firestore.collection("users").where("subscriptionTier", "==", "elite").get();
-  const vipQuery = firestore.collection("users").where("subscriptionTier", "==", "vip").get();
-  const demoQuery = firestore.collection("users").where("subscriptionTier", "==", "demo").where("notificationCount", "<", 8).get();
-
-  const [eliteSnapshot, vipSnapshot, demoSnapshot] = await Promise.all([
-      eliteQuery,
-      vipQuery,
-      demoQuery
-  ]);
-
+  const eliteSnapshot = await firestore.collection("users").where("subscriptionTier", "==", "elite").get();
   eliteSnapshot.forEach((doc) => allEligibleUsersDocs.push(doc));
-  vipSnapshot.forEach((doc) => allEligibleUsersDocs.push(doc));
-  demoSnapshot.forEach((doc) => allEligibleUsersDocs.push(doc));
 
   if (allEligibleUsersDocs.length === 0) {
       functions.logger.warn("[triggerNotifications] Không có người dùng nào đủ điều kiện nhận thông báo.");
@@ -802,20 +780,6 @@ async function triggerNotifications(payload: any) {
   });
 
   await sendAndStoreNotifications(notificationEntries, payload);
-
-  const demoUsersToUpdate = usersData
-      .filter((user) => user.tier === "demo")
-      .map((user) => user.id);
-
-  if (demoUsersToUpdate.length > 0) {
-      const batchUpdate = firestore.batch();
-      demoUsersToUpdate.forEach((userId) => {
-          const userRef = firestore.collection("users").doc(userId);
-          batchUpdate.update(userRef, { notificationCount: admin.firestore.FieldValue.increment(1) });
-      });
-      await batchUpdate.commit();
-      functions.logger.log(`[triggerNotifications] Đã cập nhật notificationCount cho ${demoUsersToUpdate.length} user DEMO.`);
-  }
 }
 
 // --- HÀM TRIGGER CHÍNH (ĐÃ BỌC TRY-CATCH) ---

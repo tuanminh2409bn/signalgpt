@@ -141,8 +141,8 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
                       const Icon(Icons.history_toggle_off,
                           color: Color(0xFF0CA3ED), size: 64),
                       const SizedBox(height: 16),
-                      const Text(
-                        'Login to view history',
+                      Text(
+                        l10n.loginToViewHistory,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -151,8 +151,8 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
                         ),
                       ),
                       const SizedBox(height: 8),
-                      const Text(
-                        'Signal history is only available for logged-in users. Please login to track performance from Signal GPT.',
+                      Text(
+                        l10n.loginToViewHistoryDesc,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF636363),
@@ -174,8 +174,8 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        child: const Text('Login now',
-                            style: TextStyle(color: Colors.white)),
+                        child: Text(l10n.loginNow,
+                            style: const TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),
@@ -472,15 +472,20 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              value,
-              style: TextStyle(
-                color: isSelected ? const Color(0xFF276EFB) : const Color(0xFF686868),
-                fontSize: 14,
-                fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
-                fontFamily: 'Be Vietnam Pro',
+            Expanded(
+              child: Text(
+                value,
+                style: TextStyle(
+                  color: isSelected ? const Color(0xFF276EFB) : const Color(0xFF686868),
+                  fontSize: 14,
+                  fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
+                  fontFamily: 'Be Vietnam Pro',
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
+            const SizedBox(width: 8),
             Icon(Icons.keyboard_arrow_down, color: isSelected ? const Color(0xFF276EFB) : const Color(0xFF686868), size: 18),
           ],
         ),

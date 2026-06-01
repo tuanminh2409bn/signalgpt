@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "Cambiare la password",
+  "currentPassword": "password attuale",
+  "newPassword": "Nuova parola d'ordine",
+  "confirmNewPassword": "Conferma nuova password",
+  "passwordsDoNotMatch": "Le password non corrispondono",
+  "passwordUpdateSuccess": "Password aggiornata con successo",
+  "passwordUpdateFailed": "Impossibile aggiornare la password:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Password attuale errata",
   "signInRequired": "Accesso richiesto",
   "signInToExploreSignal": "Accedi per esplorare questo segnale di trading!",
   "activeMember": "Membro attivo",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "Accedi senza un account",
+  "save40Percent": "RISPARMIA IL 40%",
+  "save65Percent": "RISPARMIA IL 65%",
+  "disclaimer": "Disclaimer",
+  "disclaimerContent": "Le informazioni su signalgpt.ai sono solo a scopo di riferimento e di condivisione delle conoscenze e non costituiscono una consulenza di investimento. Gli utenti sono gli unici responsabili delle proprie decisioni commerciali.",
+  "openTradingAccount": "Apri un conto di trading",
+  "supportUs": "Sostienici",
+  "rateApp": "Valuta l'app",
+  "shareApp": "Condividi l'app",
+  "accountDetails": "Dettagli dell'account",
+  "language": "Lingua",
+  "termsOfUse": "Termini di utilizzo",
+  "accounts": "Conti",
+  "accessExchange": "Accedi allo scambio",
+  "onlineSupport": "Supporto in linea",
+  "selectLanguage": "Seleziona lingua",
+  "left": "Sinistra",
+  "upgradeToPro": "Passa a Pro",
+  "assetGold": "Oro",
+  "assetCrypto": "Criptovaluta",
+  "assetForex": "COPPIA DI VALUTE",
+  "tokens": "Gettoni",
+  "noForexAssets": "Nessun asset COPPIA VALUTE disponibile",
+  "openApp": "Apri{appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Stato",
+  "signalEntryLabel": "ISCRIZIONE",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Analizzare",
+  "useTokenToView": "Usa il token per visualizzare il segnale",
+  "viewNow": "Visualizza ora",
+  "waitingNewSignals": "In attesa di nuovi segnali...",
+  "failedUnlockSignal": "Impossibile sbloccare il segnale",
+  "notEnoughTokens": "Gettoni insufficienti",
+  "newSignalUploaded": "Nuovo segnale caricato",
+  "newSymbolSignalUploaded": "Il nuovo segnale{symbol}è ora caricato!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Aggiorna a Visualizza segnale",
+  "signalHistory": "Cronologia del segnale",
+  "allStatus": "TUTTO",
+  "selectDate": "Seleziona Data",
+  "noHistoryFound": "Nessuna cronologia trovata",
+  "filterDate": "Data",
+  "marketChart": "GRAFICO DEL MERCATO",
+  "analysisExplanation": "Analisi e spiegazione",
+  "noDetailedAnalysis": "Nessuna analisi dettagliata disponibile per questo segnale.",
+  "affiliateDashboard": "Dashboard di affiliazione",
+  "referralLink": "Collegamento di riferimento",
+  "copyLink": "Copia collegamento",
+  "referralCount": "Conteggio dei rinvii",
+  "totalEarnings": "Guadagni totali",
+  "pendingCommission": "Commissione pendente",
+  "latestReferrals": "Ultimi referral",
+  "noReferralsYet": "Nessun riferimento ancora.",
+  "affiliateRoleRequired": "È richiesto il ruolo di affiliato. Si prega di contattare l'amministratore.",
+  "affiliateCodeNotAssigned": "Codice affiliato non ancora assegnato. Si prega di contattare l'amministratore.",
+  "referralLinkDescription": "Utilizza questo collegamento per segnalare utenti e guadagnare una commissione a vita del 40%.",
+  "linkCopied": "Link copiato negli appunti!",
+  "enterReferralCode": "Inserisci il codice di riferimento",
+  "referralCode": "Codice di riferimento",
+  "submit": "Invia",
+  "invalidReferralCode": "Codice di riferimento non valido.",
+  "referralCodeApplied": "Il codice referral è stato applicato con successo!",
+  "priceLifetimeOld": "$ 712,00",
+  "loginNow": "Accedi ora",
+  "loginToViewSignals": "Accedi per visualizzare i segnali",
+  "loginToViewSignalsDesc": "Effettua il login per visualizzare i segnali GPT di Signal e accedere a tutte le funzionalità.",
+  "loginToViewHistory": "Accedi per visualizzare la cronologia",
+  "loginToViewHistoryDesc": "La cronologia dei segnali è disponibile solo per gli utenti che hanno effettuato l'accesso. Effettua l'accesso per monitorare le prestazioni di Signal GPT.",
+  "letsGetYouIn": "Ti facciamo entrare!",
+  "dontHaveAnAccount": "Non hai un account?",
+  "createAccount": "Creare un account",
+  "createYourAccount": "Crea il tuo account",
+  "login": "Login",
+  "rememberYourPassword": "Ricorda la tua password",
+  "signInWith": "Accedi con",
+  "getStarted": "Inizia",
+  "pleaseEnterEmail": "Per favore inserisci la tua email",
+  "pleaseEnterPassword": "Inserisci la tua password",
+  "pleaseEnterCurrentPassword": "Inserisci la tua password attuale",
+  "pleaseEnterNewPassword": "Inserisci la tua nuova password",
+  "pleaseConfirmNewPassword": "Per favore conferma la tua nuova password",
+  "pleaseConfirmPassword": "Per favore conferma la tua password",
+  "passwordMinLength": "La password deve contenere almeno 6 caratteri",
+  "savePassword": "Salva password",
+  "verifyYourEmail": "Verifica la tua email",
+  "pleaseEnterVerificationCode": "Inserisci il codice a 6 cifre\ninviato alla tua email",
+  "pleaseEnterAllDigits": "Inserisci tutte e 6 le cifre",
+  "invalidOrExpiredCode": "Codice di verifica non valido o scaduto",
+  "anErrorOccurred": "Si è verificato un errore. Per favore riprova.",
+  "verificationCodeResent": "Codice di verifica rinviato!",
+  "failedToResendCode": "Impossibile inviare nuovamente il codice:{error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Invia nuovamente il codice",
+  "verify": "Verificare",
+  "resetPassword": "Reimposta password",
+  "forgotPasswordInstructions": "Inserisci l'indirizzo email che hai utilizzato per registrare il tuo account\n\nInvieremo un codice di verifica al tuo indirizzo email.",
+  "sendButton": "Inviare",
+  "unableToReceiveEmail": "Se non riesci a ricevere l'e-mail, contattaci all'indirizzo email @gmail.com",
+  "verificationCodeSentTo": "Abbiamo inviato un codice di verifica a",
+  "passwordResetSuccessful": "Reimpostazione della password riuscita!",
+  "errorGeneric": "Errore:{message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "L'account esiste già",
+  "accountAlreadyExistsMessage": "L'e-mail{email}è già stata registrata nel sistema. Effettua il login o utilizza la funzione password dimenticata.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Errore di sistema:{error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Conferma password",
+  "referralCodeOptional": "Codice di riferimento (facoltativo)",
+  "accountDeletedSuccessfully": "L'account è stato eliminato definitivamente.",
+  "accountDeleteError": "Errore durante l'eliminazione dell'account:{error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Password modificata con successo!",
+  "errorChangingPassword": "Errore durante la modifica della password. Controlla la tua password attuale.",
+  "enableNotificationsHint": "Abilita le notifiche nelle impostazioni del dispositivo per visualizzare i nuovi aggiornamenti nella schermata di blocco",
+  "navigateToDeviceSettings": "Passare alle impostazioni del dispositivo.",
+  "turnOffAllNotifications": "Disattiva tutte le notifiche",
+  "pauseAllNotifications": "Metti in pausa tutte le notifiche",
+  "turnOnCryptoSignals": "Attiva i segnali crittografici",
+  "turnOnCurrencyPairSignals": "Attiva i segnali delle coppie di valute",
+  "turnOnGoldSignals": "Attiva i segnali dorati",
+  "currencyPairSignals": "Segnali di coppia di valute",
+  "termsOfUseContent": "Accedendo o utilizzando questa applicazione, l'utente accetta di rispettare i Termini di utilizzo. Questa app viene fornita solo a scopo informativo e non garantiamo l'accuratezza, la completezza o l'affidabilità di qualsiasi contenuto o segnale visualizzato. Sei l'unico responsabile del modo in cui utilizzi le informazioni fornite all'interno dell'app. Ci riserviamo il diritto di modificare, sospendere o interrompere il servizio in qualsiasi momento senza preavviso. L'uso continuato dell'app implica l'accettazione di eventuali termini aggiornati.",
+  "tradingHistoryTitle": "Storia del trading",
+  "tp1Live": "TP1 IN DIRETTA",
+  "tp2Live": "TP2 IN DIRETTA",
+  "tp3Live": "TP3 IN DIRETTA",
+  "stopLossTriggered": "Stop loss attivato",
+  "entryWithPrice": "Voce:{price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Segnale GPT",
+  "categoryGold": "ORO",
+  "categoryCrypto": "CRIPTO",
+  "subscriptionAutoRenewDisclaimer": "L'abbonamento si rinnoverà automaticamente a meno che non venga annullato almeno 24 ore prima della fine del periodo corrente. Puoi gestire e annullare i tuoi abbonamenti nelle impostazioni del tuo account App Store. Il piano a vita è un acquisto una tantum.",
+  "termsOfUseEula": "Condizioni d'uso (EULA)",
+  "productNotFound": "Prodotto non trovato:{productId}. Assicurati che sia configurato nei negozi.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ anno",
+  "tierDemoSignalQty": "7-8 al giorno",
+  "elite1Month": "ELITE 1 mese",
+  "elite12Months": "ELITE 12 mesi",
+  "statusPending": "In attesa di",
+  "statusFailed": "Fallito",
+  "yourReferralCode": "Il tuo codice di riferimento",
+  "referralCodeCopied": "Codice di riferimento copiato!",
+  "copyCode": "Copia codice",
+  "revenue": "Reddito",
+  "availableCommission": "Commissione disponibile",
+  "totalReceivedIncome": "Reddito totale ricevuto",
+  "depositAmount": "Deposito: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "Avviso importante",
+  "accountChangedPleaseRelogin": "Il tuo account è cambiato. Effettua nuovamente l'accesso.",
+  "iUnderstand": "Capisco",
+  "saveUpTo65Percent": "RISPARMIA FINO AL 65%",
+  "yearlyLifetimeDiscount": "Annuale -40% • A vita -65%",
+  "uploadFailedPermissionDenied": "Caricamento non riuscito: autorizzazione negata. Controlla le regole di archiviazione.",
+  "failedToUploadImage": "Impossibile caricare l'immagine. Per favore controlla la tua connessione."
 }

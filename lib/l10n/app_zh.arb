@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "更改密码",
+  "currentPassword": "当前密码",
+  "newPassword": "新密码",
+  "confirmNewPassword": "确认新密码",
+  "passwordsDoNotMatch": "密码不匹配",
+  "passwordUpdateSuccess": "密码更新成功",
+  "passwordUpdateFailed": "更新密码失败：{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "当前密码不正确",
   "signInRequired": "需要登录",
   "signInToExploreSignal": "登录以探索此交易信号！",
   "activeMember": "活跃会员",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "免登录体验",
+  "save40Percent": "节省 40%",
+  "save65Percent": "节省 65%",
+  "disclaimer": "免责声明",
+  "disclaimerContent": "signalgpt.ai 上的信息仅供参考和知识分享之用，不构成投资建议。用户对自己的交易决策承担全部责任。",
+  "openTradingAccount": "开设交易账户",
+  "supportUs": "支持我们",
+  "rateApp": "评价应用",
+  "shareApp": "分享应用",
+  "accountDetails": "账户详情",
+  "language": "语言",
+  "termsOfUse": "使用条款",
+  "accounts": "账户",
+  "accessExchange": "进入交易所",
+  "onlineSupport": "在线客服",
+  "selectLanguage": "选择语言",
+  "left": "剩余",
+  "upgradeToPro": "升级至 Pro",
+  "assetGold": "黄金",
+  "assetCrypto": "加密货币",
+  "assetForex": "货币对",
+  "tokens": "代币",
+  "noForexAssets": "暂无货币对资产",
+  "openApp": "打开 {appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "状态",
+  "signalEntryLabel": "入场",
+  "signalSlLabel": "止损",
+  "signalTp1Label": "止盈1",
+  "signalTp2Label": "止盈2",
+  "signalTp3Label": "止盈3",
+  "analyze": "分析",
+  "useTokenToView": "使用代币查看信号",
+  "viewNow": "立即查看",
+  "waitingNewSignals": "等待新信号...",
+  "failedUnlockSignal": "解锁信号失败",
+  "notEnoughTokens": "代币不足",
+  "newSignalUploaded": "新信号已发布",
+  "newSymbolSignalUploaded": "新的 {symbol} 信号已发布！",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "升级以查看信号",
+  "signalHistory": "信号历史",
+  "allStatus": "全部",
+  "selectDate": "选择日期",
+  "noHistoryFound": "未找到历史记录",
+  "filterDate": "日期",
+  "marketChart": "市场图表",
+  "analysisExplanation": "分析与解读",
+  "noDetailedAnalysis": "此信号暂无详细分析。",
+  "affiliateDashboard": "推广仪表盘",
+  "referralLink": "推荐链接",
+  "copyLink": "复制链接",
+  "referralCount": "推荐人数",
+  "totalEarnings": "总收益",
+  "pendingCommission": "待结算佣金",
+  "latestReferrals": "最新推荐",
+  "noReferralsYet": "暂无推荐记录。",
+  "affiliateRoleRequired": "需要推广权限。请联系管理员。",
+  "affiliateCodeNotAssigned": "推广代码尚未分配。请联系管理员。",
+  "referralLinkDescription": "使用此链接推荐用户，可获得 40% 终身佣金。",
+  "linkCopied": "链接已复制到剪贴板！",
+  "enterReferralCode": "输入推荐码",
+  "referralCode": "推荐码",
+  "submit": "提交",
+  "invalidReferralCode": "无效的推荐码。",
+  "referralCodeApplied": "推荐码应用成功！",
+  "priceLifetimeOld": "$712.00",
+  "loginNow": "立即登录",
+  "loginToViewSignals": "登录以查看信号",
+  "loginToViewSignalsDesc": "请登录以查看 Signal GPT 信号并访问所有功能。",
+  "loginToViewHistory": "登录以查看历史",
+  "loginToViewHistoryDesc": "信号历史仅对已登录用户开放。请登录以追踪 Signal GPT 的表现。",
+  "letsGetYouIn": "让我们开始吧！",
+  "dontHaveAnAccount": "还没有账户？",
+  "createAccount": "创建账户",
+  "createYourAccount": "创建您的账户",
+  "login": "登录",
+  "rememberYourPassword": "记住您的密码",
+  "signInWith": "通过以下方式登录",
+  "getStarted": "开始使用",
+  "pleaseEnterEmail": "请输入您的电子邮件",
+  "pleaseEnterPassword": "请输入您的密码",
+  "pleaseEnterCurrentPassword": "请输入您的当前密码",
+  "pleaseEnterNewPassword": "请输入您的新密码",
+  "pleaseConfirmNewPassword": "请确认您的新密码",
+  "pleaseConfirmPassword": "请确认您的密码",
+  "passwordMinLength": "密码至少需要 6 个字符",
+  "savePassword": "保存密码",
+  "verifyYourEmail": "验证您的电子邮件",
+  "pleaseEnterVerificationCode": "请输入发送到您邮箱的\\n6 位验证码",
+  "pleaseEnterAllDigits": "请输入完整的 6 位数字",
+  "invalidOrExpiredCode": "验证码无效或已过期",
+  "anErrorOccurred": "发生错误。请重试。",
+  "verificationCodeResent": "验证码已重新发送！",
+  "failedToResendCode": "重新发送验证码失败：{error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "重新发送验证码",
+  "verify": "验证",
+  "resetPassword": "重置密码",
+  "forgotPasswordInstructions": "请输入您注册时使用的电子邮件地址\\n\\n我们将向您的邮箱发送验证码。",
+  "sendButton": "发送",
+  "unableToReceiveEmail": "如果您无法收到邮件，请联系我们 email @gmail.com",
+  "verificationCodeSentTo": "我们已向以下邮箱发送验证码",
+  "passwordResetSuccessful": "密码重置成功！",
+  "errorGeneric": "错误：{message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "账户已存在",
+  "accountAlreadyExistsMessage": "电子邮件 {email} 已在系统中注册。请登录或使用忘记密码功能。",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "系统错误：{error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "确认密码",
+  "referralCodeOptional": "推荐码（可选）",
+  "accountDeletedSuccessfully": "账户已永久删除。",
+  "accountDeleteError": "删除账户错误：{error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "密码修改成功！",
+  "errorChangingPassword": "修改密码错误。请检查您的当前密码。",
+  "enableNotificationsHint": "在设备设置中启用通知，以便在锁屏上查看最新消息",
+  "navigateToDeviceSettings": "前往设备设置。",
+  "turnOffAllNotifications": "关闭所有通知",
+  "pauseAllNotifications": "暂停所有通知",
+  "turnOnCryptoSignals": "开启加密货币信号",
+  "turnOnCurrencyPairSignals": "开启货币对信号",
+  "turnOnGoldSignals": "开启黄金信号",
+  "currencyPairSignals": "货币对信号",
+  "termsOfUseContent": "访问或使用本应用即表示您同意遵守使用条款。本应用仅供信息参考之用，我们不保证所显示的任何内容或信号的准确性、完整性或可靠性。您对如何使用应用内提供的信息承担全部责任。我们保留随时修改、暂停或终止服务的权利，无需事先通知。继续使用本应用即表示接受任何更新的条款。",
+  "tradingHistoryTitle": "交易历史",
+  "tp1Live": "TP1 实时",
+  "tp2Live": "TP2 实时",
+  "tp3Live": "TP3 实时",
+  "stopLossTriggered": "触发止损",
+  "entryWithPrice": "入场：{price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Signal GPT",
+  "categoryGold": "黄金",
+  "categoryCrypto": "加密货币",
+  "subscriptionAutoRenewDisclaimer": "订阅将自动续费，除非在当前期限结束前至少 24 小时取消。您可以在 App Store 账户设置中管理和取消订阅。终身计划为一次性购买。",
+  "termsOfUseEula": "使用条款 (EULA)",
+  "productNotFound": "未找到产品：{productId}。请确保已在商店中配置。",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ 年",
+  "tierDemoSignalQty": "每天 7-8 个",
+  "elite1Month": "ELITE 1 个月",
+  "elite12Months": "ELITE 12 个月",
+  "statusPending": "待处理",
+  "statusFailed": "失败",
+  "yourReferralCode": "您的推荐码",
+  "referralCodeCopied": "推荐码已复制！",
+  "copyCode": "复制代码",
+  "revenue": "收入",
+  "availableCommission": "可用佣金",
+  "totalReceivedIncome": "已收到总收入",
+  "depositAmount": "入金：${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "重要通知",
+  "accountChangedPleaseRelogin": "您的账户信息已变更。请重新登录。",
+  "iUnderstand": "我知道了",
+  "saveUpTo65Percent": "最高节省 65%",
+  "yearlyLifetimeDiscount": "年付 -40% • 终身 -65%",
+  "uploadFailedPermissionDenied": "上传失败：权限被拒绝。请检查存储规则。",
+  "failedToUploadImage": "图片上传失败。请检查您的网络连接。"
 }

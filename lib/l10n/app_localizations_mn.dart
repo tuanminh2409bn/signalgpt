@@ -177,7 +177,7 @@ class AppLocalizationsMn extends AppLocalizations {
       'Бүрэн шинжилгээг харахын тулд сайжруулах';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'Бүртгэлгүйгээр нэвтэрнэ үү';
 
   @override
   String get welcomeTo => 'Тавтай морилно уу';
@@ -1125,10 +1125,10 @@ class AppLocalizationsMn extends AppLocalizations {
   String get save50Percent => '50% ХЭМНЭХ';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => '40% хэмнээрэй';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => '65% хэмнээрэй';
 
   @override
   String get tryDemo => 'Демо турших';
@@ -1360,30 +1360,30 @@ class AppLocalizationsMn extends AppLocalizations {
       'This feature is only for VIP customers, please upgrade to receive notifications.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Нууц үг солих';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'Одоогийн нууц үг';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Шинэ нууц үг';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Шинэ нууц үгээ баталгаажуулна уу';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'Нууц үг таарахгүй байна';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'Нууц үг амжилттай шинэчлэгдсэн';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'Нууц үгийг шинэчилж чадсангүй:$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'Одоогийн нууц үг буруу байна';
 
   @override
   String get signInRequired => 'Нэвтрэх шаардлагатай';
@@ -1509,76 +1509,76 @@ class AppLocalizationsMn extends AppLocalizations {
   String get popupLoginExplore => 'Log in to explore this trading bulletin!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => 'Татгалзах';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'signalgpt.ai дээрх мэдээлэл нь зөвхөн лавлагаа болон мэдлэг хуваалцах зорилготой бөгөөд хөрөнгө оруулалтын зөвлөгөө биш юм. Худалдааны шийдвэрээ хэрэглэгчид дангаараа хариуцна.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'Худалдааны данс нээх';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'Биднийг дэмжээрэй';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'Аппликейшнийг үнэлэх';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'Аппликешн хуваалцах';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'Дансны дэлгэрэнгүй мэдээлэл';
 
   @override
-  String get language => 'Language';
+  String get language => 'Хэл';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'Хэрэглэх нөхцөл';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'Дансууд';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'Бирж рүү нэвтрэх';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'Онлайн дэмжлэг';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Хэл сонгоно уу';
 
   @override
-  String get left => 'left';
+  String get left => 'зүүн';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Pro руу шинэчлэх';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'алт';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'Крипто';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'ВАЛЮТЫН ХОС';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Токенууд';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'CURRENCY PAIR хөрөнгө байхгүй';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return '$appNameнээх';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'Статус';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'ОРУУЛАЛТ';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1593,112 +1593,116 @@ class AppLocalizationsMn extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'Шинжилгээ хийх';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'Дохио харахын тулд Токеныг ашиглана уу';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'Одоо үзэх';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'Шинэ дохио хүлээж байна...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'Сигналын түгжээг тайлж чадсангүй';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'Токен хангалтгүй';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'Шинэ дохиог байршуулав';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'Шинэ$symbolдохиог одоо байршууллаа!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'Дохио харахын тулд шинэчилнэ үү';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'Дохионы түүх';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'БҮГД';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'Огноог сонгоно уу';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'Түүх олдсонгүй';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'Огноо';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'ЗАХ ЗЭЭЛИЙН График';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'Шинжилгээ, тайлбар';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'Энэ дохионы нарийвчилсан шинжилгээ байхгүй байна.';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'Түншлэлийн хяналтын самбар';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'Лавлах холбоос';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'Холбоосыг хуулах';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'Лавлагааны тоо';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'Нийт орлого';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'Хүлээгдэж буй комисс';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'Хамгийн сүүлийн үеийн лавлагаа';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'Одоогоор лавлагаа алга.';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'Түнш үүрэг шаардлагатай. Админтай холбогдоно уу.';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'Түншлэлийн кодыг хараахан өгөөгүй байна. Админтай холбогдоно уу.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'Энэ холбоосыг ашиглан хэрэглэгчдэд хандаж, насан туршийн 40% шимтгэлийг аваарай.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'Холбоосыг санах ой руу хуулсан!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'Лавлах кодыг оруулна уу';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'Лавлах код';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'Илгээх';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'Хүчингүй лавлах код.';
+
+  @override
+  String get referralCodeApplied => 'Лавлах кодыг амжилттай ашигласан!';
 
   @override
   String get getTheAppForBestExperience =>
@@ -1714,7 +1718,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get priceLifetime => '\$249.00';
 
   @override
-  String get priceLifetimeOld => '\$712.00';
+  String get priceLifetimeOld => '712.00 доллар';
 
   @override
   String get durationLifetime => 'Lifetime';
@@ -1724,4 +1728,294 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get lifetime => 'Lifetime';
+
+  @override
+  String get loginNow => 'Одоо нэвтэрнэ үү';
+
+  @override
+  String get loginToViewSignals => 'Дохио харахын тулд нэвтэрнэ үү';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Signal GPT дохиог үзэхийн тулд нэвтэрч, бүх функцэд хандана уу.';
+
+  @override
+  String get loginToViewHistory => 'Түүхийг үзэхийн тулд нэвтэрнэ үү';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'Дохионы түүх зөвхөн нэвтэрсэн хэрэглэгчдэд боломжтой. Signal GPT-ээс гүйцэтгэлийг хянахын тулд нэвтэрнэ үү.';
+
+  @override
+  String get letsGetYouIn => 'Таныг оруулцгаая!';
+
+  @override
+  String get dontHaveAnAccount => 'Данс байхгүй юу?';
+
+  @override
+  String get createAccount => 'Бүртгэл үүсгэх';
+
+  @override
+  String get createYourAccount => 'Бүртгэлээ үүсгэ';
+
+  @override
+  String get login => 'Нэвтрэх';
+
+  @override
+  String get rememberYourPassword => 'Нууц үгээ санаарай';
+
+  @override
+  String get signInWith => '-ээр нэвтэрнэ үү';
+
+  @override
+  String get getStarted => 'Эхлэх';
+
+  @override
+  String get pleaseEnterEmail => 'Имэйлээ оруулна уу';
+
+  @override
+  String get pleaseEnterPassword => 'Нууц үгээ оруулна уу';
+
+  @override
+  String get pleaseEnterCurrentPassword => 'Одоогийн нууц үгээ оруулна уу';
+
+  @override
+  String get pleaseEnterNewPassword => 'Шинэ нууц үгээ оруулна уу';
+
+  @override
+  String get pleaseConfirmNewPassword => 'Шинэ нууц үгээ баталгаажуулна уу';
+
+  @override
+  String get pleaseConfirmPassword => 'Нууц үгээ баталгаажуулна уу';
+
+  @override
+  String get passwordMinLength => 'Нууц үг дор хаяж 6 тэмдэгттэй байх ёстой';
+
+  @override
+  String get savePassword => 'Нууц үгээ хадгалах';
+
+  @override
+  String get verifyYourEmail => 'Имэйлээ баталгаажуулна уу';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      '6 оронтой кодыг оруулна уу\nтаны имэйл рүү илгээсэн';
+
+  @override
+  String get pleaseEnterAllDigits => 'Бүх 6 оронтой тоог оруулна уу';
+
+  @override
+  String get invalidOrExpiredCode =>
+      'Баталгаажуулах код хүчингүй эсвэл хугацаа нь дууссан';
+
+  @override
+  String get anErrorOccurred => 'Алдаа гарлаа. Дахин оролдоно уу.';
+
+  @override
+  String get verificationCodeResent => 'Баталгаажуулах кодыг дахин илгээсэн!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Кодыг дахин илгээж чадсангүй:$error';
+  }
+
+  @override
+  String get resendCode => 'Кодыг дахин илгээх';
+
+  @override
+  String get verify => 'Баталгаажуулах';
+
+  @override
+  String get resetPassword => 'Нууц үгээ дахин тохируулах';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Бүртгэлээ бүртгүүлэхэд ашигласан имэйл хаягаа оруулна уу\n\nБид таны имэйл хаяг руу баталгаажуулах код илгээх болно.';
+
+  @override
+  String get sendButton => 'Илгээх';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Хэрэв та имэйл хүлээн авах боломжгүй бол бидэнтэй @gmail.com имэйлээр холбогдоно уу';
+
+  @override
+  String get verificationCodeSentTo => 'Бид баталгаажуулах кодыг илгээсэн';
+
+  @override
+  String get passwordResetSuccessful => 'Нууц үг шинэчлэх амжилттай!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Алдаа:$message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'Бүртгэл аль хэдийн байна';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'Имэйл$emailсистемд аль хэдийн бүртгэгдсэн байна. Нэвтрэх эсвэл нууц үгээ мартсан функцийг ашиглана уу.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Системийн алдаа:$error';
+  }
+
+  @override
+  String get confirmPassword => 'Нууц үгээ баталгаажуулна уу';
+
+  @override
+  String get referralCodeOptional => 'Лавлах код (заавал биш)';
+
+  @override
+  String get accountDeletedSuccessfully => 'Бүртгэлийг бүрмөсөн устгасан.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Бүртгэлийг устгахад алдаа гарлаа:$error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'Нууц үг амжилттай өөрчлөгдсөн!';
+
+  @override
+  String get errorChangingPassword =>
+      'Нууц үг солиход алдаа гарлаа. Одоогийн нууц үгээ шалгана уу.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Түгжигдсэн дэлгэц дээр шинэ шинэчлэлтүүдийг үзэхийн тулд төхөөрөмжийн тохиргоонд мэдэгдлийг идэвхжүүлнэ үү';
+
+  @override
+  String get navigateToDeviceSettings => 'Төхөөрөмжийн тохиргоо руу очно уу.';
+
+  @override
+  String get turnOffAllNotifications => 'Бүх мэдэгдлийг унтраа';
+
+  @override
+  String get pauseAllNotifications => 'Бүх мэдэгдлийг түр зогсоох';
+
+  @override
+  String get turnOnCryptoSignals => 'Крипто дохиог асаана уу';
+
+  @override
+  String get turnOnCurrencyPairSignals => 'Валютын хос дохиог асаана уу';
+
+  @override
+  String get turnOnGoldSignals => 'Алтан дохиог асаана уу';
+
+  @override
+  String get currencyPairSignals => 'Валютын хос дохио';
+
+  @override
+  String get termsOfUseContent =>
+      'Энэ аппликейшнд нэвтэрч эсвэл ашигласнаар та ашиглалтын нөхцлийг дагаж мөрдөхийг зөвшөөрч байна. Энэхүү програм нь зөвхөн мэдээллийн зорилгоор өгөгдсөн бөгөөд бид харуулсан контент эсвэл дохионы үнэн зөв, бүрэн бүтэн байдал, найдвартай байдалд баталгаа өгөхгүй. Та апп дотор өгөгдсөн мэдээллийг хэрхэн ашиглахыг дангаараа хариуцна. Бид урьдчилан мэдэгдэлгүйгээр хүссэн үедээ үйлчилгээг өөрчлөх, түдгэлзүүлэх, цуцлах эрхтэй. Аппликейшнийг үргэлжлүүлэн ашиглах нь шинэчлэгдсэн нөхцөлийг хүлээн зөвшөөрч байна.';
+
+  @override
+  String get tradingHistoryTitle => 'Худалдааны түүх';
+
+  @override
+  String get tp1Live => 'TP1 ШУУД';
+
+  @override
+  String get tp2Live => 'TP2 ШУУД';
+
+  @override
+  String get tp3Live => 'TP3 ШУУД';
+
+  @override
+  String get stopLossTriggered => 'Алдагдлыг зогсоох';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Бүртгэл:$price';
+  }
+
+  @override
+  String get signalGptTitle => 'GPT дохио';
+
+  @override
+  String get categoryGold => 'АЛТ';
+
+  @override
+  String get categoryCrypto => 'CRYPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'Тухайн хугацаа дуусахаас дор хаяж 24 цагийн өмнө цуцлаагүй тохиолдолд захиалга автоматаар шинэчлэгдэнэ. Та өөрийн App Store бүртгэлийн тохиргооноос захиалгаа удирдах, цуцлах боломжтой. Насан туршийн төлөвлөгөө нь нэг удаагийн худалдан авалт юм.';
+
+  @override
+  String get termsOfUseEula => 'Ашиглах нөхцөл (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Бүтээгдэхүүн олдсонгүй: $productId. Дэлгүүрт тохируулагдсан эсэхийг шалгана уу.';
+  }
+
+  @override
+  String get perYear => '/ жил';
+
+  @override
+  String get tierDemoSignalQty => 'Өдөрт 7-8';
+
+  @override
+  String get elite1Month => 'ЭЛИТ 1 сар';
+
+  @override
+  String get elite12Months => 'ЭЛИТ 12 сар';
+
+  @override
+  String get statusPending => 'Хүлээгдэж байна';
+
+  @override
+  String get statusFailed => 'Амжилтгүй';
+
+  @override
+  String get yourReferralCode => 'Таны лавлагааны код';
+
+  @override
+  String get referralCodeCopied => 'Лавлах кодыг хуулсан!';
+
+  @override
+  String get copyCode => 'Код хуулах';
+
+  @override
+  String get revenue => 'Орлого';
+
+  @override
+  String get availableCommission => 'Боломжтой комисс';
+
+  @override
+  String get totalReceivedIncome => 'Хүлээн авсан нийт орлого';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Хадгаламж: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Чухал мэдэгдэл';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Таны бүртгэл өөрчлөгдсөн байна. Дахин нэвтэрнэ үү.';
+
+  @override
+  String get iUnderstand => 'Би ойлгож байна';
+
+  @override
+  String get saveUpTo65Percent => '65% ХҮРТЭЛ ХЯНАЛТАЙ';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Жил бүр -40% • Насан туршдаа -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Байршуулж чадсангүй: Зөвшөөрөл татгалзсан. Хадгалах дүрмийг шалгана уу.';
+
+  @override
+  String get failedToUploadImage =>
+      'Зургийг байршуулж чадсангүй. Холболтоо шалгана уу.';
 }

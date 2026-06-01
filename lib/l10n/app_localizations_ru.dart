@@ -177,7 +177,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Обновите, чтобы просмотреть полный анализ';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'Войти без аккаунта';
 
   @override
   String get welcomeTo => 'Добро пожаловать в';
@@ -561,7 +561,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noNotificationsYet => 'Уведомлений пока нет.';
 
   @override
-  String get markAllRead => 'Mark all as read';
+  String get markAllRead => 'Отметить все как прочитанное';
 
   @override
   String daysAgo(int count) {
@@ -1122,10 +1122,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get save50Percent => 'СЭКОНОМЬТЕ 50%';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => 'СЭКОНОМЬТЕ 40%';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => 'СЭКОНОМЬТЕ 65%';
 
   @override
   String get tryDemo => 'Попробовать демо';
@@ -1302,85 +1302,85 @@ class AppLocalizationsRu extends AppLocalizations {
   String get leaveMessagePart2 => ' Signal GPT для быстрой поддержки.';
 
   @override
-  String get currentPlan => 'Current Plan';
+  String get currentPlan => 'Текущий план';
 
   @override
-  String get standard => 'STANDARD';
+  String get standard => 'СТАНДАРТ';
 
   @override
-  String get availableTokens => 'Available Tokens';
+  String get availableTokens => 'Доступные токены';
 
   @override
-  String get subscriptions => 'Subscriptions';
+  String get subscriptions => 'Подписки';
 
   @override
-  String get usesTokenPerView => 'Uses 1 Token per view';
+  String get usesTokenPerView => 'Используется 1 токен за просмотр';
 
   @override
-  String get unlimitedAccess => 'Unlimited Access';
+  String get unlimitedAccess => 'Неограниченный доступ';
 
   @override
-  String get activeElite => 'Active (Elite)';
+  String get activeElite => 'Активный (Elite)';
 
   @override
-  String get active => 'Active';
+  String get active => 'Активный';
 
   @override
-  String get inactive => 'Inactive';
+  String get inactive => 'Неактивный';
 
   @override
-  String get transactionHistory => 'Transaction History';
+  String get transactionHistory => 'История транзакций';
 
   @override
-  String get noTransactionsFound => 'No transactions found.';
+  String get noTransactionsFound => 'Транзакции не найдены.';
 
   @override
-  String get colDate => 'Date';
+  String get colDate => 'Дата';
 
   @override
-  String get colProduct => 'Product';
+  String get colProduct => 'Продукт';
 
   @override
-  String get colAmount => 'Amount';
+  String get colAmount => 'Сумма';
 
   @override
-  String get colMethod => 'Method';
+  String get colMethod => 'Метод';
 
   @override
-  String get colStatus => 'Status';
+  String get colStatus => 'Статус';
 
   @override
-  String get statusSuccess => 'Success';
+  String get statusSuccess => 'Успешно';
 
   @override
   String get featureForVipOnly =>
-      'This feature is only for VIP customers, please upgrade to receive notifications.';
+      'Эта функция доступна только для VIP-клиентов, пожалуйста, обновите, чтобы получать уведомления.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Изменить пароль';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'Текущий пароль';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Новый пароль';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Подтвердите новый пароль';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'Пароли не совпадают';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'Пароль успешно обновлен';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'Не удалось обновить пароль: $error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'Неверный текущий пароль';
 
   @override
   String get signInRequired => 'Требуется вход';
@@ -1420,13 +1420,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get lossRate => 'Уровень убытков';
 
   @override
-  String get signalProgress => 'Signal Progress';
+  String get signalProgress => 'Прогресс сигнала';
 
   @override
-  String get statusHistory => 'Status History';
+  String get statusHistory => 'История статусов';
 
   @override
-  String get signalCreated => 'Signal Created';
+  String get signalCreated => 'Сигнал создан';
 
   @override
   String get signalMatched => 'Сигнал совпал';
@@ -1473,109 +1473,110 @@ class AppLocalizationsRu extends AppLocalizations {
   String get pageOf => '/';
 
   @override
-  String get keyFindings => 'Key Findings';
+  String get keyFindings => 'Ключевые выводы';
 
   @override
-  String get filterStatusLabel => 'Status';
+  String get filterStatusLabel => 'Статус';
 
   @override
-  String get filterStatusAll => 'All Status';
+  String get filterStatusAll => 'Все статусы';
 
   @override
-  String get filterStatusTp1 => 'TP1 HIT';
+  String get filterStatusTp1 => 'TP1 ДОСТИГНУТ';
 
   @override
-  String get filterStatusTp2 => 'TP2 HIT';
+  String get filterStatusTp2 => 'TP2 ДОСТИГНУТ';
 
   @override
-  String get filterStatusTp3 => 'TP3 HIT';
+  String get filterStatusTp3 => 'TP3 ДОСТИГНУТ';
 
   @override
-  String get filterStatusSl => 'SL HIT';
+  String get filterStatusSl => 'SL ДОСТИГНУТ';
 
   @override
-  String get filterStatusCancelled => 'CANCELLED';
+  String get filterStatusCancelled => 'ОТМЕНЕНО';
 
   @override
-  String get filterStatusExitByAdmin => 'EXIT BY ADMIN';
+  String get filterStatusExitByAdmin => 'ВЫХОД АДМИНОМ';
 
   @override
-  String get popupMasterMarket => 'Do you want to master the market?';
+  String get popupMasterMarket => 'Хотите освоить рынок?';
 
   @override
-  String get popupLoginExplore => 'Log in to explore this trading bulletin!';
+  String get popupLoginExplore =>
+      'Войдите, чтобы изучить этот торговый бюллетень!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => 'Отказ от ответственности';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'Информация на signalgpt.ai предназначена исключительно для справочных и образовательных целей и не является инвестиционной рекомендацией. Пользователи несут полную ответственность за свои торговые решения.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'Открыть торговый счет';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'Поддержите нас';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'Оценить приложение';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'Поделиться приложением';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'Данные аккаунта';
 
   @override
-  String get language => 'Language';
+  String get language => 'Язык';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'Условия использования';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'Аккаунты';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'Перейти на биржу';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'Онлайн-поддержка';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Выбрать язык';
 
   @override
-  String get left => 'left';
+  String get left => 'осталось';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Обновить до Pro';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'Золото';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'Крипто';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'ВАЛЮТНЫЕ ПАРЫ';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Токены';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'Нет доступных активов валютных пар';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return 'Открыть $appName';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'Статус';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'ВХОД';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1590,122 +1591,126 @@ class AppLocalizationsRu extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'Анализировать';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'Используйте токен для просмотра сигнала';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'Смотреть сейчас';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'Ожидание новых сигналов...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'Не удалось разблокировать сигнал';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'Недостаточно токенов';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'Загружен новый сигнал';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'Новый сигнал $symbol загружен!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'Обновите для просмотра сигнала';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'История сигналов';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'ВСЕ';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'Выбрать дату';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'История не найдена';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'Дата';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'РЫНОЧНЫЙ ГРАФИК';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'Анализ и объяснение';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'Подробный анализ для этого сигнала недоступен.';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'Панель партнера';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'Реферальная ссылка';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'Скопировать ссылку';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'Количество рефералов';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'Общий доход';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'Ожидающая комиссия';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'Последние рефералы';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'Рефералов пока нет.';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'Требуется роль партнера. Пожалуйста, свяжитесь с администратором.';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'Партнерский код еще не назначен. Пожалуйста, свяжитесь с администратором.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'Используйте эту ссылку для привлечения пользователей и получения 40% пожизненной комиссии.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'Ссылка скопирована в буфер обмена!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'Введите реферальный код';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'Реферальный код';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'Отправить';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'Неверный реферальный код.';
+
+  @override
+  String get referralCodeApplied => 'Реферальный код успешно применен!';
 
   @override
   String get getTheAppForBestExperience =>
-      'Get the app for the best experience';
+      'Скачайте приложение для лучшего опыта';
 
   @override
-  String get installApp => 'Install App';
+  String get installApp => 'Установить приложение';
 
   @override
-  String get reviews => 'reviews';
+  String get reviews => 'отзывы';
 
   @override
   String get priceLifetime => '\$249.00';
@@ -1714,11 +1719,302 @@ class AppLocalizationsRu extends AppLocalizations {
   String get priceLifetimeOld => '\$712.00';
 
   @override
-  String get durationLifetime => 'Lifetime';
+  String get durationLifetime => 'Пожизненно';
 
   @override
-  String get orderInfoLifetime => 'Payment for Elite Lifetime package';
+  String get orderInfoLifetime => 'Оплата пакета Elite Пожизненно';
 
   @override
-  String get lifetime => 'Lifetime';
+  String get lifetime => 'Пожизненно';
+
+  @override
+  String get loginNow => 'Войти сейчас';
+
+  @override
+  String get loginToViewSignals => 'Войдите для просмотра сигналов';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Пожалуйста, войдите для просмотра сигналов Signal GPT и доступа ко всем функциям.';
+
+  @override
+  String get loginToViewHistory => 'Войдите для просмотра истории';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'История сигналов доступна только для авторизованных пользователей. Пожалуйста, войдите, чтобы отслеживать эффективность Signal GPT.';
+
+  @override
+  String get letsGetYouIn => 'Давайте войдем!';
+
+  @override
+  String get dontHaveAnAccount => 'Нет аккаунта? ';
+
+  @override
+  String get createAccount => 'Создать аккаунт';
+
+  @override
+  String get createYourAccount => 'Создайте свой аккаунт';
+
+  @override
+  String get login => 'Вход';
+
+  @override
+  String get rememberYourPassword => 'Запомните свой пароль';
+
+  @override
+  String get signInWith => 'Войти через';
+
+  @override
+  String get getStarted => 'Начать';
+
+  @override
+  String get pleaseEnterEmail => 'Пожалуйста, введите ваш email';
+
+  @override
+  String get pleaseEnterPassword => 'Пожалуйста, введите ваш пароль';
+
+  @override
+  String get pleaseEnterCurrentPassword => 'Пожалуйста, введите текущий пароль';
+
+  @override
+  String get pleaseEnterNewPassword => 'Пожалуйста, введите новый пароль';
+
+  @override
+  String get pleaseConfirmNewPassword => 'Пожалуйста, подтвердите новый пароль';
+
+  @override
+  String get pleaseConfirmPassword => 'Пожалуйста, подтвердите пароль';
+
+  @override
+  String get passwordMinLength => 'Пароль должен содержать не менее 6 символов';
+
+  @override
+  String get savePassword => 'Сохранить пароль';
+
+  @override
+  String get verifyYourEmail => 'Подтвердите ваш email';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'Пожалуйста, введите 6-значный код,\nотправленный на ваш email';
+
+  @override
+  String get pleaseEnterAllDigits => 'Пожалуйста, введите все 6 цифр';
+
+  @override
+  String get invalidOrExpiredCode =>
+      'Неверный или просроченный код подтверждения';
+
+  @override
+  String get anErrorOccurred =>
+      'Произошла ошибка. Пожалуйста, попробуйте снова.';
+
+  @override
+  String get verificationCodeResent => 'Код подтверждения отправлен повторно!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Не удалось повторно отправить код: $error';
+  }
+
+  @override
+  String get resendCode => 'Отправить код повторно';
+
+  @override
+  String get verify => 'Подтвердить';
+
+  @override
+  String get resetPassword => 'Сбросить пароль';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Пожалуйста, введите адрес электронной почты, который вы использовали при регистрации\n\nМы отправим код подтверждения на ваш email.';
+
+  @override
+  String get sendButton => 'Отправить';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Если вы не можете получить письмо, пожалуйста, свяжитесь с нами по email @gmail.com';
+
+  @override
+  String get verificationCodeSentTo => 'Мы отправили код подтверждения на';
+
+  @override
+  String get passwordResetSuccessful => 'Пароль успешно сброшен!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Ошибка: $message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'Аккаунт уже существует';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'Email $email уже зарегистрирован в системе. Пожалуйста, войдите или воспользуйтесь функцией восстановления пароля.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Системная ошибка: $error';
+  }
+
+  @override
+  String get confirmPassword => 'Подтвердите пароль';
+
+  @override
+  String get referralCodeOptional => 'Реферальный код (необязательно)';
+
+  @override
+  String get accountDeletedSuccessfully => 'Аккаунт был безвозвратно удален.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Ошибка удаления аккаунта: $error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'Пароль успешно изменен!';
+
+  @override
+  String get errorChangingPassword =>
+      'Ошибка смены пароля. Пожалуйста, проверьте текущий пароль.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Включите уведомления в настройках устройства, чтобы видеть новые обновления на экране блокировки';
+
+  @override
+  String get navigateToDeviceSettings => 'Перейти в настройки устройства.';
+
+  @override
+  String get turnOffAllNotifications => 'Отключить все уведомления';
+
+  @override
+  String get pauseAllNotifications => 'Приостановить все уведомления';
+
+  @override
+  String get turnOnCryptoSignals => 'Включить крипто-сигналы';
+
+  @override
+  String get turnOnCurrencyPairSignals => 'Включить сигналы валютных пар';
+
+  @override
+  String get turnOnGoldSignals => 'Включить сигналы золота';
+
+  @override
+  String get currencyPairSignals => 'Сигналы валютных пар';
+
+  @override
+  String get termsOfUseContent =>
+      'Получая доступ к этому приложению или используя его, вы соглашаетесь соблюдать Условия использования. Это приложение предоставляется исключительно в информационных целях, и мы не гарантируем точность, полноту или надежность какого-либо контента или отображаемых сигналов. Вы несете полную ответственность за использование информации, предоставленной в приложении. Мы оставляем за собой право изменять, приостанавливать или прекращать работу сервиса в любое время без предварительного уведомления. Продолжение использования приложения означает принятие любых обновленных условий.';
+
+  @override
+  String get tradingHistoryTitle => 'История торговли';
+
+  @override
+  String get tp1Live => 'TP1 LIVE';
+
+  @override
+  String get tp2Live => 'TP2 LIVE';
+
+  @override
+  String get tp3Live => 'TP3 LIVE';
+
+  @override
+  String get stopLossTriggered => 'Сработал стоп-лосс';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Вход: $price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signal GPT';
+
+  @override
+  String get categoryGold => 'ЗОЛОТО';
+
+  @override
+  String get categoryCrypto => 'КРИПТО';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'Подписка автоматически продлевается, если не отменена как минимум за 24 часа до окончания текущего периода. Вы можете управлять и отменять подписки в настройках вашего аккаунта App Store. Пожизненный план — это единоразовая покупка.';
+
+  @override
+  String get termsOfUseEula => 'Условия использования (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Продукт не найден: $productId. Пожалуйста, убедитесь, что он настроен в магазинах.';
+  }
+
+  @override
+  String get perYear => '/ год';
+
+  @override
+  String get tierDemoSignalQty => '7-8 в день';
+
+  @override
+  String get elite1Month => 'ELITE 1 месяц';
+
+  @override
+  String get elite12Months => 'ELITE 12 месяцев';
+
+  @override
+  String get statusPending => 'В ожидании';
+
+  @override
+  String get statusFailed => 'Неудачно';
+
+  @override
+  String get yourReferralCode => 'Ваш реферальный код';
+
+  @override
+  String get referralCodeCopied => 'Реферальный код скопирован!';
+
+  @override
+  String get copyCode => 'Скопировать код';
+
+  @override
+  String get revenue => 'Доход';
+
+  @override
+  String get availableCommission => 'Доступная комиссия';
+
+  @override
+  String get totalReceivedIncome => 'Общий полученный доход';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Депозит: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Важное уведомление';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Ваш аккаунт был изменен. Пожалуйста, войдите снова.';
+
+  @override
+  String get iUnderstand => 'Я понимаю';
+
+  @override
+  String get saveUpTo65Percent => 'СЭКОНОМЬТЕ ДО 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Годовой -40% • Пожизненный -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Загрузка не удалась: Доступ запрещен. Проверьте правила хранилища.';
+
+  @override
+  String get failedToUploadImage =>
+      'Не удалось загрузить изображение. Пожалуйста, проверьте подключение.';
 }

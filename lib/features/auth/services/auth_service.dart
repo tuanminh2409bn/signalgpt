@@ -497,38 +497,63 @@ class AuthService {
     final user = _firebaseAuth.currentUser;
     stopListeningForSessionChanges();
     
+    final uid = user?.uid;
+    
+    if (uid != null) {
+      unawaited(_cleanupSessionAndOAuth(uid));
+    } else {
+      unawaited(_cleanupOAuthOnly());
+    }
+
+    await _firebaseAuth.signOut();
+    print("Đã đăng xuất khỏi Firebase lập tức");
+  }
+
+  Future<void> _cleanupSessionAndOAuth(String uid) async {
     try {
-      if (user != null) {
-        // 1. Xóa FCM token trong Firestore để server ngừng gửi thông báo cho thiết bị này
-        final deviceId = await DeviceInfoService.getDeviceId();
-        final userDocRef = _firestore.collection('users').doc(user.uid);
+      // 1. Xóa FCM token trong Firestore để server ngừng gửi thông báo cho thiết bị này
+      final deviceId = await DeviceInfoService.getDeviceId();
+      final userDocRef = _firestore.collection('users').doc(uid);
+      
+      // Kiểm tra xem session hiện tại có khớp với thiết bị này không trước khi xóa
+      final doc = await userDocRef.get();
+      if (doc.exists) {
+        final data = doc.data()!;
+        final sessionKey = kIsWeb ? 'activeSessionWeb' : 'activeSessionMobile';
+        final sessionData = data[sessionKey] as Map<String, dynamic>?;
         
-        // Kiểm tra xem session hiện tại có khớp với thiết bị này không trước khi xóa
-        final doc = await userDocRef.get();
-        if (doc.exists) {
-          final data = doc.data()!;
-          final sessionKey = kIsWeb ? 'activeSessionWeb' : 'activeSessionMobile';
-          final sessionData = data[sessionKey] as Map<String, dynamic>?;
-          
-          if (sessionData != null && sessionData['deviceId'] == deviceId) {
-            await userDocRef.update({sessionKey: FieldValue.delete()});
-            print("Đã xóa session thông báo trên Firestore");
-          }
+        if (sessionData != null && sessionData['deviceId'] == deviceId) {
+          await userDocRef.update({sessionKey: FieldValue.delete()});
+          print("Đã xóa session thông báo trên Firestore chạy ngầm");
         }
       }
+    } catch (e) {
+      print("Lỗi khi xóa session trên Firestore chạy ngầm: $e");
+    }
 
+    try {
       // 2. Dọn dẹp token và hủy đăng ký topics trên thiết bị
       await NotificationService().cleanupNotificationData();
+    } catch (e) {
+      print("Lỗi khi dọn dẹp NotificationService chạy ngầm: $e");
+    }
 
+    await _cleanupOAuthOnly();
+  }
+
+  Future<void> _cleanupOAuthOnly() async {
+    try {
       if (!kIsWeb) {
         await FacebookAuth.instance.logOut();
       }
+    } catch (e) {
+      print("Lỗi khi FacebookAuth logOut chạy ngầm: $e");
+    }
+    
+    try {
       await GoogleSignIn().signOut();
     } catch (e) {
-      print("Lỗi khi đăng xuất dọn dẹp dữ liệu: $e");
-    } finally {
-      await _firebaseAuth.signOut();
-      print("Đã đăng xuất khỏi Firebase hoàn tất");
+      print("Lỗi khi GoogleSignIn signOut chạy ngầm: $e");
     }
   }
 

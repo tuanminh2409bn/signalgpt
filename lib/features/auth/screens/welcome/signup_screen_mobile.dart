@@ -7,6 +7,7 @@ import 'package:minvest_forex_app/features/auth/screens/welcome/email_verificati
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
 import 'package:minvest_forex_app/core/services/affiliate_tracker.dart';
 import 'package:minvest_forex_app/core/services/affiliate_tracker_stub.dart';
+import 'package:minvest_forex_app/core/utils/error_utils.dart';
 
 class SignupScreenMobile extends StatefulWidget {
   const SignupScreenMobile({super.key});
@@ -44,15 +45,15 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
           borderRadius: BorderRadius.circular(16),
           side: const BorderSide(color: Colors.white10),
         ),
-        title: const Text('Tài khoản đã tồn tại', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: Text(l10n.accountAlreadyExists, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         content: Text(
-          'Email $email đã được đăng ký trong hệ thống. Vui lòng đăng nhập hoặc sử dụng tính năng quên mật khẩu.',
+          l10n.accountAlreadyExistsMessage(email),
           style: const TextStyle(color: Colors.white70),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Đóng', style: TextStyle(color: Color(0xFF276EFB))),
+            child: Text(l10n.close, style: const TextStyle(color: Color(0xFF276EFB))),
           ),
         ],
       ),
@@ -60,6 +61,7 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
   }
 
   Future<void> _handleSignup() async {
+    final l10n = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLocalLoading = true);
@@ -93,13 +95,14 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
     } catch (e) {
       debugPrint('Error sending code: $e');
       if (mounted) {
-        final errorString = e.toString().toLowerCase();
-        if (errorString.contains('already-exists') || errorString.contains('đã được đăng ký')) {
+        final friendlyMsg = ErrorUtils.getFriendlyErrorMessage(e);
+        final errorString = friendlyMsg.toLowerCase();
+        if (errorString.contains('already-exists') || errorString.contains('email-already-in-use') || errorString.contains('đã được đăng ký')) {
           _showAccountExistsDialog(_emailController.text.trim());
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Lỗi hệ thống: $e'),
+              content: Text(friendlyMsg),
               backgroundColor: Colors.red,
             ),
           );
@@ -112,6 +115,7 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.black,
       body: BlocListener<AuthBloc, AuthState>(
@@ -150,10 +154,10 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  const FittedBox(
+                  FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      'Create your account',
+                      l10n.createYourAccount,
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       softWrap: false,
@@ -170,11 +174,11 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                   _buildGlassTextField(
                     key: const ValueKey('signup_email_field'),
                     controller: _emailController,
-                    hintText: 'Email',
+                    hintText: l10n.email,
                     icon: Icons.email_outlined,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
-                      if (value == null || value.isEmpty) return 'Please enter your email';
+                      if (value == null || value.isEmpty) return l10n.pleaseEnterEmail;
                       return null;
                     },
                   ),
@@ -185,7 +189,7 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                   _buildGlassTextField(
                     key: const ValueKey('signup_password_field'),
                     controller: _passwordController,
-                    hintText: 'Password',
+                    hintText: l10n.password,
                     icon: Icons.lock_outline,
                     obscureText: _obscurePassword,
                     suffixIcon: GestureDetector(
@@ -197,8 +201,8 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                       ),
                     ),
                     validator: (value) {
-                      if (value == null || value.isEmpty) return 'Please enter your password';
-                      if (value.length < 6) return 'Password must be at least 6 characters';
+                      if (value == null || value.isEmpty) return l10n.pleaseEnterPassword;
+                      if (value.length < 6) return l10n.passwordMinLength;
                       return null;
                     },
                   ),
@@ -209,7 +213,7 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                   _buildGlassTextField(
                     key: const ValueKey('signup_confirm_password_field'),
                     controller: _confirmPasswordController,
-                    hintText: 'Confirm Password',
+                    hintText: l10n.confirmPassword,
                     icon: Icons.lock_outline,
                     obscureText: _obscureConfirmPassword,
                     suffixIcon: GestureDetector(
@@ -221,8 +225,8 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                       ),
                     ),
                     validator: (value) {
-                      if (value == null || value.isEmpty) return 'Please confirm your password';
-                      if (value != _passwordController.text) return 'Passwords do not match';
+                      if (value == null || value.isEmpty) return l10n.pleaseConfirmPassword;
+                      if (value != _passwordController.text) return l10n.passwordsDoNotMatch;
                       return null;
                     },
                   ),
@@ -233,7 +237,7 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                   _buildGlassTextField(
                     key: const ValueKey('signup_referral_field'),
                     controller: _referralController,
-                    hintText: 'Referral Code (Optional)',
+                    hintText: l10n.referralCodeOptional,
                     icon: Icons.card_giftcard_outlined,
                   ),
                   
@@ -260,9 +264,9 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                               width: 20,
                               child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                             )
-                          : const Text(
-                              'Create Account',
-                              style: TextStyle(
+                          : Text(
+                              l10n.createAccount,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
@@ -277,10 +281,10 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                   Row(
                     children: [
                       Expanded(child: Divider(color: Colors.white.withOpacity(0.3), thickness: 1)),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          'or',
+                          l10n.or,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color(0xFF636363),
@@ -294,10 +298,10 @@ class _SignupScreenMobileState extends State<SignupScreenMobile> {
                   
                   const SizedBox(height: 20),
                   
-                  const Text(
-                    'Sign in with',
+                  Text(
+                    l10n.signInWith,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(0xFF636363),
                       fontSize: 16,
                       fontWeight: FontWeight.w500,

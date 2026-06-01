@@ -596,6 +596,7 @@
   "referralLinkDescription": "Use this link to refer users and earn 40% lifetime commission.",
   "linkCopied": "Link copied to clipboard!",
   "enterReferralCode": "Enter Referral Code",
+  "referralCodeDescription": "Enter referral code to receive exclusive offers from our partners.",
   "referralCode": "Referral Code",
   "submit": "Submit",
   "invalidReferralCode": "Invalid referral code.",
@@ -607,5 +608,162 @@
   "priceLifetimeOld": "$712.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+
+  "loginNow": "Login now",
+  "loginToViewSignals": "Login to view signals",
+  "loginToViewSignalsDesc": "Please login to view Signal GPT signals and access all features.",
+  "loginToViewHistory": "Login to view history",
+  "loginToViewHistoryDesc": "Signal history is only available for logged-in users. Please login to track performance from Signal GPT.",
+  "letsGetYouIn": "Let's Get You In!",
+  "dontHaveAnAccount": "Don't have an account? ",
+  "createAccount": "Create Account",
+  "createYourAccount": "Create your account",
+  "login": "Login",
+  "rememberYourPassword": "Remember Your Password",
+  "signInWith": "Sign in with",
+  "getStarted": "Get Started",
+  "pleaseEnterEmail": "Please enter your email",
+  "pleaseEnterPassword": "Please enter your password",
+  "pleaseEnterCurrentPassword": "Please enter your current password",
+  "pleaseEnterNewPassword": "Please enter your new password",
+  "pleaseConfirmNewPassword": "Please confirm your new password",
+  "pleaseConfirmPassword": "Please confirm your password",
+  "passwordMinLength": "Password must be at least 6 characters",
+  "savePassword": "Save Password",
+
+  "verifyYourEmail": "Verify Your Email",
+  "pleaseEnterVerificationCode": "Please enter the 6 digit code\nsent to your email",
+  "pleaseEnterAllDigits": "Please enter all 6 digits",
+  "invalidOrExpiredCode": "Invalid or expired verification code",
+  "anErrorOccurred": "An error occurred. Please try again.",
+  "verificationCodeResent": "Verification code resent!",
+  "failedToResendCode": "Failed to resend code: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Resend code",
+  "verify": "Verify",
+
+  "resetPassword": "Reset Password",
+  "forgotPasswordInstructions": "Please input the email address you used to sign up your account\n\nWe will send a verification code to your email address.",
+  "sendButton": "Send",
+  "unableToReceiveEmail": "If you are unable to receive the email, please contact us email @gmail.com",
+  "verificationCodeSentTo": "We've sent a verification code to",
+  "passwordResetSuccessful": "Password reset successful!",
+  "errorGeneric": "Error: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "accountAlreadyExists": "Account already exists",
+  "accountAlreadyExistsMessage": "Email {email} has already been registered in the system. Please login or use the forgot password feature.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "System error: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Confirm Password",
+  "referralCodeOptional": "Referral Code (Optional)",
+
+  "accountDeletedSuccessfully": "Account has been permanently deleted.",
+  "accountDeleteError": "Error deleting account: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Password changed successfully!",
+  "errorChangingPassword": "Error changing password. Please check your current password.",
+
+  "enableNotificationsHint": "Enable notifications in device settings to view new updates on the lock screen",
+  "navigateToDeviceSettings": "Navigate to the device settings.",
+  "turnOffAllNotifications": "Turn off all notifications",
+  "pauseAllNotifications": "Pause all notifications",
+  "turnOnCryptoSignals": "Turn on crypto signals",
+  "turnOnCurrencyPairSignals": "Turn on currency pair signals",
+  "turnOnGoldSignals": "Turn on gold signals",
+  "currencyPairSignals": "Currency Pair Signals",
+
+  "termsOfUseContent": "By accessing or using this application, you agree to comply with the Terms of Use. This app is provided for informational purposes only, and we do not guarantee the accuracy, completeness, or reliability of any content or signals displayed. You are solely responsible for how you use the information that is provided within the app. We reserve the right to modify, suspend, or terminate the service at any time without prior notice. Continued use of the app constitutes acceptance of any updated terms.",
+
+  "tradingHistoryTitle": "Trading History",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "Stop loss triggered",
+  "entryWithPrice": "Entry: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+
+  "signalGptTitle": "Signal GPT",
+
+  "categoryGold": "GOLD",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "Subscription will automatically renew unless canceled at least 24 hours before the end of the current period. You can manage and cancel your subscriptions in your App Store account settings. Lifetime plan is a one-time purchase.",
+  "termsOfUseEula": "Terms of Use (EULA)",
+  "productNotFound": "Product not found: {productId}. Please ensure it is configured in stores.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ year",
+  "tierDemoSignalQty": "7-8 per day",
+  "elite1Month": "ELITE 1 Month",
+  "elite12Months": "ELITE 12 Months",
+  "statusPending": "Pending",
+  "statusFailed": "Failed",
+
+  "yourReferralCode": "Your referral code",
+  "referralCodeCopied": "Referral code copied!",
+  "copyCode": "Copy Code",
+  "revenue": "Revenue",
+  "availableCommission": "Available commission",
+  "totalReceivedIncome": "Total received income",
+  "depositAmount": "Deposit: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+
+  "importantNotice": "Important Notice",
+  "accountChangedPleaseRelogin": "Your account has changed. Please log in again.",
+  "iUnderstand": "I understand",
+
+  "saveUpTo65Percent": "SAVE UP TO 65%",
+  "yearlyLifetimeDiscount": "Yearly -40% • Lifetime -65%",
+
+  "uploadFailedPermissionDenied": "Upload failed: Permission denied. Check Storage Rules.",
+  "failedToUploadImage": "Failed to upload image. Please check your connection."
 }

@@ -369,8 +369,8 @@ class _SignalScreenState extends State<SignalScreen> {
             );
           },
         ),
-        title: const Text(
-          'Signal GPT',
+        title: Text(
+          l10n.signalGptTitle,
           style: TextStyle(
             color: Colors.white,
             fontSize: 22,
@@ -530,8 +530,8 @@ class _SignalScreenState extends State<SignalScreen> {
                             const Icon(Icons.lock_outline,
                                 color: Color(0xFF0CA3ED), size: 64),
                             const SizedBox(height: 16),
-                            const Text(
-                              'Login to view signals',
+                            Text(
+                              l10n.loginToViewSignals,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -540,8 +540,8 @@ class _SignalScreenState extends State<SignalScreen> {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            const Text(
-                              'Please login to view Signal GPT signals and access all features.',
+                            Text(
+                              l10n.loginToViewSignalsDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color(0xFF636363),
@@ -563,7 +563,7 @@ class _SignalScreenState extends State<SignalScreen> {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
-                              child: const Text('Login now',
+                              child: Text(l10n.loginNow,
                                   style: TextStyle(color: Colors.white)),
                             ),
                           ],

@@ -54,7 +54,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
           if (provider.error != null) {
             return Center(
               child: Text(
-                'Error: ${provider.error}',
+                l10n.errorWithMessage(provider.error ?? ''),
                 style: const TextStyle(color: Colors.red),
               ),
             );
@@ -186,9 +186,9 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
 
   String _getProductName(String productId, AppLocalizations l10n) {
     if (productId.contains('month') || productId.contains('.01')) {
-      return 'ELITE 1 Month';
+      return l10n.elite1Month;
     } else if (productId.contains('year') || productId.contains('12')) {
-      return 'ELITE 12 Months';
+      return l10n.elite12Months;
     }
     return productId;
   }
@@ -216,12 +216,12 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
         break;
       case 'pending':
         color = Colors.orange;
-        text = 'Pending';
+        text = l10n.statusPending;
         break;
       case 'error':
       case 'failed':
         color = Colors.red;
-        text = 'Failed';
+        text = l10n.statusFailed;
         break;
       default:
         color = Colors.grey;

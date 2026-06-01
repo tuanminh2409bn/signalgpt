@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
 
 class DiscountBanner extends StatelessWidget {
   const DiscountBanner({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context).languageCode;
-    final isVi = locale == 'vi';
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       width: double.infinity,
@@ -36,7 +36,7 @@ class DiscountBanner extends StatelessWidget {
           FittedBox(
             fit: BoxFit.scaleDown,
             child: Text(
-              isVi ? 'TIẾT KIỆM ĐẾN 65%' : 'SAVE UP TO 65%',
+              l10n.saveUpTo65Percent,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.white,
@@ -49,9 +49,7 @@ class DiscountBanner extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            isVi 
-              ? 'Gói Năm -40% • Gói Trọn Đời -65%' 
-              : 'Yearly -40% • Lifetime -65%',
+            l10n.yearlyLifetimeDiscount,
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Color(0xFF04B3E9),

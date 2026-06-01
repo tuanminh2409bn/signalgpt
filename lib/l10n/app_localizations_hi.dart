@@ -179,7 +179,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'पूर्ण विश्लेषण देखने के लिए अपग्रेड करें';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'बिना खाते के लॉगिन करें';
 
   @override
   String get welcomeTo => 'स्वागत है';
@@ -1120,10 +1120,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get save50Percent => '50% बचाएं';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => '40% बचाएं';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => '65% बचाएं';
 
   @override
   String get tryDemo => 'डेमो आज़माएं';
@@ -1354,30 +1354,30 @@ class AppLocalizationsHi extends AppLocalizations {
       'This feature is only for VIP customers, please upgrade to receive notifications.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'पासवर्ड बदलें';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'वर्तमान पासवर्ड';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'नया पासवर्ड';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'नए पासवर्ड की पुष्टि करें';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'सांकेतिक शब्द मेल नहीं खाते';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'पासवर्ड सफलतापूर्वक अद्यतन';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'पासवर्ड अपडेट करने में विफल:$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'ग़लत वर्तमान पासवर्ड';
 
   @override
   String get signInRequired => 'लॉग इन आवश्यक';
@@ -1503,73 +1503,73 @@ class AppLocalizationsHi extends AppLocalizations {
   String get popupLoginExplore => 'Log in to explore this trading bulletin!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => 'अस्वीकरण';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'signalgpt.ai पर दी गई जानकारी केवल संदर्भ और ज्ञान-साझाकरण उद्देश्यों के लिए है, और यह निवेश सलाह नहीं है। उपयोगकर्ता अपने स्वयं के ट्रेडिंग निर्णयों के लिए पूर्ण रूप से जिम्मेदार हैं।';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'ट्रेडिंग खाता खोलें';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'हमारा समर्थन करें';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'ऐप को रेट करें';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'ऐप साझा करें';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'खाता विवरण';
 
   @override
-  String get language => 'Language';
+  String get language => 'भाषा';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'उपयोग की शर्तें';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'खाते';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'एक्सचेंज तक पहुँचें';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'ऑनलाइन सहायता';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'भाषा चुनें';
 
   @override
-  String get left => 'left';
+  String get left => 'शेष';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'प्रो में अपग्रेड करें';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'सोना';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'क्रिप्टो';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'मुद्रा जोड़ी';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'टोकन';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'कोई मुद्रा जोड़ी उपलब्ध नहीं है';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return '$appName खोलें';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'स्थिति';
 
   @override
   String get signalEntryLabel => 'ENTRY';
@@ -1587,112 +1587,116 @@ class AppLocalizationsHi extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'विश्लेषण करें';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'सिग्नल देखने के लिए टोकन का उपयोग करें';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'अभी देखें';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'नए संकेतों की प्रतीक्षा में...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'सिग्नल अनलॉक करने में विफल';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'पर्याप्त टोकन नहीं हैं';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'नया सिग्नल अपलोड किया गया';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'नया $symbol सिग्नल अभी अपलोड किया गया है!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'सिग्नल देखने के लिए अपग्रेड करें';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'सिग्नल इतिहास';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'सभी';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'तिथि चुनें';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'कोई इतिहास नहीं मिला';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'तिथि';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'बाज़ार चार्ट';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'विश्लेषण और स्पष्टीकरण';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'इस सिग्नल के लिए कोई विस्तृत विश्लेषण उपलब्ध नहीं है।';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'एफिलिएट डैशबोर्ड';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'रेफ़रल लिंक';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'लिंक कॉपी करें';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'रेफ़रल संख्या';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'कुल आय';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'लंबित कमीशन';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'नवीनतम रेफ़रल';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'अभी तक कोई रेफ़रल नहीं।';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'एफिलिएट भूमिका आवश्यक है। कृपया व्यवस्थापक से संपर्क करें।';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'एफिलिएट कोड अभी तक असाइन नहीं किया गया है। कृपया व्यवस्थापक से संपर्क करें।';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'इस लिंक का उपयोग करें उपयोगकर्ताओं को रेफ़र करने और 40% आजीवन कमीशन कमाने के लिए।';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'लिंक क्लिपबोर्ड पर कॉपी किया गया!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'रेफ़रल कोड दर्ज करें';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'रेफ़रल कोड';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'सबमिट करें';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'अमान्य रेफ़रल कोड।';
+
+  @override
+  String get referralCodeApplied => 'रेफ़रल कोड सफलतापूर्वक लागू किया गया!';
 
   @override
   String get getTheAppForBestExperience =>
@@ -1718,4 +1722,295 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get lifetime => 'Lifetime';
+
+  @override
+  String get loginNow => 'अभी लॉगिन करें';
+
+  @override
+  String get loginToViewSignals => 'सिग्नल देखने के लिए लॉगिन करें';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Signal GPT के सिग्नल देखने और सभी सुविधाओं तक पहुँचने के लिए कृपया लॉगिन करें।';
+
+  @override
+  String get loginToViewHistory => 'इतिहास देखने के लिए लॉगिन करें';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'सिग्नल इतिहास केवल लॉग-इन उपयोगकर्ताओं के लिए उपलब्ध है। Signal GPT से प्रदर्शन ट्रैक करने के लिए कृपया लॉगिन करें।';
+
+  @override
+  String get letsGetYouIn => 'चलिए शुरू करते हैं!';
+
+  @override
+  String get dontHaveAnAccount => 'खाता नहीं है? ';
+
+  @override
+  String get createAccount => 'खाता बनाएँ';
+
+  @override
+  String get createYourAccount => 'अपना खाता बनाएँ';
+
+  @override
+  String get login => 'लॉगिन';
+
+  @override
+  String get rememberYourPassword => 'अपना पासवर्ड याद रखें';
+
+  @override
+  String get signInWith => 'इसके साथ साइन इन करें';
+
+  @override
+  String get getStarted => 'शुरू करें';
+
+  @override
+  String get pleaseEnterEmail => 'कृपया अपना ईमेल दर्ज करें';
+
+  @override
+  String get pleaseEnterPassword => 'कृपया अपना पासवर्ड दर्ज करें';
+
+  @override
+  String get pleaseEnterCurrentPassword =>
+      'कृपया अपना वर्तमान पासवर्ड दर्ज करें';
+
+  @override
+  String get pleaseEnterNewPassword => 'कृपया अपना नया पासवर्ड दर्ज करें';
+
+  @override
+  String get pleaseConfirmNewPassword => 'कृपया अपने नए पासवर्ड की पुष्टि करें';
+
+  @override
+  String get pleaseConfirmPassword => 'कृपया अपने पासवर्ड की पुष्टि करें';
+
+  @override
+  String get passwordMinLength => 'पासवर्ड कम से कम 6 अक्षर का होना चाहिए';
+
+  @override
+  String get savePassword => 'पासवर्ड सहेजें';
+
+  @override
+  String get verifyYourEmail => 'अपना ईमेल सत्यापित करें';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'कृपया अपने ईमेल पर भेजा गया\\n6 अंकों का कोड दर्ज करें';
+
+  @override
+  String get pleaseEnterAllDigits => 'कृपया सभी 6 अंक दर्ज करें';
+
+  @override
+  String get invalidOrExpiredCode => 'अमान्य या समय-सीमित सत्यापन कोड';
+
+  @override
+  String get anErrorOccurred => 'एक त्रुटि हुई। कृपया पुनः प्रयास करें।';
+
+  @override
+  String get verificationCodeResent => 'सत्यापन कोड पुनः भेजा गया!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'कोड पुनः भेजने में विफल: $error';
+  }
+
+  @override
+  String get resendCode => 'कोड पुनः भेजें';
+
+  @override
+  String get verify => 'सत्यापित करें';
+
+  @override
+  String get resetPassword => 'पासवर्ड रीसेट करें';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'कृपया वह ईमेल पता दर्ज करें जिसका उपयोग आपने अपना खाता बनाने के लिए किया था\\n\\nहम आपके ईमेल पर एक सत्यापन कोड भेजेंगे।';
+
+  @override
+  String get sendButton => 'भेजें';
+
+  @override
+  String get unableToReceiveEmail =>
+      'यदि आप ईमेल प्राप्त करने में असमर्थ हैं, तो कृपया हमसे ईमेल @gmail.com पर संपर्क करें';
+
+  @override
+  String get verificationCodeSentTo => 'हमने सत्यापन कोड भेज दिया है';
+
+  @override
+  String get passwordResetSuccessful => 'पासवर्ड रीसेट सफल!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'त्रुटि: $message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'खाता पहले से मौजूद है';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'ईमेल $email सिस्टम में पहले से पंजीकृत है। कृपया लॉगिन करें या पासवर्ड भूल गए सुविधा का उपयोग करें।';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'सिस्टम त्रुटि: $error';
+  }
+
+  @override
+  String get confirmPassword => 'पासवर्ड की पुष्टि करें';
+
+  @override
+  String get referralCodeOptional => 'रेफ़रल कोड (वैकल्पिक)';
+
+  @override
+  String get accountDeletedSuccessfully =>
+      'खाता स्थायी रूप से हटा दिया गया है।';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'खाता हटाने में त्रुटि: $error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'पासवर्ड सफलतापूर्वक बदला गया!';
+
+  @override
+  String get errorChangingPassword =>
+      'पासवर्ड बदलने में त्रुटि। कृपया अपना वर्तमान पासवर्ड जांचें।';
+
+  @override
+  String get enableNotificationsHint =>
+      'लॉक स्क्रीन पर नए अपडेट देखने के लिए डिवाइस सेटिंग्स में सूचनाएं सक्षम करें';
+
+  @override
+  String get navigateToDeviceSettings => 'डिवाइस सेटिंग्स पर जाएं।';
+
+  @override
+  String get turnOffAllNotifications => 'सभी सूचनाएं बंद करें';
+
+  @override
+  String get pauseAllNotifications => 'सभी सूचनाएं रोकें';
+
+  @override
+  String get turnOnCryptoSignals => 'क्रिप्टो सिग्नल चालू करें';
+
+  @override
+  String get turnOnCurrencyPairSignals => 'मुद्रा जोड़ी सिग्नल चालू करें';
+
+  @override
+  String get turnOnGoldSignals => 'गोल्ड सिग्नल चालू करें';
+
+  @override
+  String get currencyPairSignals => 'मुद्रा जोड़ी सिग्नल';
+
+  @override
+  String get termsOfUseContent =>
+      'इस एप्लिकेशन को एक्सेस या उपयोग करके, आप उपयोग की शर्तों का पालन करने के लिए सहमत होते हैं। यह ऐप केवल सूचनात्मक उद्देश्यों के लिए प्रदान किया गया है, और हम प्रदर्शित किसी भी सामग्री या सिग्नल की सटीकता, पूर्णता या विश्वसनीयता की गारंटी नहीं देते हैं। ऐप के भीतर दी गई जानकारी का उपयोग आप कैसे करते हैं, इसके लिए आप पूर्ण रूप से जिम्मेदार हैं। हम बिना पूर्व सूचना के किसी भी समय सेवा को संशोधित, निलंबित या समाप्त करने का अधिकार सुरक्षित रखते हैं। ऐप का निरंतर उपयोग किसी भी अद्यतन शर्तों की स्वीकृति माना जाएगा।';
+
+  @override
+  String get tradingHistoryTitle => 'ट्रेडिंग इतिहास';
+
+  @override
+  String get tp1Live => 'TP1 LIVE';
+
+  @override
+  String get tp2Live => 'TP2 LIVE';
+
+  @override
+  String get tp3Live => 'TP3 LIVE';
+
+  @override
+  String get stopLossTriggered => 'स्टॉप लॉस ट्रिगर हुआ';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'एंट्री: $price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signal GPT';
+
+  @override
+  String get categoryGold => 'GOLD';
+
+  @override
+  String get categoryCrypto => 'CRYPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'सदस्यता स्वचालित रूप से नवीनीकृत हो जाएगी जब तक कि वर्तमान अवधि समाप्त होने से कम से कम 24 घंटे पहले रद्द नहीं की जाती। आप अपने App Store खाता सेटिंग्स में अपनी सदस्यता प्रबंधित और रद्द कर सकते हैं। लाइफटाइम प्लान एक बार की खरीदारी है।';
+
+  @override
+  String get termsOfUseEula => 'उपयोग की शर्तें (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'उत्पाद नहीं मिला: $productId। कृपया सुनिश्चित करें कि यह स्टोर में कॉन्फ़िगर किया गया है।';
+  }
+
+  @override
+  String get perYear => '/ वर्ष';
+
+  @override
+  String get tierDemoSignalQty => 'प्रति दिन 7-8';
+
+  @override
+  String get elite1Month => 'ELITE 1 महीना';
+
+  @override
+  String get elite12Months => 'ELITE 12 महीने';
+
+  @override
+  String get statusPending => 'लंबित';
+
+  @override
+  String get statusFailed => 'विफल';
+
+  @override
+  String get yourReferralCode => 'आपका रेफ़रल कोड';
+
+  @override
+  String get referralCodeCopied => 'रेफ़रल कोड कॉपी किया गया!';
+
+  @override
+  String get copyCode => 'कोड कॉपी करें';
+
+  @override
+  String get revenue => 'राजस्व';
+
+  @override
+  String get availableCommission => 'उपलब्ध कमीशन';
+
+  @override
+  String get totalReceivedIncome => 'कुल प्राप्त आय';
+
+  @override
+  String depositAmount(String amount) {
+    return 'जमा: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'महत्वपूर्ण सूचना';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'आपका खाता बदल गया है। कृपया फिर से लॉगिन करें।';
+
+  @override
+  String get iUnderstand => 'मैं समझता/समझती हूँ';
+
+  @override
+  String get saveUpTo65Percent => '65% तक बचाएं';
+
+  @override
+  String get yearlyLifetimeDiscount => 'वार्षिक -40% • लाइफटाइम -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'अपलोड विफल: अनुमति अस्वीकृत। स्टोरेज नियम जांचें।';
+
+  @override
+  String get failedToUploadImage =>
+      'छवि अपलोड करने में विफल। कृपया अपना कनेक्शन जांचें।';
 }

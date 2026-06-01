@@ -202,7 +202,7 @@ class _AffiliateDashboardScreenState extends State<AffiliateDashboardScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Mã giới thiệu của bạn', style: TextStyle(color: Colors.white70, fontSize: 13)),
+                    Text(l10n.yourReferralCode, style: const TextStyle(color: Colors.white70, fontSize: 13)),
                     const SizedBox(height: 4),
                     Text(code, style: const TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold, letterSpacing: 2)),
                   ],
@@ -211,10 +211,10 @@ class _AffiliateDashboardScreenState extends State<AffiliateDashboardScreen> {
               ElevatedButton.icon(
                 onPressed: () {
                   Clipboard.setData(ClipboardData(text: code));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Đã copy mã giới thiệu!')));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.referralCodeCopied)));
                 },
                 icon: const Icon(Icons.copy, size: 16),
-                label: const Text('Copy Mã'),
+                label: Text(l10n.copyCode),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white.withOpacity(0.05),
                   foregroundColor: Colors.white,
@@ -270,7 +270,7 @@ class _AffiliateDashboardScreenState extends State<AffiliateDashboardScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: _StatBox(
-                    title: "Doanh thu",
+                    title: l10n.revenue,
                     value: '\$${totalRevenue.toStringAsFixed(1)}',
                     icon: Icons.trending_up,
                     color: Colors.purple,
@@ -281,14 +281,14 @@ class _AffiliateDashboardScreenState extends State<AffiliateDashboardScreen> {
             ),
             const SizedBox(height: 12),
             _StatBox(
-              title: "Hoa hồng khả dụng",
+              title: l10n.availableCommission,
               value: '\$${pendingAmount.toStringAsFixed(2)}',
               icon: Icons.account_balance_wallet_outlined,
               color: Colors.orange,
             ),
             const SizedBox(height: 12),
             _StatBox(
-              title: "Tổng thu nhập đã nhận",
+              title: l10n.totalReceivedIncome,
               value: '\$${totalEarnings.toStringAsFixed(2)}',
               icon: Icons.check_circle_outline,
               color: Colors.green,
@@ -390,7 +390,7 @@ class _AffiliateDashboardScreenState extends State<AffiliateDashboardScreen> {
                           if (userRevenue > 0) ...[
                             const SizedBox(height: 4),
                             Text(
-                              'Nạp: \$${userRevenue.toStringAsFixed(1)}',
+                              l10n.depositAmount(userRevenue.toStringAsFixed(1)),
                               style: const TextStyle(color: Colors.amber, fontSize: 12, fontWeight: FontWeight.bold),
                             ),
                           ],

@@ -269,7 +269,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _shareApp() {
-    const String message = 'Download Signal GPT - The Ultimate AI Engine for Forex Traders: https://minvest.vn/download';
+    final String appLink = Platform.isIOS
+        ? 'https://apps.apple.com/vn/app/signal-gpt/id6749299894?l=vi'
+        : 'https://play.google.com/store/apps/details?id=com.signalgpt.ai&hl=vi';
+    final String message = 'Download Signal GPT - The Ultimate AI Engine for Forex Traders: $appLink';
     Share.share(message, subject: 'Signal GPT App');
   }
 
@@ -330,40 +333,80 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context); // Close dialog
-                          Navigator.pop(context); // Back to Profile
-                          context.read<AuthBloc>().add(SignOutRequested(
-                            providersToReset: [
-                              context.read<UserProvider>(),
-                              context.read<NotificationProvider>(),
-                            ],
-                          ));
-                        },
-                        child: Container(
-                          width: 122,
-                          height: 44,
-                          decoration: ShapeDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [Color(0xFF0CA3ED), Color(0xFF276EFB)],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () => Navigator.pop(context),
+                                child: Container(
+                                  height: 44,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.white24, width: 1),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      l10n.cancel,
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 16,
+                                        fontFamily: 'Be Vietnam Pro',
+                                        fontWeight: FontWeight.w500,
+                                        decoration: TextDecoration.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            l10n.logout,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'Be Vietnam Pro',
-                              fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.none,
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context); // Close dialog
+                                  Navigator.pop(context); // Back to Profile
+                                  context.read<AuthBloc>().add(SignOutRequested(
+                                    providersToReset: [
+                                      context.read<UserProvider>(),
+                                      context.read<NotificationProvider>(),
+                                    ],
+                                  ));
+                                },
+                                child: Container(
+                                  height: 44,
+                                  decoration: ShapeDecoration(
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [Color(0xFF0CA3ED), Color(0xFF276EFB)],
+                                    ),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                                  ),
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      l10n.logout,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'Be Vietnam Pro',
+                                        fontWeight: FontWeight.w600,
+                                        decoration: TextDecoration.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -381,13 +424,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _showLanguageSelection(BuildContext context) {
     final List<Map<String, String>> languages = [
       {'name': 'English', 'code': 'en', 'flag': 'assets/images/us_flag.png'},
-      {'name': 'Vietnamese', 'code': 'vi', 'flag': 'assets/images/vn_flag.png'},
-      {'name': 'Chinese', 'code': 'zh', 'flag': 'assets/images/cn_flag.png'},
-      {'name': 'Japanese', 'code': 'ja', 'flag': 'assets/images/jp_flag.png'},
-      {'name': 'Russian', 'code': 'ru', 'flag': 'assets/images/nga.png'},
-      {'name': 'German', 'code': 'de', 'flag': 'assets/images/duc.png'},
-      {'name': 'French', 'code': 'fr', 'flag': 'assets/images/fr_flag.png'},
-      {'name': 'Korean', 'code': 'ko', 'flag': 'assets/images/kr_flag.png'},
+      {'name': 'Tiếng Việt', 'code': 'vi', 'flag': 'assets/images/vn_flag.png'},
+      {'name': '中文', 'code': 'zh', 'flag': 'assets/images/cn_flag.png'},
+      {'name': 'Français', 'code': 'fr', 'flag': 'assets/images/fr_flag.png'},
+      {'name': '日本語', 'code': 'ja', 'flag': 'assets/images/jp_flag.png'},
+      {'name': '한국어', 'code': 'ko', 'flag': 'assets/images/kr_flag.png'},
+      {'name': 'हिन्दी', 'code': 'hi', 'flag': 'assets/images/ando.png'},
+      {'name': 'العربية', 'code': 'ar', 'flag': 'assets/images/arapxeut.png'},
+      {'name': 'Português', 'code': 'pt', 'flag': 'assets/images/bodaonha.png'},
+      {'name': 'ភាសាខ្មែរ', 'code': 'km', 'flag': 'assets/images/campuchia.png'},
+      {'name': 'Čeština', 'code': 'cs', 'flag': 'assets/images/conghoasec.png'},
+      {'name': 'Dansk', 'code': 'da', 'flag': 'assets/images/danmach.png'},
+      {'name': 'Deutsch', 'code': 'de', 'flag': 'assets/images/duc.png'},
+      {'name': 'Magyar', 'code': 'hu', 'flag': 'assets/images/hungary.png'},
+      {'name': 'Bahasa Indonesia', 'code': 'id', 'flag': 'assets/images/indonesia.png'},
+      {'name': 'Italiano', 'code': 'it', 'flag': 'assets/images/italy.png'},
+      {'name': 'Bahasa Melayu', 'code': 'ms', 'flag': 'assets/images/malaysia.png'},
+      {'name': 'Монгол', 'code': 'mn', 'flag': 'assets/images/mongco.png'},
+      {'name': 'Русский', 'code': 'ru', 'flag': 'assets/images/nga.png'},
+      {'name': 'Suomi', 'code': 'fi', 'flag': 'assets/images/phanlan.png'},
+      {'name': 'Română', 'code': 'ro', 'flag': 'assets/images/romania.png'},
+      {'name': 'Español', 'code': 'es', 'flag': 'assets/images/taybannha.png'},
+      {'name': 'ไทย', 'code': 'th', 'flag': 'assets/images/thailan.png'},
     ];
 
     showModalBottomSheet(
@@ -691,7 +749,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        height: 50,
+        constraints: const BoxConstraints(minHeight: 50),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: const Alignment(0.00, 1.00),
@@ -708,21 +766,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         child: Row(
           children: [
             Icon(icon, color: Colors.white, size: 22),
             const SizedBox(width: 16),
-            Text(
-              label,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontFamily: 'Be Vietnam Pro',
-                fontWeight: FontWeight.w400,
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontFamily: 'Be Vietnam Pro',
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
-            const Spacer(),
+            const SizedBox(width: 8),
             const Icon(Icons.chevron_right, color: Colors.white54, size: 20),
           ],
         ),

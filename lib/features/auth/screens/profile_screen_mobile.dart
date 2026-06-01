@@ -13,6 +13,7 @@ import 'package:minvest_forex_app/features/auth/screens/settings_screen.dart';
 import 'package:minvest_forex_app/features/auth/services/auth_service.dart';
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
 import 'package:minvest_forex_app/core/utils/navigator_key.dart';
+import 'package:minvest_forex_app/core/utils/error_utils.dart';
 import 'package:minvest_forex_app/features/payment_history/screens/payment_history_screen.dart';
 import 'package:minvest_forex_app/features/affiliate/screens/affiliate_dashboard_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -371,7 +372,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(l10n.accessExchange, style: const TextStyle(color: Color(0xFF686868), fontSize: 16)),
+                            Expanded(
+                              child: Text(
+                                l10n.accessExchange,
+                                style: const TextStyle(color: Color(0xFF686868), fontSize: 16),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
                             GestureDetector(
                               onTap: () => _showAppSelection(context),
                               child: Container(
@@ -500,7 +509,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Tài khoản đã được xóa vĩnh viễn.")),
+                        SnackBar(content: Text(l10n.accountDeletedSuccessfully)),
                       );
                     }
                   } catch (e) {
@@ -508,7 +517,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     navigatorKey.currentState?.pop();
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Lỗi khi xóa tài khoản: $e")),
+                        SnackBar(content: Text(l10n.accountDeleteError(ErrorUtils.getFriendlyErrorMessage(e)))),
                       );
                     }
                   }
@@ -612,16 +621,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Icon(icon, color: iconColor, size: 22),
               const SizedBox(width: 16),
-              Text(
-                label,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: 'Be Vietnam Pro',
-                  fontWeight: FontWeight.w400,
+              Expanded(
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Be Vietnam Pro',
+                    fontWeight: FontWeight.w400,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const Spacer(),
+              const SizedBox(width: 8),
               const Icon(Icons.chevron_right, color: Colors.white54, size: 20),
             ],
           ),

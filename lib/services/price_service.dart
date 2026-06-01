@@ -11,11 +11,7 @@ class PriceService {
   factory PriceService() => _instance;
   PriceService._internal();
 
-  // APISed Config (for XAUUSD)
-  static const String _apisedKey = "sk_c27869e90912e2A4f32E104A77Ad9dFC02bb47B5e489f4cE";
-  static const String _apisedUrl = "https://gold.g.apised.com/v1/latest?metals=XAU&base_currency=USD&currencies=USD&weight_unit=TOZ";
-
-  // TradingView WS Config (for BTC, ETH)
+  // TradingView WS Config (for BTC, ETH, XAU)
   static const String _tvWsUrl = "wss://data.tradingview.com/socket.io/websocket";
   static const Map<String, String> _tvHeaders = {
     "Origin": "https://data.tradingview.com",
@@ -24,9 +20,10 @@ class PriceService {
 
   WebSocketChannel? _tvChannel;
   StreamSubscription? _tvSubscription;
-  Timer? _apisedTimer;
   Timer? _reconnectTimer;
   bool _isDisposed = false;
+  Timer? _throttleTimer;
+  bool _pendingNotification = false;
 
   final StreamController<Map<String, double>> _priceController =
       StreamController<Map<String, double>>.broadcast();
@@ -47,40 +44,7 @@ class PriceService {
     _isDisposed = false;
     debugPrint('🚀 PriceService: Starting connection...');
     _cleanup();
-    _startApisedPolling();
     _connectTradingView();
-  }
-
-  // --- APISed Logic (XAUUSD) ---
-  void _startApisedPolling() {
-    _apisedTimer?.cancel();
-    _fetchXauPrice(); // Initial fetch
-    _apisedTimer = Timer.periodic(const Duration(seconds: 2), (timer) {
-      if (!_isDisposed) _fetchXauPrice();
-    });
-  }
-
-  Future<void> _fetchXauPrice() async {
-    try {
-      final response = await http.get(
-        Uri.parse(_apisedUrl),
-        headers: {"x-api-key": _apisedKey},
-      ).timeout(const Duration(seconds: 5));
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        if (data['status'] == 'success') {
-          final priceData = data['data']['metal_prices']['XAU']['price'];
-          final price = double.tryParse(priceData.toString()) ?? 0.0;
-          if (price > 0 && price != _currentPrices['XAU']) {
-            _currentPrices['XAU'] = price;
-            _notifyListeners();
-          }
-        }
-      }
-    } catch (e) {
-      // Quietly handle network errors for polling
-    }
   }
 
   // --- TradingView WS Logic (BTC, ETH) ---
@@ -133,6 +97,7 @@ class PriceService {
       _sendTvPacket("set_auth_token", ["unauthorized_user_token"]);
       _setupTvSymbol("cs_btc", "sds_btc", "BINANCE:BTCUSDT");
       _setupTvSymbol("cs_eth", "sds_eth", "BINANCE:ETHUSDT");
+      _setupTvSymbol("cs_xau", "sds_xau", "OANDA:XAUUSD");
     } catch (e) {
       debugPrint('❌ PriceService: Error sending handshake: $e');
     }
@@ -188,6 +153,11 @@ class PriceService {
                             } else if (key == "sds_eth") {
                               if (_currentPrices['ETH'] != closePrice) {
                                 _currentPrices['ETH'] = closePrice;
+                                _notifyListeners();
+                              }
+                            } else if (key == "sds_xau") {
+                              if (_currentPrices['XAU'] != closePrice) {
+                                _currentPrices['XAU'] = closePrice;
                                 _notifyListeners();
                               }
                             }
@@ -252,13 +222,29 @@ class PriceService {
   }
 
   void _notifyListeners() {
-    if (!_priceController.isClosed && !_isDisposed) {
+    if (_priceController.isClosed || _isDisposed) return;
+
+    if (_throttleTimer == null) {
       _priceController.add(Map.from(_currentPrices));
+      _startThrottleTimer();
+    } else {
+      _pendingNotification = true;
     }
   }
 
+  void _startThrottleTimer() {
+    _throttleTimer?.cancel();
+    _throttleTimer = Timer(const Duration(seconds: 1), () {
+      _throttleTimer = null;
+      if (_pendingNotification && !_isDisposed && !_priceController.isClosed) {
+        _priceController.add(Map.from(_currentPrices));
+        _pendingNotification = false;
+        _startThrottleTimer();
+      }
+    });
+  }
+
   void _cleanup() {
-    _apisedTimer?.cancel();
     _tvSubscription?.cancel();
     try {
       _tvChannel?.sink.close();
@@ -267,6 +253,9 @@ class PriceService {
     _tvSubscription = null;
     _reconnectTimer?.cancel();
     _isConnectingTV = false;
+    _throttleTimer?.cancel();
+    _throttleTimer = null;
+    _pendingNotification = false;
   }
 
   void disconnect() {

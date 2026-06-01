@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:minvest_forex_app/features/auth/services/auth_service.dart';
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
+import 'package:minvest_forex_app/core/utils/error_utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -31,6 +34,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
+    final l10n = AppLocalizations.of(context)!;
 
     try {
       final authService = context.read<AuthService>();
@@ -41,15 +45,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Password changed successfully!'), backgroundColor: Colors.green),
+          SnackBar(content: Text(l10n.passwordChangedSuccessfully), backgroundColor: Colors.green),
         );
         Navigator.pop(context);
       }
     } catch (e) {
       if (mounted) {
-        String errorMsg = 'Error changing password. Please check your current password.';
-        if (e.toString().contains('wrong-password')) {
-          errorMsg = 'Incorrect current password.';
+        String errorMsg = ErrorUtils.getFriendlyErrorMessage(e);
+        if (e is FirebaseAuthException && e.code == 'wrong-password') {
+          errorMsg = l10n.reauthFailed;
+        } else if (e.toString().contains('wrong-password')) {
+          errorMsg = l10n.reauthFailed;
         }
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMsg), backgroundColor: Colors.red),
@@ -62,6 +68,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -71,12 +78,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Change Password',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.w500,
+        title: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            l10n.changePassword,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         centerTitle: true,
@@ -93,11 +103,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 // Current Password
                 _buildGlassTextField(
                   controller: _currentPasswordController,
-                  hintText: 'Current Password',
+                  hintText: l10n.currentPassword,
                   obscureText: _obscureCurrent,
                   onToggleObscure: () => setState(() => _obscureCurrent = !_obscureCurrent),
                   validator: (value) {
-                    if (value == null || value.isEmpty) return 'Please enter your current password';
+                    if (value == null || value.isEmpty) return l10n.pleaseEnterCurrentPassword;
                     return null;
                   },
                 ),
@@ -107,12 +117,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 // New Password
                 _buildGlassTextField(
                   controller: _newPasswordController,
-                  hintText: 'New Password',
+                  hintText: l10n.newPassword,
                   obscureText: _obscureNew,
                   onToggleObscure: () => setState(() => _obscureNew = !_obscureNew),
                   validator: (value) {
-                    if (value == null || value.isEmpty) return 'Please enter your new password';
-                    if (value.length < 6) return 'Password must be at least 6 characters';
+                    if (value == null || value.isEmpty) return l10n.pleaseEnterNewPassword;
+                    if (value.length < 6) return l10n.passwordMinLength;
                     return null;
                   },
                 ),
@@ -122,12 +132,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 // Confirm New Password
                 _buildGlassTextField(
                   controller: _confirmPasswordController,
-                  hintText: 'Confirm New Password',
+                  hintText: l10n.confirmNewPassword,
                   obscureText: _obscureConfirm,
                   onToggleObscure: () => setState(() => _obscureConfirm = !_obscureConfirm),
                   validator: (value) {
-                    if (value == null || value.isEmpty) return 'Please confirm your new password';
-                    if (value != _newPasswordController.text) return 'Passwords do not match';
+                    if (value == null || value.isEmpty) return l10n.pleaseConfirmNewPassword;
+                    if (value != _newPasswordController.text) return l10n.passwordsDoNotMatch;
                     return null;
                   },
                 ),
@@ -153,9 +163,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             width: 20,
                             child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                           )
-                        : const Text(
-                            'Save Password',
-                            style: TextStyle(
+                        : Text(
+                            l10n.savePassword,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w500,

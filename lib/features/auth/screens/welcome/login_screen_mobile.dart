@@ -81,6 +81,7 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.black,
       body: BlocListener<AuthBloc, AuthState>(
@@ -122,10 +123,10 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                     ),
                   ),
                   const SizedBox(height: 60),
-                  const Text(
-                    'Welcome back!',
+                  Text(
+                    l10n.welcomeBack,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
@@ -137,11 +138,11 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                   _buildGlassTextField(
                     key: const ValueKey('login_email_field'),
                     controller: _emailController,
-                    hintText: 'Email',
+                    hintText: l10n.email,
                     icon: Icons.email_outlined,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
-                      if (value == null || value.isEmpty) return 'Please enter your email';
+                      if (value == null || value.isEmpty) return l10n.pleaseEnterEmail;
                       return null;
                     },
                   ),
@@ -152,7 +153,7 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                   _buildGlassTextField(
                     key: const ValueKey('login_password_field'),
                     controller: _passwordController,
-                    hintText: 'Password',
+                    hintText: l10n.password,
                     icon: Icons.lock_outline,
                     obscureText: _obscurePassword,
                     suffixIcon: GestureDetector(
@@ -164,7 +165,7 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                       ),
                     ),
                     validator: (value) {
-                      if (value == null || value.isEmpty) return 'Please enter your password';
+                      if (value == null || value.isEmpty) return l10n.pleaseEnterPassword;
                       return null;
                     },
                   ),
@@ -190,12 +191,14 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                             : null,
                         ),
                         const SizedBox(width: 12),
-                        const Text(
-                          'Remember Your Password',
-                          style: TextStyle(
-                            color: Color(0xFF636363),
-                            fontSize: 16,
-                            fontFamily: 'Raleway',
+                        Flexible(
+                          child: Text(
+                            l10n.rememberYourPassword,
+                            style: const TextStyle(
+                              color: Color(0xFF636363),
+                              fontSize: 16,
+                              fontFamily: 'Raleway',
+                            ),
                           ),
                         ),
                       ],
@@ -235,9 +238,9 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                                   width: 20,
                                   child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                                 )
-                              : const Text(
-                                  'Login',
-                                  style: TextStyle(
+                              : Text(
+                                  l10n.login,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w700,
@@ -257,9 +260,9 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Don’t have an account? ',
-                          style: TextStyle(color: Color(0xFF636363), fontSize: 16),
+                        Text(
+                          l10n.dontHaveAnAccount,
+                          style: const TextStyle(color: Color(0xFF636363), fontSize: 16),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -267,9 +270,9 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                               MaterialPageRoute(builder: (context) => const SignupScreenMobile()),
                             );
                           },
-                          child: const Text(
-                            'Create Account',
-                            style: TextStyle(
+                          child: Text(
+                            l10n.createAccount,
+                            style: const TextStyle(
                               color: Color(0xFF0094FF),
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -289,9 +292,9 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                         MaterialPageRoute(builder: (context) => const ForgotPasswordScreenMobile()),
                       );
                     },
-                    child: const Text(
-                      'Forgot Password?',
-                      style: TextStyle(
+                    child: Text(
+                      l10n.forgotPassword,
+                      style: const TextStyle(
                         color: Color(0xFF0094FF),
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

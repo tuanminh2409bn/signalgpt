@@ -178,7 +178,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'Upgradujte pro zobrazení plné analýzy';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'Přihlášení bez účtu';
 
   @override
   String get welcomeTo => 'Vítejte v';
@@ -1120,10 +1120,10 @@ class AppLocalizationsCs extends AppLocalizations {
   String get save50Percent => 'UŠETŘETE 50 %';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => 'Ušetříte 40 %';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => 'Ušetříte 65 %';
 
   @override
   String get tryDemo => 'Zkusit demo';
@@ -1353,30 +1353,30 @@ class AppLocalizationsCs extends AppLocalizations {
       'This feature is only for VIP customers, please upgrade to receive notifications.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Změnit heslo';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'Aktuální heslo';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Nové heslo';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Potvrďte nové heslo';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'Hesla se neshodují';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'Heslo bylo úspěšně aktualizováno';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'Nepodařilo se aktualizovat heslo:$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'Nesprávné aktuální heslo';
 
   @override
   String get signInRequired => 'Vyžadováno přihlášení';
@@ -1502,76 +1502,76 @@ class AppLocalizationsCs extends AppLocalizations {
   String get popupLoginExplore => 'Log in to explore this trading bulletin!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => 'Zřeknutí se odpovědnosti';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'Informace na signalgpt.ai jsou pouze pro referenční účely a pro účely sdílení znalostí a nepředstavují investiční poradenství. Uživatelé jsou výhradně odpovědní za svá vlastní obchodní rozhodnutí.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'Otevřete si obchodní účet';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'Podpořte nás';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'Hodnotit aplikaci';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'Sdílet aplikaci';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'Podrobnosti o účtu';
 
   @override
-  String get language => 'Language';
+  String get language => 'Jazyk';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'Podmínky používání';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'Účty';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'Přístup k burze';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'Online podpora';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Vyberte Jazyk';
 
   @override
-  String get left => 'left';
+  String get left => 'vlevo';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Upgrade na Pro';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'Zlato';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'Krypto';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'MĚNOVÝ PÁR';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Tokeny';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'Nejsou k dispozici žádná aktiva MĚNOVÉHO PÁRU';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return 'Otevřít$appName';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'Postavení';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'VSTUP';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1586,112 +1586,116 @@ class AppLocalizationsCs extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'Analyzovat';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'Použijte Token k zobrazení signálu';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'Zobrazit nyní';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'Čekání na nové signály...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'Signál se nepodařilo odemknout';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'Nedostatek tokenů';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'Nový signál nahrán';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'Nový signál${symbol}je nyní nahrán!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'Upgradujte na zobrazení signálu';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'Historie signálu';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'VŠE';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'Vyberte Datum';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'Nebyla nalezena žádná historie';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'Datum';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'TABULKA TRHU';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'Analýza a vysvětlení';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'Pro tento signál není k dispozici žádná podrobná analýza.';
 
   @override
   String get affiliateDashboard => 'Affiliate Dashboard';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'Odkaz na doporučení';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'Kopírovat odkaz';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'Počet doporučení';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'Celkový výdělek';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'Čeká na provizi';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'Nejnovější doporučení';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'Zatím žádná doporučení.';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'Vyžaduje se role affiliate partnera. Kontaktujte prosím admina.';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'Přidružený kód dosud nebyl přidělen. Kontaktujte prosím admina.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'Použijte tento odkaz k doporučení uživatelů a získejte 40% doživotní provizi.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'Odkaz zkopírován do schránky!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'Zadejte kód doporučení';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'Referenční kód';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'Předložit';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'Neplatný kód doporučení.';
+
+  @override
+  String get referralCodeApplied => 'Referenční kód byl úspěšně použit!';
 
   @override
   String get getTheAppForBestExperience =>
@@ -1707,7 +1711,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get priceLifetime => '\$249.00';
 
   @override
-  String get priceLifetimeOld => '\$712.00';
+  String get priceLifetimeOld => '712,00 \$';
 
   @override
   String get durationLifetime => 'Lifetime';
@@ -1717,4 +1721,294 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get lifetime => 'Lifetime';
+
+  @override
+  String get loginNow => 'Přihlásit se nyní';
+
+  @override
+  String get loginToViewSignals => 'Pro zobrazení signálů se přihlaste';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Pro zobrazení signálů GPT a přístup ke všem funkcím se prosím přihlaste.';
+
+  @override
+  String get loginToViewHistory => 'Pro zobrazení historie se přihlaste';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'Historie signálů je dostupná pouze pro přihlášené uživatele. Chcete-li sledovat výkon z Signal GPT, přihlaste se.';
+
+  @override
+  String get letsGetYouIn => 'Pusťme vás dovnitř!';
+
+  @override
+  String get dontHaveAnAccount => 'Nemáte účet?';
+
+  @override
+  String get createAccount => 'Vytvořit účet';
+
+  @override
+  String get createYourAccount => 'Vytvořte si účet';
+
+  @override
+  String get login => 'Přihlášení';
+
+  @override
+  String get rememberYourPassword => 'Zapamatujte si své heslo';
+
+  @override
+  String get signInWith => 'Přihlaste se pomocí';
+
+  @override
+  String get getStarted => 'Začněte';
+
+  @override
+  String get pleaseEnterEmail => 'Zadejte prosím svůj email';
+
+  @override
+  String get pleaseEnterPassword => 'Zadejte prosím své heslo';
+
+  @override
+  String get pleaseEnterCurrentPassword => 'Zadejte své aktuální heslo';
+
+  @override
+  String get pleaseEnterNewPassword => 'Zadejte prosím své nové heslo';
+
+  @override
+  String get pleaseConfirmNewPassword => 'Potvrďte prosím své nové heslo';
+
+  @override
+  String get pleaseConfirmPassword => 'Potvrďte prosím své heslo';
+
+  @override
+  String get passwordMinLength => 'Heslo musí mít alespoň 6 znaků';
+
+  @override
+  String get savePassword => 'Uložit heslo';
+
+  @override
+  String get verifyYourEmail => 'Ověřte svůj e-mail';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'Zadejte 6místný kód\nzasláno na váš email';
+
+  @override
+  String get pleaseEnterAllDigits => 'Zadejte prosím všech 6 číslic';
+
+  @override
+  String get invalidOrExpiredCode =>
+      'Neplatný nebo vypršela platnost ověřovacího kódu';
+
+  @override
+  String get anErrorOccurred => 'Došlo k chybě. Zkuste to prosím znovu.';
+
+  @override
+  String get verificationCodeResent => 'Ověřovací kód odeslán znovu!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Nepodařilo se znovu odeslat kód:$error';
+  }
+
+  @override
+  String get resendCode => 'Znovu odeslat kód';
+
+  @override
+  String get verify => 'Ověřte';
+
+  @override
+  String get resetPassword => 'Obnovit heslo';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Zadejte prosím e-mailovou adresu, kterou jste použili k registraci účtu\n\nNa vaši e-mailovou adresu vám zašleme ověřovací kód.';
+
+  @override
+  String get sendButton => 'Poslat';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Pokud nemůžete e-mail přijmout, kontaktujte nás na e-mailu @gmail.com';
+
+  @override
+  String get verificationCodeSentTo => 'Ověřovací kód jsme odeslali na adresu';
+
+  @override
+  String get passwordResetSuccessful => 'Resetování hesla bylo úspěšné!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Chyba:$message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'Účet již existuje';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'E-mail${email}již byl v systému zaregistrován. Přihlaste se nebo použijte funkci zapomenuté heslo.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Systémová chyba:$error';
+  }
+
+  @override
+  String get confirmPassword => 'Potvrďte heslo';
+
+  @override
+  String get referralCodeOptional => 'Referenční kód (volitelné)';
+
+  @override
+  String get accountDeletedSuccessfully => 'Účet byl trvale smazán.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Chyba při mazání účtu:$error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'Heslo bylo úspěšně změněno!';
+
+  @override
+  String get errorChangingPassword =>
+      'Při změně hesla došlo k chybě. Zkontrolujte prosím své aktuální heslo.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Chcete-li zobrazit nové aktualizace na zamykací obrazovce, povolte oznámení v nastavení zařízení';
+
+  @override
+  String get navigateToDeviceSettings => 'Přejděte do nastavení zařízení.';
+
+  @override
+  String get turnOffAllNotifications => 'Vypněte všechna upozornění';
+
+  @override
+  String get pauseAllNotifications => 'Pozastavit všechna oznámení';
+
+  @override
+  String get turnOnCryptoSignals => 'Zapněte kryptosignály';
+
+  @override
+  String get turnOnCurrencyPairSignals => 'Zapněte signály měnových párů';
+
+  @override
+  String get turnOnGoldSignals => 'Zapněte zlaté signály';
+
+  @override
+  String get currencyPairSignals => 'Signály měnového páru';
+
+  @override
+  String get termsOfUseContent =>
+      'Přístupem k této aplikaci nebo jejím používáním souhlasíte s dodržováním Podmínek použití. Tato aplikace je poskytována pouze pro informační účely a nezaručujeme přesnost, úplnost nebo spolehlivost jakéhokoli zobrazeného obsahu nebo signálů. Jste výhradně odpovědní za to, jak používáte informace poskytované v rámci aplikace. Vyhrazujeme si právo upravit, pozastavit nebo ukončit službu kdykoli bez předchozího upozornění. Pokračování v používání aplikace znamená přijetí jakýchkoli aktualizovaných podmínek.';
+
+  @override
+  String get tradingHistoryTitle => 'Historie obchodování';
+
+  @override
+  String get tp1Live => 'TP1 ŽIVĚ';
+
+  @override
+  String get tp2Live => 'TP2 ŽIVĚ';
+
+  @override
+  String get tp3Live => 'TP3 ŽIVĚ';
+
+  @override
+  String get stopLossTriggered => 'Stop loss spuštěn';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Vstup:$price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signál GPT';
+
+  @override
+  String get categoryGold => 'ZLATO';
+
+  @override
+  String get categoryCrypto => 'CRYPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'Předplatné se automaticky obnoví, pokud nebude zrušeno alespoň 24 hodin před koncem aktuálního období. Svá předplatná můžete spravovat a rušit v nastavení účtu App Store. Doživotní plán je jednorázový nákup.';
+
+  @override
+  String get termsOfUseEula => 'Podmínky použití (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Produkt nenalezen:$productId. Ujistěte se, že je nakonfigurován v obchodech.';
+  }
+
+  @override
+  String get perYear => '/ rok';
+
+  @override
+  String get tierDemoSignalQty => '7-8 za den';
+
+  @override
+  String get elite1Month => 'ELITE 1 měsíc';
+
+  @override
+  String get elite12Months => 'ELITE 12 měsíců';
+
+  @override
+  String get statusPending => 'Čeká na vyřízení';
+
+  @override
+  String get statusFailed => 'Nepodařilo se';
+
+  @override
+  String get yourReferralCode => 'Váš referenční kód';
+
+  @override
+  String get referralCodeCopied => 'Doporučovací kód zkopírován!';
+
+  @override
+  String get copyCode => 'Kopírovat kód';
+
+  @override
+  String get revenue => 'Příjmy';
+
+  @override
+  String get availableCommission => 'Dostupné provize';
+
+  @override
+  String get totalReceivedIncome => 'Celkový přijatý příjem';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Záloha: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Důležité upozornění';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Váš účet se změnil. Přihlaste se prosím znovu.';
+
+  @override
+  String get iUnderstand => 'Rozumím';
+
+  @override
+  String get saveUpTo65Percent => 'UŠETŘETE AŽ 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Ročně -40 % • Životnost -65 %';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Nahrání se nezdařilo: Oprávnění odepřeno. Zkontrolujte pravidla úložiště.';
+
+  @override
+  String get failedToUploadImage =>
+      'Obrázek se nepodařilo nahrát. Zkontrolujte prosím své připojení.';
 }

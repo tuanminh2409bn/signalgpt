@@ -168,7 +168,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get upgradeToViewFullAnalysis => '전체 분석을 보려면 업그레이드';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => '계정 없이 로그인';
 
   @override
   String get welcomeTo => '환영합니다';
@@ -1086,10 +1086,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get save50Percent => '节省 50%';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => '40% 절약';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => '65% 절약';
 
   @override
   String get tryDemo => '试用演示';
@@ -1317,30 +1317,30 @@ class AppLocalizationsKo extends AppLocalizations {
       'This feature is only for VIP customers, please upgrade to receive notifications.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => '비밀번호 변경';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => '현재 비밀번호';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => '새 비밀번호';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => '새 비밀번호 확인';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => '비밀번호가 일치하지 않습니다.';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => '비밀번호가 성공적으로 업데이트되었습니다.';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return '비밀번호 업데이트 실패:$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => '잘못된 현재 비밀번호';
 
   @override
   String get signInRequired => '로그인 필요';
@@ -1465,203 +1465,203 @@ class AppLocalizationsKo extends AppLocalizations {
   String get popupLoginExplore => 'Log in to explore this trading bulletin!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => '면책 조항';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'signalgpt.ai의 정보는 참고 및 지식 공유 목적으로만 제공되며 투자 조언을 구성하지 않습니다. 사용자는 자신의 거래 결정에 대해 전적으로 책임을 집니다.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => '거래 계좌 개설';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => '응원하기';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => '앱 평가';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => '앱 공유';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => '계정 상세 정보';
 
   @override
-  String get language => 'Language';
+  String get language => '언어';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => '이용 약관';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => '계정';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => '거래소 접속';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => '온라인 지원';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => '언어 선택';
 
   @override
-  String get left => 'left';
+  String get left => '남음';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Pro로 업그레이드';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => '금';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => '암호화폐';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => '통화 쌍';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => '토큰';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => '사용 가능한 통화 쌍 자산이 없습니다';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return '$appName 열기';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => '상태';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => '진입';
 
   @override
-  String get signalSlLabel => 'SL';
+  String get signalSlLabel => '손절';
 
   @override
-  String get signalTp1Label => 'TP1';
+  String get signalTp1Label => '익절1';
 
   @override
-  String get signalTp2Label => 'TP2';
+  String get signalTp2Label => '익절2';
 
   @override
-  String get signalTp3Label => 'TP3';
+  String get signalTp3Label => '익절3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => '분석';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => '토큰을 사용하여 신호 보기';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => '지금 보기';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => '새 신호 대기 중...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => '신호 잠금 해제 실패';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => '토큰이 부족합니다';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => '새 신호가 업로드되었습니다';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return '새 $symbol 신호가 업로드되었습니다!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => '신호를 보려면 업그레이드';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => '신호 기록';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => '전체';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => '날짜 선택';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => '기록을 찾을 수 없습니다';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => '날짜';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => '시장 차트';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => '분석 및 설명';
 
   @override
-  String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+  String get noDetailedAnalysis => '이 신호에 대한 상세 분석이 없습니다.';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => '제휴 대시보드';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => '추천 링크';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => '링크 복사';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => '추천 수';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => '총 수익';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => '대기 중인 커미션';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => '최근 추천';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => '아직 추천이 없습니다.';
 
   @override
-  String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+  String get affiliateRoleRequired => '제휴 역할이 필요합니다. 관리자에게 문의하세요.';
 
   @override
-  String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+  String get affiliateCodeNotAssigned => '제휴 코드가 아직 할당되지 않았습니다. 관리자에게 문의하세요.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      '이 링크를 사용하여 사용자를 추천하고 40% 평생 커미션을 받으세요.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => '링크가 클립보드에 복사되었습니다!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => '추천 코드 입력';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => '추천 코드';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => '제출';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => '유효하지 않은 추천 코드입니다.';
 
   @override
-  String get getTheAppForBestExperience =>
-      'Get the app for the best experience';
+  String get referralCodeApplied => '추천 코드가 성공적으로 적용되었습니다!';
 
   @override
-  String get installApp => 'Install App';
+  String get getTheAppForBestExperience => '최상의 경험을 위해 앱을 다운로드하세요';
+
+  @override
+  String get installApp => '앱 설치';
 
   @override
   String get reviews => 'reviews';
@@ -1680,4 +1680,288 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get lifetime => 'Lifetime';
+
+  @override
+  String get loginNow => '지금 로그인';
+
+  @override
+  String get loginToViewSignals => '신호를 보려면 로그인하세요';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Signal GPT 신호를 보고 모든 기능에 액세스하려면 로그인하세요.';
+
+  @override
+  String get loginToViewHistory => '기록을 보려면 로그인하세요';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      '신호 기록은 로그인한 사용자만 이용할 수 있습니다. Signal GPT의 성과를 추적하려면 로그인하세요.';
+
+  @override
+  String get letsGetYouIn => '로그인해 볼까요!';
+
+  @override
+  String get dontHaveAnAccount => '계정이 없으신가요? ';
+
+  @override
+  String get createAccount => '계정 만들기';
+
+  @override
+  String get createYourAccount => '계정을 만드세요';
+
+  @override
+  String get login => '로그인';
+
+  @override
+  String get rememberYourPassword => '비밀번호 기억하기';
+
+  @override
+  String get signInWith => '다음으로 로그인';
+
+  @override
+  String get getStarted => '시작하기';
+
+  @override
+  String get pleaseEnterEmail => '이메일을 입력하세요';
+
+  @override
+  String get pleaseEnterPassword => '비밀번호를 입력하세요';
+
+  @override
+  String get pleaseEnterCurrentPassword => '현재 비밀번호를 입력하세요';
+
+  @override
+  String get pleaseEnterNewPassword => '새 비밀번호를 입력하세요';
+
+  @override
+  String get pleaseConfirmNewPassword => '새 비밀번호를 확인하세요';
+
+  @override
+  String get pleaseConfirmPassword => '비밀번호를 확인하세요';
+
+  @override
+  String get passwordMinLength => '비밀번호는 6자 이상이어야 합니다';
+
+  @override
+  String get savePassword => '비밀번호 저장';
+
+  @override
+  String get verifyYourEmail => '이메일 인증';
+
+  @override
+  String get pleaseEnterVerificationCode => '이메일로 전송된\n6자리 코드를 입력하세요';
+
+  @override
+  String get pleaseEnterAllDigits => '6자리 모두 입력하세요';
+
+  @override
+  String get invalidOrExpiredCode => '유효하지 않거나 만료된 인증 코드입니다';
+
+  @override
+  String get anErrorOccurred => '오류가 발생했습니다. 다시 시도해 주세요.';
+
+  @override
+  String get verificationCodeResent => '인증 코드가 재전송되었습니다!';
+
+  @override
+  String failedToResendCode(String error) {
+    return '코드 재전송 실패: $error';
+  }
+
+  @override
+  String get resendCode => '코드 재전송';
+
+  @override
+  String get verify => '인증';
+
+  @override
+  String get resetPassword => '비밀번호 재설정';
+
+  @override
+  String get forgotPasswordInstructions =>
+      '가입 시 사용한 이메일 주소를 입력하세요\n\n이메일 주소로 인증 코드를 보내드립니다.';
+
+  @override
+  String get sendButton => '보내기';
+
+  @override
+  String get unableToReceiveEmail => '이메일을 받을 수 없는 경우, @gmail.com으로 문의하세요';
+
+  @override
+  String get verificationCodeSentTo => '인증 코드를 다음 주소로 전송했습니다';
+
+  @override
+  String get passwordResetSuccessful => '비밀번호 재설정 성공!';
+
+  @override
+  String errorGeneric(String message) {
+    return '오류: $message';
+  }
+
+  @override
+  String get accountAlreadyExists => '계정이 이미 존재합니다';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return '이메일 $email은(는) 이미 시스템에 등록되어 있습니다. 로그인하거나 비밀번호 찾기 기능을 이용하세요.';
+  }
+
+  @override
+  String systemError(String error) {
+    return '시스템 오류: $error';
+  }
+
+  @override
+  String get confirmPassword => '비밀번호 확인';
+
+  @override
+  String get referralCodeOptional => '추천 코드 (선택사항)';
+
+  @override
+  String get accountDeletedSuccessfully => '계정이 영구적으로 삭제되었습니다.';
+
+  @override
+  String accountDeleteError(String error) {
+    return '계정 삭제 오류: $error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => '비밀번호가 성공적으로 변경되었습니다!';
+
+  @override
+  String get errorChangingPassword => '비밀번호 변경 오류. 현재 비밀번호를 확인하세요.';
+
+  @override
+  String get enableNotificationsHint =>
+      '잠금 화면에서 새 업데이트를 보려면 기기 설정에서 알림을 활성화하세요';
+
+  @override
+  String get navigateToDeviceSettings => '기기 설정으로 이동합니다.';
+
+  @override
+  String get turnOffAllNotifications => '모든 알림 끄기';
+
+  @override
+  String get pauseAllNotifications => '모든 알림 일시 중지';
+
+  @override
+  String get turnOnCryptoSignals => '암호화폐 신호 켜기';
+
+  @override
+  String get turnOnCurrencyPairSignals => '통화 쌍 신호 켜기';
+
+  @override
+  String get turnOnGoldSignals => '금 신호 켜기';
+
+  @override
+  String get currencyPairSignals => '통화 쌍 신호';
+
+  @override
+  String get termsOfUseContent =>
+      '이 애플리케이션에 접근하거나 사용함으로써 귀하는 이용 약관을 준수하는 데 동의합니다. 이 앱은 정보 제공 목적으로만 제공되며, 표시되는 콘텐츠나 신호의 정확성, 완전성 또는 신뢰성을 보장하지 않습니다. 앱 내에서 제공되는 정보의 사용 방법에 대해서는 전적으로 귀하가 책임집니다. 당사는 사전 통지 없이 언제든지 서비스를 수정, 일시 중단 또는 종료할 권리를 보유합니다. 앱을 계속 사용하면 업데이트된 약관에 동의하는 것으로 간주됩니다.';
+
+  @override
+  String get tradingHistoryTitle => '거래 기록';
+
+  @override
+  String get tp1Live => 'TP1 라이브';
+
+  @override
+  String get tp2Live => 'TP2 라이브';
+
+  @override
+  String get tp3Live => 'TP3 라이브';
+
+  @override
+  String get stopLossTriggered => '손절매 발동';
+
+  @override
+  String entryWithPrice(String price) {
+    return '진입: $price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signal GPT';
+
+  @override
+  String get categoryGold => '금';
+
+  @override
+  String get categoryCrypto => '암호화폐';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      '구독은 현재 기간 종료 최소 24시간 전에 취소하지 않으면 자동으로 갱신됩니다. App Store 계정 설정에서 구독을 관리하고 취소할 수 있습니다. Lifetime 플랜은 일회성 구매입니다.';
+
+  @override
+  String get termsOfUseEula => '이용 약관 (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return '상품을 찾을 수 없습니다: $productId. 스토어에서 구성되어 있는지 확인하세요.';
+  }
+
+  @override
+  String get perYear => '/ 년';
+
+  @override
+  String get tierDemoSignalQty => '하루 7-8개';
+
+  @override
+  String get elite1Month => 'ELITE 1개월';
+
+  @override
+  String get elite12Months => 'ELITE 12개월';
+
+  @override
+  String get statusPending => '대기 중';
+
+  @override
+  String get statusFailed => '실패';
+
+  @override
+  String get yourReferralCode => '내 추천 코드';
+
+  @override
+  String get referralCodeCopied => '추천 코드가 복사되었습니다!';
+
+  @override
+  String get copyCode => '코드 복사';
+
+  @override
+  String get revenue => '수익';
+
+  @override
+  String get availableCommission => '가용 커미션';
+
+  @override
+  String get totalReceivedIncome => '총 수령 수입';
+
+  @override
+  String depositAmount(String amount) {
+    return '입금: \$$amount';
+  }
+
+  @override
+  String get importantNotice => '중요 공지';
+
+  @override
+  String get accountChangedPleaseRelogin => '계정이 변경되었습니다. 다시 로그인해 주세요.';
+
+  @override
+  String get iUnderstand => '이해했습니다';
+
+  @override
+  String get saveUpTo65Percent => '최대 65% 절약';
+
+  @override
+  String get yearlyLifetimeDiscount => '연간 -40% • Lifetime -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      '업로드 실패: 권한이 거부되었습니다. 저장소 규칙을 확인하세요.';
+
+  @override
+  String get failedToUploadImage => '이미지 업로드 실패. 연결을 확인하세요.';
 }

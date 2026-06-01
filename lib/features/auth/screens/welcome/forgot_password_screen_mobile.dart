@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:minvest_forex_app/features/auth/services/auth_service.dart';
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
+import 'package:minvest_forex_app/core/utils/error_utils.dart';
 
 enum ForgotPasswordStep { email, verifyAndReset }
 
@@ -26,6 +28,7 @@ class _ForgotPasswordScreenMobileState extends State<ForgotPasswordScreenMobile>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -34,30 +37,35 @@ class _ForgotPasswordScreenMobileState extends State<ForgotPasswordScreenMobile>
             // Custom Header based on Figma
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Stack(
-                alignment: Alignment.center,
+              child: Row(
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      onTap: () {
-                        if (_currentStep == ForgotPasswordStep.verifyAndReset) {
-                          setState(() => _currentStep = ForgotPasswordStep.email);
-                        } else {
-                          Navigator.of(context).pop();
-                        }
-                      },
-                      child: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 24),
+                  GestureDetector(
+                    onTap: () {
+                      if (_currentStep == ForgotPasswordStep.verifyAndReset) {
+                        setState(() => _currentStep = ForgotPasswordStep.email);
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 24),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Center(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          l10n.resetPassword,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: _currentStep == ForgotPasswordStep.email ? 30 : 22,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  Text(
-                    'Reset Password',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: _currentStep == ForgotPasswordStep.email ? 30 : 22,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  const SizedBox(width: 32), // Bù kích thước icon back (24) + khoảng cách (8) để căn giữa chính xác
                 ],
               ),
             ),
@@ -89,15 +97,14 @@ class _EmailStepState extends State<_EmailStep> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
           const SizedBox(height: 40),
-          const Text(
-            '''Please input the email address you used to sign up your account
-
-We will send a verification code to your email address.''',
+          Text(
+            l10n.forgotPasswordInstructions,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Color(0xFF636363),
@@ -110,7 +117,7 @@ We will send a verification code to your email address.''',
           _buildGlassTextField(
             key: const ValueKey('forgot_email_field'),
             controller: _emailController,
-            hintText: 'Email',
+            hintText: l10n.email,
             icon: Icons.email_outlined,
             keyboardType: TextInputType.emailAddress,
           ),
@@ -133,17 +140,17 @@ We will send a verification code to your email address.''',
               alignment: Alignment.center,
               child: _isLoading 
                 ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                : const Text(
-                    'send',
-                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Be Vietnam Pro'),
+                : Text(
+                    l10n.sendButton,
+                    style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Be Vietnam Pro'),
                   ),
             ),
           ),
           
           const SizedBox(height: 180),
           
-          const Text(
-            'If you are unable to receive the email, please contact us email @gmail.com',
+          Text(
+            l10n.unableToReceiveEmail,
             textAlign: TextAlign.center,
             style: TextStyle(color: Color(0xFF636363), fontSize: 16, height: 1.5),
           ),
@@ -153,6 +160,7 @@ We will send a verification code to your email address.''',
   }
 
   Future<void> _sendCode() async {
+    final l10n = AppLocalizations.of(context)!;
     final email = _emailController.text.trim();
     if (email.isEmpty) return;
     
@@ -162,7 +170,7 @@ We will send a verification code to your email address.''',
       widget.onCodeSent(email);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.toString()}'), backgroundColor: Colors.red),
+        SnackBar(content: Text(ErrorUtils.getFriendlyErrorMessage(e)), backgroundColor: Colors.red),
       );
     } finally {
       if (mounted) setState(() => _isLoading = false);
@@ -250,6 +258,7 @@ class _VerifyAndResetStepState extends State<_VerifyAndResetStep> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
@@ -266,8 +275,8 @@ class _VerifyAndResetStepState extends State<_VerifyAndResetStep> {
             child: const Icon(Icons.mark_email_read_outlined, color: Color(0xFF0CA3ED), size: 30),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'We’ve sent a verification code to',
+          Text(
+            l10n.verificationCodeSentTo,
             style: TextStyle(color: Color(0xFF9A9A9A), fontSize: 18),
           ),
           const SizedBox(height: 8),
@@ -316,7 +325,7 @@ class _VerifyAndResetStepState extends State<_VerifyAndResetStep> {
           _buildGlassTextField(
             key: const ValueKey('forgot_new_pass_field'),
             controller: _newPasswordController,
-            hintText: 'New Password',
+            hintText: l10n.newPassword,
             icon: Icons.lock_outline,
             obscureText: _obscureNew,
             suffixIcon: GestureDetector(
@@ -330,7 +339,7 @@ class _VerifyAndResetStepState extends State<_VerifyAndResetStep> {
           _buildGlassTextField(
             key: const ValueKey('forgot_confirm_pass_field'),
             controller: _confirmPasswordController,
-            hintText: 'Confirm New Password',
+            hintText: l10n.confirmNewPassword,
             icon: Icons.lock_outline,
             obscureText: _obscureConfirm,
             suffixIcon: GestureDetector(
@@ -357,9 +366,9 @@ class _VerifyAndResetStepState extends State<_VerifyAndResetStep> {
               alignment: Alignment.center,
               child: _isLoading 
                 ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                : const Text(
-                    'Reset Password',
-                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Be Vietnam Pro'),
+                : Text(
+                    l10n.resetPassword,
+                    style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Be Vietnam Pro'),
                   ),
             ),
           ),
@@ -447,6 +456,7 @@ class _VerifyAndResetStepState extends State<_VerifyAndResetStep> {
   }
 
   Future<void> _resetPassword() async {
+    final l10n = AppLocalizations.of(context)!;
     final code = _otpController.text;
     final newPass = _newPasswordController.text;
     final confirmPass = _confirmPasswordController.text;
@@ -454,7 +464,7 @@ class _VerifyAndResetStepState extends State<_VerifyAndResetStep> {
     if (code.length < 6) return;
     if (newPass.isEmpty || newPass != confirmPass) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Passwords do not match'), backgroundColor: Colors.red),
+        SnackBar(content: Text(l10n.passwordsDoNotMatch), backgroundColor: Colors.red),
       );
       return;
     }
@@ -469,13 +479,13 @@ class _VerifyAndResetStepState extends State<_VerifyAndResetStep> {
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Password reset successful!'), backgroundColor: Colors.green),
+          SnackBar(content: Text(l10n.passwordResetSuccessful), backgroundColor: Colors.green),
         );
         Navigator.of(context).popUntil((route) => route.isFirst);
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.toString()}'), backgroundColor: Colors.red),
+        SnackBar(content: Text(ErrorUtils.getFriendlyErrorMessage(e)), backgroundColor: Colors.red),
       );
     } finally {
       if (mounted) setState(() => _isLoading = false);

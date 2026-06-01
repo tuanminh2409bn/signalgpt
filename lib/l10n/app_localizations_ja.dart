@@ -168,7 +168,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get upgradeToViewFullAnalysis => 'アップグレードして完全な分析を表示';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'アカウントなしでログイン';
 
   @override
   String get welcomeTo => 'ようこそ';
@@ -544,7 +544,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get noNotificationsYet => '通知はまだありません。';
 
   @override
-  String get markAllRead => 'Mark all as read';
+  String get markAllRead => 'すべて既読にする';
 
   @override
   String daysAgo(int count) {
@@ -1086,10 +1086,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get save50Percent => '50%オフ';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => '40%オフ';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => '65%オフ';
 
   @override
   String get tryDemo => 'デモを試す';
@@ -1262,85 +1262,84 @@ class AppLocalizationsJa extends AppLocalizations {
   String get leaveMessagePart2 => ' Signal GPT で迅速なサポートを受けられます。';
 
   @override
-  String get currentPlan => 'Current Plan';
+  String get currentPlan => '現在のプラン';
 
   @override
-  String get standard => 'STANDARD';
+  String get standard => 'スタンダード';
 
   @override
-  String get availableTokens => 'Available Tokens';
+  String get availableTokens => '利用可能なトークン';
 
   @override
-  String get subscriptions => 'Subscriptions';
+  String get subscriptions => 'サブスクリプション';
 
   @override
-  String get usesTokenPerView => 'Uses 1 Token per view';
+  String get usesTokenPerView => '閲覧ごとに1トークン使用';
 
   @override
-  String get unlimitedAccess => 'Unlimited Access';
+  String get unlimitedAccess => '無制限アクセス';
 
   @override
-  String get activeElite => 'Active (Elite)';
+  String get activeElite => 'アクティブ (Elite)';
 
   @override
-  String get active => 'Active';
+  String get active => 'アクティブ';
 
   @override
-  String get inactive => 'Inactive';
+  String get inactive => '非アクティブ';
 
   @override
-  String get transactionHistory => 'Transaction History';
+  String get transactionHistory => '取引履歴';
 
   @override
-  String get noTransactionsFound => 'No transactions found.';
+  String get noTransactionsFound => '取引が見つかりません。';
 
   @override
-  String get colDate => 'Date';
+  String get colDate => '日付';
 
   @override
-  String get colProduct => 'Product';
+  String get colProduct => '商品';
 
   @override
-  String get colAmount => 'Amount';
+  String get colAmount => '金額';
 
   @override
-  String get colMethod => 'Method';
+  String get colMethod => '方法';
 
   @override
-  String get colStatus => 'Status';
+  String get colStatus => 'ステータス';
 
   @override
-  String get statusSuccess => 'Success';
+  String get statusSuccess => '成功';
 
   @override
-  String get featureForVipOnly =>
-      'This feature is only for VIP customers, please upgrade to receive notifications.';
+  String get featureForVipOnly => 'この機能はVIPのお客様専用です。通知を受け取るにはアップグレードしてください。';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'パスワード変更';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => '現在のパスワード';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => '新しいパスワード';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => '新しいパスワードの確認';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'パスワードが一致しません';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'パスワードが正常に更新されました';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'パスワードの更新に失敗しました: $error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => '現在のパスワードが正しくありません';
 
   @override
   String get signInRequired => 'ログインが必要です';
@@ -1379,13 +1378,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get lossRate => '損失率';
 
   @override
-  String get signalProgress => 'Signal Progress';
+  String get signalProgress => 'シグナル進捗';
 
   @override
-  String get statusHistory => 'Status History';
+  String get statusHistory => 'ステータス履歴';
 
   @override
-  String get signalCreated => 'Signal Created';
+  String get signalCreated => 'シグナル作成';
 
   @override
   String get signalMatched => 'シグナル一致';
@@ -1430,109 +1429,109 @@ class AppLocalizationsJa extends AppLocalizations {
   String get pageOf => '/';
 
   @override
-  String get keyFindings => 'Key Findings';
+  String get keyFindings => '主要な発見';
 
   @override
-  String get filterStatusLabel => 'Status';
+  String get filterStatusLabel => 'ステータス';
 
   @override
-  String get filterStatusAll => 'All Status';
+  String get filterStatusAll => 'すべてのステータス';
 
   @override
-  String get filterStatusTp1 => 'TP1 HIT';
+  String get filterStatusTp1 => 'TP1 ヒット';
 
   @override
-  String get filterStatusTp2 => 'TP2 HIT';
+  String get filterStatusTp2 => 'TP2 ヒット';
 
   @override
-  String get filterStatusTp3 => 'TP3 HIT';
+  String get filterStatusTp3 => 'TP3 ヒット';
 
   @override
-  String get filterStatusSl => 'SL HIT';
+  String get filterStatusSl => 'SL ヒット';
 
   @override
-  String get filterStatusCancelled => 'CANCELLED';
+  String get filterStatusCancelled => 'キャンセル済み';
 
   @override
-  String get filterStatusExitByAdmin => 'EXIT BY ADMIN';
+  String get filterStatusExitByAdmin => '管理者により終了';
 
   @override
-  String get popupMasterMarket => 'Do you want to master the market?';
+  String get popupMasterMarket => '市場をマスターしたいですか？';
 
   @override
-  String get popupLoginExplore => 'Log in to explore this trading bulletin!';
+  String get popupLoginExplore => 'ログインしてこの取引速報を見よう！';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => '免責事項';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'signalgpt.aiの情報は参考および知識共有を目的としたものであり、投資アドバイスを構成するものではありません。ユーザーは自身の取引判断に対して全責任を負います。';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => '取引口座を開設';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'サポートする';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'アプリを評価';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'アプリを共有';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'アカウント詳細';
 
   @override
-  String get language => 'Language';
+  String get language => '言語';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => '利用規約';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'アカウント';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => '取引所にアクセス';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'オンラインサポート';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => '言語を選択';
 
   @override
-  String get left => 'left';
+  String get left => '残り';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Proにアップグレード';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'ゴールド';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => '仮想通貨';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => '通貨ペア';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'トークン';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => '通貨ペア資産はありません';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return '$appName を開く';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'ステータス';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'エントリー';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1547,122 +1546,123 @@ class AppLocalizationsJa extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => '分析';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'トークンを使用してシグナルを表示';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => '今すぐ見る';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => '新しいシグナルを待機中...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'シグナルのロック解除に失敗しました';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'トークンが不足しています';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => '新しいシグナルがアップロードされました';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return '新しい $symbol シグナルがアップロードされました！';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'アップグレードしてシグナルを表示';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'シグナル履歴';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'すべて';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => '日付を選択';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => '履歴が見つかりません';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => '日付';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'マーケットチャート';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => '分析と解説';
 
   @override
-  String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+  String get noDetailedAnalysis => 'このシグナルの詳細な分析はありません。';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'アフィリエイトダッシュボード';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => '紹介リンク';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'リンクをコピー';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => '紹介数';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => '総収益';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => '保留中のコミッション';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => '最新の紹介';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => '紹介はまだありません。';
 
   @override
-  String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+  String get affiliateRoleRequired => 'アフィリエイト権限が必要です。管理者にお問い合わせください。';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'アフィリエイトコードがまだ割り当てられていません。管理者にお問い合わせください。';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'このリンクを使用してユーザーを紹介し、生涯40%のコミッションを獲得しましょう。';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'リンクをクリップボードにコピーしました！';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => '紹介コードを入力';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => '紹介コード';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => '送信';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => '無効な紹介コードです。';
 
   @override
-  String get getTheAppForBestExperience =>
-      'Get the app for the best experience';
+  String get referralCodeApplied => '紹介コードが正常に適用されました！';
 
   @override
-  String get installApp => 'Install App';
+  String get getTheAppForBestExperience => '最高の体験のためにアプリを入手';
 
   @override
-  String get reviews => 'reviews';
+  String get installApp => 'アプリをインストール';
+
+  @override
+  String get reviews => 'レビュー';
 
   @override
   String get priceLifetime => '\$249.00';
@@ -1671,11 +1671,295 @@ class AppLocalizationsJa extends AppLocalizations {
   String get priceLifetimeOld => '\$712.00';
 
   @override
-  String get durationLifetime => 'Lifetime';
+  String get durationLifetime => '永久';
 
   @override
-  String get orderInfoLifetime => 'Payment for Elite Lifetime package';
+  String get orderInfoLifetime => 'Elite 永久パッケージの支払い';
 
   @override
-  String get lifetime => 'Lifetime';
+  String get lifetime => '永久';
+
+  @override
+  String get loginNow => '今すぐログイン';
+
+  @override
+  String get loginToViewSignals => 'ログインしてシグナルを表示';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Signal GPTのシグナルを表示し、すべての機能にアクセスするにはログインしてください。';
+
+  @override
+  String get loginToViewHistory => 'ログインして履歴を表示';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'シグナル履歴はログインユーザーのみ利用可能です。Signal GPTのパフォーマンスを追跡するにはログインしてください。';
+
+  @override
+  String get letsGetYouIn => 'さあ、始めましょう！';
+
+  @override
+  String get dontHaveAnAccount => 'アカウントをお持ちでないですか？ ';
+
+  @override
+  String get createAccount => 'アカウント作成';
+
+  @override
+  String get createYourAccount => 'アカウントを作成';
+
+  @override
+  String get login => 'ログイン';
+
+  @override
+  String get rememberYourPassword => 'パスワードを覚えていますか';
+
+  @override
+  String get signInWith => 'でサインイン';
+
+  @override
+  String get getStarted => '始める';
+
+  @override
+  String get pleaseEnterEmail => 'メールアドレスを入力してください';
+
+  @override
+  String get pleaseEnterPassword => 'パスワードを入力してください';
+
+  @override
+  String get pleaseEnterCurrentPassword => '現在のパスワードを入力してください';
+
+  @override
+  String get pleaseEnterNewPassword => '新しいパスワードを入力してください';
+
+  @override
+  String get pleaseConfirmNewPassword => '新しいパスワードを確認してください';
+
+  @override
+  String get pleaseConfirmPassword => 'パスワードを確認してください';
+
+  @override
+  String get passwordMinLength => 'パスワードは6文字以上である必要があります';
+
+  @override
+  String get savePassword => 'パスワードを保存';
+
+  @override
+  String get verifyYourEmail => 'メールアドレスの確認';
+
+  @override
+  String get pleaseEnterVerificationCode => 'メールに送信された6桁のコードを\n入力してください';
+
+  @override
+  String get pleaseEnterAllDigits => '6桁すべてを入力してください';
+
+  @override
+  String get invalidOrExpiredCode => '無効または期限切れの確認コードです';
+
+  @override
+  String get anErrorOccurred => 'エラーが発生しました。もう一度お試しください。';
+
+  @override
+  String get verificationCodeResent => '確認コードを再送信しました！';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'コードの再送信に失敗しました: $error';
+  }
+
+  @override
+  String get resendCode => 'コードを再送信';
+
+  @override
+  String get verify => '確認';
+
+  @override
+  String get resetPassword => 'パスワードをリセット';
+
+  @override
+  String get forgotPasswordInstructions =>
+      '登録に使用したメールアドレスを入力してください\n\n確認コードをメールアドレスに送信します。';
+
+  @override
+  String get sendButton => '送信';
+
+  @override
+  String get unableToReceiveEmail => 'メールを受信できない場合は、@gmail.com までお問い合わせください';
+
+  @override
+  String get verificationCodeSentTo => '確認コードを送信しました';
+
+  @override
+  String get passwordResetSuccessful => 'パスワードのリセットに成功しました！';
+
+  @override
+  String errorGeneric(String message) {
+    return 'エラー: $message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'アカウントは既に存在します';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'メールアドレス $email は既にシステムに登録されています。ログインするか、パスワードをお忘れの場合の機能をご利用ください。';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'システムエラー: $error';
+  }
+
+  @override
+  String get confirmPassword => 'パスワードの確認';
+
+  @override
+  String get referralCodeOptional => '紹介コード（任意）';
+
+  @override
+  String get accountDeletedSuccessfully => 'アカウントは完全に削除されました。';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'アカウント削除エラー: $error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => 'パスワードが正常に変更されました！';
+
+  @override
+  String get errorChangingPassword => 'パスワードの変更エラー。現在のパスワードを確認してください。';
+
+  @override
+  String get enableNotificationsHint =>
+      'ロック画面で新しい更新を表示するには、デバイス設定で通知を有効にしてください';
+
+  @override
+  String get navigateToDeviceSettings => 'デバイス設定に移動します。';
+
+  @override
+  String get turnOffAllNotifications => 'すべての通知をオフにする';
+
+  @override
+  String get pauseAllNotifications => 'すべての通知を一時停止';
+
+  @override
+  String get turnOnCryptoSignals => '仮想通貨シグナルをオンにする';
+
+  @override
+  String get turnOnCurrencyPairSignals => '通貨ペアシグナルをオンにする';
+
+  @override
+  String get turnOnGoldSignals => 'ゴールドシグナルをオンにする';
+
+  @override
+  String get currencyPairSignals => '通貨ペアシグナル';
+
+  @override
+  String get termsOfUseContent =>
+      'このアプリケーションにアクセスまたは使用することにより、利用規約に同意したものとみなされます。本アプリは情報提供のみを目的としており、表示されるコンテンツやシグナルの正確性、完全性、信頼性を保証するものではありません。アプリ内で提供される情報の使用方法については、お客様ご自身の責任となります。当社は事前通知なしにサービスを変更、停止、または終了する権利を留保します。アプリの継続使用は、更新された規約への同意を構成します。';
+
+  @override
+  String get tradingHistoryTitle => '取引履歴';
+
+  @override
+  String get tp1Live => 'TP1 ライブ';
+
+  @override
+  String get tp2Live => 'TP2 ライブ';
+
+  @override
+  String get tp3Live => 'TP3 ライブ';
+
+  @override
+  String get stopLossTriggered => 'ストップロス発動';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'エントリー: $price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signal GPT';
+
+  @override
+  String get categoryGold => 'ゴールド';
+
+  @override
+  String get categoryCrypto => '仮想通貨';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'サブスクリプションは、現在の期間終了の24時間前までにキャンセルしない限り自動更新されます。App Storeのアカウント設定でサブスクリプションの管理およびキャンセルが可能です。永久プランは一回限りの購入です。';
+
+  @override
+  String get termsOfUseEula => '利用規約 (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return '商品が見つかりません: $productId。ストアで設定されているか確認してください。';
+  }
+
+  @override
+  String get perYear => '/ 年';
+
+  @override
+  String get tierDemoSignalQty => '1日7〜8件';
+
+  @override
+  String get elite1Month => 'ELITE 1ヶ月';
+
+  @override
+  String get elite12Months => 'ELITE 12ヶ月';
+
+  @override
+  String get statusPending => '保留中';
+
+  @override
+  String get statusFailed => '失敗';
+
+  @override
+  String get yourReferralCode => 'あなたの紹介コード';
+
+  @override
+  String get referralCodeCopied => '紹介コードをコピーしました！';
+
+  @override
+  String get copyCode => 'コードをコピー';
+
+  @override
+  String get revenue => '収益';
+
+  @override
+  String get availableCommission => '利用可能なコミッション';
+
+  @override
+  String get totalReceivedIncome => '受取済み総収入';
+
+  @override
+  String depositAmount(String amount) {
+    return '入金: \$$amount';
+  }
+
+  @override
+  String get importantNotice => '重要なお知らせ';
+
+  @override
+  String get accountChangedPleaseRelogin => 'アカウントが変更されました。再度ログインしてください。';
+
+  @override
+  String get iUnderstand => '了解しました';
+
+  @override
+  String get saveUpTo65Percent => '最大65%オフ';
+
+  @override
+  String get yearlyLifetimeDiscount => '年間 -40% • 永久 -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'アップロード失敗: アクセスが拒否されました。ストレージルールを確認してください。';
+
+  @override
+  String get failedToUploadImage => '画像のアップロードに失敗しました。接続を確認してください。';
 }

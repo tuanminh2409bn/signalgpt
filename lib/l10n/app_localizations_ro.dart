@@ -178,7 +178,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'Actualizați pentru a vizualiza analiza completă';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => 'Conectați-vă fără cont';
 
   @override
   String get welcomeTo => 'Bun venit la';
@@ -1132,10 +1132,10 @@ class AppLocalizationsRo extends AppLocalizations {
   String get save50Percent => 'ECONOMISIȚI 50%';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => 'Economisiți 40%';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => 'Economisiți 65%';
 
   @override
   String get tryDemo => 'Încercați demo';
@@ -1369,30 +1369,30 @@ class AppLocalizationsRo extends AppLocalizations {
       'This feature is only for VIP customers, please upgrade to receive notifications.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Schimbaţi parola';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'Parola actuală';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Parolă Nouă';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Confirmați parola nouă';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'Parolele nu se potrivesc';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => 'Parola a fost actualizată cu succes';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return 'Nu s-a putut actualiza parola:$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => 'Parolă actuală incorectă';
 
   @override
   String get signInRequired => 'Autentificare necesară';
@@ -1522,72 +1522,72 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'Informațiile de pe signalgpt.ai sunt doar în scop de referință și de schimb de cunoștințe și nu constituie sfaturi de investiții. Utilizatorii sunt singurii responsabili pentru propriile decizii comerciale.';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => 'Deschide un cont de tranzacționare';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => 'Sprijină-ne';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => 'Evaluați aplicația';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => 'Partajați aplicația';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => 'Detaliile contului';
 
   @override
-  String get language => 'Language';
+  String get language => 'Limbă';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => 'Termeni de utilizare';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => 'Conturi';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => 'Accesați Exchange';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => 'Suport online';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Selectați Limbă';
 
   @override
-  String get left => 'left';
+  String get left => 'stânga';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => 'Upgrade la Pro';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => 'Aur';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => 'Cripto';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => 'PERECHEA VALUTĂ';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Jetoane';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => 'Nu sunt disponibile active PERECHII DE VALUTĂ';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return 'Deschide$appName';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => 'Stare';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => 'INTRARE';
 
   @override
   String get signalSlLabel => 'SL';
@@ -1602,112 +1602,116 @@ class AppLocalizationsRo extends AppLocalizations {
   String get signalTp3Label => 'TP3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => 'Analiza';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => 'Folosiți Token pentru a vedea Signal';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => 'Vezi acum';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => 'Asteptam noi semnale...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => 'Nu s-a deblocat semnalul';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => 'Nu sunt suficiente jetoane';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => 'Semnal nou încărcat';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return 'Noul semnal${symbol}este acum încărcat!';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => 'Faceți upgrade la View Signal';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => 'Istoricul semnalelor';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => 'TOATE';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => 'Selectați Data';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => 'Nu a fost găsit niciun istoric';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => 'Data';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => 'GRAFUL PIEȚEI';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => 'Analiză și explicație';
 
   @override
   String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+      'Nu este disponibilă o analiză detaliată pentru acest semnal.';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => 'Tabloul de bord afiliat';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => 'Link de recomandare';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => 'Copiați linkul';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => 'Număr de referințe';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => 'Câștigurile totale';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => 'Comisia în așteptare';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => 'Ultimele recomandări';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => 'Nicio recomandare încă.';
 
   @override
   String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+      'Este necesar rol de afiliat. Vă rugăm să contactați admin.';
 
   @override
   String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+      'Codul de afiliat nu a fost încă atribuit. Vă rugăm să contactați admin.';
 
   @override
   String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+      'Utilizați acest link pentru a recomanda utilizatori și pentru a câștiga 40% comision pe viață.';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => 'Link copiat în clipboard!';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => 'Introdu codul de recomandare';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => 'Cod de recomandare';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => 'Trimiteți';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => 'Cod de recomandare nevalid.';
+
+  @override
+  String get referralCodeApplied => 'Codul de recomandare aplicat cu succes!';
 
   @override
   String get getTheAppForBestExperience =>
@@ -1723,7 +1727,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get priceLifetime => '\$249.00';
 
   @override
-  String get priceLifetimeOld => '\$712.00';
+  String get priceLifetimeOld => '712,00 USD';
 
   @override
   String get durationLifetime => 'Lifetime';
@@ -1733,4 +1737,300 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get lifetime => 'Lifetime';
+
+  @override
+  String get loginNow => 'Conectați-vă acum';
+
+  @override
+  String get loginToViewSignals => 'Conectați-vă pentru a vizualiza semnalele';
+
+  @override
+  String get loginToViewSignalsDesc =>
+      'Vă rugăm să vă conectați pentru a vedea semnalele GPT Signal și pentru a accesa toate funcțiile.';
+
+  @override
+  String get loginToViewHistory => 'Conectați-vă pentru a vedea istoricul';
+
+  @override
+  String get loginToViewHistoryDesc =>
+      'Istoricul semnalelor este disponibil numai pentru utilizatorii conectați. Vă rugăm să vă conectați pentru a urmări performanța de la Signal GPT.';
+
+  @override
+  String get letsGetYouIn => 'Hai să te introducem!';
+
+  @override
+  String get dontHaveAnAccount => 'Nu ai un cont?';
+
+  @override
+  String get createAccount => 'Creează cont';
+
+  @override
+  String get createYourAccount => 'Creați-vă contul';
+
+  @override
+  String get login => 'Log in';
+
+  @override
+  String get rememberYourPassword => 'Amintiți-vă parola';
+
+  @override
+  String get signInWith => 'Conectați-vă cu';
+
+  @override
+  String get getStarted => 'Începeți';
+
+  @override
+  String get pleaseEnterEmail =>
+      'Vă rugăm să introduceți adresa dvs. de e-mail';
+
+  @override
+  String get pleaseEnterPassword => 'Vă rugăm să introduceți parola';
+
+  @override
+  String get pleaseEnterCurrentPassword =>
+      'Vă rugăm să introduceți parola dvs. actuală';
+
+  @override
+  String get pleaseEnterNewPassword => 'Vă rugăm să introduceți noua parolă';
+
+  @override
+  String get pleaseConfirmNewPassword => 'Vă rugăm să confirmați noua parolă';
+
+  @override
+  String get pleaseConfirmPassword => 'Vă rugăm să vă confirmați parola';
+
+  @override
+  String get passwordMinLength =>
+      'Parola trebuie să aibă cel puțin 6 caractere';
+
+  @override
+  String get savePassword => 'Salvați parola';
+
+  @override
+  String get verifyYourEmail => 'Verificați-vă adresa de e-mail';
+
+  @override
+  String get pleaseEnterVerificationCode =>
+      'Vă rugăm să introduceți codul din 6 cifre\ntrimis pe adresa ta de email';
+
+  @override
+  String get pleaseEnterAllDigits =>
+      'Vă rugăm să introduceți toate cele 6 cifre';
+
+  @override
+  String get invalidOrExpiredCode => 'Cod de verificare nevalid sau expirat';
+
+  @override
+  String get anErrorOccurred =>
+      'A apărut o eroare. Vă rugăm să încercați din nou.';
+
+  @override
+  String get verificationCodeResent => 'Codul de verificare a fost remis!';
+
+  @override
+  String failedToResendCode(String error) {
+    return 'Nu s-a retrimis codul:$error';
+  }
+
+  @override
+  String get resendCode => 'Retrimiteți codul';
+
+  @override
+  String get verify => 'Verifica';
+
+  @override
+  String get resetPassword => 'Resetează parola';
+
+  @override
+  String get forgotPasswordInstructions =>
+      'Vă rugăm să introduceți adresa de e-mail pe care ați folosit-o pentru a vă înregistra contul\n\nVă vom trimite un cod de verificare la adresa dvs. de e-mail.';
+
+  @override
+  String get sendButton => 'Trimite';
+
+  @override
+  String get unableToReceiveEmail =>
+      'Dacă nu puteți primi e-mailul, vă rugăm să ne contactați e-mail @gmail.com';
+
+  @override
+  String get verificationCodeSentTo => 'Am trimis un cod de verificare către';
+
+  @override
+  String get passwordResetSuccessful => 'Resetarea parolei cu succes!';
+
+  @override
+  String errorGeneric(String message) {
+    return 'Eroare:$message';
+  }
+
+  @override
+  String get accountAlreadyExists => 'Contul există deja';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return 'E-mailul${email}a fost deja înregistrat în sistem. Vă rugăm să vă autentificați sau să utilizați funcția de parolă uitată.';
+  }
+
+  @override
+  String systemError(String error) {
+    return 'Eroare de sistem:$error';
+  }
+
+  @override
+  String get confirmPassword => 'Confirmați parola';
+
+  @override
+  String get referralCodeOptional => 'Cod de recomandare (Opțional)';
+
+  @override
+  String get accountDeletedSuccessfully => 'Contul a fost șters definitiv.';
+
+  @override
+  String accountDeleteError(String error) {
+    return 'Eroare la ștergerea contului:$error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully =>
+      'Parola a fost schimbată cu succes!';
+
+  @override
+  String get errorChangingPassword =>
+      'Eroare la schimbarea parolei. Vă rugăm să verificați parola curentă.';
+
+  @override
+  String get enableNotificationsHint =>
+      'Activați notificările în setările dispozitivului pentru a vedea noile actualizări pe ecranul de blocare';
+
+  @override
+  String get navigateToDeviceSettings => 'Navigați la setările dispozitivului.';
+
+  @override
+  String get turnOffAllNotifications => 'Dezactivează toate notificările';
+
+  @override
+  String get pauseAllNotifications => 'Întrerupeți toate notificările';
+
+  @override
+  String get turnOnCryptoSignals => 'Activați semnalele cripto';
+
+  @override
+  String get turnOnCurrencyPairSignals =>
+      'Activați semnalele perechilor valutare';
+
+  @override
+  String get turnOnGoldSignals => 'Porniți semnalele de aur';
+
+  @override
+  String get currencyPairSignals => 'Semnale perechi valutare';
+
+  @override
+  String get termsOfUseContent =>
+      'Prin accesarea sau utilizarea acestei aplicații, sunteți de acord să respectați Termenii de utilizare. Această aplicație este furnizată doar în scop informativ și nu garantăm acuratețea, completitudinea sau fiabilitatea oricărui conținut sau semnale afișate. Sunteți singurul responsabil pentru modul în care utilizați informațiile furnizate în aplicație. Ne rezervăm dreptul de a modifica, suspenda sau rezilia serviciul în orice moment, fără notificare prealabilă. Utilizarea continuă a aplicației reprezintă acceptarea oricăror termeni actualizați.';
+
+  @override
+  String get tradingHistoryTitle => 'Istoricul tranzacționării';
+
+  @override
+  String get tp1Live => 'TP1 LIVE';
+
+  @override
+  String get tp2Live => 'TP2 LIVE';
+
+  @override
+  String get tp3Live => 'TP3 LIVE';
+
+  @override
+  String get stopLossTriggered => 'Stop loss declanșat';
+
+  @override
+  String entryWithPrice(String price) {
+    return 'Intrare:$price';
+  }
+
+  @override
+  String get signalGptTitle => 'Semnal GPT';
+
+  @override
+  String get categoryGold => 'AUR';
+
+  @override
+  String get categoryCrypto => 'CRYPTO';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      'Abonamentul se va reînnoi automat dacă nu este anulat cu cel puțin 24 de ore înainte de sfârșitul perioadei curente. Vă puteți gestiona și anula abonamentele din setările contului din App Store. Planul pe viață este o achiziție unică.';
+
+  @override
+  String get termsOfUseEula => 'Termeni de utilizare (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return 'Produsul nu a fost găsit:$productId. Vă rugăm să vă asigurați că este configurat în magazine.';
+  }
+
+  @override
+  String get perYear => '/an';
+
+  @override
+  String get tierDemoSignalQty => '7-8 pe zi';
+
+  @override
+  String get elite1Month => 'ELITE 1 lună';
+
+  @override
+  String get elite12Months => 'ELITE 12 luni';
+
+  @override
+  String get statusPending => 'În așteptare';
+
+  @override
+  String get statusFailed => 'A eșuat';
+
+  @override
+  String get yourReferralCode => 'Codul dvs. de recomandare';
+
+  @override
+  String get referralCodeCopied => 'Codul de recomandare a fost copiat!';
+
+  @override
+  String get copyCode => 'Copiați codul';
+
+  @override
+  String get revenue => 'Venituri';
+
+  @override
+  String get availableCommission => 'Comision disponibil';
+
+  @override
+  String get totalReceivedIncome => 'Venitul total primit';
+
+  @override
+  String depositAmount(String amount) {
+    return 'Depozit: \$$amount';
+  }
+
+  @override
+  String get importantNotice => 'Notă importantă';
+
+  @override
+  String get accountChangedPleaseRelogin =>
+      'Contul dvs. s-a schimbat. Vă rugăm să vă conectați din nou.';
+
+  @override
+  String get iUnderstand => 'Am înțeles';
+
+  @override
+  String get saveUpTo65Percent => 'Economisiți până la 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => 'Anual -40% • Durata de viață -65%';
+
+  @override
+  String get uploadFailedPermissionDenied =>
+      'Încărcarea eșuată: permisiunea a fost refuzată. Verificați regulile de stocare.';
+
+  @override
+  String get failedToUploadImage =>
+      'Nu s-a putut încărca imaginea. Vă rugăm să vă verificați conexiunea.';
 }

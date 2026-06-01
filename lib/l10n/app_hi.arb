@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "पासवर्ड बदलें",
+  "currentPassword": "वर्तमान पासवर्ड",
+  "newPassword": "नया पासवर्ड",
+  "confirmNewPassword": "नए पासवर्ड की पुष्टि करें",
+  "passwordsDoNotMatch": "सांकेतिक शब्द मेल नहीं खाते",
+  "passwordUpdateSuccess": "पासवर्ड सफलतापूर्वक अद्यतन",
+  "passwordUpdateFailed": "पासवर्ड अपडेट करने में विफल:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "ग़लत वर्तमान पासवर्ड",
   "signInRequired": "लॉग इन आवश्यक",
   "signInToExploreSignal": "इस ट्रेडिंग सिग्नल का पता लगाने के लिए साइन इन करें!",
   "activeMember": "सक्रिय सदस्य",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "बिना खाते के लॉगिन करें",
+  "save40Percent": "40% बचाएं",
+  "save65Percent": "65% बचाएं",
+  "disclaimer": "अस्वीकरण",
+  "disclaimerContent": "signalgpt.ai पर दी गई जानकारी केवल संदर्भ और ज्ञान-साझाकरण उद्देश्यों के लिए है, और यह निवेश सलाह नहीं है। उपयोगकर्ता अपने स्वयं के ट्रेडिंग निर्णयों के लिए पूर्ण रूप से जिम्मेदार हैं।",
+  "openTradingAccount": "ट्रेडिंग खाता खोलें",
+  "supportUs": "हमारा समर्थन करें",
+  "rateApp": "ऐप को रेट करें",
+  "shareApp": "ऐप साझा करें",
+  "accountDetails": "खाता विवरण",
+  "language": "भाषा",
+  "termsOfUse": "उपयोग की शर्तें",
+  "accounts": "खाते",
+  "accessExchange": "एक्सचेंज तक पहुँचें",
+  "onlineSupport": "ऑनलाइन सहायता",
+  "selectLanguage": "भाषा चुनें",
+  "left": "शेष",
+  "upgradeToPro": "प्रो में अपग्रेड करें",
+  "assetGold": "सोना",
+  "assetCrypto": "क्रिप्टो",
+  "assetForex": "मुद्रा जोड़ी",
+  "tokens": "टोकन",
+  "noForexAssets": "कोई मुद्रा जोड़ी उपलब्ध नहीं है",
+  "openApp": "{appName} खोलें",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "स्थिति",
+  "signalEntryLabel": "ENTRY",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "विश्लेषण करें",
+  "useTokenToView": "सिग्नल देखने के लिए टोकन का उपयोग करें",
+  "viewNow": "अभी देखें",
+  "waitingNewSignals": "नए संकेतों की प्रतीक्षा में...",
+  "failedUnlockSignal": "सिग्नल अनलॉक करने में विफल",
+  "notEnoughTokens": "पर्याप्त टोकन नहीं हैं",
+  "newSignalUploaded": "नया सिग्नल अपलोड किया गया",
+  "newSymbolSignalUploaded": "नया {symbol} सिग्नल अभी अपलोड किया गया है!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "सिग्नल देखने के लिए अपग्रेड करें",
+  "signalHistory": "सिग्नल इतिहास",
+  "allStatus": "सभी",
+  "selectDate": "तिथि चुनें",
+  "noHistoryFound": "कोई इतिहास नहीं मिला",
+  "filterDate": "तिथि",
+  "marketChart": "बाज़ार चार्ट",
+  "analysisExplanation": "विश्लेषण और स्पष्टीकरण",
+  "noDetailedAnalysis": "इस सिग्नल के लिए कोई विस्तृत विश्लेषण उपलब्ध नहीं है।",
+  "affiliateDashboard": "एफिलिएट डैशबोर्ड",
+  "referralLink": "रेफ़रल लिंक",
+  "copyLink": "लिंक कॉपी करें",
+  "referralCount": "रेफ़रल संख्या",
+  "totalEarnings": "कुल आय",
+  "pendingCommission": "लंबित कमीशन",
+  "latestReferrals": "नवीनतम रेफ़रल",
+  "noReferralsYet": "अभी तक कोई रेफ़रल नहीं।",
+  "affiliateRoleRequired": "एफिलिएट भूमिका आवश्यक है। कृपया व्यवस्थापक से संपर्क करें।",
+  "affiliateCodeNotAssigned": "एफिलिएट कोड अभी तक असाइन नहीं किया गया है। कृपया व्यवस्थापक से संपर्क करें।",
+  "referralLinkDescription": "इस लिंक का उपयोग करें उपयोगकर्ताओं को रेफ़र करने और 40% आजीवन कमीशन कमाने के लिए।",
+  "linkCopied": "लिंक क्लिपबोर्ड पर कॉपी किया गया!",
+  "enterReferralCode": "रेफ़रल कोड दर्ज करें",
+  "referralCode": "रेफ़रल कोड",
+  "submit": "सबमिट करें",
+  "invalidReferralCode": "अमान्य रेफ़रल कोड।",
+  "referralCodeApplied": "रेफ़रल कोड सफलतापूर्वक लागू किया गया!",
+  "priceLifetimeOld": "$712.00",
+  "loginNow": "अभी लॉगिन करें",
+  "loginToViewSignals": "सिग्नल देखने के लिए लॉगिन करें",
+  "loginToViewSignalsDesc": "Signal GPT के सिग्नल देखने और सभी सुविधाओं तक पहुँचने के लिए कृपया लॉगिन करें।",
+  "loginToViewHistory": "इतिहास देखने के लिए लॉगिन करें",
+  "loginToViewHistoryDesc": "सिग्नल इतिहास केवल लॉग-इन उपयोगकर्ताओं के लिए उपलब्ध है। Signal GPT से प्रदर्शन ट्रैक करने के लिए कृपया लॉगिन करें।",
+  "letsGetYouIn": "चलिए शुरू करते हैं!",
+  "dontHaveAnAccount": "खाता नहीं है? ",
+  "createAccount": "खाता बनाएँ",
+  "createYourAccount": "अपना खाता बनाएँ",
+  "login": "लॉगिन",
+  "rememberYourPassword": "अपना पासवर्ड याद रखें",
+  "signInWith": "इसके साथ साइन इन करें",
+  "getStarted": "शुरू करें",
+  "pleaseEnterEmail": "कृपया अपना ईमेल दर्ज करें",
+  "pleaseEnterPassword": "कृपया अपना पासवर्ड दर्ज करें",
+  "pleaseEnterCurrentPassword": "कृपया अपना वर्तमान पासवर्ड दर्ज करें",
+  "pleaseEnterNewPassword": "कृपया अपना नया पासवर्ड दर्ज करें",
+  "pleaseConfirmNewPassword": "कृपया अपने नए पासवर्ड की पुष्टि करें",
+  "pleaseConfirmPassword": "कृपया अपने पासवर्ड की पुष्टि करें",
+  "passwordMinLength": "पासवर्ड कम से कम 6 अक्षर का होना चाहिए",
+  "savePassword": "पासवर्ड सहेजें",
+  "verifyYourEmail": "अपना ईमेल सत्यापित करें",
+  "pleaseEnterVerificationCode": "कृपया अपने ईमेल पर भेजा गया\\n6 अंकों का कोड दर्ज करें",
+  "pleaseEnterAllDigits": "कृपया सभी 6 अंक दर्ज करें",
+  "invalidOrExpiredCode": "अमान्य या समय-सीमित सत्यापन कोड",
+  "anErrorOccurred": "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
+  "verificationCodeResent": "सत्यापन कोड पुनः भेजा गया!",
+  "failedToResendCode": "कोड पुनः भेजने में विफल: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "कोड पुनः भेजें",
+  "verify": "सत्यापित करें",
+  "resetPassword": "पासवर्ड रीसेट करें",
+  "forgotPasswordInstructions": "कृपया वह ईमेल पता दर्ज करें जिसका उपयोग आपने अपना खाता बनाने के लिए किया था\\n\\nहम आपके ईमेल पर एक सत्यापन कोड भेजेंगे।",
+  "sendButton": "भेजें",
+  "unableToReceiveEmail": "यदि आप ईमेल प्राप्त करने में असमर्थ हैं, तो कृपया हमसे ईमेल @gmail.com पर संपर्क करें",
+  "verificationCodeSentTo": "हमने सत्यापन कोड भेज दिया है",
+  "passwordResetSuccessful": "पासवर्ड रीसेट सफल!",
+  "errorGeneric": "त्रुटि: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "खाता पहले से मौजूद है",
+  "accountAlreadyExistsMessage": "ईमेल {email} सिस्टम में पहले से पंजीकृत है। कृपया लॉगिन करें या पासवर्ड भूल गए सुविधा का उपयोग करें।",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "सिस्टम त्रुटि: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "पासवर्ड की पुष्टि करें",
+  "referralCodeOptional": "रेफ़रल कोड (वैकल्पिक)",
+  "accountDeletedSuccessfully": "खाता स्थायी रूप से हटा दिया गया है।",
+  "accountDeleteError": "खाता हटाने में त्रुटि: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "पासवर्ड सफलतापूर्वक बदला गया!",
+  "errorChangingPassword": "पासवर्ड बदलने में त्रुटि। कृपया अपना वर्तमान पासवर्ड जांचें।",
+  "enableNotificationsHint": "लॉक स्क्रीन पर नए अपडेट देखने के लिए डिवाइस सेटिंग्स में सूचनाएं सक्षम करें",
+  "navigateToDeviceSettings": "डिवाइस सेटिंग्स पर जाएं।",
+  "turnOffAllNotifications": "सभी सूचनाएं बंद करें",
+  "pauseAllNotifications": "सभी सूचनाएं रोकें",
+  "turnOnCryptoSignals": "क्रिप्टो सिग्नल चालू करें",
+  "turnOnCurrencyPairSignals": "मुद्रा जोड़ी सिग्नल चालू करें",
+  "turnOnGoldSignals": "गोल्ड सिग्नल चालू करें",
+  "currencyPairSignals": "मुद्रा जोड़ी सिग्नल",
+  "termsOfUseContent": "इस एप्लिकेशन को एक्सेस या उपयोग करके, आप उपयोग की शर्तों का पालन करने के लिए सहमत होते हैं। यह ऐप केवल सूचनात्मक उद्देश्यों के लिए प्रदान किया गया है, और हम प्रदर्शित किसी भी सामग्री या सिग्नल की सटीकता, पूर्णता या विश्वसनीयता की गारंटी नहीं देते हैं। ऐप के भीतर दी गई जानकारी का उपयोग आप कैसे करते हैं, इसके लिए आप पूर्ण रूप से जिम्मेदार हैं। हम बिना पूर्व सूचना के किसी भी समय सेवा को संशोधित, निलंबित या समाप्त करने का अधिकार सुरक्षित रखते हैं। ऐप का निरंतर उपयोग किसी भी अद्यतन शर्तों की स्वीकृति माना जाएगा।",
+  "tradingHistoryTitle": "ट्रेडिंग इतिहास",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "स्टॉप लॉस ट्रिगर हुआ",
+  "entryWithPrice": "एंट्री: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Signal GPT",
+  "categoryGold": "GOLD",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "सदस्यता स्वचालित रूप से नवीनीकृत हो जाएगी जब तक कि वर्तमान अवधि समाप्त होने से कम से कम 24 घंटे पहले रद्द नहीं की जाती। आप अपने App Store खाता सेटिंग्स में अपनी सदस्यता प्रबंधित और रद्द कर सकते हैं। लाइफटाइम प्लान एक बार की खरीदारी है।",
+  "termsOfUseEula": "उपयोग की शर्तें (EULA)",
+  "productNotFound": "उत्पाद नहीं मिला: {productId}। कृपया सुनिश्चित करें कि यह स्टोर में कॉन्फ़िगर किया गया है।",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ वर्ष",
+  "tierDemoSignalQty": "प्रति दिन 7-8",
+  "elite1Month": "ELITE 1 महीना",
+  "elite12Months": "ELITE 12 महीने",
+  "statusPending": "लंबित",
+  "statusFailed": "विफल",
+  "yourReferralCode": "आपका रेफ़रल कोड",
+  "referralCodeCopied": "रेफ़रल कोड कॉपी किया गया!",
+  "copyCode": "कोड कॉपी करें",
+  "revenue": "राजस्व",
+  "availableCommission": "उपलब्ध कमीशन",
+  "totalReceivedIncome": "कुल प्राप्त आय",
+  "depositAmount": "जमा: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "महत्वपूर्ण सूचना",
+  "accountChangedPleaseRelogin": "आपका खाता बदल गया है। कृपया फिर से लॉगिन करें।",
+  "iUnderstand": "मैं समझता/समझती हूँ",
+  "saveUpTo65Percent": "65% तक बचाएं",
+  "yearlyLifetimeDiscount": "वार्षिक -40% • लाइफटाइम -65%",
+  "uploadFailedPermissionDenied": "अपलोड विफल: अनुमति अस्वीकृत। स्टोरेज नियम जांचें।",
+  "failedToUploadImage": "छवि अपलोड करने में विफल। कृपया अपना कनेक्शन जांचें।"
 }

@@ -447,13 +447,13 @@
   "colStatus": "Status",
   "statusSuccess": "Success",
   "featureForVipOnly": "This feature is only for VIP customers, please upgrade to receive notifications.",
-  "changePassword": "Change Password",
-  "currentPassword": "Current Password",
-  "newPassword": "New Password",
-  "confirmNewPassword": "Confirm New Password",
-  "passwordsDoNotMatch": "Passwords do not match",
-  "passwordUpdateSuccess": "Password updated successfully",
-  "passwordUpdateFailed": "Failed to update password: {error}",
+  "changePassword": "Změnit heslo",
+  "currentPassword": "Aktuální heslo",
+  "newPassword": "Nové heslo",
+  "confirmNewPassword": "Potvrďte nové heslo",
+  "passwordsDoNotMatch": "Hesla se neshodují",
+  "passwordUpdateSuccess": "Heslo bylo úspěšně aktualizováno",
+  "passwordUpdateFailed": "Nepodařilo se aktualizovat heslo:{error}",
   "@passwordUpdateFailed": {
     "placeholders": {
       "error": {
@@ -461,7 +461,7 @@
       }
     }
   },
-  "reauthFailed": "Incorrect current password",
+  "reauthFailed": "Nesprávné aktuální heslo",
   "signInRequired": "Vyžadováno přihlášení",
   "signInToExploreSignal": "Přihlaste se a prozkoumejte tento obchodní signál!",
   "activeMember": "Aktivní člen",
@@ -528,5 +528,227 @@
   "priceLifetime": "$249.00",
   "durationLifetime": "Lifetime",
   "orderInfoLifetime": "Payment for Elite Lifetime package",
-  "lifetime": "Lifetime"
+  "lifetime": "Lifetime",
+  "loginWithoutAccount": "Přihlášení bez účtu",
+  "save40Percent": "Ušetříte 40 %",
+  "save65Percent": "Ušetříte 65 %",
+  "disclaimer": "Zřeknutí se odpovědnosti",
+  "disclaimerContent": "Informace na signalgpt.ai jsou pouze pro referenční účely a pro účely sdílení znalostí a nepředstavují investiční poradenství. Uživatelé jsou výhradně odpovědní za svá vlastní obchodní rozhodnutí.",
+  "openTradingAccount": "Otevřete si obchodní účet",
+  "supportUs": "Podpořte nás",
+  "rateApp": "Hodnotit aplikaci",
+  "shareApp": "Sdílet aplikaci",
+  "accountDetails": "Podrobnosti o účtu",
+  "language": "Jazyk",
+  "termsOfUse": "Podmínky používání",
+  "accounts": "Účty",
+  "accessExchange": "Přístup k burze",
+  "onlineSupport": "Online podpora",
+  "selectLanguage": "Vyberte Jazyk",
+  "left": "vlevo",
+  "upgradeToPro": "Upgrade na Pro",
+  "assetGold": "Zlato",
+  "assetCrypto": "Krypto",
+  "assetForex": "MĚNOVÝ PÁR",
+  "tokens": "Tokeny",
+  "noForexAssets": "Nejsou k dispozici žádná aktiva MĚNOVÉHO PÁRU",
+  "openApp": "Otevřít{appName}",
+  "@openApp": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "signalStatus": "Postavení",
+  "signalEntryLabel": "VSTUP",
+  "signalSlLabel": "SL",
+  "signalTp1Label": "TP1",
+  "signalTp2Label": "TP2",
+  "signalTp3Label": "TP3",
+  "analyze": "Analyzovat",
+  "useTokenToView": "Použijte Token k zobrazení signálu",
+  "viewNow": "Zobrazit nyní",
+  "waitingNewSignals": "Čekání na nové signály...",
+  "failedUnlockSignal": "Signál se nepodařilo odemknout",
+  "notEnoughTokens": "Nedostatek tokenů",
+  "newSignalUploaded": "Nový signál nahrán",
+  "newSymbolSignalUploaded": "Nový signál{symbol}je nyní nahrán!",
+  "@newSymbolSignalUploaded": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "upgradeToViewSignalBanner": "Upgradujte na zobrazení signálu",
+  "signalHistory": "Historie signálu",
+  "allStatus": "VŠE",
+  "selectDate": "Vyberte Datum",
+  "noHistoryFound": "Nebyla nalezena žádná historie",
+  "filterDate": "Datum",
+  "marketChart": "TABULKA TRHU",
+  "analysisExplanation": "Analýza a vysvětlení",
+  "noDetailedAnalysis": "Pro tento signál není k dispozici žádná podrobná analýza.",
+  "affiliateDashboard": "Affiliate Dashboard",
+  "referralLink": "Odkaz na doporučení",
+  "copyLink": "Kopírovat odkaz",
+  "referralCount": "Počet doporučení",
+  "totalEarnings": "Celkový výdělek",
+  "pendingCommission": "Čeká na provizi",
+  "latestReferrals": "Nejnovější doporučení",
+  "noReferralsYet": "Zatím žádná doporučení.",
+  "affiliateRoleRequired": "Vyžaduje se role affiliate partnera. Kontaktujte prosím admina.",
+  "affiliateCodeNotAssigned": "Přidružený kód dosud nebyl přidělen. Kontaktujte prosím admina.",
+  "referralLinkDescription": "Použijte tento odkaz k doporučení uživatelů a získejte 40% doživotní provizi.",
+  "linkCopied": "Odkaz zkopírován do schránky!",
+  "enterReferralCode": "Zadejte kód doporučení",
+  "referralCode": "Referenční kód",
+  "submit": "Předložit",
+  "invalidReferralCode": "Neplatný kód doporučení.",
+  "referralCodeApplied": "Referenční kód byl úspěšně použit!",
+  "priceLifetimeOld": "712,00 $",
+  "loginNow": "Přihlásit se nyní",
+  "loginToViewSignals": "Pro zobrazení signálů se přihlaste",
+  "loginToViewSignalsDesc": "Pro zobrazení signálů GPT a přístup ke všem funkcím se prosím přihlaste.",
+  "loginToViewHistory": "Pro zobrazení historie se přihlaste",
+  "loginToViewHistoryDesc": "Historie signálů je dostupná pouze pro přihlášené uživatele. Chcete-li sledovat výkon z Signal GPT, přihlaste se.",
+  "letsGetYouIn": "Pusťme vás dovnitř!",
+  "dontHaveAnAccount": "Nemáte účet?",
+  "createAccount": "Vytvořit účet",
+  "createYourAccount": "Vytvořte si účet",
+  "login": "Přihlášení",
+  "rememberYourPassword": "Zapamatujte si své heslo",
+  "signInWith": "Přihlaste se pomocí",
+  "getStarted": "Začněte",
+  "pleaseEnterEmail": "Zadejte prosím svůj email",
+  "pleaseEnterPassword": "Zadejte prosím své heslo",
+  "pleaseEnterCurrentPassword": "Zadejte své aktuální heslo",
+  "pleaseEnterNewPassword": "Zadejte prosím své nové heslo",
+  "pleaseConfirmNewPassword": "Potvrďte prosím své nové heslo",
+  "pleaseConfirmPassword": "Potvrďte prosím své heslo",
+  "passwordMinLength": "Heslo musí mít alespoň 6 znaků",
+  "savePassword": "Uložit heslo",
+  "verifyYourEmail": "Ověřte svůj e-mail",
+  "pleaseEnterVerificationCode": "Zadejte 6místný kód\nzasláno na váš email",
+  "pleaseEnterAllDigits": "Zadejte prosím všech 6 číslic",
+  "invalidOrExpiredCode": "Neplatný nebo vypršela platnost ověřovacího kódu",
+  "anErrorOccurred": "Došlo k chybě. Zkuste to prosím znovu.",
+  "verificationCodeResent": "Ověřovací kód odeslán znovu!",
+  "failedToResendCode": "Nepodařilo se znovu odeslat kód:{error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Znovu odeslat kód",
+  "verify": "Ověřte",
+  "resetPassword": "Obnovit heslo",
+  "forgotPasswordInstructions": "Zadejte prosím e-mailovou adresu, kterou jste použili k registraci účtu\n\nNa vaši e-mailovou adresu vám zašleme ověřovací kód.",
+  "sendButton": "Poslat",
+  "unableToReceiveEmail": "Pokud nemůžete e-mail přijmout, kontaktujte nás na e-mailu @gmail.com",
+  "verificationCodeSentTo": "Ověřovací kód jsme odeslali na adresu",
+  "passwordResetSuccessful": "Resetování hesla bylo úspěšné!",
+  "errorGeneric": "Chyba:{message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "accountAlreadyExists": "Účet již existuje",
+  "accountAlreadyExistsMessage": "E-mail{email}již byl v systému zaregistrován. Přihlaste se nebo použijte funkci zapomenuté heslo.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Systémová chyba:{error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Potvrďte heslo",
+  "referralCodeOptional": "Referenční kód (volitelné)",
+  "accountDeletedSuccessfully": "Účet byl trvale smazán.",
+  "accountDeleteError": "Chyba při mazání účtu:{error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Heslo bylo úspěšně změněno!",
+  "errorChangingPassword": "Při změně hesla došlo k chybě. Zkontrolujte prosím své aktuální heslo.",
+  "enableNotificationsHint": "Chcete-li zobrazit nové aktualizace na zamykací obrazovce, povolte oznámení v nastavení zařízení",
+  "navigateToDeviceSettings": "Přejděte do nastavení zařízení.",
+  "turnOffAllNotifications": "Vypněte všechna upozornění",
+  "pauseAllNotifications": "Pozastavit všechna oznámení",
+  "turnOnCryptoSignals": "Zapněte kryptosignály",
+  "turnOnCurrencyPairSignals": "Zapněte signály měnových párů",
+  "turnOnGoldSignals": "Zapněte zlaté signály",
+  "currencyPairSignals": "Signály měnového páru",
+  "termsOfUseContent": "Přístupem k této aplikaci nebo jejím používáním souhlasíte s dodržováním Podmínek použití. Tato aplikace je poskytována pouze pro informační účely a nezaručujeme přesnost, úplnost nebo spolehlivost jakéhokoli zobrazeného obsahu nebo signálů. Jste výhradně odpovědní za to, jak používáte informace poskytované v rámci aplikace. Vyhrazujeme si právo upravit, pozastavit nebo ukončit službu kdykoli bez předchozího upozornění. Pokračování v používání aplikace znamená přijetí jakýchkoli aktualizovaných podmínek.",
+  "tradingHistoryTitle": "Historie obchodování",
+  "tp1Live": "TP1 ŽIVĚ",
+  "tp2Live": "TP2 ŽIVĚ",
+  "tp3Live": "TP3 ŽIVĚ",
+  "stopLossTriggered": "Stop loss spuštěn",
+  "entryWithPrice": "Vstup:{price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "signalGptTitle": "Signál GPT",
+  "categoryGold": "ZLATO",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "Předplatné se automaticky obnoví, pokud nebude zrušeno alespoň 24 hodin před koncem aktuálního období. Svá předplatná můžete spravovat a rušit v nastavení účtu App Store. Doživotní plán je jednorázový nákup.",
+  "termsOfUseEula": "Podmínky použití (EULA)",
+  "productNotFound": "Produkt nenalezen:{productId}. Ujistěte se, že je nakonfigurován v obchodech.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ rok",
+  "tierDemoSignalQty": "7-8 za den",
+  "elite1Month": "ELITE 1 měsíc",
+  "elite12Months": "ELITE 12 měsíců",
+  "statusPending": "Čeká na vyřízení",
+  "statusFailed": "Nepodařilo se",
+  "yourReferralCode": "Váš referenční kód",
+  "referralCodeCopied": "Doporučovací kód zkopírován!",
+  "copyCode": "Kopírovat kód",
+  "revenue": "Příjmy",
+  "availableCommission": "Dostupné provize",
+  "totalReceivedIncome": "Celkový přijatý příjem",
+  "depositAmount": "Záloha: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "importantNotice": "Důležité upozornění",
+  "accountChangedPleaseRelogin": "Váš účet se změnil. Přihlaste se prosím znovu.",
+  "iUnderstand": "Rozumím",
+  "saveUpTo65Percent": "UŠETŘETE AŽ 65%",
+  "yearlyLifetimeDiscount": "Ročně -40 % • Životnost -65 %",
+  "uploadFailedPermissionDenied": "Nahrání se nezdařilo: Oprávnění odepřeno. Zkontrolujte pravidla úložiště.",
+  "failedToUploadImage": "Obrázek se nepodařilo nahrát. Zkontrolujte prosím své připojení."
 }

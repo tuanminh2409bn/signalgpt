@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:minvest_forex_app/l10n/app_localizations.dart';
 
 class LiquidGlassNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -13,6 +14,7 @@ class LiquidGlassNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       width: screenWidth - 48,
@@ -49,10 +51,10 @@ class LiquidGlassNavBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildNavItem(0, Icons.grid_view_rounded, 'Signals'),
-                _buildNavItem(1, Icons.bar_chart_rounded, 'Charts'),
-                _buildNavItem(2, Icons.history_rounded, 'History'),
-                _buildNavItem(3, Icons.person_rounded, 'Profile'),
+                _buildNavItem(0, Icons.grid_view_rounded, l10n.tabSignal),
+                _buildNavItem(1, Icons.bar_chart_rounded, l10n.tabChart),
+                _buildNavItem(2, Icons.history_rounded, l10n.history),
+                _buildNavItem(3, Icons.person_rounded, l10n.profile),
               ],
             ),
           ),

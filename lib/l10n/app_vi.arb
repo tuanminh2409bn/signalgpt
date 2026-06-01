@@ -599,6 +599,7 @@
   "referralLinkDescription": "Sử dụng link này để giới thiệu người dùng và nhận hoa hồng 40% trọn đời.",
   "linkCopied": "Đã copy link giới thiệu!",
   "enterReferralCode": "Nhập mã giới thiệu",
+  "referralCodeDescription": "Nhập mã giới thiệu để nhận ưu đãi từ đối tác của chúng tôi.",
   "referralCode": "Mã giới thiệu",
   "submit": "Xác nhận",
   "invalidReferralCode": "Mã giới thiệu không hợp lệ.",
@@ -610,5 +611,162 @@
   "priceLifetimeOld": "$712.00",
   "durationLifetime": "Trọn đời",
   "orderInfoLifetime": "Thanh toán gói Elite trọn đời",
-  "lifetime": "Trọn đời"
+  "lifetime": "Trọn đời",
+
+  "loginNow": "Đăng nhập ngay",
+  "loginToViewSignals": "Đăng nhập để xem tín hiệu",
+  "loginToViewSignalsDesc": "Vui lòng đăng nhập để xem tín hiệu Signal GPT và truy cập tất cả tính năng.",
+  "loginToViewHistory": "Đăng nhập để xem lịch sử",
+  "loginToViewHistoryDesc": "Lịch sử tín hiệu chỉ dành cho người dùng đã đăng nhập. Vui lòng đăng nhập để theo dõi hiệu suất từ Signal GPT.",
+  "letsGetYouIn": "Hãy Bắt Đầu Nào!",
+  "dontHaveAnAccount": "Chưa có tài khoản? ",
+  "createAccount": "Tạo Tài Khoản",
+  "createYourAccount": "Tạo tài khoản của bạn",
+  "login": "Đăng nhập",
+  "rememberYourPassword": "Ghi nhớ mật khẩu",
+  "signInWith": "Đăng nhập với",
+  "getStarted": "Bắt Đầu",
+  "pleaseEnterEmail": "Vui lòng nhập email của bạn",
+  "pleaseEnterPassword": "Vui lòng nhập mật khẩu của bạn",
+  "pleaseEnterCurrentPassword": "Vui lòng nhập mật khẩu hiện tại",
+  "pleaseEnterNewPassword": "Vui lòng nhập mật khẩu mới",
+  "pleaseConfirmNewPassword": "Vui lòng xác nhận mật khẩu mới",
+  "pleaseConfirmPassword": "Vui lòng xác nhận mật khẩu",
+  "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự",
+  "savePassword": "Lưu mật khẩu",
+
+  "verifyYourEmail": "Xác Minh Email",
+  "pleaseEnterVerificationCode": "Vui lòng nhập mã 6 chữ số\nđã gửi đến email của bạn",
+  "pleaseEnterAllDigits": "Vui lòng nhập đủ 6 chữ số",
+  "invalidOrExpiredCode": "Mã xác minh không hợp lệ hoặc đã hết hạn",
+  "anErrorOccurred": "Đã xảy ra lỗi. Vui lòng thử lại.",
+  "verificationCodeResent": "Đã gửi lại mã xác minh!",
+  "failedToResendCode": "Gửi lại mã thất bại: {error}",
+  "@failedToResendCode": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Gửi lại mã",
+  "verify": "Xác minh",
+
+  "resetPassword": "Đặt Lại Mật Khẩu",
+  "forgotPasswordInstructions": "Vui lòng nhập địa chỉ email bạn đã dùng để đăng ký tài khoản\n\nChúng tôi sẽ gửi mã xác minh đến địa chỉ email của bạn.",
+  "sendButton": "Gửi",
+  "unableToReceiveEmail": "Nếu bạn không nhận được email, vui lòng liên hệ chúng tôi qua email @gmail.com",
+  "verificationCodeSentTo": "Chúng tôi đã gửi mã xác minh đến",
+  "passwordResetSuccessful": "Đặt lại mật khẩu thành công!",
+  "errorGeneric": "Lỗi: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "accountAlreadyExists": "Tài khoản đã tồn tại",
+  "accountAlreadyExistsMessage": "Email {email} đã được đăng ký trong hệ thống. Vui lòng đăng nhập hoặc sử dụng tính năng quên mật khẩu.",
+  "@accountAlreadyExistsMessage": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "systemError": "Lỗi hệ thống: {error}",
+  "@systemError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPassword": "Xác nhận mật khẩu",
+  "referralCodeOptional": "Mã giới thiệu (Tùy chọn)",
+
+  "accountDeletedSuccessfully": "Tài khoản đã được xóa vĩnh viễn.",
+  "accountDeleteError": "Lỗi xóa tài khoản: {error}",
+  "@accountDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordChangedSuccessfully": "Đổi mật khẩu thành công!",
+  "errorChangingPassword": "Lỗi đổi mật khẩu. Vui lòng kiểm tra mật khẩu hiện tại.",
+
+  "enableNotificationsHint": "Bật thông báo trong cài đặt thiết bị để xem các cập nhật mới trên màn hình khóa",
+  "navigateToDeviceSettings": "Đi đến cài đặt thiết bị.",
+  "turnOffAllNotifications": "Tắt tất cả thông báo",
+  "pauseAllNotifications": "Tạm dừng tất cả thông báo",
+  "turnOnCryptoSignals": "Bật tín hiệu Crypto",
+  "turnOnCurrencyPairSignals": "Bật tín hiệu cặp tiền tệ",
+  "turnOnGoldSignals": "Bật tín hiệu Vàng",
+  "currencyPairSignals": "Tín hiệu Cặp Tiền Tệ",
+
+  "termsOfUseContent": "Bằng việc truy cập hoặc sử dụng ứng dụng này, bạn đồng ý tuân thủ Điều khoản Sử dụng. Ứng dụng này chỉ được cung cấp cho mục đích thông tin và chúng tôi không đảm bảo tính chính xác, đầy đủ hoặc độ tin cậy của bất kỳ nội dung hoặc tín hiệu nào được hiển thị. Bạn hoàn toàn chịu trách nhiệm về cách sử dụng thông tin được cung cấp trong ứng dụng. Chúng tôi có quyền sửa đổi, tạm ngừng hoặc chấm dứt dịch vụ bất kỳ lúc nào mà không cần báo trước. Việc tiếp tục sử dụng ứng dụng đồng nghĩa với việc chấp nhận mọi điều khoản đã được cập nhật.",
+
+  "tradingHistoryTitle": "Lịch Sử Giao Dịch",
+  "tp1Live": "TP1 LIVE",
+  "tp2Live": "TP2 LIVE",
+  "tp3Live": "TP3 LIVE",
+  "stopLossTriggered": "Đã chạm dừng lỗ",
+  "entryWithPrice": "Vào lệnh: {price}",
+  "@entryWithPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+
+  "signalGptTitle": "Signal GPT",
+
+  "categoryGold": "VÀNG",
+  "categoryCrypto": "CRYPTO",
+  "subscriptionAutoRenewDisclaimer": "Gói đăng ký sẽ tự động gia hạn trừ khi bị hủy ít nhất 24 giờ trước khi kết thúc giai đoạn hiện tại. Bạn có thể quản lý và hủy gói đăng ký trong cài đặt tài khoản App Store. Gói trọn đời là thanh toán một lần.",
+  "termsOfUseEula": "Điều khoản Sử dụng (EULA)",
+  "productNotFound": "Không tìm thấy sản phẩm: {productId}. Vui lòng đảm bảo sản phẩm đã được cấu hình trên cửa hàng.",
+  "@productNotFound": {
+    "placeholders": {
+      "productId": {
+        "type": "String"
+      }
+    }
+  },
+  "perYear": "/ năm",
+  "tierDemoSignalQty": "7-8 mỗi ngày",
+  "elite1Month": "ELITE 1 Tháng",
+  "elite12Months": "ELITE 12 Tháng",
+  "statusPending": "Đang chờ",
+  "statusFailed": "Thất bại",
+
+  "yourReferralCode": "Mã giới thiệu của bạn",
+  "referralCodeCopied": "Đã sao chép mã giới thiệu!",
+  "copyCode": "Sao Chép Mã",
+  "revenue": "Doanh thu",
+  "availableCommission": "Hoa hồng khả dụng",
+  "totalReceivedIncome": "Tổng thu nhập đã nhận",
+  "depositAmount": "Nạp tiền: ${amount}",
+  "@depositAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+
+  "importantNotice": "Thông Báo Quan Trọng",
+  "accountChangedPleaseRelogin": "Tài khoản của bạn đã thay đổi. Vui lòng đăng nhập lại.",
+  "iUnderstand": "Tôi hiểu",
+
+  "saveUpTo65Percent": "TIẾT KIỆM ĐẾN 65%",
+  "yearlyLifetimeDiscount": "Năm -40% • Trọn đời -65%",
+
+  "uploadFailedPermissionDenied": "Tải lên thất bại: Không có quyền truy cập. Vui lòng kiểm tra Quyền Lưu trữ.",
+  "failedToUploadImage": "Tải ảnh lên thất bại. Vui lòng kiểm tra kết nối mạng."
 }

@@ -124,7 +124,7 @@ class UpgradeSuccessScreen extends StatelessWidget {
         return {
           l10n.signalTime: '8h-17h',
           l10n.lotPerWeek: '0.05',
-          l10n.signalQty: '7-8 per day',
+          l10n.signalQty: l10n.tierDemoSignalQty,
         };
       case 'vip':
         return {

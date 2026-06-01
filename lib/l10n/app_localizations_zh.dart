@@ -168,7 +168,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get upgradeToViewFullAnalysis => '升级以查看完整分析';
 
   @override
-  String get loginWithoutAccount => 'Login without an account';
+  String get loginWithoutAccount => '免登录体验';
 
   @override
   String get welcomeTo => '欢迎来到';
@@ -1076,10 +1076,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get save50Percent => '节省 50%';
 
   @override
-  String get save40Percent => 'SAVE 40%';
+  String get save40Percent => '节省 40%';
 
   @override
-  String get save65Percent => 'SAVE 65%';
+  String get save65Percent => '节省 65%';
 
   @override
   String get tryDemo => '试用演示';
@@ -1306,30 +1306,30 @@ class AppLocalizationsZh extends AppLocalizations {
       'This feature is only for VIP customers, please upgrade to receive notifications.';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => '更改密码';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => '当前密码';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => '新密码';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => '确认新密码';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => '密码不匹配';
 
   @override
-  String get passwordUpdateSuccess => 'Password updated successfully';
+  String get passwordUpdateSuccess => '密码更新成功';
 
   @override
   String passwordUpdateFailed(String error) {
-    return 'Failed to update password: $error';
+    return '更新密码失败：$error';
   }
 
   @override
-  String get reauthFailed => 'Incorrect current password';
+  String get reauthFailed => '当前密码不正确';
 
   @override
   String get signInRequired => '需要登录';
@@ -1452,196 +1452,196 @@ class AppLocalizationsZh extends AppLocalizations {
   String get popupLoginExplore => 'Log in to explore this trading bulletin!';
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => '免责声明';
 
   @override
   String get disclaimerContent =>
-      'The information on signalgpt.ai is for reference and knowledge-sharing purposes only, and does not constitute investment advice. Users are solely responsible for their own trading decisions.';
+      'signalgpt.ai 上的信息仅供参考和知识分享之用，不构成投资建议。用户对自己的交易决策承担全部责任。';
 
   @override
-  String get openTradingAccount => 'Open A Trading Account';
+  String get openTradingAccount => '开设交易账户';
 
   @override
-  String get supportUs => 'Support Us';
+  String get supportUs => '支持我们';
 
   @override
-  String get rateApp => 'Rate App';
+  String get rateApp => '评价应用';
 
   @override
-  String get shareApp => 'Share App';
+  String get shareApp => '分享应用';
 
   @override
-  String get accountDetails => 'Account Details';
+  String get accountDetails => '账户详情';
 
   @override
-  String get language => 'Language';
+  String get language => '语言';
 
   @override
-  String get termsOfUse => 'Terms Of Use';
+  String get termsOfUse => '使用条款';
 
   @override
-  String get accounts => 'Accounts';
+  String get accounts => '账户';
 
   @override
-  String get accessExchange => 'Access The Exchange';
+  String get accessExchange => '进入交易所';
 
   @override
-  String get onlineSupport => 'Online Support';
+  String get onlineSupport => '在线客服';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => '选择语言';
 
   @override
-  String get left => 'left';
+  String get left => '剩余';
 
   @override
-  String get upgradeToPro => 'Upgrade To Pro';
+  String get upgradeToPro => '升级至 Pro';
 
   @override
-  String get assetGold => 'Gold';
+  String get assetGold => '黄金';
 
   @override
-  String get assetCrypto => 'Crypto';
+  String get assetCrypto => '加密货币';
 
   @override
-  String get assetForex => 'CURRENCY PAIR';
+  String get assetForex => '货币对';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => '代币';
 
   @override
-  String get noForexAssets => 'No CURRENCY PAIR assets available';
+  String get noForexAssets => '暂无货币对资产';
 
   @override
   String openApp(String appName) {
-    return 'Open $appName';
+    return '打开 $appName';
   }
 
   @override
-  String get signalStatus => 'Status';
+  String get signalStatus => '状态';
 
   @override
-  String get signalEntryLabel => 'ENTRY';
+  String get signalEntryLabel => '入场';
 
   @override
-  String get signalSlLabel => 'SL';
+  String get signalSlLabel => '止损';
 
   @override
-  String get signalTp1Label => 'TP1';
+  String get signalTp1Label => '止盈1';
 
   @override
-  String get signalTp2Label => 'TP2';
+  String get signalTp2Label => '止盈2';
 
   @override
-  String get signalTp3Label => 'TP3';
+  String get signalTp3Label => '止盈3';
 
   @override
-  String get analyze => 'Analyze';
+  String get analyze => '分析';
 
   @override
-  String get useTokenToView => 'Use Token to view Signal';
+  String get useTokenToView => '使用代币查看信号';
 
   @override
-  String get viewNow => 'View Now';
+  String get viewNow => '立即查看';
 
   @override
-  String get waitingNewSignals => 'Waiting for new signals...';
+  String get waitingNewSignals => '等待新信号...';
 
   @override
-  String get failedUnlockSignal => 'Failed to unlock signal';
+  String get failedUnlockSignal => '解锁信号失败';
 
   @override
-  String get notEnoughTokens => 'Not enough tokens';
+  String get notEnoughTokens => '代币不足';
 
   @override
-  String get newSignalUploaded => 'New Signal uploaded';
+  String get newSignalUploaded => '新信号已发布';
 
   @override
   String newSymbolSignalUploaded(String symbol) {
-    return 'New $symbol signal is now uploaded!';
+    return '新的 $symbol 信号已发布！';
   }
 
   @override
-  String get upgradeToViewSignalBanner => 'Upgrade to View Signal';
+  String get upgradeToViewSignalBanner => '升级以查看信号';
 
   @override
-  String get signalHistory => 'Signal History';
+  String get signalHistory => '信号历史';
 
   @override
-  String get allStatus => 'ALL';
+  String get allStatus => '全部';
 
   @override
-  String get selectDate => 'Select Date';
+  String get selectDate => '选择日期';
 
   @override
-  String get noHistoryFound => 'No history found';
+  String get noHistoryFound => '未找到历史记录';
 
   @override
-  String get filterDate => 'Date';
+  String get filterDate => '日期';
 
   @override
-  String get marketChart => 'MARKET CHART';
+  String get marketChart => '市场图表';
 
   @override
-  String get analysisExplanation => 'Analysis & Explanation';
+  String get analysisExplanation => '分析与解读';
 
   @override
-  String get noDetailedAnalysis =>
-      'No detailed analysis available for this signal.';
+  String get noDetailedAnalysis => '此信号暂无详细分析。';
 
   @override
-  String get affiliateDashboard => 'Affiliate Dashboard';
+  String get affiliateDashboard => '推广仪表盘';
 
   @override
-  String get referralLink => 'Referral Link';
+  String get referralLink => '推荐链接';
 
   @override
-  String get copyLink => 'Copy Link';
+  String get copyLink => '复制链接';
 
   @override
-  String get referralCount => 'Referral Count';
+  String get referralCount => '推荐人数';
 
   @override
-  String get totalEarnings => 'Total Earnings';
+  String get totalEarnings => '总收益';
 
   @override
-  String get pendingCommission => 'Pending Commission';
+  String get pendingCommission => '待结算佣金';
 
   @override
-  String get latestReferrals => 'Latest Referrals';
+  String get latestReferrals => '最新推荐';
 
   @override
-  String get noReferralsYet => 'No referrals yet.';
+  String get noReferralsYet => '暂无推荐记录。';
 
   @override
-  String get affiliateRoleRequired =>
-      'Affiliate role required. Please contact admin.';
+  String get affiliateRoleRequired => '需要推广权限。请联系管理员。';
 
   @override
-  String get affiliateCodeNotAssigned =>
-      'Affiliate code not assigned yet. Please contact admin.';
+  String get affiliateCodeNotAssigned => '推广代码尚未分配。请联系管理员。';
 
   @override
-  String get referralLinkDescription =>
-      'Use this link to refer users and earn 40% lifetime commission.';
+  String get referralLinkDescription => '使用此链接推荐用户，可获得 40% 终身佣金。';
 
   @override
-  String get linkCopied => 'Link copied to clipboard!';
+  String get linkCopied => '链接已复制到剪贴板！';
 
   @override
-  String get enterReferralCode => 'Enter Referral Code';
+  String get enterReferralCode => '输入推荐码';
 
   @override
-  String get referralCode => 'Referral Code';
+  String get referralCodeDescription =>
+      'Enter referral code to receive exclusive offers from our partners.';
 
   @override
-  String get submit => 'Submit';
+  String get referralCode => '推荐码';
 
   @override
-  String get invalidReferralCode => 'Invalid referral code.';
+  String get submit => '提交';
 
   @override
-  String get referralCodeApplied => 'Referral code applied successfully!';
+  String get invalidReferralCode => '无效的推荐码。';
+
+  @override
+  String get referralCodeApplied => '推荐码应用成功！';
 
   @override
   String get getTheAppForBestExperience =>
@@ -1667,4 +1667,284 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get lifetime => 'Lifetime';
+
+  @override
+  String get loginNow => '立即登录';
+
+  @override
+  String get loginToViewSignals => '登录以查看信号';
+
+  @override
+  String get loginToViewSignalsDesc => '请登录以查看 Signal GPT 信号并访问所有功能。';
+
+  @override
+  String get loginToViewHistory => '登录以查看历史';
+
+  @override
+  String get loginToViewHistoryDesc => '信号历史仅对已登录用户开放。请登录以追踪 Signal GPT 的表现。';
+
+  @override
+  String get letsGetYouIn => '让我们开始吧！';
+
+  @override
+  String get dontHaveAnAccount => '还没有账户？';
+
+  @override
+  String get createAccount => '创建账户';
+
+  @override
+  String get createYourAccount => '创建您的账户';
+
+  @override
+  String get login => '登录';
+
+  @override
+  String get rememberYourPassword => '记住您的密码';
+
+  @override
+  String get signInWith => '通过以下方式登录';
+
+  @override
+  String get getStarted => '开始使用';
+
+  @override
+  String get pleaseEnterEmail => '请输入您的电子邮件';
+
+  @override
+  String get pleaseEnterPassword => '请输入您的密码';
+
+  @override
+  String get pleaseEnterCurrentPassword => '请输入您的当前密码';
+
+  @override
+  String get pleaseEnterNewPassword => '请输入您的新密码';
+
+  @override
+  String get pleaseConfirmNewPassword => '请确认您的新密码';
+
+  @override
+  String get pleaseConfirmPassword => '请确认您的密码';
+
+  @override
+  String get passwordMinLength => '密码至少需要 6 个字符';
+
+  @override
+  String get savePassword => '保存密码';
+
+  @override
+  String get verifyYourEmail => '验证您的电子邮件';
+
+  @override
+  String get pleaseEnterVerificationCode => '请输入发送到您邮箱的\\n6 位验证码';
+
+  @override
+  String get pleaseEnterAllDigits => '请输入完整的 6 位数字';
+
+  @override
+  String get invalidOrExpiredCode => '验证码无效或已过期';
+
+  @override
+  String get anErrorOccurred => '发生错误。请重试。';
+
+  @override
+  String get verificationCodeResent => '验证码已重新发送！';
+
+  @override
+  String failedToResendCode(String error) {
+    return '重新发送验证码失败：$error';
+  }
+
+  @override
+  String get resendCode => '重新发送验证码';
+
+  @override
+  String get verify => '验证';
+
+  @override
+  String get resetPassword => '重置密码';
+
+  @override
+  String get forgotPasswordInstructions =>
+      '请输入您注册时使用的电子邮件地址\\n\\n我们将向您的邮箱发送验证码。';
+
+  @override
+  String get sendButton => '发送';
+
+  @override
+  String get unableToReceiveEmail => '如果您无法收到邮件，请联系我们 email @gmail.com';
+
+  @override
+  String get verificationCodeSentTo => '我们已向以下邮箱发送验证码';
+
+  @override
+  String get passwordResetSuccessful => '密码重置成功！';
+
+  @override
+  String errorGeneric(String message) {
+    return '错误：$message';
+  }
+
+  @override
+  String get accountAlreadyExists => '账户已存在';
+
+  @override
+  String accountAlreadyExistsMessage(String email) {
+    return '电子邮件 $email 已在系统中注册。请登录或使用忘记密码功能。';
+  }
+
+  @override
+  String systemError(String error) {
+    return '系统错误：$error';
+  }
+
+  @override
+  String get confirmPassword => '确认密码';
+
+  @override
+  String get referralCodeOptional => '推荐码（可选）';
+
+  @override
+  String get accountDeletedSuccessfully => '账户已永久删除。';
+
+  @override
+  String accountDeleteError(String error) {
+    return '删除账户错误：$error';
+  }
+
+  @override
+  String get passwordChangedSuccessfully => '密码修改成功！';
+
+  @override
+  String get errorChangingPassword => '修改密码错误。请检查您的当前密码。';
+
+  @override
+  String get enableNotificationsHint => '在设备设置中启用通知，以便在锁屏上查看最新消息';
+
+  @override
+  String get navigateToDeviceSettings => '前往设备设置。';
+
+  @override
+  String get turnOffAllNotifications => '关闭所有通知';
+
+  @override
+  String get pauseAllNotifications => '暂停所有通知';
+
+  @override
+  String get turnOnCryptoSignals => '开启加密货币信号';
+
+  @override
+  String get turnOnCurrencyPairSignals => '开启货币对信号';
+
+  @override
+  String get turnOnGoldSignals => '开启黄金信号';
+
+  @override
+  String get currencyPairSignals => '货币对信号';
+
+  @override
+  String get termsOfUseContent =>
+      '访问或使用本应用即表示您同意遵守使用条款。本应用仅供信息参考之用，我们不保证所显示的任何内容或信号的准确性、完整性或可靠性。您对如何使用应用内提供的信息承担全部责任。我们保留随时修改、暂停或终止服务的权利，无需事先通知。继续使用本应用即表示接受任何更新的条款。';
+
+  @override
+  String get tradingHistoryTitle => '交易历史';
+
+  @override
+  String get tp1Live => 'TP1 实时';
+
+  @override
+  String get tp2Live => 'TP2 实时';
+
+  @override
+  String get tp3Live => 'TP3 实时';
+
+  @override
+  String get stopLossTriggered => '触发止损';
+
+  @override
+  String entryWithPrice(String price) {
+    return '入场：$price';
+  }
+
+  @override
+  String get signalGptTitle => 'Signal GPT';
+
+  @override
+  String get categoryGold => '黄金';
+
+  @override
+  String get categoryCrypto => '加密货币';
+
+  @override
+  String get subscriptionAutoRenewDisclaimer =>
+      '订阅将自动续费，除非在当前期限结束前至少 24 小时取消。您可以在 App Store 账户设置中管理和取消订阅。终身计划为一次性购买。';
+
+  @override
+  String get termsOfUseEula => '使用条款 (EULA)';
+
+  @override
+  String productNotFound(String productId) {
+    return '未找到产品：$productId。请确保已在商店中配置。';
+  }
+
+  @override
+  String get perYear => '/ 年';
+
+  @override
+  String get tierDemoSignalQty => '每天 7-8 个';
+
+  @override
+  String get elite1Month => 'ELITE 1 个月';
+
+  @override
+  String get elite12Months => 'ELITE 12 个月';
+
+  @override
+  String get statusPending => '待处理';
+
+  @override
+  String get statusFailed => '失败';
+
+  @override
+  String get yourReferralCode => '您的推荐码';
+
+  @override
+  String get referralCodeCopied => '推荐码已复制！';
+
+  @override
+  String get copyCode => '复制代码';
+
+  @override
+  String get revenue => '收入';
+
+  @override
+  String get availableCommission => '可用佣金';
+
+  @override
+  String get totalReceivedIncome => '已收到总收入';
+
+  @override
+  String depositAmount(String amount) {
+    return '入金：\$$amount';
+  }
+
+  @override
+  String get importantNotice => '重要通知';
+
+  @override
+  String get accountChangedPleaseRelogin => '您的账户信息已变更。请重新登录。';
+
+  @override
+  String get iUnderstand => '我知道了';
+
+  @override
+  String get saveUpTo65Percent => '最高节省 65%';
+
+  @override
+  String get yearlyLifetimeDiscount => '年付 -40% • 终身 -65%';
+
+  @override
+  String get uploadFailedPermissionDenied => '上传失败：权限被拒绝。请检查存储规则。';
+
+  @override
+  String get failedToUploadImage => '图片上传失败。请检查您的网络连接。';
 }
