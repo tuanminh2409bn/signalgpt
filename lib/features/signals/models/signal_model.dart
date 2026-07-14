@@ -125,4 +125,10 @@ class Signal {
 
     return Colors.blueGrey.shade200;
   }
+
+  String formatPrice(num price) {
+    if (symbol.contains('BTC')) return price.toStringAsFixed(1);
+    if (symbol.contains('XAU')) return price.toStringAsFixed(2);
+    return price.toStringAsFixed(5);
+  }
 }

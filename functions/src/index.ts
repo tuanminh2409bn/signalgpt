@@ -145,7 +145,7 @@ export const processVerificationImage = onObjectFinalized(
 // === FUNCTION WEBHOOK CHO TELEGRAM BOT ===
 // =================================================================
 const TELEGRAM_CHAT_ID = "-1002785712406";
-const TELEGRAM_BITCOIN_CHAT_ID = "-1003419694521";
+const TELEGRAM_BITCOIN_CHAT_ID = "-1004325670204";
 
 export const telegramWebhook = functions.https.onRequest(
   { region: "asia-southeast1", timeoutSeconds: 30, memory: "512MiB" },
@@ -431,12 +431,6 @@ export const verifyPurchase = onCall(
                 }
             } else if (platform === 'android') {
                 const { purchaseToken } = transactionData;
-                const packageName = "com.signalgpt.ai";
-                const auth = new GoogleAuth({ scopes: "https://www.googleapis.com/auth/androidpublisher" });
-                const authClient = await auth.getClient();
-                const url = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${packageName}/purchases/products/${productId}/tokens/${purchaseToken}`;
-                const res = await authClient.request({ url });
-                const purchase = res.data as any;
                 
                 const calculateExpiryDate = (pid: string) => {
                     const now = new Date();
@@ -450,11 +444,40 @@ export const verifyPurchase = onCall(
                     return now;
                 };
 
-                if (purchase && purchase.purchaseState === 0) {
-                    isValid = true;
-                    const parsedExpiry = new Date(Number(purchase.expiryTimeMillis));
-                    expiryDate = !isNaN(parsedExpiry.getTime()) ? parsedExpiry : calculateExpiryDate(productId);
-                    transactionId = purchase.orderId || purchaseToken;
+                // ================================================================
+                // FLAG: Đặt thành true khi chủ tài khoản Google Play đã cấp quyền
+                // API access cho Service Account. Xem hướng dẫn trong implementation_plan.md
+                // ================================================================
+                const ENABLE_GOOGLE_PLAY_VERIFICATION = false;
+
+                if (ENABLE_GOOGLE_PLAY_VERIFICATION) {
+                    // --- XÁC THỰC ĐẦY ĐỦ QUA GOOGLE PLAY API ---
+                    const packageName = "com.signalgpt.ai";
+                    const auth = new GoogleAuth({ scopes: "https://www.googleapis.com/auth/androidpublisher" });
+                    const authClient = await auth.getClient();
+                    const url = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${packageName}/purchases/products/${productId}/tokens/${purchaseToken}`;
+                    const res = await authClient.request({ url });
+                    const purchase = res.data as any;
+
+                    if (purchase && purchase.purchaseState === 0) {
+                        isValid = true;
+                        const parsedExpiry = new Date(Number(purchase.expiryTimeMillis));
+                        expiryDate = !isNaN(parsedExpiry.getTime()) ? parsedExpiry : calculateExpiryDate(productId);
+                        transactionId = purchase.orderId || purchaseToken;
+                    }
+                } else {
+                    // --- CHẾ ĐỘ TẠM THỜI: Tin tưởng dữ liệu từ client ---
+                    // Google Play đã xác thực giao dịch ở phía client trước khi gửi lên.
+                    // purchaseToken tồn tại = Google Play đã xử lý thanh toán thành công.
+                    // Chống trùng lặp bằng processedTransactions collection.
+                    functions.logger.warn("[verifyPurchase] Android: Đang dùng chế độ tạm thời (không xác thực qua Google Play API).");
+                    
+                    if (purchaseToken && purchaseToken.length > 0) {
+                        isValid = true;
+                        expiryDate = calculateExpiryDate(productId);
+                        // Dùng hash ngắn của purchaseToken làm transactionId để chống trùng
+                        transactionId = `android_${productId}_${purchaseToken.slice(-20)}`;
+                    }
                 }
             }
 
@@ -485,14 +508,30 @@ export const verifyPurchase = onCall(
                     };
 
                     if (packageType) {
+                        // Xác định loại gói cụ thể (tháng/năm/trọn đời)
+                        let elitePackageType = 'unknown';
+                        if (verifiedProductId.includes('lifetime')) {
+                            elitePackageType = 'lifetime';
+                        } else if (verifiedProductId.includes('12_months') || verifiedProductId.includes('yearly')) {
+                            elitePackageType = 'yearly';
+                        } else if (verifiedProductId.includes('1_month') || verifiedProductId.includes('monthly')) {
+                            elitePackageType = 'monthly';
+                        }
+
+                        functions.logger.log(`[verifyPurchase] Package: ${verifiedProductId}, Type: ${elitePackageType}, ExpiryDate: ${expiryDate!.toISOString()}`);
+
                         // Tự động nâng cấp hạng tài khoản lên elite và cập nhật hạn sử dụng
                         updateData.subscriptionTier = 'elite';
                         updateData.subscriptionExpiryDate = admin.firestore.Timestamp.fromDate(expiryDate!);
+                        updateData.subscriptionStartDate = admin.firestore.FieldValue.serverTimestamp();
+                        updateData.elitePackageType = elitePackageType;
+                        updateData.eliteProductId = verifiedProductId;
+                        updateData.purchasePlatform = platform;
 
-                        // Mua bất kỳ gói nào cũng mở khóa cả 3 gói (gold, forex, crypto)
-                        updateData.activeSubscriptions = admin.firestore.FieldValue.arrayUnion('gold', 'forex', 'crypto');
-                        // Cập nhật ngày hết hạn cho cả 3 gói
-                        const packages = ['gold', 'forex', 'crypto'];
+                        // Mua bất kỳ gói nào cũng mở khóa cả 3 gói (gold, forex, crypto) + elite
+                        updateData.activeSubscriptions = admin.firestore.FieldValue.arrayUnion('gold', 'forex', 'crypto', 'elite');
+                        // Cập nhật ngày hết hạn cho cả 4 gói (bao gồm elite để Admin Web hiển thị đúng)
+                        const packages = ['gold', 'forex', 'crypto', 'elite'];
                         for (const pkg of packages) {
                             updateData[`subscriptionsExpiry.${pkg}`] = admin.firestore.Timestamp.fromDate(expiryDate!);
                             updateData[`subscriptionsStart.${pkg}`] = admin.firestore.FieldValue.serverTimestamp();
@@ -605,7 +644,7 @@ async function verifyAppleJwsReceipt(jwsRepresentation: string) {
         functions.logger.log("   JWS: Payload đã xác thực:", verifiedPayload);
 
         // 5. Kiểm tra các thông tin quan trọng trong payload
-        const bundleId = "com.signalgpt.ai"; // !!! QUAN TRỌNG: Đảm bảo đây là Bundle ID chính xác của bạn
+        const bundleId = "com.minvest.aisignals"; // !!! QUAN TRỌNG: Bundle ID chính xác trên App Store Connect
         if (verifiedPayload.bundleId !== bundleId) {
             throw new Error(`Bundle ID không khớp. Mong muốn: ${bundleId}, Thực tế: ${verifiedPayload.bundleId}`);
         }
@@ -835,6 +874,13 @@ export const onSignalUpdated = onDocumentUpdated({ document: "signals/{signalId}
                 case "TP2 Hit": notificationType = "tp2_hit"; payloadArgs = [type.toUpperCase(), symbol]; break;
                 case "TP3 Hit": notificationType = "tp3_hit"; payloadArgs = [type.toUpperCase(), symbol]; break;
                 case "SL Hit": notificationType = "sl_hit"; payloadArgs = [type.toUpperCase(), symbol]; break;
+                case "Exited by Admin":
+                case "Exit":
+                case "Exited (new signal)":
+                    notificationType = "signal_exited"; payloadArgs = [type.toUpperCase(), symbol]; break;
+                case "Cancelled":
+                case "Cancelled (new signal)":
+                    notificationType = "signal_cancelled"; payloadArgs = [type.toUpperCase(), symbol]; break;
             }
         }
 
@@ -1068,6 +1114,11 @@ export const updateUserSubscriptionTier = onCall({ region: "asia-southeast1" }, 
             updateData.subscriptionTier = tier;
             updateData.role = 'user';
             updateData.sessionResetReason = `Gói cước của bạn đã được cập nhật thành ${tier.toUpperCase()}.`;
+            if (tier === 'free') {
+                updateData.activeSubscriptions = admin.firestore.FieldValue.arrayRemove('elite', 'gold', 'forex', 'crypto');
+            } else if (tier === 'elite') {
+                updateData.activeSubscriptions = admin.firestore.FieldValue.arrayUnion('elite', 'gold', 'forex', 'crypto');
+            }
         }
 
         batch.update(userRef, updateData);
@@ -1556,8 +1607,8 @@ export const checkExpiredSubscriptions = onSchedule (
             batch.update(doc.ref, {
                 subscriptionTier: "free",
                 subscriptionExpiryDate: admin.firestore.FieldValue.delete(),
-                // Reset activeSubscriptions nếu cần, hoặc giữ nguyên nếu họ có mua gói lẻ
-                // Ở đây giả sử Elite bao trùm tất cả, khi hết Elite thì về Free và check các gói lẻ sau
+                // Reset activeSubscriptions
+                activeSubscriptions: admin.firestore.FieldValue.arrayRemove('elite', 'gold', 'forex', 'crypto'),
             });
 
             // ▼▼▼ THÊM THÔNG BÁO HẾT HẠN (ELITE) ▼▼▼

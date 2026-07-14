@@ -967,16 +967,14 @@ class _SignalDetailExpandedViewState extends State<SignalDetailExpandedView> {
                 label: l10n.signalEntryLabel,
                 value: isPlaceholder
                     ? '-'
-                    : signal.entryPrice
-                        .toStringAsFixed(signal.symbol.contains('XAU') ? 2 : 5),
+                    : signal.formatPrice(signal.entryPrice),
                 valueColor: const Color(0xFF00BB32),
               ),
               _buildSignalInfoBox(
                 label: l10n.signalSlLabel,
                 value: isPlaceholder
                     ? '-'
-                    : signal.stopLoss
-                        .toStringAsFixed(signal.symbol.contains('XAU') ? 2 : 5),
+                    : signal.formatPrice(signal.stopLoss),
                 valueColor: const Color(0xFFE3001E),
               ),
             ],

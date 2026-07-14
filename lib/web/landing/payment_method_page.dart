@@ -21,7 +21,7 @@ class PaymentMethodPage extends StatefulWidget {
 
 class _PaymentMethodPageState extends State<PaymentMethodPage> {
   String? _selectedMethod;
-  final String _usdtAddress = 'TLrcYm9p6qXG3T1pP9uG7s9uP9uG7s9uP9'; // Placeholder address
+  final String _usdtAddress = 'TG3SHzUcSGKbkkJTcw4enrt7oGTLQMbuGe';
 
   @override
   Widget build(BuildContext context) {
@@ -256,7 +256,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
             ),
             const SizedBox(height: 12), // Reduced spacing
             Image.asset(
-              'assets/images/qrcodeusdt.png',
+              'assets/images/vi.png',
               width: 220,
               height: 220,
               fit: BoxFit.contain,
@@ -304,7 +304,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
             SizedBox(
               width: 477,
               child: Text(
-                'After completing the payment, \nplease contact us via Whatsapp / Zalo (+84 0969 15 6969) for confirmation and signal usage.',
+                'After completing the payment, \nplease contact us via Telegram for confirmation and signal usage.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -319,9 +319,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _socialButton('assets/images/zalo.png', size: 40, url: 'https://zalo.me/84868649747'),
-                const SizedBox(width: 16),
-                _socialButton('assets/images/whatsapp.png', size: 55, url: 'https://wa.me/84868649747'),
+                _socialButton('assets/images/telegram_logo.png', size: 40, url: 'https://t.me/LisaAISignals'),
               ],
             ),
           ],

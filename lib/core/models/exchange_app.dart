@@ -32,6 +32,6 @@ final List<ExchangeApp> allExchangeApps = [
   ExchangeApp(name: 'Exness', iconPath: 'assets/icons/exness.png', url: 'https://www.extrading.asia/vi/?utm_source=partners&ex_ol=1'),
   ExchangeApp(name: 'LiteFinance', iconPath: 'assets/icons/LiteFinance.png', url: 'https://litefinance.com.vn/?uid=742903029&cid=336726'),
   ExchangeApp(name: 'OKX', iconPath: 'assets/icons/okx.png', url: 'https://minvest.vn/OKX'),
-  ExchangeApp(name: 'Bybit', iconPath: 'assets/icons/bybit.png', url: 'https://minvest.vn/Bybit'),
-  ExchangeApp(name: 'Binance', iconPath: 'assets/icons/binance.png', url: 'https://minvest.vn/Binance'),
+  ExchangeApp(name: 'Bybit', iconPath: 'assets/icons/bybit.png', url: 'https://partner.bybit.com/b/LISA68'),
+  ExchangeApp(name: 'Binance', iconPath: 'assets/icons/binance.png', url: 'https://accounts.binance.com/vi/register?ref=LISA888'),
 ];

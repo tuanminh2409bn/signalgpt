@@ -18,28 +18,85 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
   final AdminService _adminService = AdminService();
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
-  late Stream<QuerySnapshot> _usersStream;
+  final ScrollController _scrollController = ScrollController();
+  final List<DocumentSnapshot> _users = [];
+  bool _isLoading = false;
+  bool _hasMore = true;
+  DocumentSnapshot? _lastDoc;
+  final int _limit = 50;
 
   @override
   void initState() {
     super.initState();
-    _updateStream();
+    _scrollController.addListener(_onScroll);
+    _fetchUsers(refresh: true);
   }
 
-  void _updateStream() {
-    if (_searchQuery.isEmpty) {
-      _usersStream = FirebaseFirestore.instance
-          .collection('users')
-          .orderBy('createdAt', descending: true)
-          .limit(100)
-          .snapshots();
-    } else {
-      _usersStream = FirebaseFirestore.instance
-          .collection('users')
-          .where('email', isGreaterThanOrEqualTo: _searchQuery)
-          .where('email', isLessThanOrEqualTo: _searchQuery + '\uf8ff')
-          .limit(50)
-          .snapshots();
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200 && !_isLoading && _hasMore) {
+      _fetchUsers();
+    }
+  }
+
+  Future<void> _fetchUsers({bool refresh = false}) async {
+    if (_isLoading) return;
+    setState(() {
+      _isLoading = true;
+      if (refresh) {
+        _users.clear();
+        _lastDoc = null;
+        _hasMore = true;
+      }
+    });
+
+    try {
+      Query query = FirebaseFirestore.instance.collection('users');
+
+      if (_searchQuery.isEmpty) {
+        query = query.orderBy('createdAt', descending: true);
+      } else {
+        query = query
+            .where('email', isGreaterThanOrEqualTo: _searchQuery)
+            .where('email', isLessThanOrEqualTo: '$_searchQuery\uf8ff')
+            // Firestore requires ordering by the field used in inequality filter first.
+            // Since we are searching, we order by email.
+            .orderBy('email'); 
+      }
+
+      query = query.limit(_limit);
+
+      if (_lastDoc != null) {
+        query = query.startAfterDocument(_lastDoc!);
+      }
+
+      final snapshot = await query.get();
+
+      if (snapshot.docs.isNotEmpty) {
+        _lastDoc = snapshot.docs.last;
+        _users.addAll(snapshot.docs);
+      }
+      
+      if (snapshot.docs.length < _limit) {
+        _hasMore = false;
+      }
+    } catch (e) {
+      debugPrint('Error fetching users: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Lỗi tải danh sách người dùng')));
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -213,7 +270,8 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
                 suffixIcon: _searchQuery.isNotEmpty 
                   ? IconButton(icon: const Icon(Icons.clear), onPressed: () {
                       _searchController.clear();
-                      setState(() { _searchQuery = ''; _updateStream(); });
+                      _searchQuery = '';
+                      _fetchUsers(refresh: true);
                     })
                   : null,
                 filled: true,
@@ -222,75 +280,81 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               ),
               onChanged: (value) {
-                setState(() { _searchQuery = value.trim().toLowerCase(); _updateStream(); });
+                _searchQuery = value.trim().toLowerCase();
+                _fetchUsers(refresh: true);
               },
             ),
           ),
         ),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _usersStream,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting && !snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('Không tìm thấy người dùng.'));
-          }
-          final users = snapshot.data!.docs;
-
-          return ListView.builder(
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final doc = users[index];
-              final userData = doc.data() as Map<String, dynamic>;
-              final userId = doc.id;
-              final role = userData['role'] ?? 'user';
-              final tier = (userData['subscriptionTier'] as String?)?.toLowerCase() ?? 'free';
-              
-              // Ưu tiên hiển thị Affiliate nếu role là affiliate
-              final displayStatus = role == 'affiliate' ? 'affiliate' : tier;
-              
-              final tokens = userData['tokenBalance'] ?? 0;
-              final activeSubs = List<String>.from(userData['activeSubscriptions'] ?? []);
-
-              return Card(
-                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                color: const Color(0xFF161616),
-                child: ExpansionTile(
-                  leading: CircleAvatar(
-                    backgroundColor: _getTierColor(displayStatus).withOpacity(0.2),
-                    child: Text(displayStatus[0].toUpperCase(), style: TextStyle(color: _getTierColor(displayStatus))),
-                  ),
-                  title: Text(userData['displayName'] ?? 'No Name', style: const TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: Text(userData['email'] ?? 'No Email', style: const TextStyle(fontSize: 12, color: Colors.grey)),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          _buildActionRow('Tier (Role)', displayStatus.toUpperCase(), _getTierColor(displayStatus), () => _handleTierUpdate(userId, displayStatus)),
-                          const Divider(height: 24),
-                          _buildActionRow('Token Balance', tokens.toString(), Colors.blue, () => _updateTokenBalance(userId, tokens is int ? tokens : 0)),
-                          const Divider(height: 24),
-                          _buildPackageRow(userId, 'ELITE PLAN', 
-                            _getPackageDate(userData, 'subscriptionsStart', 'elite'), 
-                            _getPackageDate(userData, 'subscriptionsExpiry', 'elite'), 
-                            activeSubs.contains('elite')),
-                          const SizedBox(height: 8),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text('Registered: ${_formatDate(userData['createdAt'])}', style: const TextStyle(fontSize: 11, color: Colors.grey)),
+      body: RefreshIndicator(
+        onRefresh: () => _fetchUsers(refresh: true),
+        child: _users.isEmpty && _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : _users.isEmpty
+                ? const Center(child: Text('Không tìm thấy người dùng.'))
+                : ListView.builder(
+                    controller: _scrollController,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemCount: _users.length + (_hasMore ? 1 : 0),
+                    itemBuilder: (context, index) {
+                      if (index == _users.length) {
+                        return const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: CircularProgressIndicator(),
                           ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-          );
-        },
+                        );
+                      }
+                      
+                      final doc = _users[index];
+                      final userData = doc.data() as Map<String, dynamic>;
+                      final userId = doc.id;
+                      final role = userData['role'] ?? 'user';
+                      final tier = (userData['subscriptionTier'] as String?)?.toLowerCase() ?? 'free';
+                      
+                      // Ưu tiên hiển thị Affiliate nếu role là affiliate
+                      final displayStatus = role == 'affiliate' ? 'affiliate' : tier;
+                      
+                      final tokens = userData['tokenBalance'] ?? 0;
+                      final activeSubs = List<String>.from(userData['activeSubscriptions'] ?? []);
+
+                      return Card(
+                        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        color: const Color(0xFF161616),
+                        child: ExpansionTile(
+                          leading: CircleAvatar(
+                            backgroundColor: _getTierColor(displayStatus).withOpacity(0.2),
+                            child: Text(displayStatus[0].toUpperCase(), style: TextStyle(color: _getTierColor(displayStatus))),
+                          ),
+                          title: Text(userData['displayName'] ?? 'No Name', style: const TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text(userData['email'] ?? 'No Email', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                children: [
+                                  _buildActionRow('Tier (Role)', displayStatus.toUpperCase(), _getTierColor(displayStatus), () => _handleTierUpdate(userId, displayStatus)),
+                                  const Divider(height: 24),
+                                  _buildActionRow('Token Balance', tokens.toString(), Colors.blue, () => _updateTokenBalance(userId, tokens is int ? tokens : 0)),
+                                  const Divider(height: 24),
+                                  _buildPackageRow(userId, 'ELITE PLAN', 
+                                    _getPackageDate(userData, 'subscriptionsStart', 'elite'), 
+                                    _getPackageDate(userData, 'subscriptionsExpiry', 'elite'), 
+                                    activeSubs.contains('elite')),
+                                  const SizedBox(height: 8),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text('Registered: ${_formatDate(userData['createdAt'])}', style: const TextStyle(fontSize: 11, color: Colors.grey)),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
       ),
     );
   }

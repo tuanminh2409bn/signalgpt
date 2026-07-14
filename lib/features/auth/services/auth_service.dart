@@ -30,6 +30,7 @@ class AuthService {
   StreamSubscription<DocumentSnapshot>? _sessionSubscription;
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
+  User? get currentUser => _firebaseAuth.currentUser;
 
   // Hàm khởi tạo service, gọi sau khi Firebase.initializeApp() hoàn tất
   Future<void> initialize() async {

@@ -209,28 +209,68 @@ class _UserManagementViewState extends State<UserManagementView> {
   final ScrollController _horizontalController = ScrollController();
   final ScrollController _verticalController = ScrollController();
   String _searchQuery = '';
-  late Stream<QuerySnapshot> _usersStream;
+  final List<DocumentSnapshot> _users = [];
+  bool _isLoading = false;
+  bool _hasMore = true;
+  DocumentSnapshot? _lastDoc;
+  final int _limit = 50;
 
   @override
   void initState() {
     super.initState();
-    _updateStream();
+    _fetchUsers(refresh: true);
   }
 
-  void _updateStream() {
-    if (_searchQuery.isEmpty) {
-      _usersStream = FirebaseFirestore.instance
-          .collection('users')
-          .orderBy('createdAt', descending: true)
-          .limit(200)
-          .snapshots();
-    } else {
-      _usersStream = FirebaseFirestore.instance
-          .collection('users')
-          .where('email', isGreaterThanOrEqualTo: _searchQuery)
-          .where('email', isLessThanOrEqualTo: _searchQuery + '\uf8ff')
-          .limit(100)
-          .snapshots();
+  Future<void> _fetchUsers({bool refresh = false}) async {
+    if (_isLoading) return;
+    setState(() {
+      _isLoading = true;
+      if (refresh) {
+        _users.clear();
+        _lastDoc = null;
+        _hasMore = true;
+      }
+    });
+
+    try {
+      Query query = FirebaseFirestore.instance.collection('users');
+
+      if (_searchQuery.isEmpty) {
+        query = query.orderBy('createdAt', descending: true);
+      } else {
+        query = query
+            .where('email', isGreaterThanOrEqualTo: _searchQuery)
+            .where('email', isLessThanOrEqualTo: '$_searchQuery\uf8ff')
+            .orderBy('email');
+      }
+
+      query = query.limit(_limit);
+
+      if (_lastDoc != null) {
+        query = query.startAfterDocument(_lastDoc!);
+      }
+
+      final snapshot = await query.get();
+
+      if (snapshot.docs.isNotEmpty) {
+        _lastDoc = snapshot.docs.last;
+        _users.addAll(snapshot.docs);
+      }
+      
+      if (snapshot.docs.length < _limit) {
+        _hasMore = false;
+      }
+    } catch (e) {
+      debugPrint('Error fetching users: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Lỗi tải danh sách người dùng')));
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -416,10 +456,8 @@ class _UserManagementViewState extends State<UserManagementView> {
                           icon: const Icon(Icons.clear, size: 20),
                           onPressed: () {
                             _searchController.clear();
-                            setState(() {
-                              _searchQuery = '';
-                              _updateStream();
-                            });
+                            _searchQuery = '';
+                            _fetchUsers(refresh: true);
                           },
                         )
                       : null,
@@ -427,10 +465,8 @@ class _UserManagementViewState extends State<UserManagementView> {
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                   ),
                   onChanged: (value) {
-                    setState(() {
-                      _searchQuery = value.trim().toLowerCase();
-                      _updateStream();
-                    });
+                    _searchQuery = value.trim().toLowerCase();
+                    _fetchUsers(refresh: true);
                   },
                 ),
               ),
@@ -447,169 +483,197 @@ class _UserManagementViewState extends State<UserManagementView> {
             ),
         ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _usersStream,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting && !snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('Không có người dùng nào.'));
-          }
-          final userDocs = snapshot.data!.docs;
-
-          return Scrollbar(
-            controller: _horizontalController,
-            thumbVisibility: true,
-            child: SingleChildScrollView(
-              controller: _horizontalController,
-              scrollDirection: Axis.horizontal,
-              child: SizedBox(
-                width: 1400,
-                child: Column(
+      body: _users.isEmpty && _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : _users.isEmpty
+              ? const Center(child: Text('Không tìm thấy người dùng.'))
+              : Column(
                   children: [
-                    // Table Header
-                    Container(
-                      color: Colors.grey.shade200,
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                      child: const Row(
-                        children: [
-                          SizedBox(width: 48, child: Text('Select')),
-                          Expanded(flex: 3, child: Text('User Info', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
-                          Expanded(flex: 2, child: Text('Role (Tier)', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
-                          Expanded(flex: 1, child: Text('Tokens', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
-                          Expanded(flex: 2, child: Text('Elite Plan', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
-                          Expanded(flex: 2, child: Text('Registered', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
-                        ],
-                      ),
-                    ),
-                    // Table Content
                     Expanded(
                       child: Scrollbar(
-                        controller: _verticalController,
+                        controller: _horizontalController,
                         thumbVisibility: true,
-                        child: ListView.builder(
-                          controller: _verticalController,
-                          itemCount: userDocs.length,
-                          itemExtent: 80,
-                          itemBuilder: (context, index) {
-                            final doc = userDocs[index];
-                            final userData = doc.data() as Map<String, dynamic>;
-                            final userId = doc.id;
-                            final isSelected = _selectedUserIds.contains(userId);
-
-                            final tier = (userData['subscriptionTier'] as String?)?.toLowerCase() ?? 'free';
-                            final role = userData['role'] ?? 'user';
-                            final displayStatus = role == 'affiliate' ? 'affiliate' : tier;
-                            
-                            final tokens = userData['tokenBalance'] ?? 0;
-                            final activeSubs = List<String>.from(userData['activeSubscriptions'] ?? []);
-
-                            return Container(
-                              decoration: BoxDecoration(
-                                border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
-                                color: isSelected ? Colors.blue.withValues(alpha: 0.05) : null,
-                              ),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 48,
-                                    child: Checkbox(
-                                      value: isSelected,
-                                      onChanged: (selected) {
-                                        setState(() {
-                                          if (selected == true) {
-                                            _selectedUserIds.add(userId);
-                                          } else {
-                                            _selectedUserIds.remove(userId);
-                                          }
-                                        });
+                        child: SingleChildScrollView(
+                          controller: _horizontalController,
+                          scrollDirection: Axis.horizontal,
+                          child: SizedBox(
+                            width: 1400,
+                            child: Column(
+                              children: [
+                                // Table Header
+                                Container(
+                                  color: Colors.grey.shade200,
+                                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                                  child: const Row(
+                                    children: [
+                                      SizedBox(width: 48, child: Text('Select')),
+                                      Expanded(flex: 3, child: Text('User Info', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
+                                      Expanded(flex: 2, child: Text('Role (Tier)', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
+                                      Expanded(flex: 1, child: Text('Tokens', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
+                                      Expanded(flex: 2, child: Text('Elite Plan', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
+                                      Expanded(flex: 2, child: Text('Registered', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))),
+                                    ],
+                                  ),
+                                ),
+                                // Table Content
+                                Expanded(
+                                  child: Scrollbar(
+                                    controller: _verticalController,
+                                    thumbVisibility: true,
+                                    child: ListView.builder(
+                                      controller: _verticalController,
+                                      itemCount: _users.length,
+                                      itemExtent: 80,
+                                      itemBuilder: (context, index) {
+                                        final doc = _users[index];
+                                        final userData = doc.data() as Map<String, dynamic>;
+                                        final userId = doc.id;
+                                        final isSelected = _selectedUserIds.contains(userId);
+            
+                                        final tier = (userData['subscriptionTier'] as String?)?.toLowerCase() ?? 'free';
+                                        final role = userData['role'] ?? 'user';
+                                        final displayStatus = role == 'affiliate' ? 'affiliate' : tier;
+                                        
+                                        final tokens = userData['tokenBalance'] ?? 0;
+                                        final activeSubs = List<String>.from(userData['activeSubscriptions'] ?? []);
+            
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
+                                            color: isSelected ? Colors.blue.withOpacity(0.05) : null,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 48,
+                                                child: Checkbox(
+                                                  value: isSelected,
+                                                  onChanged: (selected) {
+                                                    setState(() {
+                                                      if (selected == true) {
+                                                        _selectedUserIds.add(userId);
+                                                      } else {
+                                                        _selectedUserIds.remove(userId);
+                                                      }
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 3,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Text(userData['displayName'] ?? 'No Name', 
+                                                        style: const TextStyle(fontWeight: FontWeight.bold),
+                                                        maxLines: 1, overflow: TextOverflow.ellipsis),
+                                                      Text(userData['email'] ?? 'No Email', 
+                                                        style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                                                        maxLines: 1, overflow: TextOverflow.ellipsis),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 2,
+                                                child: Center(
+                                                  child: InkWell(
+                                                    onTap: () => _handleSingleUserTierUpdate(userId, displayStatus),
+                                                    child: Container(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                      decoration: BoxDecoration(
+                                                        color: _getTierColor(displayStatus).withOpacity(0.2),
+                                                        border: Border.all(color: _getTierColor(displayStatus)),
+                                                        borderRadius: BorderRadius.circular(20),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        children: [
+                                                          Text(displayStatus.toUpperCase(), style: TextStyle(color: _getTierColor(displayStatus), fontWeight: FontWeight.bold, fontSize: 12)),
+                                                          const SizedBox(width: 4),
+                                                          Icon(Icons.edit, size: 12, color: _getTierColor(displayStatus)),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 1,
+                                                child: Center(
+                                                  child: InkWell(
+                                                    onTap: () => _updateTokenBalance(userId, tokens is int ? tokens : 0),
+                                                    child: Row(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      children: [
+                                                        Text('$tokens', style: const TextStyle(fontWeight: FontWeight.bold)),
+                                                        const SizedBox(width: 4),
+                                                        const Icon(Icons.edit, size: 12, color: Colors.grey),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 2,
+                                                child: _buildPackageCell(userId, 'elite', 
+                                                  _getPackageDate(userData, 'subscriptionsStart', 'elite'), 
+                                                  _getPackageDate(userData, 'subscriptionsExpiry', 'elite'), 
+                                                  activeSubs),
+                                              ),
+                                              Expanded(
+                                                flex: 2,
+                                                child: Center(child: Text(_formatDate(userData['createdAt']), style: const TextStyle(fontSize: 12))),
+                                              ),
+                                            ],
+                                          ),
+                                        );
                                       },
                                     ),
                                   ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(userData['displayName'] ?? 'No Name', 
-                                            style: const TextStyle(fontWeight: FontWeight.bold),
-                                            maxLines: 1, overflow: TextOverflow.ellipsis),
-                                          Text(userData['email'] ?? 'No Email', 
-                                            style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
-                                            maxLines: 1, overflow: TextOverflow.ellipsis),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Center(
-                                      child: InkWell(
-                                        onTap: () => _handleSingleUserTierUpdate(userId, displayStatus),
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                                          decoration: BoxDecoration(
-                                            color: _getTierColor(displayStatus).withValues(alpha: 0.2),
-                                            border: Border.all(color: _getTierColor(displayStatus)),
-                                            borderRadius: BorderRadius.circular(20),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Text(displayStatus.toUpperCase(), style: TextStyle(color: _getTierColor(displayStatus), fontWeight: FontWeight.bold, fontSize: 12)),
-                                              const SizedBox(width: 4),
-                                              Icon(Icons.edit, size: 12, color: _getTierColor(displayStatus)),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Center(
-                                      child: InkWell(
-                                        onTap: () => _updateTokenBalance(userId, tokens is int ? tokens : 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text('$tokens', style: const TextStyle(fontWeight: FontWeight.bold)),
-                                            const SizedBox(width: 4),
-                                            const Icon(Icons.edit, size: 12, color: Colors.grey),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: _buildPackageCell(userId, 'elite', 
-                                      _getPackageDate(userData, 'subscriptionsStart', 'elite'), 
-                                      _getPackageDate(userData, 'subscriptionsExpiry', 'elite'), 
-                                      activeSubs),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Center(child: Text(_formatDate(userData['createdAt']), style: const TextStyle(fontSize: 12))),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
+                      ),
+                    ),
+                    // Pagination Footer
+                    Container(
+                      padding: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(color: Colors.grey.shade200, offset: const Offset(0, -1), blurRadius: 4)
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Đang hiển thị ${_users.length} người dùng', style: const TextStyle(color: Colors.grey)),
+                          const SizedBox(width: 24),
+                          OutlinedButton.icon(
+                            onPressed: _isLoading ? null : () => _fetchUsers(refresh: true),
+                            icon: const Icon(Icons.refresh),
+                            label: const Text('Làm mới'),
+                          ),
+                          const SizedBox(width: 16),
+                          if (_hasMore)
+                            FilledButton.icon(
+                              onPressed: _isLoading ? null : () => _fetchUsers(),
+                              icon: _isLoading 
+                                  ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                                  : const Icon(Icons.arrow_downward),
+                              label: const Text('Tải trang tiếp theo'),
+                            ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ),
-            ),
-          );
-        },
-      ),
     );
   }
 

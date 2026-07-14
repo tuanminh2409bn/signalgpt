@@ -1,7 +1,7 @@
 //localization.ts
 
 // Định nghĩa các loại thông báo
-type NotificationType = 'new_signal' | 'signal_matched' | 'tp1_hit' | 'tp2_hit' | 'tp3_hit' | 'sl_hit';
+type NotificationType = 'new_signal' | 'signal_matched' | 'tp1_hit' | 'tp2_hit' | 'tp3_hit' | 'sl_hit' | 'signal_exited' | 'signal_cancelled';
 
 // Các ngôn ngữ được hệ thống hỗ trợ
 // Dù user chọn ngôn ngữ nào, chúng ta cũng sẽ trả về tiếng Anh theo yêu cầu mới.
@@ -48,6 +48,18 @@ const templates: Record<NotificationType, Template> = {
         en: {
             title: "❌ {0} {1} Stop Loss Hit.",
             body: "Sorry, the signal has hit Stop Loss.",
+        }
+    },
+    signal_exited: {
+        en: {
+            title: "🔔 {0} {1} Signal Closed.",
+            body: "This signal has been manually closed by admin.",
+        }
+    },
+    signal_cancelled: {
+        en: {
+            title: "🚫 {0} {1} Signal Cancelled.",
+            body: "This signal has been cancelled.",
         }
     },
 };

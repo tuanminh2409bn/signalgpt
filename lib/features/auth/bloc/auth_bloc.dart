@@ -24,7 +24,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required SessionService sessionService,
   })  : _authService = authService,
         _sessionService = sessionService,
-        super(const AuthState.unknown()) {
+        super(authService.currentUser != null 
+          ? AuthState.authenticated(authService.currentUser!) 
+          : const AuthState.unknown()) {
     _userSubscription = _authService.authStateChanges.listen(
           (user) => add(AuthStateChanged(user)),
     );

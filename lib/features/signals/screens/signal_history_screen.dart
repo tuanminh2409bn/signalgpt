@@ -563,7 +563,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
             Expanded(
               flex: 2,
               child: Text(
-                signal.entryPrice.toString(),
+                signal.formatPrice(signal.entryPrice),
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
