@@ -34,7 +34,11 @@ class AuthService {
 
   // Hàm khởi tạo service, gọi sau khi Firebase.initializeApp() hoàn tất
   Future<void> initialize() async {
-    // Không cần logic listen thủ công nữa vì đã dùng trực tiếp stream của Firebase
+    try {
+      await _firebaseAuth.setPersistence(Persistence.LOCAL);
+    } catch (e) {
+      print('Lỗi thiết lập persistence: $e');
+    }
   }
 
   Future<String> sendPhoneOtp(String phoneNumber) async {

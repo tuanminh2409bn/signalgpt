@@ -37,7 +37,9 @@ class PurchaseService extends ChangeNotifier {
     if (_isStoreAvailable) {
       await _loadProducts();
       if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
-        await _clearStuckTransactions();
+        // CẢNH BÁO: Không gọi _clearStuckTransactions() ở đây vì nó sẽ 
+        // hoàn thành (finish) tất cả giao dịch gia hạn tự động của Apple
+        // trước khi purchaseStream kịp nhận và xử lý, dẫn đến mất gia hạn!
       }
       _subscription = _inAppPurchase.purchaseStream.listen((purchaseDetailsList) {
         _listenToPurchaseUpdated(purchaseDetailsList);
@@ -110,6 +112,7 @@ class PurchaseService extends ChangeNotifier {
       final payload = {
         'platform': platform,
         'productId': purchaseDetails.productID,
+        'orderId': purchaseDetails.purchaseID,
         'transactionData': {
           platform == 'ios' ? 'receiptData' : 'purchaseToken': verificationData
         },

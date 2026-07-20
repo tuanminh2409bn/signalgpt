@@ -421,7 +421,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _buildMenuButton(
                           label: l10n.onlineSupport,
                           icon: Icons.support_agent_outlined,
-                          onTap: () => _launchURL('https://wa.me/84868649747'),
+                          onTap: () => _launchURL('https://t.me/LisaAISignals'),
                         ),
                         const SizedBox(height: 8),
                         _buildMenuButton(

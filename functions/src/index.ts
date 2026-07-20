@@ -384,7 +384,7 @@ function parseSignalMessage(text: string): any | null {
 export const verifyPurchase = onCall(
     { region: "asia-southeast1", secrets: ["APPLE_SHARED_SECRET"] },
     async (request) => {
-        const { productId, transactionData, platform } = request.data;
+        const { productId, transactionData, platform, orderId } = request.data;
         const userId = request.auth?.uid;
 
         if (!userId) throw new HttpsError("unauthenticated", "Người dùng chưa đăng nhập.");
@@ -475,8 +475,9 @@ export const verifyPurchase = onCall(
                     if (purchaseToken && purchaseToken.length > 0) {
                         isValid = true;
                         expiryDate = calculateExpiryDate(productId);
-                        // Dùng hash ngắn của purchaseToken làm transactionId để chống trùng
-                        transactionId = `android_${productId}_${purchaseToken.slice(-20)}`;
+                        // Sử dụng orderId (ví dụ: GPA.xxx) nếu có để phân biệt các lần gia hạn, nếu không fallback về purchaseToken
+                        const uniqueId = orderId || purchaseToken.slice(-20);
+                        transactionId = `android_${productId}_${uniqueId}`;
                     }
                 }
             }

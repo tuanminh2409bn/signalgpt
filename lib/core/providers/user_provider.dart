@@ -117,9 +117,16 @@ class UserProvider with ChangeNotifier {
           _sessionResetReason = data['sessionResetReason'];
         }
         
-        _tokenBalance = (data['tokenBalance'] ?? 0) as int;
-        _activeSubscriptions = List<String>.from(data['activeSubscriptions'] ?? []);
+        _userTier = data['subscriptionTier'] ?? 'free';
+        _tokenBalance = (data['tokenBalance'] ?? 0).toInt();
         _unlockedSignals = List<String>.from(data['unlockedSignals'] ?? []);
+        
+        // Fix: Đảm bảo tài khoản free không bị kẹt activeSubscriptions do lỗi dữ liệu cũ
+        if (_userTier == 'free') {
+          _activeSubscriptions = [];
+        } else {
+          _activeSubscriptions = List<String>.from(data['activeSubscriptions'] ?? []);
+        }
 
         if (data['subscriptionExpiryDate'] != null && data['subscriptionExpiryDate'] is Timestamp) {
           _subscriptionExpiryDate = (data['subscriptionExpiryDate'] as Timestamp).toDate();
