@@ -38,6 +38,7 @@ import 'package:minvest_forex_app/core/providers/affiliate_provider.dart';
 import 'package:minvest_forex_app/core/utils/navigator_key.dart';
 import 'package:minvest_forex_app/core/utils/messenger_key.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:minvest_forex_app/core/utils/signal_access_helper.dart';
 
 final GlobalKey<MainScreenState> mainScreenKey = GlobalKey<MainScreenState>();
 
@@ -159,6 +160,20 @@ class _MyAppState extends State<MyApp> {
           final signal = await SignalService().getSignalById(signalId);
           
           if (signal != null && navigatorKey.currentState != null) {
+            final hasAccess = SignalAccessHelper.canViewEntry(
+              signal,
+              userProvider.userTier,
+              userProvider.activeSubscriptions,
+              unlockedSignals: userProvider.unlockedSignals,
+              subscriptionsExpiry: userProvider.subscriptionsExpiry,
+              subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
+            );
+            if (!hasAccess && !await userProvider.unlockSignal(signal.id)) {
+              scaffoldMessengerKey.currentState?.showSnackBar(
+                const SnackBar(content: Text('Not enough tokens to open this signal.')),
+              );
+              return;
+            }
             navigatorKey.currentState!.push(
               MaterialPageRoute(
                 builder: (_) => SignalAnalyzeScreen(signal: signal),

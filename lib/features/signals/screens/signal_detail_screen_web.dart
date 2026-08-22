@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:minvest_forex_app/core/providers/language_provider.dart';
-import 'package:minvest_forex_app/core/providers/user_provider.dart'; // Added Import
 import 'package:minvest_forex_app/features/signals/models/signal_model.dart';
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -197,27 +196,13 @@ class SignalDetailScreen extends StatelessWidget {
 
   String _formatPrice(num? value) {
     if (value == null) return '—';
-    double val = value.toDouble();
-    if (val >= 1000) {
-      return val.toStringAsFixed(2); // e.g. 1234.56
-    } else if (val >= 100) {
-      return val.toStringAsFixed(3); // e.g. 123.456
-    } else if (val >= 10) {
-      return val.toStringAsFixed(4); // e.g. 12.3456
-    } else {
-      return val.toStringAsFixed(5); // e.g. 1.23456
-    }
+    return signal.formatPrice(value);
   }
 }
 
 class _TokenCounter extends StatelessWidget {
   final Signal? signal;
   const _TokenCounter({this.signal});
-
-  bool _isSignalUnlocked(Signal signal, List<String> activeSubs) {
-    if (activeSubs.isNotEmpty) return true;
-    return false;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -234,8 +219,18 @@ class _TokenCounter extends StatelessWidget {
         final data = snapshot.data!.data() ?? {};
         final tier = (data['subscriptionTier'] ?? 'free').toString().toLowerCase();
         final activeSubs = List<String>.from(data['activeSubscriptions'] ?? []);
+        final eliteExpiry = data['subscriptionExpiryDate'] as Timestamp?;
+        final eliteActive = tier == 'elite' &&
+            (eliteExpiry == null || eliteExpiry.toDate().isAfter(DateTime.now()));
+        final categoryExpiry = signal == null
+            ? null
+            : (data['subscriptionsExpiry'] as Map<String, dynamic>?)?[signal!.categoryKey] as Timestamp?;
+        final categoryActive = signal != null &&
+            activeSubs.contains(signal!.categoryKey) &&
+            categoryExpiry != null &&
+            categoryExpiry.toDate().isAfter(DateTime.now());
 
-        if (tier == 'elite' || (signal != null && _isSignalUnlocked(signal!, activeSubs))) {
+        if (eliteActive || categoryActive) {
           return Text(AppLocalizations.of(context)!.unlimitedSignals, style: const TextStyle(color: Color(0xFF289EFF), fontSize: 13, fontWeight: FontWeight.w700));
         }
         final tokenBalance = (data['tokenBalance'] ?? 0) as int;

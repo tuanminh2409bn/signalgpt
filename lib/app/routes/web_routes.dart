@@ -34,7 +34,10 @@ Map<String, WidgetBuilder> getWebRoutes() {
     '/terms-conditions': (context) => const TermsConditionsPage(),
     '/purchase-plan': (context) {
       final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-      return PurchasePlanPage(initialPlan: args?['plan']);
+      return PurchasePlanPage(
+        initialPlan: args?['plan'],
+        initialDuration: args?['duration'],
+      );
     },
     '/payment-method': (context) {
       final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;

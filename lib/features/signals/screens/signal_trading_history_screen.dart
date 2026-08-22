@@ -45,9 +45,9 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 if (signal.hitTps.contains(3))
                   _buildHistoryEvent(
                     title: l10n.tp3Live,
-                    price: signal.takeProfits.length > 2 ? signal.takeProfits[2].toString() : '-',
+                    price: signal.takeProfits.length > 2 ? signal.formatPrice(signal.takeProfits[2]) : '-',
                     description: l10n.targetReached,
-                    time: signal.createdAt.toDate().add(const Duration(hours: 3)),
+                    time: signal.tp3HitAt?.toDate(),
                     isPriceGreen: true,
                   ),
 
@@ -55,9 +55,9 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 if (signal.hitTps.contains(2))
                   _buildHistoryEvent(
                     title: l10n.tp2Live,
-                    price: signal.takeProfits.length > 1 ? signal.takeProfits[1].toString() : '-',
+                    price: signal.takeProfits.length > 1 ? signal.formatPrice(signal.takeProfits[1]) : '-',
                     description: l10n.targetReached,
-                    time: signal.createdAt.toDate().add(const Duration(hours: 2)),
+                    time: signal.tp2HitAt?.toDate(),
                     isPriceGreen: true,
                   ),
 
@@ -65,9 +65,9 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 if (signal.hitTps.contains(1))
                   _buildHistoryEvent(
                     title: l10n.tp1Live,
-                    price: signal.takeProfits.isNotEmpty ? signal.takeProfits[0].toString() : '-',
+                    price: signal.takeProfits.isNotEmpty ? signal.formatPrice(signal.takeProfits[0]) : '-',
                     description: l10n.targetReached,
-                    time: signal.createdAt.toDate().add(const Duration(hours: 1)),
+                    time: signal.tp1HitAt?.toDate(),
                     isPriceGreen: true,
                   ),
 
@@ -75,9 +75,9 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 if (signal.result?.toLowerCase() == 'sl hit')
                   _buildHistoryEvent(
                     title: l10n.signalStatusSlHit,
-                    price: signal.stopLoss.toString(),
+                    price: signal.formatPrice(signal.stopLoss),
                     description: l10n.stopLossTriggered,
-                    time: signal.createdAt.toDate().add(const Duration(hours: 1)),
+                    time: signal.slHitAt?.toDate() ?? signal.closedAt?.toDate(),
                     isPriceGreen: false,
                     titleColor: const Color(0xFFE3001E),
                   ),
@@ -88,7 +88,7 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                     title: l10n.signalMatched,
                     price: '',
                     description: l10n.matched,
-                    time: signal.matchedAt?.toDate() ?? signal.createdAt.toDate().add(const Duration(minutes: 30)),
+                    time: signal.matchedAt?.toDate(),
                     titleColor: const Color(0xFF276EFB),
                   ),
 
@@ -96,7 +96,7 @@ class SignalTradingHistoryScreen extends StatelessWidget {
                 _buildHistoryEvent(
                   title: l10n.signalCreated,
                   price: '',
-                  description: l10n.entryWithPrice(signal.entryPrice.toString()),
+                  description: l10n.entryWithPrice(signal.formatPrice(signal.entryPrice)),
                   time: signal.createdAt.toDate(),
                 ),
               ],
@@ -111,11 +111,11 @@ class SignalTradingHistoryScreen extends StatelessWidget {
     required String title,
     required String price,
     required String description,
-    required DateTime time,
+    required DateTime? time,
     bool isPriceGreen = false,
     Color titleColor = Colors.white,
   }) {
-    final String formattedTime = DateFormat('dd/MM HH:mm').format(time);
+    final String formattedTime = time == null ? '--' : DateFormat('dd/MM HH:mm').format(time);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 38),

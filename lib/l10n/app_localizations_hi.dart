@@ -1237,7 +1237,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get cryptoSignals => 'क्रिप्टो संकेत';
 
   @override
-  String get forexSignals => 'विदेशी मुद्रा संकेत';
+  String get forexSignals => 'मुद्रा जोड़ी संकेत';
 
   @override
   String get goldSignals => 'गोल्ड संकेत';

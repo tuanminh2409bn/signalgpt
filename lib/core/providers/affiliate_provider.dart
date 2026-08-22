@@ -8,7 +8,9 @@ class AffiliateProvider with ChangeNotifier {
   List<ExchangeApp> _exchangeApps = allExchangeApps;
   bool _isLoading = false;
 
-  List<ExchangeApp> get exchangeApps => _exchangeApps;
+  List<ExchangeApp> get exchangeApps => _exchangeApps
+      .where((app) => isExchangeAppVisible(app.name))
+      .toList(growable: false);
   bool get isLoading => _isLoading;
 
   AffiliateProvider() {
@@ -19,10 +21,11 @@ class AffiliateProvider with ChangeNotifier {
     // Chờ một chút để Firebase Auth kịp khởi tạo
     await Future.delayed(const Duration(seconds: 2));
     await fetchAffiliateLinks();
-    
+
     // Kiểm tra thực tế trên Firestore
     try {
-      final snapshot = await _firestore.collection('settings').doc('affiliate_links').get();
+      final snapshot =
+          await _firestore.collection('settings').doc('affiliate_links').get();
       if (!snapshot.exists) {
         debugPrint('Affiliate links not found on Firestore, seeding...');
         await seedAffiliateLinks();
@@ -39,15 +42,17 @@ class AffiliateProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      final snapshot = await _firestore.collection('settings').doc('affiliate_links').get();
-      
+      final snapshot =
+          await _firestore.collection('settings').doc('affiliate_links').get();
+
       if (snapshot.exists && snapshot.data() != null) {
         final List<dynamic> linksData = snapshot.data()!['links'] ?? [];
         if (linksData.isNotEmpty) {
           _exchangeApps = linksData
               .map((item) => ExchangeApp.fromMap(item as Map<String, dynamic>))
               .toList();
-          debugPrint('Successfully fetched ${_exchangeApps.length} affiliate links from Firestore');
+          debugPrint(
+              'Successfully fetched ${_exchangeApps.length} affiliate links from Firestore');
         }
       }
     } catch (e) {
@@ -67,15 +72,15 @@ class AffiliateProvider with ChangeNotifier {
     }
 
     try {
-      final List<Map<String, dynamic>> linksToUpload = 
+      final List<Map<String, dynamic>> linksToUpload =
           allExchangeApps.map((app) => app.toMap()).toList();
-      
+
       await _firestore.collection('settings').doc('affiliate_links').set({
         'links': linksToUpload,
         'lastUpdated': FieldValue.serverTimestamp(),
         'seededBy': FirebaseAuth.instance.currentUser?.uid,
       });
-      
+
       debugPrint('Successfully seeded affiliate links to Firestore/settings');
       // Fetch lại sau khi seed
       await fetchAffiliateLinks();
@@ -85,17 +90,24 @@ class AffiliateProvider with ChangeNotifier {
   }
 
   String getUrlForApp(String name) {
+    if (!isExchangeAppVisible(name)) return '';
     try {
-      return _exchangeApps.firstWhere(
-        (app) => app.name.toLowerCase() == name.toLowerCase() || 
-                 (name == 'Vantage' && app.name == 'Vantagemarkets'),
-      ).url;
+      return _exchangeApps
+          .firstWhere(
+            (app) =>
+                app.name.toLowerCase() == name.toLowerCase() ||
+                (name == 'Vantage' && app.name == 'Vantagemarkets'),
+          )
+          .url;
     } catch (_) {
       try {
-        return allExchangeApps.firstWhere(
-          (app) => app.name.toLowerCase() == name.toLowerCase() ||
-                   (name == 'Vantage' && app.name == 'Vantagemarkets'),
-        ).url;
+        return allExchangeApps
+            .firstWhere(
+              (app) =>
+                  app.name.toLowerCase() == name.toLowerCase() ||
+                  (name == 'Vantage' && app.name == 'Vantagemarkets'),
+            )
+            .url;
       } catch (__) {
         return '';
       }

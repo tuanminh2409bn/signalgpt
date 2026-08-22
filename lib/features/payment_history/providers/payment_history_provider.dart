@@ -29,12 +29,12 @@ class PaymentHistoryProvider extends ChangeNotifier {
           .collection('users')
           .doc(user.uid)
           .collection('transactions')
-          .orderBy('timestamp', descending: true)
           .get();
 
       _transactions = snapshot.docs
           .map((doc) => TransactionModel.fromFirestore(doc))
           .toList();
+      _transactions.sort((a, b) => b.timestamp.compareTo(a.timestamp));
     } catch (e) {
       _error = e.toString();
     } finally {

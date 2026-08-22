@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:minvest_forex_app/features/auth/services/auth_service.dart';
 import 'package:minvest_forex_app/web/landing/widgets/navbar.dart';
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
@@ -172,23 +172,10 @@ class _OtpStepState extends State<_OtpStep> {
 
     setState(() => _isLoading = true);
     try {
-      final firestore = FirebaseFirestore.instance;
-      final doc = await firestore.collection('password_reset_codes').doc(widget.email).get();
-      
-      if (doc.exists) {
-        final data = doc.data()!;
-        final expiresAt = (data['expiresAt'] as Timestamp).toDate();
-        if (DateTime.now().isAfter(expiresAt)) {
-          throw Exception('Mã xác nhận đã hết hạn.');
-        }
-        if (data['code'] == code) {
-          widget.onVerified(code);
-        } else {
-          throw Exception('Mã xác nhận không chính xác.');
-        }
-      } else {
-        throw Exception('Mã xác nhận không tồn tại.');
-      }
+      final callable = FirebaseFunctions.instanceFor(region: 'asia-southeast1')
+          .httpsCallable('verifyResetCode');
+      final result = await callable.call({'email': widget.email, 'code': code});
+      if (result.data['success'] == true) widget.onVerified(code);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: ${e.toString()}')),

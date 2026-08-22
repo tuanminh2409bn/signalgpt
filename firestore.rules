@@ -22,6 +22,16 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isSafeSelfUserUpdate() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+        'displayName', 'photoURL', 'email', 'phone', 'languageCode', 'fcmToken',
+        'notificationSettings', 'activeSession', 'activeSessionWeb',
+        'activeSessionMobile', 'logoutTargetDeviceIdWeb',
+        'logoutTargetDeviceIdMobile', 'requiresSessionReset',
+        'sessionResetReason', 'lastLoginAt', 'updatedAt'
+      ]);
+    }
+
     // --- COLLECTIONS ---
 
     match /signals/{signalId} {
@@ -44,8 +54,19 @@ service cloud.firestore {
          get(/databases/$(database)/documents/affiliates/$(resource.data.referred_by_affiliate_id)).data.uid == request.auth.uid)
       );
       
-      allow create: if isSignedIn() && request.auth.uid == userId;
-      allow update: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow create: if isSignedIn() &&
+        request.auth.uid == userId &&
+        request.resource.data.uid == userId &&
+        request.resource.data.subscriptionTier == 'free' &&
+        request.resource.data.role in ['user', 'guest'] &&
+        request.resource.data.isSuspended == false &&
+        request.resource.data.tokenBalance == 10 &&
+        request.resource.data.activeSubscriptions.size() == 0 &&
+        (!('unlockedSignals' in request.resource.data) || request.resource.data.unlockedSignals.size() == 0);
+      // Subscription, tier, token and unlocked signal fields are server/admin only.
+      allow update: if isSignedIn() && (
+        isAdmin() || (request.auth.uid == userId && isSafeSelfUserUpdate())
+      );
       allow delete: if false;
 
       match /notifications/{notificationId} {
@@ -90,12 +111,12 @@ service cloud.firestore {
 
     // --- RULES CHO MÃ XÁC MINH ---
     match /signup_verification_codes/{email} {
-      allow read: if true; // Cho phép đọc để kiểm tra mã khi đăng ký
+      allow read: if false;
       allow write: if false;
     }
 
     match /password_reset_codes/{email} {
-      allow read: if true; // Cho phép đọc để kiểm tra mã khi quên mật khẩu
+      allow read: if false;
       allow write: if false;
     }
 

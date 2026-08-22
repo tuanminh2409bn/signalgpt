@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:minvest_forex_app/features/notifications/providers/notification_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
+import 'package:minvest_forex_app/core/utils/signal_access_helper.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -33,20 +34,23 @@ class _NotificationScreenState extends State<NotificationScreen> {
     if (notification.signalId == null) return;
 
     final userProvider = context.read<UserProvider>();
-    final userTier = userProvider.userTier?.toLowerCase() ?? 'free';
-    final isFree = userTier != 'elite' && userTier != 'vip';
-
-    if (isFree && notification.type.contains('signal')) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const UpgradeScreen()),
-      );
-      return;
-    }
-
     final signal = await SignalService().getSignalById(notification.signalId!);
 
     if (signal != null && mounted) {
+      final hasAccess = SignalAccessHelper.canViewEntry(
+        signal,
+        userProvider.userTier,
+        userProvider.activeSubscriptions,
+        unlockedSignals: userProvider.unlockedSignals,
+        subscriptionsExpiry: userProvider.subscriptionsExpiry,
+        subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
+      );
+      if (!hasAccess && !await userProvider.unlockSignal(signal.id)) {
+        if (mounted) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const UpgradeScreen()));
+        }
+        return;
+      }
       Navigator.push(
         context,
         MaterialPageRoute(

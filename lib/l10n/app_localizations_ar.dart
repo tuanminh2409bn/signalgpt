@@ -1227,7 +1227,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cryptoSignals => 'إشارات العملات المشفرة';
 
   @override
-  String get forexSignals => 'إشارات الفوركس';
+  String get forexSignals => 'إشارات أزواج العملات';
 
   @override
   String get goldSignals => 'إشارات الذهب';

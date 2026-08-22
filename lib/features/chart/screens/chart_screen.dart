@@ -12,7 +12,17 @@ class ChartScreen extends StatefulWidget {
 class _ChartScreenState extends State<ChartScreen> {
   late final WebViewController _controller;
   bool _isLoading = true;
+  String? _loadError;
   String? _currentLang;
+  String _selectedMarket = 'XAU/USD';
+
+  static const _markets = <String, String>{
+    'XAU/USD': 'OANDA:XAUUSD',
+    'BTC/USDT': 'BINANCE:BTCUSDT',
+    'ETH/USDT': 'BINANCE:ETHUSDT',
+    'EUR/USD': 'OANDA:EURUSD',
+    'GBP/USD': 'OANDA:GBPUSD',
+  };
 
   @override
   void initState() {
@@ -27,6 +37,7 @@ class _ChartScreenState extends State<ChartScreen> {
             if (mounted) {
               setState(() {
                 _isLoading = true;
+                _loadError = null;
               });
             }
           },
@@ -34,6 +45,7 @@ class _ChartScreenState extends State<ChartScreen> {
             if (mounted) {
               setState(() {
                 _isLoading = false;
+                _loadError = null;
               });
             }
           },
@@ -48,6 +60,7 @@ class _ChartScreenState extends State<ChartScreen> {
             if (mounted) {
               setState(() {
                 _isLoading = false;
+                _loadError = error.description;
               });
             }
           },
@@ -61,9 +74,14 @@ class _ChartScreenState extends State<ChartScreen> {
     final lang = Localizations.localeOf(context).languageCode;
     if (_currentLang != lang) {
       _currentLang = lang;
-      final subdomain = lang == 'vi' ? 'vn' : 'www';
-      _controller.loadRequest(Uri.parse('https://$subdomain.tradingview.com/chart/?symbol=OANDA%3AXAUUSD'));
+      _loadChart();
     }
+  }
+
+  void _loadChart() {
+    final subdomain = _currentLang == 'vi' ? 'vn' : 'www';
+    final symbol = Uri.encodeComponent(_markets[_selectedMarket]!);
+    _controller.loadRequest(Uri.parse('https://$subdomain.tradingview.com/chart/?symbol=$symbol'));
   }
 
   @override
@@ -80,6 +98,28 @@ class _ChartScreenState extends State<ChartScreen> {
         elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
+        actions: [
+          PopupMenuButton<String>(
+            initialValue: _selectedMarket,
+            tooltip: 'Select market',
+            onSelected: (value) {
+              setState(() => _selectedMarket = value);
+              _loadChart();
+            },
+            itemBuilder: (context) => _markets.keys
+                .map((market) => PopupMenuItem(value: market, child: Text(market)))
+                .toList(growable: false),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Text(_selectedMarket, style: const TextStyle(color: Colors.white)),
+                  const Icon(Icons.arrow_drop_down, color: Colors.white),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         bottom: false, // Tắt mặc định để tự kiểm soát khoảng cách với Nav Bar
@@ -93,6 +133,22 @@ class _ChartScreenState extends State<ChartScreen> {
                   color: const Color(0xFF0D1117),
                   child: const Center(
                     child: CircularProgressIndicator(),
+                  ),
+                ),
+              if (_loadError != null && !_isLoading)
+                Container(
+                  color: const Color(0xFF0D1117),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.cloud_off, color: Colors.white54, size: 44),
+                      const SizedBox(height: 12),
+                      Text(_loadError!, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white70)),
+                      const SizedBox(height: 16),
+                      OutlinedButton(onPressed: _loadChart, child: const Text('Retry')),
+                    ],
                   ),
                 ),
             ],

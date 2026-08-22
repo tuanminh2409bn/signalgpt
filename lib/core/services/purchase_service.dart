@@ -4,7 +4,9 @@ import 'dart:async';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 
 class PurchaseService extends ChangeNotifier {
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
@@ -36,11 +38,6 @@ class PurchaseService extends ChangeNotifier {
     debugPrint("Store khả dụng: $_isStoreAvailable");
     if (_isStoreAvailable) {
       await _loadProducts();
-      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
-        // CẢNH BÁO: Không gọi _clearStuckTransactions() ở đây vì nó sẽ 
-        // hoàn thành (finish) tất cả giao dịch gia hạn tự động của Apple
-        // trước khi purchaseStream kịp nhận và xử lý, dẫn đến mất gia hạn!
-      }
       _subscription = _inAppPurchase.purchaseStream.listen((purchaseDetailsList) {
         _listenToPurchaseUpdated(purchaseDetailsList);
       }, onDone: () { _subscription?.cancel(); }, onError: (error) { _setPurchasePending(false); });
@@ -64,8 +61,24 @@ class PurchaseService extends ChangeNotifier {
   }
 
   Future<void> buyProduct(ProductDetails productDetails) async {
-    final PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetails);
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    final accountId = uid == null ? null : sha256.convert(utf8.encode(uid)).toString();
+    final PurchaseParam purchaseParam = PurchaseParam(
+      productDetails: productDetails,
+      applicationUserName: accountId,
+    );
     await _inAppPurchase.buyNonConsumable(purchaseParam: purchaseParam);
+  }
+
+  Future<void> restorePurchases() async {
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    final accountId = uid == null ? null : sha256.convert(utf8.encode(uid)).toString();
+    _setPurchasePending(true);
+    try {
+      await _inAppPurchase.restorePurchases(applicationUserName: accountId);
+    } finally {
+      _setPurchasePending(false);
+    }
   }
 
   void _listenToPurchaseUpdated(List<PurchaseDetails> purchaseDetailsList) {
@@ -74,9 +87,6 @@ class PurchaseService extends ChangeNotifier {
         case PurchaseStatus.pending: _setPurchasePending(true); break;
         case PurchaseStatus.error:
           _setPurchasePending(false);
-          if (purchaseDetails.pendingCompletePurchase) {
-            _inAppPurchase.completePurchase(purchaseDetails);
-          }
           break;
         case PurchaseStatus.purchased:
         case PurchaseStatus.restored:
@@ -84,9 +94,6 @@ class PurchaseService extends ChangeNotifier {
           break;
         case PurchaseStatus.canceled:
           _setPurchasePending(false);
-          if (purchaseDetails.pendingCompletePurchase) {
-            _inAppPurchase.completePurchase(purchaseDetails);
-          }
           break;
       }
     }
@@ -94,15 +101,13 @@ class PurchaseService extends ChangeNotifier {
 
   Future<void> _handleSuccessfulPurchase(PurchaseDetails purchaseDetails) async {
     _setPurchasePending(true);
+    bool verifiedByServer = false;
 
     final String verificationData = purchaseDetails.verificationData.serverVerificationData;
 
     if (verificationData.isEmpty) {
       debugPrint('❌ CẢNH BÁO: Dữ liệu biên lai (serverVerificationData) bị rỗng!');
       _setPurchasePending(false);
-      if (purchaseDetails.pendingCompletePurchase) {
-        await _inAppPurchase.completePurchase(purchaseDetails);
-      }
       return;
     }
     debugPrint('🧾 Lấy được biên lai kiểu mới (JWS), độ dài: ${verificationData.length} ký tự.');
@@ -123,6 +128,7 @@ class PurchaseService extends ChangeNotifier {
       final HttpsCallableResult result = await callable.call(payload);
 
       if (result.data['success'] == true) {
+        verifiedByServer = true;
         debugPrint("🎉🎉🎉 XÁC THỰC THÀNH CÔNG! Server đã nâng cấp tài khoản. 🎉🎉🎉");
       } else {
         debugPrint("❌ SERVER TỪ CHỐI XÁC THỰC: ${result.data['message']}");
@@ -137,7 +143,7 @@ class PurchaseService extends ChangeNotifier {
         debugPrint("   - LỖI KHÔNG XÁC ĐỊNH: $e");
       }
     } finally {
-      if (purchaseDetails.pendingCompletePurchase) {
+      if (verifiedByServer && purchaseDetails.pendingCompletePurchase) {
         await _inAppPurchase.completePurchase(purchaseDetails);
         debugPrint("✅ Đã gọi completePurchase() cho giao dịch.");
       }
@@ -148,17 +154,5 @@ class PurchaseService extends ChangeNotifier {
   void _setPurchasePending(bool isPending) {
     _isPurchasePending = isPending;
     notifyListeners();
-  }
-
-  Future<void> _clearStuckTransactions() async {
-    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
-      try {
-        final transactions = await SKPaymentQueueWrapper().transactions();
-        if (transactions.isEmpty) { return; }
-        for (final skPaymentTransaction in transactions) {
-          SKPaymentQueueWrapper().finishTransaction(skPaymentTransaction);
-        }
-      } catch (e) {}
-    }
   }
 }

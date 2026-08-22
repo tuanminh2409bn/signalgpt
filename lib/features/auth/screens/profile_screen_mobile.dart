@@ -29,7 +29,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  List<String> selectedAppNames = ['Exness', 'XM', 'Bybit', 'Binance'];
+  List<String> selectedAppNames = ['Exness', 'XM', 'Axi', 'Vantagemarkets'];
 
   @override
   void initState() {
@@ -41,9 +41,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final prefs = await SharedPreferences.getInstance();
     final saved = prefs.getStringList('selected_exchange_apps');
     if (saved != null && saved.isNotEmpty) {
+      final visibleSaved = saved.where(isExchangeAppVisible).toList();
       setState(() {
-        selectedAppNames = saved;
+        selectedAppNames = visibleSaved.isEmpty
+            ? ['Exness', 'XM', 'Axi', 'Vantagemarkets']
+            : visibleSaved;
       });
+      if (visibleSaved.length != saved.length) {
+        await prefs.setStringList('selected_exchange_apps', selectedAppNames);
+      }
     }
   }
 
@@ -64,7 +70,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _showAppSelection(BuildContext context) {
-    final allApps = Provider.of<AffiliateProvider>(context, listen: false).exchangeApps;
+    final allApps =
+        Provider.of<AffiliateProvider>(context, listen: false).exchangeApps;
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -113,7 +120,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           itemCount: allApps.length,
                           itemBuilder: (context, index) {
                             final app = allApps[index];
-                            final isSelected = selectedAppNames.contains(app.name);
+                            final isSelected =
+                                selectedAppNames.contains(app.name);
                             final bool isTop = index == 0;
                             final bool isBottom = index == allApps.length - 1;
 
@@ -134,14 +142,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 _saveSelectedApps();
                               },
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 14),
                                 decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(isTop ? 12 : 0),
                                     topRight: Radius.circular(isTop ? 12 : 0),
-                                    bottomLeft: Radius.circular(isBottom ? 12 : 0),
-                                    bottomRight: Radius.circular(isBottom ? 12 : 0),
+                                    bottomLeft:
+                                        Radius.circular(isBottom ? 12 : 0),
+                                    bottomRight:
+                                        Radius.circular(isBottom ? 12 : 0),
                                   ),
                                 ),
                                 child: Row(
@@ -150,27 +161,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       width: 32,
                                       height: 32,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(shape: BoxShape.circle),
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle),
                                       child: Image.asset(
-                                        app.iconPath, 
+                                        app.iconPath,
                                         fit: BoxFit.cover,
-                                        errorBuilder: (context, error, stackTrace) => const Icon(Icons.account_balance_wallet, size: 20, color: Colors.white24),
+                                        errorBuilder: (context, error,
+                                                stackTrace) =>
+                                            const Icon(
+                                                Icons.account_balance_wallet,
+                                                size: 20,
+                                                color: Colors.white24),
                                       ),
                                     ),
                                     const SizedBox(width: 16),
-                                    Text(
-                                      app.name, 
-                                      style: const TextStyle(
-                                        color: Colors.white, 
-                                        fontSize: 18,
-                                        fontFamily: 'Be Vietnam Pro',
-                                        fontWeight: FontWeight.w400,
-                                      )
-                                    ),
+                                    Text(app.name,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontFamily: 'Be Vietnam Pro',
+                                          fontWeight: FontWeight.w400,
+                                        )),
                                     const Spacer(),
                                     Icon(
-                                      isSelected ? Icons.check_circle : Icons.add_circle_outline,
-                                      color: isSelected ? const Color(0xFF276EFB) : Colors.white10,
+                                      isSelected
+                                          ? Icons.check_circle
+                                          : Icons.add_circle_outline,
+                                      color: isSelected
+                                          ? const Color(0xFF276EFB)
+                                          : Colors.white10,
                                       size: 24,
                                     ),
                                   ],
@@ -197,7 +216,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final currentUser = FirebaseAuth.instance.currentUser;
     final userTier = userProvider.userTier?.toLowerCase() ?? 'free';
     final tokenBalance = userProvider.tokenBalance;
-    final userEmail = userProvider.email ?? currentUser?.email ?? 'user@gmail.com';
+    final userEmail =
+        userProvider.email ?? currentUser?.email ?? 'user@gmail.com';
     final l10n = AppLocalizations.of(context)!;
     final affiliateProvider = Provider.of<AffiliateProvider>(context);
     final allApps = affiliateProvider.exchangeApps;
@@ -216,7 +236,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return 'assets/mockups/free.png';
     }
 
-    final displayApps = allApps.where((app) => selectedAppNames.contains(app.name)).take(4).toList();
+    final displayApps = allApps
+        .where((app) => selectedAppNames.contains(app.name))
+        .take(4)
+        .toList();
     double appSpacing = (MediaQuery.of(context).size.width - 48 - (4 * 59)) / 3;
     if (appSpacing < 0) appSpacing = 0;
 
@@ -251,11 +274,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 alignment: Alignment.center,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.notifications_none, size: 28, color: Colors.white),
+                    icon: const Icon(Icons.notifications_none,
+                        size: 28, color: Colors.white),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const NotificationScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const NotificationScreen()),
                       );
                     },
                   ),
@@ -269,8 +294,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         decoration: const BoxDecoration(
                             color: Colors.redAccent,
                             shape: BoxShape.circle,
-                            border: Border.fromBorderSide(BorderSide(color: Color(0xFF0D1117), width: 1.5))
-                        ),
+                            border: Border.fromBorderSide(BorderSide(
+                                color: Color(0xFF0D1117), width: 1.5))),
                       ),
                     ),
                 ],
@@ -316,44 +341,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           image: AssetImage(getCardImage()),
                           fit: BoxFit.fill,
                         ),
-                        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+                        border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.1)),
                       ),
                       child: Stack(
                         children: [
                           Positioned(
                             left: 18,
                             top: 18,
-                            child: Text(
-                              userEmail, 
-                              style: const TextStyle(
-                                color: Colors.white, 
-                                fontSize: 14, 
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Be Vietnam Pro',
-                              )
-                            ),
+                            child: Text(userEmail,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Be Vietnam Pro',
+                                )),
                           ),
                           Positioned(
                             left: 18,
                             bottom: 58,
-                            child: Text(
-                              l10n.yourTokens, 
-                              style: const TextStyle(
-                                color: Colors.white, 
-                                fontSize: 18, 
-                                fontWeight: FontWeight.w300,
-                                fontFamily: 'Be Vietnam Pro',
-                              )
-                            ),
+                            child: Text(l10n.yourTokens,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w300,
+                                  fontFamily: 'Be Vietnam Pro',
+                                )),
                           ),
                           Positioned(
                             left: 18,
                             bottom: 12,
                             child: Text(
-                              userTier == 'elite' ? l10n.unlimited : '$tokenBalance ${l10n.left}',
+                              userTier == 'elite'
+                                  ? l10n.unlimited
+                                  : '$tokenBalance ${l10n.left}',
                               style: const TextStyle(
-                                color: Colors.white, 
-                                fontSize: 32, 
+                                color: Colors.white,
+                                fontSize: 32,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Be Vietnam Pro',
                               ),
@@ -375,7 +399,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Expanded(
                               child: Text(
                                 l10n.accessExchange,
-                                style: const TextStyle(color: Color(0xFF686868), fontSize: 16),
+                                style: const TextStyle(
+                                    color: Color(0xFF686868), fontSize: 16),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -386,8 +411,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: Container(
                                 width: 20,
                                 height: 21,
-                                decoration: BoxDecoration(color: const Color(0xFF161616), borderRadius: BorderRadius.circular(6)),
-                                child: const Icon(Icons.chevron_right, size: 14, color: Colors.white54),
+                                decoration: BoxDecoration(
+                                    color: const Color(0xFF161616),
+                                    borderRadius: BorderRadius.circular(6)),
+                                child: const Icon(Icons.chevron_right,
+                                    size: 14, color: Colors.white54),
                               ),
                             ),
                           ],
@@ -396,7 +424,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Wrap(
                           spacing: appSpacing,
                           runSpacing: 16,
-                          children: displayApps.map((app) => _buildExchangeIcon(app.name, app.iconPath, app.url)).toList(),
+                          children: displayApps
+                              .map((app) => _buildExchangeIcon(
+                                  app.name, app.iconPath, app.url))
+                              .toList(),
                         ),
                       ],
                     ),
@@ -409,13 +440,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _buildMenuButton(
                           label: l10n.upgradeToPro,
                           icon: Icons.workspace_premium_outlined,
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const UpgradeScreen())),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const UpgradeScreen())),
                         ),
                         const SizedBox(height: 8),
                         _buildMenuButton(
                           label: l10n.setting,
                           icon: Icons.settings_outlined,
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen())),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SettingsScreen())),
                         ),
                         const SizedBox(height: 8),
                         _buildMenuButton(
@@ -425,23 +463,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         const SizedBox(height: 8),
                         _buildMenuButton(
-                          label: l10n.paymentHistory, 
-                          icon: Icons.history_outlined, 
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const PaymentHistoryScreen())),
+                          label: l10n.paymentHistory,
+                          icon: Icons.history_outlined,
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PaymentHistoryScreen())),
                         ),
                         const SizedBox(height: 8),
-                        if (userProvider.userRole == 'affiliate' || userProvider.userRole == 'admin')
+                        if (userProvider.userRole == 'affiliate' ||
+                            userProvider.userRole == 'admin')
                           _buildMenuButton(
                             label: l10n.affiliateDashboard,
                             icon: Icons.people_outline,
-                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const AffiliateDashboardScreen())),
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AffiliateDashboardScreen())),
                           ),
                         const SizedBox(height: 8),
                         if (userProvider.role == 'admin')
                           _buildMenuButton(
                             label: l10n.adminPanel,
                             icon: Icons.admin_panel_settings_outlined,
-                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminPanelScreen())),
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AdminPanelScreen())),
                           ),
                         const SizedBox(height: 8),
                         _buildMenuButton(
@@ -477,7 +528,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             title: Text(
               l10n.deleteAccount,
-              style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  color: Colors.redAccent, fontWeight: FontWeight.bold),
             ),
             content: Text(
               l10n.deleteAccountWarning,
@@ -499,17 +551,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     showDialog(
                       context: context,
                       barrierDismissible: false,
-                      builder: (context) => const Center(child: CircularProgressIndicator(color: Colors.redAccent)),
+                      builder: (context) => const Center(
+                          child: CircularProgressIndicator(
+                              color: Colors.redAccent)),
                     );
-                    
-                    await Provider.of<AuthService>(context, listen: false).deleteAccountAndData();
-                    
+
+                    await Provider.of<AuthService>(context, listen: false)
+                        .deleteAccountAndData();
+
                     // Đóng loading dialog sử dụng navigatorKey tổng
                     navigatorKey.currentState?.pop();
-                    
+
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(l10n.accountDeletedSuccessfully)),
+                        SnackBar(
+                            content: Text(l10n.accountDeletedSuccessfully)),
                       );
                     }
                   } catch (e) {
@@ -517,14 +573,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     navigatorKey.currentState?.pop();
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(l10n.accountDeleteError(ErrorUtils.getFriendlyErrorMessage(e)))),
+                        SnackBar(
+                            content: Text(l10n.accountDeleteError(
+                                ErrorUtils.getFriendlyErrorMessage(e)))),
                       );
                     }
                   }
                 },
                 child: Text(
                   l10n.delete,
-                  style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      color: Colors.redAccent, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -536,7 +595,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildExchangeIcon(String name, String iconPath, String url) {
     String displayName = name == 'Vantagemarkets' ? 'Vantage' : name;
-    
+
     return GestureDetector(
       onTap: () => _launchURL(url),
       child: SizedBox(
@@ -550,10 +609,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 gradient: LinearGradient(
                   begin: const Alignment(0.00, 1.00),
                   end: const Alignment(1.00, 0.12),
-                  colors: [Colors.white.withValues(alpha: 0.15), Colors.white.withValues(alpha: 0.05)],
+                  colors: [
+                    Colors.white.withValues(alpha: 0.15),
+                    Colors.white.withValues(alpha: 0.05)
+                  ],
                 ),
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1, color: Colors.white.withValues(alpha: 0.2)),
+                  side: BorderSide(
+                      width: 1, color: Colors.white.withValues(alpha: 0.2)),
                   borderRadius: BorderRadius.circular(6),
                 ),
               ),
@@ -564,16 +627,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   clipBehavior: Clip.antiAlias,
                   decoration: const BoxDecoration(shape: BoxShape.circle),
                   child: Image.asset(
-                    iconPath, 
+                    iconPath,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => const Icon(Icons.account_balance_wallet, size: 18, color: Colors.white24),
+                    errorBuilder: (context, error, stackTrace) => const Icon(
+                        Icons.account_balance_wallet,
+                        size: 18,
+                        color: Colors.white24),
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              displayName, 
+              displayName,
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -586,8 +652,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _buildMenuButton({
-    required String label, 
-    required IconData icon, 
+    required String label,
+    required IconData icon,
     required VoidCallback onTap,
     Color iconColor = Colors.white,
   }) {
@@ -610,7 +676,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           borderRadius: BorderRadius.circular(6),
         ),
-        padding: const EdgeInsets.all(1), 
+        padding: const EdgeInsets.all(1),
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF161616),

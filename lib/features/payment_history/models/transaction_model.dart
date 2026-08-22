@@ -21,14 +21,19 @@ class TransactionModel {
 
   factory TransactionModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
+    final paymentMethod = data['paymentMethod'] as String? ?? '';
+    final dateValue = data['transactionDate'] ?? data['timestamp'];
     return TransactionModel(
       id: doc.id,
       productId: data['productId'] ?? '',
       status: data['status'] ?? 'purchased',
-      timestamp: (data['timestamp'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      timestamp: (dateValue as Timestamp?)?.toDate() ?? DateTime.fromMillisecondsSinceEpoch(0),
       amount: (data['amount'] as num?)?.toDouble() ?? 0.0,
       currency: data['currency'] ?? 'USD',
-      platform: data['platform'],
+      platform: data['platform'] ??
+          (paymentMethod.endsWith('_ios')
+              ? 'ios'
+              : (paymentMethod.endsWith('_android') ? 'android' : null)),
     );
   }
 

@@ -292,7 +292,7 @@ class _PhoneScreen extends StatelessWidget {
                     children: [
                       _chip('Gold', true, isMobileLayout),
                       const SizedBox(width: 8),
-                      _chip('Forex', false, isMobileLayout),
+                      _chip('Currency Pair', false, isMobileLayout),
                       const SizedBox(width: 8),
                       _chip('Crypto', false, isMobileLayout),
                     ],
@@ -607,7 +607,7 @@ class _SmartToolsSectionState extends State<SmartToolsSection> with SingleTicker
   }
 
   HistoryRow _mapSignalToRow(Signal s) {
-    DateTime created = s.createdAt is Timestamp ? (s.createdAt as Timestamp).toDate() : DateTime.now();
+    DateTime created = s.createdAt.toDate();
     // Default to GMT+7 for display consistency in this section
     created = created.toUtc().add(const Duration(hours: 7));
 
@@ -617,21 +617,14 @@ class _SmartToolsSectionState extends State<SmartToolsSection> with SingleTicker
     final asset = parts.isNotEmpty ? (parts.first.toUpperCase() == 'XAU' ? 'GOLD' : parts.first.toUpperCase()) : s.symbol;
     final order = s.type.toUpperCase();
     final status = (s.result ?? s.status).toString();
-    final pips = s.pips != null ? (s.pips! >= 0 ? '+${s.pips}' : s.pips.toString()) : '-';
+    final pipsValue = s.effectivePips;
+    final pips = pipsValue != null ? (pipsValue >= 0 ? '+$pipsValue' : pipsValue.toString()) : '-';
 
-    String _fmt(num? v) {
-      if (v == null) return '-';
-      if (v >= 1000) return v.toStringAsFixed(2);
-      if (v >= 100) return v.toStringAsFixed(3);
-      if (v >= 10) return v.toStringAsFixed(4);
-      return v.toStringAsFixed(5);
-    }
+    String fmt(num? value) => value == null ? '-' : s.formatPrice(value);
 
     String _tp(int idx) {
       if (s.takeProfits.length > idx) {
-        final v = s.takeProfits[idx];
-        if (v is num) return _fmt(v);
-        if (v is String) return v;
+        return s.formatPrice(s.takeProfits[idx]);
       }
       return '-';
     }
@@ -644,9 +637,9 @@ class _SmartToolsSectionState extends State<SmartToolsSection> with SingleTicker
       order: order,
       status: status,
       pips: pips,
-      entry: _fmt(s.entryPrice),
-      closedPrice: _fmt(s.closedPrice),
-      sl: _fmt(s.stopLoss),
+      entry: fmt(s.entryPrice),
+      closedPrice: fmt(s.closedPrice),
+      sl: fmt(s.stopLoss),
       tp1: _tp(0),
       tp2: _tp(1),
       tp3: _tp(2),

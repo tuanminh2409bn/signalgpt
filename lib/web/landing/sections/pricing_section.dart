@@ -496,7 +496,12 @@ class _PricingCardContentState extends State<_PricingCardContent> {
                           } else {
                             Navigator.of(context).pushNamed(
                               '/purchase-plan',
-                              arguments: {'plan': widget.plan.title.toLowerCase()},
+                              arguments: {
+                                'plan': widget.plan.id.split('_').first,
+                                'duration': widget.plan.id.endsWith('_1_month')
+                                    ? 'monthly'
+                                    : (widget.plan.id.endsWith('_12_months') ? 'annually' : 'lifetime'),
+                              },
                             );
                           }
                         }, 

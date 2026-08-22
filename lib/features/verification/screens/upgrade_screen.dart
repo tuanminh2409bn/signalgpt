@@ -148,6 +148,19 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
                             ),
                           ],
                         ),
+                        Center(
+                          child: TextButton(
+                            onPressed: isPurchasing
+                                ? null
+                                : () => purchaseService.restorePurchases(),
+                            child: Text(
+                              Localizations.localeOf(context).languageCode == 'vi'
+                                  ? 'Khôi phục giao dịch'
+                                  : 'Restore Purchases',
+                              style: const TextStyle(color: Color(0xFF276EFB)),
+                            ),
+                          ),
+                        ),
                         const SizedBox(height: 20),
                       ],
                     ),
@@ -469,4 +482,3 @@ class _UpgradeScreenState extends State<UpgradeScreen> {
     );
   }
 }
-

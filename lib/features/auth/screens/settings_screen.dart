@@ -28,7 +28,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  List<String> selectedAppNames = ['Exness', 'XM', 'Bybit', 'Binance'];
+  List<String> selectedAppNames = ['Exness', 'XM', 'Axi', 'Vantagemarkets'];
 
   @override
   void initState() {
@@ -40,9 +40,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final prefs = await SharedPreferences.getInstance();
     final saved = prefs.getStringList('selected_exchange_apps');
     if (saved != null && saved.isNotEmpty) {
+      final visibleSaved = saved.where(isExchangeAppVisible).toList();
       setState(() {
-        selectedAppNames = saved;
+        selectedAppNames = visibleSaved.isEmpty
+            ? ['Exness', 'XM', 'Axi', 'Vantagemarkets']
+            : visibleSaved;
       });
+      if (visibleSaved.length != saved.length) {
+        await prefs.setStringList('selected_exchange_apps', selectedAppNames);
+      }
     }
   }
 
@@ -63,123 +69,130 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _showAppSelection(BuildContext context) {
-    final allApps = Provider.of<AffiliateProvider>(context, listen: false).exchangeApps;
+    final allApps =
+        Provider.of<AffiliateProvider>(context, listen: false).exchangeApps;
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       builder: (context) {
-        return StatefulBuilder(
-          builder: (context, setModalState) {
-            return BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.7,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Colors.white.withValues(alpha: 0.12),
-                      Colors.white.withValues(alpha: 0.04),
-                    ],
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                  border: Border.all(
-                    width: 1.5,
-                    color: Colors.white.withValues(alpha: 0.2),
-                  ),
+        return StatefulBuilder(builder: (context, setModalState) {
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.7,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.white.withValues(alpha: 0.12),
+                    Colors.white.withValues(alpha: 0.04),
+                  ],
                 ),
-                child: SafeArea(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 12),
-                      Container(
-                        width: 40,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          color: Colors.white24,
-                          borderRadius: BorderRadius.circular(2),
-                        ),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+                border: Border.all(
+                  width: 1.5,
+                  color: Colors.white.withValues(alpha: 0.2),
+                ),
+              ),
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 12),
+                    Container(
+                      width: 40,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: Colors.white24,
+                        borderRadius: BorderRadius.circular(2),
                       ),
-                      const SizedBox(height: 20),
-                      Expanded(
-                        child: ListView.builder(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          itemCount: allApps.length,
-                          itemBuilder: (context, index) {
-                            final app = allApps[index];
-                            final isSelected = selectedAppNames.contains(app.name);
-                            final bool isTop = index == 0;
-                            final bool isBottom = index == allApps.length - 1;
+                    ),
+                    const SizedBox(height: 20),
+                    Expanded(
+                      child: ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        itemCount: allApps.length,
+                        itemBuilder: (context, index) {
+                          final app = allApps[index];
+                          final isSelected =
+                              selectedAppNames.contains(app.name);
+                          final bool isTop = index == 0;
+                          final bool isBottom = index == allApps.length - 1;
 
-                            return GestureDetector(
-                              onTap: () {
-                                _launchURL(app.url);
-                                setModalState(() {
-                                  if (!isSelected) {
-                                    if (selectedAppNames.length < 4) {
-                                      selectedAppNames.add(app.name);
-                                    } else {
-                                      selectedAppNames.removeAt(0);
-                                      selectedAppNames.add(app.name);
-                                    }
+                          return GestureDetector(
+                            onTap: () {
+                              _launchURL(app.url);
+                              setModalState(() {
+                                if (!isSelected) {
+                                  if (selectedAppNames.length < 4) {
+                                    selectedAppNames.add(app.name);
+                                  } else {
+                                    selectedAppNames.removeAt(0);
+                                    selectedAppNames.add(app.name);
                                   }
-                                });
-                                setState(() {});
-                                _saveSelectedApps();
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(isTop ? 12 : 0),
-                                    topRight: Radius.circular(isTop ? 12 : 0),
-                                    bottomLeft: Radius.circular(isBottom ? 12 : 0),
-                                    bottomRight: Radius.circular(isBottom ? 12 : 0),
-                                  ),
+                                }
+                              });
+                              setState(() {});
+                              _saveSelectedApps();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 14),
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(isTop ? 12 : 0),
+                                  topRight: Radius.circular(isTop ? 12 : 0),
+                                  bottomLeft:
+                                      Radius.circular(isBottom ? 12 : 0),
+                                  bottomRight:
+                                      Radius.circular(isBottom ? 12 : 0),
                                 ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 32,
-                                      height: 32,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(shape: BoxShape.circle),
-                                      child: Image.asset(
-                                        app.iconPath, 
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (context, error, stackTrace) => const Icon(Icons.account_balance_wallet, size: 20, color: Colors.white24),
-                                      ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 32,
+                                    height: 32,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Image.asset(
+                                      app.iconPath,
+                                      fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              const Icon(
+                                                  Icons.account_balance_wallet,
+                                                  size: 20,
+                                                  color: Colors.white24),
                                     ),
-                                    const SizedBox(width: 16),
-                                    Text(
-                                      app.name, 
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Text(app.name,
                                       style: const TextStyle(
-                                        color: Colors.white, 
+                                        color: Colors.white,
                                         fontSize: 18,
                                         fontFamily: 'Be Vietnam Pro',
                                         fontWeight: FontWeight.w400,
-                                      )
-                                    ),
-                                  ],
-                                ),
+                                      )),
+                                ],
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          }
-        );
+            ),
+          );
+        });
       },
     );
   }
@@ -194,85 +207,107 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _showReferralCodeDialog(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final controller = TextEditingController();
-    
+
     showDialog(
-      context: context,
-      builder: (context) {
-        bool isLoading = false;
-        return StatefulBuilder(
-          builder: (context, setState) => AlertDialog(
-            backgroundColor: const Color(0xFF161616),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: const BorderSide(color: Colors.white10),
-            ),
-            title: Text(l10n.enterReferralCode, style: const TextStyle(color: Colors.white)),
-            content: TextField(
-              controller: controller,
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: l10n.referralCode,
-                hintStyle: const TextStyle(color: Colors.white38),
-                enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.white24)),
-                focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFF276EFB))),
+        context: context,
+        builder: (context) {
+          bool isLoading = false;
+          return StatefulBuilder(
+            builder: (context, setState) => AlertDialog(
+              backgroundColor: const Color(0xFF161616),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+                side: const BorderSide(color: Colors.white10),
               ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(l10n.cancel, style: const TextStyle(color: Colors.white54)),
-              ),
-              ElevatedButton(
-                onPressed: isLoading ? null : () async {
-                  final code = controller.text.trim();
-                  if (code.isEmpty) return;
-
-                  setState(() => isLoading = true);
-                  try {
-                    final userProvider = Provider.of<UserProvider>(context, listen: false);
-                    final functions = FirebaseFunctions.instanceFor(region: 'asia-southeast1');
-                    final callable = functions.httpsCallable('affiliateAttach');
-
-                    await callable.call({
-                      'uid': userProvider.uid,
-                      'ref_code': code,
-                      'ref_ts': DateTime.now().millisecondsSinceEpoch.toString(),
-                    });
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(l10n.referralCodeApplied), backgroundColor: Colors.green),
-                      );
-                    }
-                  } catch (e) {
-                    if (context.mounted) {
-                      setState(() => isLoading = false);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(l10n.invalidReferralCode), backgroundColor: Colors.red),
-                      );
-                    }
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF276EFB),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              title: Text(l10n.enterReferralCode,
+                  style: const TextStyle(color: Colors.white)),
+              content: TextField(
+                controller: controller,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: l10n.referralCode,
+                  hintStyle: const TextStyle(color: Colors.white38),
+                  enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white24)),
+                  focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF276EFB))),
                 ),
-                child: isLoading 
-                    ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                    : Text(l10n.submit, style: const TextStyle(color: Colors.white)),
               ),
-            ],
-          ),
-        );
-      }
-    );
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(l10n.cancel,
+                      style: const TextStyle(color: Colors.white54)),
+                ),
+                ElevatedButton(
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          final code = controller.text.trim();
+                          if (code.isEmpty) return;
+
+                          setState(() => isLoading = true);
+                          try {
+                            final userProvider = Provider.of<UserProvider>(
+                                context,
+                                listen: false);
+                            final functions = FirebaseFunctions.instanceFor(
+                                region: 'asia-southeast1');
+                            final callable =
+                                functions.httpsCallable('affiliateAttach');
+
+                            await callable.call({
+                              'uid': userProvider.uid,
+                              'ref_code': code,
+                              'ref_ts': DateTime.now()
+                                  .millisecondsSinceEpoch
+                                  .toString(),
+                            });
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content: Text(l10n.referralCodeApplied),
+                                    backgroundColor: Colors.green),
+                              );
+                            }
+                          } catch (e) {
+                            if (context.mounted) {
+                              setState(() => isLoading = false);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content: Text(l10n.invalidReferralCode),
+                                    backgroundColor: Colors.red),
+                              );
+                            }
+                          }
+                        },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF276EFB),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: isLoading
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                              color: Colors.white, strokeWidth: 2))
+                      : Text(l10n.submit,
+                          style: const TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   void _shareApp() {
     final String appLink = Platform.isIOS
         ? 'https://apps.apple.com/vn/app/signal-gpt/id6749299894?l=vi'
         : 'https://play.google.com/store/apps/details?id=com.signalgpt.ai&hl=vi';
-    final String message = 'Download Signal GPT - The Ultimate AI Engine for Forex Traders: $appLink';
+    final String message =
+        'Download Signal GPT - The Ultimate AI Engine for Currency Pair Traders: $appLink';
     Share.share(message, subject: 'Signal GPT App');
   }
 
@@ -315,7 +350,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 borderRadius: BorderRadius.circular(16),
                 child: SingleChildScrollView(
                   child: Column(
-                    mainAxisSize: MainAxisSize.min, 
+                    mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
@@ -344,11 +379,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 child: Container(
                                   height: 44,
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.white24, width: 1),
+                                    border: Border.all(
+                                        color: Colors.white24, width: 1),
                                     borderRadius: BorderRadius.circular(6),
                                   ),
                                   alignment: Alignment.center,
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
                                   child: FittedBox(
                                     fit: BoxFit.scaleDown,
                                     child: Text(
@@ -372,11 +409,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   Navigator.pop(context); // Close dialog
                                   Navigator.pop(context); // Back to Profile
                                   context.read<AuthBloc>().add(SignOutRequested(
-                                    providersToReset: [
-                                      context.read<UserProvider>(),
-                                      context.read<NotificationProvider>(),
-                                    ],
-                                  ));
+                                        providersToReset: [
+                                          context.read<UserProvider>(),
+                                          context.read<NotificationProvider>(),
+                                        ],
+                                      ));
                                 },
                                 child: Container(
                                   height: 44,
@@ -384,12 +421,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     gradient: const LinearGradient(
                                       begin: Alignment.centerLeft,
                                       end: Alignment.centerRight,
-                                      colors: [Color(0xFF0CA3ED), Color(0xFF276EFB)],
+                                      colors: [
+                                        Color(0xFF0CA3ED),
+                                        Color(0xFF276EFB)
+                                      ],
                                     ),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6)),
                                   ),
                                   alignment: Alignment.center,
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
                                   child: FittedBox(
                                     fit: BoxFit.scaleDown,
                                     child: Text(
@@ -432,14 +474,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
       {'name': 'हिन्दी', 'code': 'hi', 'flag': 'assets/images/ando.png'},
       {'name': 'العربية', 'code': 'ar', 'flag': 'assets/images/arapxeut.png'},
       {'name': 'Português', 'code': 'pt', 'flag': 'assets/images/bodaonha.png'},
-      {'name': 'ភាសាខ្មែរ', 'code': 'km', 'flag': 'assets/images/campuchia.png'},
+      {
+        'name': 'ភាសាខ្មែរ',
+        'code': 'km',
+        'flag': 'assets/images/campuchia.png'
+      },
       {'name': 'Čeština', 'code': 'cs', 'flag': 'assets/images/conghoasec.png'},
       {'name': 'Dansk', 'code': 'da', 'flag': 'assets/images/danmach.png'},
       {'name': 'Deutsch', 'code': 'de', 'flag': 'assets/images/duc.png'},
       {'name': 'Magyar', 'code': 'hu', 'flag': 'assets/images/hungary.png'},
-      {'name': 'Bahasa Indonesia', 'code': 'id', 'flag': 'assets/images/indonesia.png'},
+      {
+        'name': 'Bahasa Indonesia',
+        'code': 'id',
+        'flag': 'assets/images/indonesia.png'
+      },
       {'name': 'Italiano', 'code': 'it', 'flag': 'assets/images/italy.png'},
-      {'name': 'Bahasa Melayu', 'code': 'ms', 'flag': 'assets/images/malaysia.png'},
+      {
+        'name': 'Bahasa Melayu',
+        'code': 'ms',
+        'flag': 'assets/images/malaysia.png'
+      },
       {'name': 'Монгол', 'code': 'mn', 'flag': 'assets/images/mongco.png'},
       {'name': 'Русский', 'code': 'ru', 'flag': 'assets/images/nga.png'},
       {'name': 'Suomi', 'code': 'fi', 'flag': 'assets/images/phanlan.png'},
@@ -457,7 +511,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           builder: (context, langProvider, child) {
             final currentLocale = langProvider.locale?.languageCode ?? 'en';
             final l10n = AppLocalizations.of(context)!;
-            
+
             return BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
               child: Container(
@@ -512,21 +566,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             final isSelected = currentLocale == lang['code'];
                             final bool isTop = index == 0;
                             final bool isBottom = index == languages.length - 1;
-                            
+
                             return GestureDetector(
                               onTap: () {
                                 langProvider.setLocale(Locale(lang['code']!));
                                 Navigator.pop(context);
                               },
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 14),
                                 decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(isTop ? 12 : 0),
                                     topRight: Radius.circular(isTop ? 12 : 0),
-                                    bottomLeft: Radius.circular(isBottom ? 12 : 0),
-                                    bottomRight: Radius.circular(isBottom ? 12 : 0),
+                                    bottomLeft:
+                                        Radius.circular(isBottom ? 12 : 0),
+                                    bottomRight:
+                                        Radius.circular(isBottom ? 12 : 0),
                                   ),
                                 ),
                                 child: Row(
@@ -560,7 +617,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     else
                                       const Icon(
                                         Icons.radio_button_unchecked,
-                                        color: Colors.white10, 
+                                        color: Colors.white10,
                                         size: 24,
                                       ),
                                   ],
@@ -616,13 +673,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  
+
                   // --- Subscriptions Section ---
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Text(
                       l10n.subscriptions,
-                      style: const TextStyle(color: Color(0xFF636363), fontSize: 18, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          color: Color(0xFF636363),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -639,7 +699,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Text(
                       l10n.supportUs,
-                      style: const TextStyle(color: Color(0xFF636363), fontSize: 18, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          color: Color(0xFF636363),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -661,7 +724,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Text(
                       l10n.accountDetails,
-                      style: const TextStyle(color: Color(0xFF636363), fontSize: 18, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          color: Color(0xFF636363),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -681,7 +747,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     label: l10n.changePassword,
                     icon: Icons.lock_outline,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ChangePasswordScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ChangePasswordScreen()));
                     },
                   ),
                   _buildMenuButton(
@@ -700,7 +770,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const NotificationSettingsScreen()),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const NotificationSettingsScreen()),
                       );
                     },
                   ),
@@ -709,25 +781,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     icon: Icons.description_outlined,
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const TermsOfUseScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const TermsOfUseScreen()),
                     ),
                   ),
 
-                  const SizedBox(height: 40), 
+                  const SizedBox(height: 40),
                 ],
               ),
             ),
           ),
-
           Positioned(
             bottom: bottomPadding > 0 ? bottomPadding : 20,
             left: 0,
             right: 0,
             child: Center(
               child: LiquidGlassNavBar(
-                selectedIndex: 3, 
+                selectedIndex: 3,
                 onTap: (index) {
-                  Navigator.pop(context); 
+                  Navigator.pop(context);
                   if (index != 3) {
                     mainScreenKey.currentState?.switchToTab(index);
                   }

@@ -1708,7 +1708,7 @@ class _SignalGridLiveState extends State<_SignalGridLive> {
   }
 
   List<Signal> _filteredSignals(List<Signal> signals) {
-    Iterable<Signal> filtered = signals;
+    Iterable<Signal> filtered = signals.where((signal) => signal.isTerminal);
     switch (widget.assetFilter) {
       case AssetFilter.gold:
         filtered = filtered.where(_isGold);
@@ -1744,16 +1744,10 @@ class _SignalGridLiveState extends State<_SignalGridLive> {
          if (matchTarget == 'TP1') return s.hitTps.contains(1) && !s.hitTps.contains(2);
          
          final res = (s.result ?? '').toUpperCase();
-         if (matchTarget == 'SL') return res.contains('SL HIT') && s.hitTps.isEmpty;
-         if (matchTarget == 'EXIT') return (res.contains('EXIT') || res.contains('MANUAL_EXIT') || res.contains('EXITED BY ADMIN')) && s.hitTps.isEmpty;
+         if (matchTarget == 'SL') return res.contains('SL HIT');
+         if (matchTarget == 'EXIT') return res.contains('EXIT') || res.contains('MANUAL_EXIT') || res.contains('EXITED BY ADMIN');
          
          return false;
-      });
-    } else {
-      // Default: Show all except CANCELLED
-      filtered = filtered.where((s) {
-         final res = (s.result ?? '').toLowerCase();
-         return s.status.toLowerCase() != 'cancelled' && !res.contains('cancelled');
       });
     }
 
@@ -2176,29 +2170,9 @@ class _SignalWebCard extends StatelessWidget {
     if (user == null) return false;
 
     final userProvider = Provider.of<UserProvider?>(context, listen: false);
-    final tier = userProvider?.userTier?.toLowerCase() ?? 'free';
-    if (tier == 'elite') return true;
-
-    final docRef = FirebaseFirestore.instance.collection('users').doc(user.uid);
+    if (userProvider == null) return false;
     try {
-      final result = await FirebaseFirestore.instance.runTransaction<bool>((tx) async {
-        final snap = await tx.get(docRef);
-        if (!snap.exists) return false;
-
-        final data = snap.data() as Map<String, dynamic>? ?? {};
-        final currentBalance = (data['tokenBalance'] ?? 0) as int;
-
-        if (currentBalance > 0) {
-          tx.update(docRef, {
-            'tokenBalance': FieldValue.increment(-1),
-            'unlockedSignals': FieldValue.arrayUnion([signal.id])
-          });
-          return true;
-        } else {
-          return false;
-        }
-      });
-      return result;
+      return await userProvider.unlockSignal(signal.id);
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -2236,11 +2210,6 @@ class _SignalWebCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  bool _isSignalUnlocked(Signal signal, List<String> activeSubs) {
-    if (activeSubs.isNotEmpty) return true;
-    return false;
   }
 
   Future<void> _openDetail(BuildContext context) async {
@@ -2367,13 +2336,20 @@ class _SignalWebCard extends StatelessWidget {
     final unlockedSignals = userProvider?.unlockedSignals ?? [];
 
     // Check if user has Elite access, active subscription for this signal, OR has already unlocked it with token
-    if (tier == 'elite' || _isSignalUnlocked(signal, activeSubs) || unlockedSignals.contains(signal.id)) {
+    if (userProvider != null && SignalAccessHelper.canViewEntry(
+      signal,
+      tier,
+      activeSubs,
+      unlockedSignals: unlockedSignals,
+      subscriptionsExpiry: userProvider.subscriptionsExpiry,
+      subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
+    )) {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (_) => web_detail.SignalDetailScreen(
             signal: signal,
-            userTier: 'web',
+            userTier: tier,
           ),
         ),
       );
@@ -2424,7 +2400,9 @@ class _SignalWebCard extends StatelessWidget {
             signal, 
             userProvider.userTier, 
             userProvider.activeSubscriptions,
-            unlockedSignals: userProvider.unlockedSignals
+            unlockedSignals: userProvider.unlockedSignals,
+            subscriptionsExpiry: userProvider.subscriptionsExpiry,
+            subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
         );
 
     return RepaintBoundary(
@@ -2497,7 +2475,7 @@ class _SignalWebCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        signal.entryPrice.toString(),
+                        signal.formatPrice(signal.entryPrice),
                         style: AppTextStyles.body.copyWith(color: const Color(0xFF289EFF), fontSize: 14, fontWeight: FontWeight.w700),
                       ),
                     ],
@@ -2681,12 +2659,12 @@ class _PerformanceSection extends StatefulWidget {
 class _PerformanceSectionState extends State<_PerformanceSection> {
   int _selectedFilterIndex = 0; // 0: All Time, 1: 7D, 2: 14D, 3: 30D, 4: 90D
 
-  Map<String, dynamic> _processStats(List<QueryDocumentSnapshot> docs, double winRateAdjustment) {
+  Map<String, dynamic> _processStats(List<QueryDocumentSnapshot> docs) {
     if (docs.isEmpty) {
       return {
         'totalPips': 0.0,
         'count': 0,
-        'winRate': (0.0 + winRateAdjustment).clamp(0.0, 100.0),
+        'winRate': 0.0,
         'chartData': <_ChartPoint>[],
         'distribution': <_DistributionBarData>[],
       };
@@ -2740,8 +2718,7 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
             totalTp += (data['xau']['tpCount'] ?? 0) as int;
             totalSl += (data['xau']['slCount'] ?? 0) as int;
          }
-      } else {
-         // Default to ALL
+      } else if (widget.assetFilter == AssetFilter.all) {
          // Priority 1: Use 'all' data if available (End of Day report)
          if (data['all'] != null && (data['all']['pips'] ?? 0) != 0) {
             dailyPips = (data['all']['pips'] ?? 0).toDouble();
@@ -2773,8 +2750,7 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
     // Win Rate Calculation
     // Use TP vs SL only for simplicity as Exit is neutral
     int totalOutcomes = totalTp + totalSl;
-    double baseWinRate = totalOutcomes > 0 ? (totalTp / totalOutcomes) * 100 : 0.0;
-    double winRate = (baseWinRate + winRateAdjustment).clamp(0.0, 100.0);
+    double winRate = totalOutcomes > 0 ? (totalTp / totalOutcomes) * 100 : 0.0;
 
     // Distribution Data
     List<_DistributionBarData> distribution = [];
@@ -2785,11 +2761,11 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
         // 1. Gold (Lấy từ dữ liệu XAU đã tổng hợp)
         int goldTotal = goldTp + goldSl;
         double goldBaseWinRate = goldTotal > 0 ? goldTp / goldTotal : 0.0;
-        double goldWinRate = (goldBaseWinRate + (winRateAdjustment / 100)).clamp(0.0, 1.0);
+        double goldWinRate = goldBaseWinRate.clamp(0.0, 1.0);
         
         distribution.add(_DistributionBarData(
             label: 'Gold', 
-            value: goldTotal > 0 ? goldTotal.toDouble() : 0.1, // Để 0.1 để cột hiện 1 chút nếu 0
+            value: goldTotal.toDouble(),
             winRate: goldWinRate, 
             wins: goldTp, 
             losses: goldSl
@@ -2798,7 +2774,7 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
         // 2. Crypto (Placeholder - Chưa có dữ liệu tách biệt từ Tele)
         distribution.add(const _DistributionBarData(
             label: 'Crypto', 
-            value: 0.1, // Placeholder visual
+            value: 0,
             winRate: 0.0, 
             wins: 0, 
             losses: 0
@@ -2807,7 +2783,7 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
         // 3. Forex (Placeholder - Chưa có dữ liệu tách biệt từ Tele)
         distribution.add(const _DistributionBarData(
             label: 'CURRENCY PAIR', 
-            value: 0.1, // Placeholder visual
+            value: 0,
             winRate: 0.0, 
             wins: 0, 
             losses: 0
@@ -2849,9 +2825,6 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
     return StreamBuilder<DocumentSnapshot>(
       stream: FirebaseFirestore.instance.collection('settings').doc('app_config').snapshots(),
       builder: (context, configSnapshot) {
-        final configData = configSnapshot.data?.data() as Map<String, dynamic>?;
-        final double adjustment = (configData?['winRateAdjustment'] ?? 8.0).toDouble();
-
         return StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('profit_stats').orderBy('date').snapshots(),
           builder: (context, snapshot) {
@@ -2869,7 +2842,7 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
                );
             }
 
-            final stats = _processStats(snapshot.data?.docs ?? [], adjustment);
+            final stats = _processStats(snapshot.data?.docs ?? []);
 
             final totalPips = stats['totalPips'] as double;
             final count = stats['count'] as int;
@@ -2951,7 +2924,7 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
                                     Expanded(
                                       child: _MetricCard(
                                         title: l10n.activeMember,
-                                        value: '+10,500',
+                                        value: '—',
                                       ),
                                     ),
                                   ],
@@ -2990,7 +2963,7 @@ class _PerformanceSectionState extends State<_PerformanceSection> {
                                 )
                               ),
                               const SizedBox(width: 16),
-                              Expanded(child: _MetricCard(title: l10n.activeMember, value: '+10,500')),
+                              Expanded(child: _MetricCard(title: l10n.activeMember, value: '—')),
                             ],
                           ),
                           const SizedBox(height: 16),
@@ -4057,7 +4030,7 @@ class _HistorySectionState extends State<_HistorySection> {
         ),
         const SizedBox(height: 16),
         StreamBuilder<List<Signal>>(
-          stream: SignalService().getAllSignals(limit: widget.selectedStatus == 'ALL' ? 200 : 1000),
+          stream: SignalService().getAllSignals(limit: null),
           builder: (context, snapshot) {
             final rows = <HistoryRow>[];
             final waiting = snapshot.connectionState == ConnectionState.waiting;
@@ -4073,18 +4046,7 @@ class _HistorySectionState extends State<_HistorySection> {
             
             final filtered = _filteredSignals(signals);
             
-            // Logic tách Lịch sử: 
-            // 1. Lấy 1 cái mới nhất đang chạy của mỗi loại để loại bỏ khỏi lịch sử (vì đã hiện ở Live)
-            final goldLatestId = filtered.where(_isGold).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
-            final cryptoLatestId = filtered.where(_isCrypto).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
-            final forexLatestId = filtered.where(_isForex).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
-            
-            final latestIds = {goldLatestId, cryptoLatestId, forexLatestId}.whereType<String>().toSet();
-
-            // 2. Các tín hiệu còn lại đưa vào lịch sử
-            final historySignals = filtered.where((s) => !latestIds.contains(s.id)).toList();
-
-            rows.addAll(historySignals.map((s) => _mapSignalToRow(s, widget.selectedTimezone, context)));
+            rows.addAll(filtered.map((s) => _mapSignalToRow(s, widget.selectedTimezone, context)));
             
             if (rows.isEmpty) {
               return Padding(
@@ -4203,26 +4165,24 @@ HistoryRow _mapSignalToRow(Signal s, String timeZone, BuildContext context) {
   final order = s.type.toUpperCase();
   // Use getTranslatedResult for consistent status display
   final status = s.getTranslatedResult(AppLocalizations.of(context)!);
+  final userProvider = context.read<UserProvider>();
+  final canViewLevels = SignalAccessHelper.canViewEntry(
+    s,
+    userProvider.userTier,
+    userProvider.activeSubscriptions,
+    unlockedSignals: userProvider.unlockedSignals,
+    subscriptionsExpiry: userProvider.subscriptionsExpiry,
+    subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
+  );
   
-  num? pipsVal = s.pips;
-  if (s.hitTps.isNotEmpty && pipsVal != null && pipsVal < 0) {
-    pipsVal = pipsVal.abs();
-  }
+  final pipsVal = s.effectivePips;
   final pips = pipsVal != null ? (pipsVal >= 0 ? '+${pipsVal}' : pipsVal.toString()) : '-';
 
-  String _fmt(num? v) {
-    if (v == null) return '-';
-    if (v >= 1000) return v.toStringAsFixed(2);
-    if (v >= 100) return v.toStringAsFixed(3);
-    if (v >= 10) return v.toStringAsFixed(4);
-    return v.toStringAsFixed(5);
-  }
+  String fmt(num? value) => value == null ? '-' : s.formatPrice(value);
 
   String _tp(int idx) {
     if (s.takeProfits.length > idx) {
-      final v = s.takeProfits[idx];
-      if (v is num) return _fmt(v);
-      if (v is String) return v;
+      return s.formatPrice(s.takeProfits[idx]);
     }
     return '-';
   }
@@ -4235,12 +4195,12 @@ HistoryRow _mapSignalToRow(Signal s, String timeZone, BuildContext context) {
     order: order,
     status: status,
     pips: pips,
-    entry: _fmt(s.entryPrice),
-    closedPrice: _fmt(s.closedPrice), // Mapped closedPrice
-    sl: _fmt(s.stopLoss),
-    tp1: _tp(0),
-    tp2: _tp(1),
-    tp3: _tp(2),
+    entry: canViewLevels ? fmt(s.entryPrice) : '••••',
+    closedPrice: canViewLevels ? fmt(s.closedPrice) : '••••',
+    sl: canViewLevels ? fmt(s.stopLoss) : '••••',
+    tp1: canViewLevels ? _tp(0) : '••••',
+    tp2: canViewLevels ? _tp(1) : '••••',
+    tp3: canViewLevels ? _tp(2) : '••••',
   );
 }
 
@@ -4354,9 +4314,6 @@ class _UserSubscriptionStatusState extends State<_UserSubscriptionStatus> {
 
     final isElite = (userProvider.userTier ?? '').toLowerCase() == 'elite';
     final tokenBalance = userProvider.tokenBalance;
-    final activeSubs = userProvider.activeSubscriptions;
-    final subsExpiry = userProvider.subscriptionsExpiry;
-
     if (isElite) {
       return Container(
         height: boxHeight,

@@ -410,7 +410,7 @@
   "chooseSignalNotificationTypes": "चुनें कि आप ईमेल के माध्यम से किस प्रकार की संकेत सूचनाएं प्राप्त करना चाहते हैं",
   "allSignalNotifications": "सभी संकेत सूचनाएं",
   "cryptoSignals": "क्रिप्टो संकेत",
-  "forexSignals": "विदेशी मुद्रा संकेत",
+  "forexSignals": "मुद्रा जोड़ी संकेत",
   "goldSignals": "गोल्ड संकेत",
   "updatePasswordSecure": "अपने खाते को सुरक्षित रखने के लिए अपना पासवर्ड अपडेट करें",
   "searchLabel": "खोज:",

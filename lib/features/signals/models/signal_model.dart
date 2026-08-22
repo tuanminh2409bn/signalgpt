@@ -9,9 +9,14 @@ class Signal {
   final String status;
   final double entryPrice;
   final double stopLoss;
-  final List<dynamic> takeProfits;
+  final List<double> takeProfits;
   final Timestamp createdAt;
   final Timestamp? matchedAt;
+  final Timestamp? tp1HitAt;
+  final Timestamp? tp2HitAt;
+  final Timestamp? tp3HitAt;
+  final Timestamp? slHitAt;
+  final Timestamp? closedAt;
   final String? result;
   final num? pips;
   final dynamic reason;
@@ -32,6 +37,11 @@ class Signal {
     required this.takeProfits,
     required this.createdAt,
     this.matchedAt,
+    this.tp1HitAt,
+    this.tp2HitAt,
+    this.tp3HitAt,
+    this.slHitAt,
+    this.closedAt,
     this.result,
     this.pips,
     this.reason,
@@ -52,9 +62,17 @@ class Signal {
       status: data['status'] ?? 'running',
       entryPrice: (data['entryPrice'] ?? 0.0).toDouble(),
       stopLoss: (data['stopLoss'] ?? 0.0).toDouble(),
-      takeProfits: List.from(data['takeProfits'] ?? []),
+      takeProfits: (data['takeProfits'] as List<dynamic>? ?? const [])
+          .whereType<num>()
+          .map((value) => value.toDouble())
+          .toList(growable: false),
       createdAt: data['createdAt'] ?? Timestamp.now(),
       matchedAt: data['matchedAt'],
+      tp1HitAt: data['tp1HitAt'],
+      tp2HitAt: data['tp2HitAt'],
+      tp3HitAt: data['tp3HitAt'],
+      slHitAt: data['slHitAt'],
+      closedAt: data['closedAt'],
       result: data['result'],
       pips: data['pips'],
       reason: data['reason'],
@@ -68,10 +86,6 @@ class Signal {
   }
 
   String getTranslatedResult(AppLocalizations l10n) {
-    if (hitTps.contains(3)) return l10n.tp3Hit;
-    if (hitTps.contains(2)) return l10n.tp2Hit;
-    if (hitTps.contains(1)) return l10n.tp1Hit;
-
     final lowercasedResult = result?.toLowerCase() ?? '';
     
     if (lowercasedResult.isNotEmpty) {
@@ -86,10 +100,16 @@ class Signal {
           return l10n.cancelled;
         case 'exited by admin':
           return l10n.exitedByAdmin;
+        case 'tp3 hit':
+          return l10n.tp3Hit;
         default:
           return result!;
       }
     }
+
+    if (hitTps.contains(3)) return l10n.tp3Hit;
+    if (hitTps.contains(2)) return l10n.tp2Hit;
+    if (hitTps.contains(1)) return l10n.tp1Hit;
 
     if (status == 'running') {
       return isMatched ? l10n.matched : l10n.notMatched;
@@ -99,8 +119,6 @@ class Signal {
   }
 
   Color getStatusColor() {
-    if (hitTps.isNotEmpty) return Colors.greenAccent.shade400;
-
     final lowercasedResult = result?.toLowerCase() ?? '';
     
     if (lowercasedResult.isNotEmpty) {
@@ -114,10 +132,14 @@ class Signal {
         case 'cancelled (new signal)':
         case 'exited by admin':
           return Colors.grey;
+        case 'tp3 hit':
+          return Colors.greenAccent.shade400;
         default:
           return Colors.blueGrey.shade200;
       }
     }
+
+    if (hitTps.isNotEmpty) return Colors.greenAccent.shade400;
 
     if (status == 'running') {
       return isMatched ? Colors.greenAccent.shade400 : Colors.amber.shade400;
@@ -126,9 +148,39 @@ class Signal {
     return Colors.blueGrey.shade200;
   }
 
+  String get categoryKey {
+    final normalized = symbol.toUpperCase().replaceAll('/', '');
+    if (normalized.startsWith('XAU') || normalized.contains('GOLD')) {
+      return 'gold';
+    }
+    const cryptoAssets = <String>{
+      'BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'ADA', 'DOGE', 'AVAX', 'DOT', 'LINK', 'LTC', 'TRX', 'TON',
+    };
+    if (cryptoAssets.any(normalized.startsWith)) return 'crypto';
+    // Keep the legacy storage key for backward compatibility. The UI name is Currency Pair.
+    return 'forex';
+  }
+
+  bool get isTerminal {
+    final value = result?.toLowerCase() ?? '';
+    return status.toLowerCase() == 'closed' ||
+        value == 'sl hit' ||
+        value == 'tp3 hit' ||
+        value == 'cancelled' ||
+        value == 'cancelled (new signal)' ||
+        value == 'exited by admin' ||
+        value == 'exit' ||
+        value.startsWith('exit timeout');
+  }
+
+  double? get effectivePips => closedPips ?? pips?.toDouble();
+
   String formatPrice(num price) {
-    if (symbol.contains('BTC')) return price.toStringAsFixed(1);
-    if (symbol.contains('XAU')) return price.toStringAsFixed(2);
+    final normalized = symbol.toUpperCase();
+    if (normalized.contains('BTC')) return price.toStringAsFixed(1);
+    if (normalized.contains('XAU')) return price.toStringAsFixed(2);
+    if (normalized.contains('JPY')) return price.toStringAsFixed(3);
+    if (categoryKey == 'crypto') return price.toStringAsFixed(4);
     return price.toStringAsFixed(5);
   }
 }

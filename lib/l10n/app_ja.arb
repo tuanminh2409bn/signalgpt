@@ -410,7 +410,7 @@
   "chooseSignalNotificationTypes": "メールで受け取りたいシグナル通知のタイプを選択してください",
   "allSignalNotifications": "すべてのシグナル通知",
   "cryptoSignals": "仮想通貨シグナル",
-  "forexSignals": "外国為替シグナル",
+  "forexSignals": "通貨ペアシグナル",
   "goldSignals": "ゴールドシグナル",
   "updatePasswordSecure": "アカウントを安全に保つためにパスワードを更新してください",
   "searchLabel": "検索：",

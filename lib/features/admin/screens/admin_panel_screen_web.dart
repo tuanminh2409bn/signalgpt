@@ -73,120 +73,26 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
   }
 }
 
-class AppConfigView extends StatefulWidget {
+class AppConfigView extends StatelessWidget {
   const AppConfigView({super.key});
-
-  @override
-  State<AppConfigView> createState() => _AppConfigViewState();
-}
-
-class _AppConfigViewState extends State<AppConfigView> {
-  final _winRateAdjustmentController = TextEditingController();
-  bool _isLoading = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadConfig();
-  }
-
-  Future<void> _loadConfig() async {
-    if (!mounted) return;
-    setState(() => _isLoading = true);
-    try {
-      final doc = await FirebaseFirestore.instance.collection('settings').doc('app_config').get();
-      if (doc.exists) {
-        final data = doc.data()!;
-        _winRateAdjustmentController.text = (data['winRateAdjustment'] ?? 8).toString();
-      } else {
-        _winRateAdjustmentController.text = '8';
-      }
-    } catch (e) {
-      debugPrint('Error loading config: $e');
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Không thể tải cấu hình: $e')),
-        );
-      }
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
-    }
-  }
-
-  Future<void> _saveConfig() async {
-    final adjustment = double.tryParse(_winRateAdjustmentController.text);
-    if (adjustment == null) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Vui lòng nhập số hợp lệ.')));
-      return;
-    }
-
-    setState(() => _isLoading = true);
-    try {
-      await FirebaseFirestore.instance.collection('settings').doc('app_config').set({
-        'winRateAdjustment': adjustment,
-        'updatedAt': FieldValue.serverTimestamp(),
-      }, SetOptions(merge: true));
-      
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Đã cập nhật cấu hình!')));
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Lỗi khi lưu: $e')));
-      }
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Cấu hình ứng dụng')),
-      body: _isLoading 
-        ? const Center(child: CircularProgressIndicator())
-        : Padding(
+      body: const Padding(
             padding: const EdgeInsets.all(32.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Cấu hình Tỷ lệ Thắng (Win Rate)',
+                  'Tỷ lệ thắng (Win Rate)',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Giá trị phần trăm cộng thêm vào tỷ lệ thắng thực tế khi hiển thị cho người dùng.',
+                  'Tỷ lệ thắng được tính trực tiếp từ số lệnh TP và SL thực tế. Không áp dụng hệ số hoặc phần trăm cộng thêm.',
                   style: TextStyle(color: Colors.grey),
-                ),
-                const SizedBox(height: 24),
-                SizedBox(
-                  width: 300,
-                  child: TextField(
-                    controller: _winRateAdjustmentController,
-                    decoration: const InputDecoration(
-                      labelText: 'Phần trăm cộng thêm (%)',
-                      border: OutlineInputBorder(),
-                      suffixText: '%',
-                    ),
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 32),
-                FilledButton.icon(
-                  onPressed: _saveConfig,
-                  icon: const Icon(Icons.save),
-                  label: const Text('Lưu cấu hình'),
-                  style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  ),
                 ),
               ],
             ),

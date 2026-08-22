@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCvzJ4crOk5FYhjHhkLCNX8gBtw5YC9qiU',
-    appId: '1:245218403052:android:8da5ef21fd9e851bb03bc9',
+    appId: '1:245218403052:android:b1ed1a2de62331c6b03bc9',
     messagingSenderId: '245218403052',
     projectId: 'minvestforexapp-33dff',
     storageBucket: 'minvestforexapp-33dff.firebasestorage.app',
@@ -66,11 +66,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAlMTFEpxSQPNMD_338j3oCnixX7otc_aU',
-    appId: '1:245218403052:ios:c5d314db21e0ee24b03bc9',
+    appId: '1:245218403052:ios:c899d3eafc21146cb03bc9',
     messagingSenderId: '245218403052',
     projectId: 'minvestforexapp-33dff',
     storageBucket: 'minvestforexapp-33dff.firebasestorage.app',
-    iosClientId: '245218403052-2q6m9neo6l34jfnsferv5ui3h3r4fk68.apps.googleusercontent.com',
-    iosBundleId: 'com.example.minvestForexApp',
+    iosClientId: '245218403052-qpg9dde269i19ga6cks0cj6nk8hc2n2r.apps.googleusercontent.com',
+    iosBundleId: 'com.minvest.aisignals',
   );
 }

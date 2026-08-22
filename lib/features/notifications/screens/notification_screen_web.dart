@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:minvest_forex_app/features/notifications/providers/notification_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
+import 'package:minvest_forex_app/core/utils/signal_access_helper.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -35,9 +36,26 @@ class _NotificationScreenState extends State<NotificationScreen> {
     if (notification.signalId == null || !mounted) return;
 
     final signal = await SignalService().getSignalById(notification.signalId!);
-    final userTier = context.read<UserProvider>().userTier ?? 'free';
+    final userProvider = context.read<UserProvider>();
+    final userTier = userProvider.userTier ?? 'free';
 
     if (signal != null && mounted) {
+      final hasAccess = SignalAccessHelper.canViewEntry(
+        signal,
+        userTier,
+        userProvider.activeSubscriptions,
+        unlockedSignals: userProvider.unlockedSignals,
+        subscriptionsExpiry: userProvider.subscriptionsExpiry,
+        subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
+      );
+      if (!hasAccess && !await userProvider.unlockSignal(signal.id)) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(AppLocalizations.of(context)!.notEnoughTokens)),
+          );
+        }
+        return;
+      }
       Navigator.push(
         context,
         MaterialPageRoute(

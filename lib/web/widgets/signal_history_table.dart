@@ -3,6 +3,9 @@ import 'package:intl/intl.dart';
 import 'package:minvest_forex_app/web/theme/text_styles.dart';
 import 'package:minvest_forex_app/l10n/app_localizations.dart';
 import 'package:minvest_forex_app/features/signals/models/signal_model.dart';
+import 'package:provider/provider.dart';
+import 'package:minvest_forex_app/core/providers/user_provider.dart';
+import 'package:minvest_forex_app/core/utils/signal_access_helper.dart';
 
 class HistoryRow {
   final Signal originalSignal;
@@ -40,7 +43,25 @@ class SignalHistoryTable extends StatelessWidget {
   final List<HistoryRow> rows;
   const SignalHistoryTable({super.key, required this.rows});
 
-  void _showSignalProgress(BuildContext context, Signal signal) {
+  Future<void> _showSignalProgress(BuildContext context, Signal signal) async {
+    final userProvider = context.read<UserProvider>();
+    final hasAccess = SignalAccessHelper.canViewEntry(
+      signal,
+      userProvider.userTier,
+      userProvider.activeSubscriptions,
+      unlockedSignals: userProvider.unlockedSignals,
+      subscriptionsExpiry: userProvider.subscriptionsExpiry,
+      subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
+    );
+    if (!hasAccess && !await userProvider.unlockSignal(signal.id)) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context)!.notEnoughTokens)),
+        );
+      }
+      return;
+    }
+    if (!context.mounted) return;
     showDialog(
       context: context,
       builder: (context) => _SignalProgressPopup(signal: signal),
@@ -450,8 +471,7 @@ class _SignalProgressPopup extends StatelessWidget {
     for (int i = 0; i < signal.takeProfits.length; i++) {
       if (i >= 3) break; // Max TP3
       final tp = signal.takeProfits[i];
-      double? price;
-      if (tp is num) price = tp.toDouble();
+      final price = tp;
       
       final idx = i + 1; // 1-based index
       final isHit = signal.hitTps.contains(idx);
@@ -492,7 +512,7 @@ class _SignalProgressPopup extends StatelessWidget {
     // Match Status (Running)
     if (signal.isMatched) {
         logs.add(_LogData(
-        date: signal.createdAt.toDate().add(const Duration(minutes: 5)),
+        date: signal.matchedAt?.toDate(),
         status: l10n.signalMatched,
         description: l10n.matched,
         color: Colors.blueAccent,
@@ -502,8 +522,14 @@ class _SignalProgressPopup extends StatelessWidget {
     // TPs Hit
     final sortedTps = List<int>.from(signal.hitTps)..sort();
     for (var tpIdx in sortedTps) {
+       final timestamp = switch (tpIdx) {
+         1 => signal.tp1HitAt,
+         2 => signal.tp2HitAt,
+         3 => signal.tp3HitAt,
+         _ => null,
+       };
        logs.add(_LogData(
-        date: signal.createdAt.toDate().add(Duration(hours: tpIdx)), 
+        date: timestamp?.toDate(),
         status: 'TP$tpIdx ${l10n.live}', // Placeholder or generic
         description: l10n.targetReached,
         color: const Color(0xFF3DCC5C),
@@ -515,14 +541,14 @@ class _SignalProgressPopup extends StatelessWidget {
         final r = signal.result!.toLowerCase();
         if (r.contains('sl')) {
            logs.add(_LogData(
-            date: signal.createdAt.toDate().add(const Duration(hours: 4)),
+            date: signal.slHitAt?.toDate() ?? signal.closedAt?.toDate(),
             status: l10n.slHit,
             description: '${l10n.signalClosed} @ ${signal.stopLoss}',
             color: const Color(0xFFE54747),
           ));
         } else if (r.contains('cancelled')) {
              logs.add(_LogData(
-            date: signal.createdAt.toDate().add(const Duration(hours: 1)),
+            date: signal.closedAt?.toDate(),
             status: l10n.cancelled,
             description: l10n.signalClosed,
             color: Colors.orange,
@@ -551,7 +577,7 @@ class _StepData {
 }
 
 class _LogData {
-  final DateTime date;
+  final DateTime? date;
   final String status;
   final String description;
   final Color color;
@@ -726,7 +752,7 @@ class _HistoryLogItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      DateFormat('dd/MM HH:mm').format(log.date),
+                      log.date == null ? '--' : DateFormat('dd/MM HH:mm').format(log.date!),
                       style: AppTextStyles.caption.copyWith(color: Colors.white30, fontSize: 11),
                     ),
                   ],

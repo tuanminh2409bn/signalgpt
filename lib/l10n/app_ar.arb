@@ -410,7 +410,7 @@
   "chooseSignalNotificationTypes": "اختر أنواع إشعارات الإشارة التي تريد تلقيها عبر البريد الإلكتروني",
   "allSignalNotifications": "جميع إشعارات الإشارة",
   "cryptoSignals": "إشارات العملات المشفرة",
-  "forexSignals": "إشارات الفوركس",
+  "forexSignals": "إشارات أزواج العملات",
   "goldSignals": "إشارات الذهب",
   "updatePasswordSecure": "قم بتحديث كلمة المرور الخاصة بك للحفاظ على أمان حسابك",
   "searchLabel": "بحث:",

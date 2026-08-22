@@ -593,15 +593,9 @@ class AuthService {
 
   Future<bool> verifySignupCode(String email, String code) async {
     try {
-      final doc = await _firestore
-          .collection('signup_verification_codes')
-          .doc(email)
-          .get();
-      if (!doc.exists) return false;
-      final data = doc.data()!;
-      final expiresAt = (data['expiresAt'] as Timestamp).toDate();
-      if (DateTime.now().isAfter(expiresAt)) return false;
-      return data['code'] == code;
+      final callable = _functions.httpsCallable('verifySignupCode');
+      final result = await callable.call({'email': email, 'code': code});
+      return result.data['success'] == true;
     } catch (e) {
       print('Lỗi verifySignupCode: $e');
       return false;

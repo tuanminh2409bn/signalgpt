@@ -1,7 +1,7 @@
 name: minvest_forex_app
 description: "A new Flutter project."
 publish_to: 'none'
-version: 1.6.0+13
+version: 1.6.1+14
 
 environment:
   sdk: '>=3.2.6 <4.0.0'
@@ -91,7 +91,6 @@ flutter:
     - assets/images/
     - assets/mockups/
     - assets/icons/
-    - assets/landing_page/
   fonts:
     - family: Be Vietnam Pro
       fonts:

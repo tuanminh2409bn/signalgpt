@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:minvest_forex_app/features/auth/services/auth_service.dart';
 import 'package:minvest_forex_app/services/device_info_service.dart';
 
@@ -121,12 +122,7 @@ class UserProvider with ChangeNotifier {
         _tokenBalance = (data['tokenBalance'] ?? 0).toInt();
         _unlockedSignals = List<String>.from(data['unlockedSignals'] ?? []);
         
-        // Fix: Đảm bảo tài khoản free không bị kẹt activeSubscriptions do lỗi dữ liệu cũ
-        if (_userTier == 'free') {
-          _activeSubscriptions = [];
-        } else {
-          _activeSubscriptions = List<String>.from(data['activeSubscriptions'] ?? []);
-        }
+        _activeSubscriptions = List<String>.from(data['activeSubscriptions'] ?? []);
 
         if (data['subscriptionExpiryDate'] != null && data['subscriptionExpiryDate'] is Timestamp) {
           _subscriptionExpiryDate = (data['subscriptionExpiryDate'] as Timestamp).toDate();
@@ -203,24 +199,20 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> unlockSignal(String signalId, {bool freeUnlock = false}) async {
+  Future<bool> unlockSignal(String signalId) async {
     if (_uid == null) return false;
-    
-    // Nếu không phải freeUnlock thì kiểm tra số dư
-    if (!freeUnlock && _tokenBalance < 1) return false;
 
     try {
-      final Map<String, dynamic> updates = {
-        'unlockedSignals': FieldValue.arrayUnion([signalId]),
-      };
-
-      // Chỉ trừ token nếu không phải là freeUnlock
-      if (!freeUnlock) {
-        updates['tokenBalance'] = FieldValue.increment(-1);
+      // The server determines whether this unlock is free. Never trust a client flag.
+      final callable = FirebaseFunctions.instanceFor(region: 'asia-southeast1')
+          .httpsCallable('unlockSignal');
+      final response = await callable.call<Map<String, dynamic>>({'signalId': signalId});
+      return response.data['unlocked'] == true;
+    } on FirebaseFunctionsException catch (e) {
+      if (e.code != 'failed-precondition') {
+        print("Error unlocking signal: ${e.code} ${e.message}");
       }
-
-      await FirebaseFirestore.instance.collection('users').doc(_uid!).update(updates);
-      return true;
+      return false;
     } catch (e) {
       print("Error unlocking signal: $e");
       return false;

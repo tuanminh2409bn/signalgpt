@@ -24,14 +24,46 @@ class ExchangeApp {
   }
 }
 
+const Set<String> hiddenExchangeAppNames = {'binance', 'bybit', 'okx'};
+
+bool isExchangeAppVisible(String name) =>
+    !hiddenExchangeAppNames.contains(name.trim().toLowerCase());
+
 final List<ExchangeApp> allExchangeApps = [
-  ExchangeApp(name: 'XM', iconPath: 'assets/icons/xm.png', url: 'https://affs.click/0mg8B'),
-  ExchangeApp(name: 'Axi', iconPath: 'assets/icons/axi.png', url: 'https://www.axi.com/int/live-account?promocode=4736137'),
-  ExchangeApp(name: 'Vantagemarkets', iconPath: 'assets/icons/vantagemarkets.png', url: 'https://vigco.co/la-com/vi/signalgpt'),
-  ExchangeApp(name: 'XTB', iconPath: 'assets/icons/xtb.png', url: 'https://geolink.xtb.com/aJSfg'),
-  ExchangeApp(name: 'Exness', iconPath: 'assets/icons/exness.png', url: 'https://www.extrading.asia/vi/?utm_source=partners&ex_ol=1'),
-  ExchangeApp(name: 'LiteFinance', iconPath: 'assets/icons/LiteFinance.png', url: 'https://litefinance.com.vn/?uid=742903029&cid=336726'),
-  ExchangeApp(name: 'OKX', iconPath: 'assets/icons/okx.png', url: 'https://okx.com/join/LISASIGNALGPT'),
-  ExchangeApp(name: 'Bybit', iconPath: 'assets/icons/bybit.png', url: 'https://partner.bybit.com/b/LISA68'),
-  ExchangeApp(name: 'Binance', iconPath: 'assets/icons/binance.png', url: 'https://accounts.binance.com/vi/register?ref=LISA888'),
+  ExchangeApp(
+      name: 'XM',
+      iconPath: 'assets/icons/xm.png',
+      url: 'https://affs.click/0mg8B'),
+  ExchangeApp(
+      name: 'Axi',
+      iconPath: 'assets/icons/axi.png',
+      url: 'https://www.axi.com/int/live-account?promocode=4736137'),
+  ExchangeApp(
+      name: 'Vantagemarkets',
+      iconPath: 'assets/icons/vantagemarkets.png',
+      url: 'https://vigco.co/la-com/vi/signalgpt'),
+  ExchangeApp(
+      name: 'XTB',
+      iconPath: 'assets/icons/xtb.png',
+      url: 'https://geolink.xtb.com/aJSfg'),
+  ExchangeApp(
+      name: 'Exness',
+      iconPath: 'assets/icons/exness.png',
+      url: 'https://www.extrading.asia/vi/?utm_source=partners&ex_ol=1'),
+  ExchangeApp(
+      name: 'LiteFinance',
+      iconPath: 'assets/icons/LiteFinance.png',
+      url: 'https://litefinance.com.vn/?uid=742903029&cid=336726'),
+  ExchangeApp(
+      name: 'OKX',
+      iconPath: 'assets/icons/okx.png',
+      url: 'https://okx.com/join/LISASIGNALGPT'),
+  ExchangeApp(
+      name: 'Bybit',
+      iconPath: 'assets/icons/bybit.png',
+      url: 'https://partner.bybit.com/b/LISA68'),
+  ExchangeApp(
+      name: 'Binance',
+      iconPath: 'assets/icons/binance.png',
+      url: 'https://accounts.binance.com/vi/register?ref=LISA888'),
 ];

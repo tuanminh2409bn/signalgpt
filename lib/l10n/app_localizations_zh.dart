@@ -1191,7 +1191,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cryptoSignals => '加密信号';
 
   @override
-  String get forexSignals => '外汇信号';
+  String get forexSignals => '货币对信号';
 
   @override
   String get goldSignals => '黄金信号';

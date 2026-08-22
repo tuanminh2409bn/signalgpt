@@ -410,7 +410,7 @@
   "chooseSignalNotificationTypes": "选择您希望通过电子邮件接收的信号通知类型",
   "allSignalNotifications": "所有信号通知",
   "cryptoSignals": "加密信号",
-  "forexSignals": "外汇信号",
+  "forexSignals": "货币对信号",
   "goldSignals": "黄金信号",
   "updatePasswordSecure": "更新您的密码以确保您的帐户安全",
   "searchLabel": "搜索：",

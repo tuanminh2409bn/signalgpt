@@ -15,6 +15,7 @@ import 'package:minvest_forex_app/features/auth/bloc/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:minvest_forex_app/core/utils/signal_access_helper.dart';
 
 enum AssetCategory { all, gold, crypto, forex }
 
@@ -51,16 +52,12 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
   }
 
   void _initStream() {
-    _historyStream = _signalService.getAllSignals(
-      limit: 200,
-    );
+    _historyStream = _signalService.getAllSignals(limit: null);
   }
 
   void _updateStream() {
     setState(() {
-      _historyStream = _signalService.getAllSignals(
-        limit: (_selectedStatus == 'ALL' && _selectedDate == null) ? 200 : 1000,
-      );
+      _historyStream = _signalService.getAllSignals(limit: null);
     });
   }
 
@@ -261,7 +258,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
   }
 
   List<Signal> _applyFilters(List<Signal> signals) {
-    Iterable<Signal> filtered = signals;
+    Iterable<Signal> filtered = signals.where((signal) => signal.isTerminal);
 
     // 1. Filter by asset category
     if (_assetCategory == AssetCategory.gold) {
@@ -272,23 +269,16 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
       filtered = filtered.where(_isForex);
     }
 
-    // 2. Remove the latest running signal for each category (matching Web logic)
-    final goldLatestId = filtered.where(_isGold).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
-    final cryptoLatestId = filtered.where(_isCrypto).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
-    final forexLatestId = filtered.where(_isForex).where((s) => s.status.toLowerCase() == 'running').take(1).map((e) => e.id).firstOrNull;
-    final latestIds = {goldLatestId, cryptoLatestId, forexLatestId}.whereType<String>().toSet();
-
-    filtered = filtered.where((s) => !latestIds.contains(s.id));
-
-    // 3. Filter by date
+    // 2. Filter by date in the timezone selected by the user.
     if (_selectedDate != null) {
       filtered = filtered.where((s) {
-        final date = s.createdAt.toDate();
+        final offset = int.tryParse(_selectedGMT.replaceAll('GMT', '').replaceAll('+', '')) ?? 0;
+        final date = s.createdAt.toDate().toUtc().add(Duration(hours: offset));
         return date.day == _selectedDate!.day && date.month == _selectedDate!.month && date.year == _selectedDate!.year;
       });
     }
 
-    // 4. Filter by status
+    // 3. Filter by status
     if (_selectedStatus != 'ALL' && _selectedStatus != 'TẤT CẢ') {
       filtered = filtered.where((s) {
         if (_selectedStatus == 'TP1') return s.hitTps.contains(1) && !s.hitTps.contains(2);
@@ -296,21 +286,15 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
         if (_selectedStatus == 'TP3') return s.hitTps.contains(3);
         
         final res = (s.result ?? '').toUpperCase();
-        if (_selectedStatus == 'SL') return res.contains('SL HIT') && s.hitTps.isEmpty;
+        if (_selectedStatus == 'SL') return res.contains('SL HIT');
         if (_selectedStatus == 'CANCELLED' || _selectedStatus == 'ĐÃ HỦY') {
           final resLower = (s.result ?? '').toLowerCase();
           return s.status.toLowerCase() == 'cancelled' || resLower.contains('cancelled') || resLower.contains('cancel');
         }
         if (_selectedStatus == 'EXIT' || _selectedStatus == 'ADMIN ĐÓNG') {
-          return (res.contains('EXIT') || res.contains('MANUAL_EXIT') || res.contains('EXITED BY ADMIN')) && s.hitTps.isEmpty;
+          return res.contains('EXIT') || res.contains('MANUAL_EXIT') || res.contains('EXITED BY ADMIN');
         }
         return false;
-      });
-    } else {
-      // Default: Show all except CANCELLED (matching Web logic)
-      filtered = filtered.where((s) {
-        final res = (s.result ?? '').toLowerCase();
-        return s.status.toLowerCase() != 'cancelled' && !res.contains('cancelled') && !res.contains('cancel');
       });
     }
 
@@ -494,6 +478,15 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
   }
 
   Widget _buildHistoryItem(Signal signal, int index, AppLocalizations l10n) {
+    final userProvider = context.read<UserProvider>();
+    final canViewLevels = SignalAccessHelper.canViewEntry(
+      signal,
+      userProvider.userTier,
+      userProvider.activeSubscriptions,
+      unlockedSignals: userProvider.unlockedSignals,
+      subscriptionsExpiry: userProvider.subscriptionsExpiry,
+      subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
+    );
     final bool isEven = index % 2 == 0;
     DateTime date = signal.createdAt.toDate();
     int offset = int.tryParse(_selectedGMT.replaceAll('GMT', '').replaceAll('+', '')) ?? 0;
@@ -501,7 +494,16 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
     final String formattedDate = DateFormat('dd MMM hh:mm a').format(date);
     
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        if (!canViewLevels && !await userProvider.unlockSignal(signal.id)) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(l10n.notEnoughTokens)),
+            );
+          }
+          return;
+        }
+        if (!mounted) return;
         Navigator.push(context, MaterialPageRoute(builder: (context) => SignalTradingHistoryScreen(signal: signal)));
       },
       child: Container(
@@ -546,10 +548,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
               flex: 1,
               child: Builder(
                 builder: (context) {
-                  num? pipsVal = signal.closedPips;
-                  if (signal.hitTps.isNotEmpty && pipsVal != null && pipsVal < 0) {
-                    pipsVal = pipsVal.abs();
-                  }
+                  final pipsVal = signal.effectivePips;
                   return Text(
                     pipsVal != null ? (pipsVal >= 0 ? '+${pipsVal.toStringAsFixed(0)}' : pipsVal.toStringAsFixed(0)) : '-',
                     textAlign: TextAlign.center,
@@ -563,7 +562,7 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
             Expanded(
               flex: 2,
               child: Text(
-                signal.formatPrice(signal.entryPrice),
+                canViewLevels ? signal.formatPrice(signal.entryPrice) : '••••',
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

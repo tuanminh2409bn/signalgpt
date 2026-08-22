@@ -34,6 +34,7 @@ class SignalScreen extends StatefulWidget {
 
 class _SignalScreenState extends State<SignalScreen> {
   final PriceService _priceService = PriceService();
+  final SignalService _signalService = SignalService();
   final NumberFormat _currencyFormat =
       NumberFormat.currency(symbol: '\$', decimalDigits: 2);
 
@@ -617,16 +618,12 @@ class _SignalScreenState extends State<SignalScreen> {
                     ));
                   }
 
-                  // Forex is empty for now as no symbols are being streamed
-                  if (_assetFilter == AssetFilter.forex &&
-                      assetWidgets.isEmpty) {
-                    assetWidgets.add(Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 40),
-                        child: Text(l10n.noForexAssets,
-                            style: const TextStyle(color: Colors.white54)),
-                      ),
-                    ));
+                  if (_assetFilter == AssetFilter.all ||
+                      _assetFilter == AssetFilter.forex) {
+                    if (assetWidgets.isNotEmpty) {
+                      assetWidgets.add(const SizedBox(height: 12));
+                    }
+                    assetWidgets.add(_buildCurrencyPairAssets(userProvider, l10n));
                   }
 
                   return ListView(
@@ -717,6 +714,7 @@ class _SignalScreenState extends State<SignalScreen> {
     required Color priceColor,
     required UserProvider userProvider,
     required AppLocalizations l10n,
+    String? priceText,
   }) {
     final bool isExpanded = _expandedSymbol == symbol;
 
@@ -778,7 +776,7 @@ class _SignalScreenState extends State<SignalScreen> {
                     borderRadius: BorderRadius.circular(3),
                   ),
                   child: Text(
-                    _currencyFormat.format(price),
+                    priceText ?? (price > 0 ? _currencyFormat.format(price) : '--'),
                     style: TextStyle(
                       color: priceColor,
                       fontSize: 18,
@@ -826,14 +824,59 @@ class _SignalScreenState extends State<SignalScreen> {
         ),
         if (isExpanded)
           SignalDetailExpandedView(
-            symbol: symbol == 'XAUUSD'
-                ? 'XAU/USD'
-                : (symbol == 'BTC' ? 'BTC/USD' : 'ETH/USD'),
+            symbol: symbol.contains('/')
+                ? symbol
+                : (symbol == 'XAUUSD'
+                    ? 'XAU/USD'
+                    : (symbol == 'BTC' ? 'BTC/USDT' : 'ETH/USDT')),
             userTier: userProvider.userTier ?? 'free',
             userProvider: userProvider,
             l10n: l10n,
           ),
       ],
+    );
+  }
+
+  Widget _buildCurrencyPairAssets(UserProvider userProvider, AppLocalizations l10n) {
+    return StreamBuilder<List<Signal>>(
+      stream: _signalService.getAllSignals(limit: 200),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: Padding(
+            padding: EdgeInsets.all(24),
+            child: CircularProgressIndicator(strokeWidth: 2),
+          ));
+        }
+        final seen = <String>{};
+        final signals = (snapshot.data ?? const <Signal>[])
+            .where((signal) => signal.status.toLowerCase() == 'running' && signal.categoryKey == 'forex')
+            .where((signal) => seen.add(signal.symbol))
+            .toList(growable: false);
+        if (signals.isEmpty) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24, bottom: 24),
+              child: Text(l10n.noForexAssets, style: const TextStyle(color: Colors.white54)),
+            ),
+          );
+        }
+        return Column(
+          children: signals.indexed.expand((entry) sync* {
+            if (entry.$1 > 0) yield const SizedBox(height: 12);
+            final signal = entry.$2;
+            yield _buildAssetItem(
+              symbol: signal.symbol,
+              price: signal.entryPrice,
+              priceText: 'Entry ${signal.formatPrice(signal.entryPrice)}',
+              iconPath: 'assets/icons/currency_pair.png',
+              color: const Color(0xFF276EFB),
+              priceColor: const Color(0xFF197DFF),
+              userProvider: userProvider,
+              l10n: l10n,
+            );
+          }).toList(growable: false),
+        );
+      },
     );
   }
 }
@@ -928,13 +971,15 @@ class _SignalDetailExpandedViewState extends State<SignalDetailExpandedView> {
           signal,
           widget.userProvider.userTier,
           widget.userProvider.activeSubscriptions,
+          subscriptionsExpiry: widget.userProvider.subscriptionsExpiry,
+          subscriptionExpiryDate: widget.userProvider.subscriptionExpiryDate,
         );
 
         return Stack(
           alignment: Alignment.center,
           children: [
             _buildSignalDetails(signal, widget.l10n),
-            if (!isUnlocked)
+            if (!isUnlocked && !isEliteOrSubscribed)
               _buildBlurredOverlay(
                   context, signal, widget.userProvider, isEliteOrSubscribed),
           ],
@@ -986,21 +1031,21 @@ class _SignalDetailExpandedViewState extends State<SignalDetailExpandedView> {
               _buildSignalInfoBox(
                 label: l10n.signalTp1Label,
                 value: !isPlaceholder && signal.takeProfits.isNotEmpty
-                    ? signal.takeProfits[0].toString()
+                    ? signal.formatPrice(signal.takeProfits[0])
                     : '-',
                 valueColor: Colors.white,
               ),
               _buildSignalInfoBox(
                 label: l10n.signalTp2Label,
                 value: !isPlaceholder && signal.takeProfits.length > 1
-                    ? signal.takeProfits[1].toString()
+                    ? signal.formatPrice(signal.takeProfits[1])
                     : '-',
                 valueColor: Colors.white,
               ),
               _buildSignalInfoBox(
                 label: l10n.signalTp3Label,
                 value: !isPlaceholder && signal.takeProfits.length > 2
-                    ? signal.takeProfits[2].toString()
+                    ? signal.formatPrice(signal.takeProfits[2])
                     : '-',
                 valueColor: Colors.white,
               ),
@@ -1174,24 +1219,15 @@ class _SignalDetailExpandedViewState extends State<SignalDetailExpandedView> {
                           );
                           return;
                         }
-                        if (isFreeUnlock) {
-                          await userProvider.unlockSignal(signal.id,
-                              freeUnlock: true);
-                        } else {
-                          if (userProvider.tokenBalance > 0) {
-                            final success = await userProvider
-                                .unlockSignal(signal.id, freeUnlock: false);
-                            if (!success && context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(l10n.failedUnlockSignal)),
-                              );
-                            }
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(l10n.notEnoughTokens)),
-                            );
-                          }
+                        final success = await userProvider.unlockSignal(signal.id);
+                        if (!success && context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(userProvider.tokenBalance > 0
+                                  ? l10n.failedUnlockSignal
+                                  : l10n.notEnoughTokens),
+                            ),
+                          );
                         }
                       },
                       style: ElevatedButton.styleFrom(

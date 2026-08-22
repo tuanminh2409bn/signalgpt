@@ -7,6 +7,8 @@ import 'package:minvest_forex_app/features/notifications/models/notification_mod
 import 'package:minvest_forex_app/features/notifications/services/notification_service.dart' as feat_service;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NotificationProvider with ChangeNotifier {
   final feat_service.NotificationService _notificationService = feat_service.NotificationService();
@@ -41,6 +43,17 @@ class NotificationProvider with ChangeNotifier {
     _isGoldEnabled = prefs.getBool('notif_gold') ?? true;
     _isCryptoEnabled = prefs.getBool('notif_crypto') ?? true;
     _isForexEnabled = prefs.getBool('notif_forex') ?? true;
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final snapshot = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      final settings = snapshot.data()?['notificationSettings'] as Map<String, dynamic>?;
+      if (settings != null) {
+        _isAllEnabled = settings['all'] ?? _isAllEnabled;
+        _isGoldEnabled = settings['gold'] ?? _isGoldEnabled;
+        _isCryptoEnabled = settings['crypto'] ?? _isCryptoEnabled;
+        _isForexEnabled = settings['forex'] ?? _isForexEnabled;
+      }
+    }
     notifyListeners();
   }
 
@@ -48,6 +61,13 @@ class NotificationProvider with ChangeNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool(prefKey, value);
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final key = prefKey.replaceFirst('notif_', '');
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+          'notificationSettings.$key': value,
+        });
+      }
       
       if (!kIsWeb) {
         if (value) {
@@ -93,6 +113,7 @@ class NotificationProvider with ChangeNotifier {
   // 2. Đổi tên hàm private `_listenToNotifications` thành public `startListening`
   //    AuthGate sẽ gọi hàm này khi đăng nhập thành công.
   void startListening() {
+    unawaited(_loadSettings());
     // Hủy các listener cũ nếu có
     _notificationsSubscription?.cancel();
     _unreadCountSubscription?.cancel();

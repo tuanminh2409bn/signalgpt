@@ -185,6 +185,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
   }
 
   String _getProductName(String productId, AppLocalizations l10n) {
+    if (productId.contains('lifetime')) return 'Elite Lifetime';
     if (productId.contains('month') || productId.contains('.01')) {
       return l10n.elite1Month;
     } else if (productId.contains('year') || productId.contains('12')) {
@@ -195,11 +196,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
 
   String _formatAmount(TransactionModel transaction) {
     if (transaction.amount == 0) {
-      if (transaction.productId.contains('month') || transaction.productId.contains('.01')) {
-        return '\$15.00';
-      } else {
-        return '\$99.00';
-      }
+      return '--';
     }
     return '${transaction.currency == 'USD' ? '\$' : ''}${transaction.amount.toStringAsFixed(2)}';
   }

@@ -11,7 +11,10 @@ import { GoogleAuth } from "google-auth-library";
 import { Response } from "express";
 import { onCall, HttpsError } from "firebase-functions/v2/https";
 import { getLocalizedPayload } from "./localization";
-import * as jose from "node-jose";
+import { SignedDataVerifier, Environment } from "@apple/app-store-server-library";
+import * as fs from "fs";
+import * as path from "path";
+import { createHash, timingSafeEqual } from "crypto";
 
 // =================================================================
 // === KHỞI TẠO CÁC DỊCH VỤ CƠ BẢN ===
@@ -147,12 +150,25 @@ export const processVerificationImage = onObjectFinalized(
 const TELEGRAM_CHAT_ID = "-1002785712406";
 const TELEGRAM_BITCOIN_CHAT_ID = "-1004325670204";
 
+function hasValidTelegramSecret(req: functions.https.Request): boolean {
+    const configured = process.env.TELEGRAM_WEBHOOK_SECRET;
+    const received = req.header('x-telegram-bot-api-secret-token');
+    if (!configured || !received) return false;
+    const expectedBuffer = Buffer.from(configured);
+    const receivedBuffer = Buffer.from(received);
+    return expectedBuffer.length === receivedBuffer.length && timingSafeEqual(expectedBuffer, receivedBuffer);
+}
+
 export const telegramWebhook = functions.https.onRequest(
-  { region: "asia-southeast1", timeoutSeconds: 30, memory: "512MiB" },
+  { region: "asia-southeast1", timeoutSeconds: 30, memory: "512MiB", secrets: ["TELEGRAM_WEBHOOK_SECRET"] },
   async (req: functions.https.Request, res: Response) => {
     // ... (Toàn bộ logic Telegram không thay đổi)
     if (req.method !== "POST") {
       res.status(403).send("Forbidden!");
+      return;
+    }
+    if (!hasValidTelegramSecret(req)) {
+      res.status(401).send("Unauthorized");
       return;
     }
     const update = req.body;
@@ -199,16 +215,16 @@ export const telegramWebhook = functions.https.onRequest(
           updatePayload = { ...updatePayload, isMatched: true, result: "Matched", matchedAt: admin.firestore.FieldValue.serverTimestamp() };
           logMessage = `Tín hiệu ${signalDoc.id} đã KHỚP LỆNH (MATCHED).`;
         } else if (updateText.includes("tp1 hit")) {
-            updatePayload = { ...updatePayload, result: "TP1 Hit", hitTps: admin.firestore.FieldValue.arrayUnion(1) };
+            updatePayload = { ...updatePayload, result: "TP1 Hit", hitTps: admin.firestore.FieldValue.arrayUnion(1), tp1HitAt: admin.firestore.FieldValue.serverTimestamp() };
             logMessage = `Tín hiệu ${signalDoc.id} đã TP1 Hit.`;
         } else if (updateText.includes("tp2 hit")) {
-            updatePayload = { ...updatePayload, result: "TP2 Hit", hitTps: admin.firestore.FieldValue.arrayUnion(1, 2) };
+            updatePayload = { ...updatePayload, result: "TP2 Hit", hitTps: admin.firestore.FieldValue.arrayUnion(1, 2), tp2HitAt: admin.firestore.FieldValue.serverTimestamp() };
             logMessage = `Tín hiệu ${signalDoc.id} đã TP2 Hit.`;
         } else if (updateText.includes("sl hit")) {
-            updatePayload = { ...updatePayload, status: "closed", result: "SL Hit", closedAt: admin.firestore.FieldValue.serverTimestamp() };
+            updatePayload = { ...updatePayload, status: "closed", result: "SL Hit", slHitAt: admin.firestore.FieldValue.serverTimestamp(), closedAt: admin.firestore.FieldValue.serverTimestamp() };
             logMessage = `Tín hiệu ${signalDoc.id} đã SL Hit.`;
         } else if (updateText.includes("tp3 hit")) {
-            updatePayload = { ...updatePayload, status: "closed", result: "TP3 Hit", hitTps: admin.firestore.FieldValue.arrayUnion(1, 2, 3), closedAt: admin.firestore.FieldValue.serverTimestamp() };
+            updatePayload = { ...updatePayload, status: "closed", result: "TP3 Hit", hitTps: admin.firestore.FieldValue.arrayUnion(1, 2, 3), tp3HitAt: admin.firestore.FieldValue.serverTimestamp(), closedAt: admin.firestore.FieldValue.serverTimestamp() };
             logMessage = `Tín hiệu ${signalDoc.id} đã TP3 Hit.`;
         } else if (updateText.includes("exit at price") || updateText.includes("exit lệnh") || updateText.includes("exit tại giá")) {
             updatePayload = { ...updatePayload, status: "closed", result: "Exited by Admin", closedAt: admin.firestore.FieldValue.serverTimestamp() };
@@ -259,7 +275,7 @@ export const telegramWebhook = functions.https.onRequest(
             .where("symbol", "==", signalData.symbol)
             .get();
             
-          unmatchedQuery.forEach(doc => batch.update(doc.ref, { status: "closed", result: "Cancelled (new signal)" }));
+          unmatchedQuery.forEach(doc => batch.update(doc.ref, { status: "closed", result: "Cancelled (new signal)", closedAt: admin.firestore.FieldValue.serverTimestamp() }));
 
           const oppositeType = signalData.type === 'buy' ? 'sell' : 'buy';
           // Chỉ đóng các lệnh "Running" + "TP Hit" ngược chiều CÙNG CẶP TIỀN
@@ -270,7 +286,7 @@ export const telegramWebhook = functions.https.onRequest(
             .where("symbol", "==", signalData.symbol)
             .get();
             
-          runningTpQuery.forEach(doc => batch.update(doc.ref, { status: "closed", result: "Exited (new signal)" }));
+          runningTpQuery.forEach(doc => batch.update(doc.ref, { status: "closed", result: "Exited (new signal)", closedAt: admin.firestore.FieldValue.serverTimestamp() }));
 
           const newSignalRef = firestore.collection("signals").doc();
           batch.set(newSignalRef, {
@@ -305,7 +321,7 @@ function parseSignalMessage(text: string): any | null {
     
     const lines = signalPart.split("\n");
     // Tìm dòng tiêu đề (Hỗ trợ "Tín hiệu:" hoặc "Signal:")
-    const titleLine = lines.find((line) => line.includes("Tín hiệu:") || line.includes("Signal:"));
+    const titleLine = lines.find((line) => /(?:tín\s*hiệu|signal)\s*:/i.test(line));
     if (!titleLine) return null;
     
     // 1. Parse Type
@@ -314,7 +330,7 @@ function parseSignalMessage(text: string): any | null {
     else return null;
 
     // 2. Parse Symbol (Improved for Crypto)
-    const symbolRegex = /\b([A-Z]{3}\/[A-Z]{3}|XAU\/USD)\b/i;
+    const symbolRegex = /\b([A-Z]{3,5}\/?(?:USDT|USD|EUR|GBP|JPY|AUD|CAD|CHF|NZD))\b/i;
     const symbolMatch = titleLine.match(symbolRegex);
     
     if (symbolMatch) {
@@ -341,20 +357,28 @@ function parseSignalMessage(text: string): any | null {
         }
     }
 
-    // 4. Parse Entry, SL, TP
+    const parseLocalizedNumber = (raw: string): number => {
+        const value = raw.trim().replace(/\s/g, '');
+        const lastComma = value.lastIndexOf(',');
+        const lastDot = value.lastIndexOf('.');
+        if (lastComma > lastDot) return Number(value.replace(/\./g, '').replace(',', '.'));
+        return Number(value.replace(/,/g, ''));
+    };
+
+    // 4. Parse Entry, SL, TP (case-insensitive and supports comma decimals)
     for (const line of lines) {
-        const entryRegex = /Entry:.*?([\d.]+)/;
+        const entryRegex = /(?:entry|điểm\s*vào)\s*:.*?([\d][\d.,]*)/i;
         const entryMatch = line.match(entryRegex);
-        if (entryMatch) signal.entryPrice = parseFloat(entryMatch[1]);
+        if (entryMatch) signal.entryPrice = parseLocalizedNumber(entryMatch[1]);
         
-        const slRegex = /SL:.*?([\d.]+)/;
+        const slRegex = /(?:sl|stop\s*loss|cắt\s*lỗ)\s*:.*?([\d][\d.,]*)/i;
         const slMatch = line.match(slRegex);
-        if (slMatch) signal.stopLoss = parseFloat(slMatch[1]);
+        if (slMatch) signal.stopLoss = parseLocalizedNumber(slMatch[1]);
         
-        const tpRegex = /TP\d*:.*?([\d.]+)/g;
+        const tpRegex = /(?:tp|take\s*profit)\s*\d*\s*:.*?([\d][\d.,]*)/gi;
         let tpMatch;
         while ((tpMatch = tpRegex.exec(line)) !== null) {
-            signal.takeProfits.push(parseFloat(tpMatch[1]));
+            signal.takeProfits.push(parseLocalizedNumber(tpMatch[1]));
         }
 
         const leverageRegex = /(?:Đòn bẩy|Leverage):\s*(x\d+)/i;
@@ -378,13 +402,78 @@ function parseSignalMessage(text: string): any | null {
     return null;
 }
 
+function signalCategoryKey(symbol: string): 'gold' | 'forex' | 'crypto' {
+    const normalized = symbol.toUpperCase().replace(/\//g, '');
+    if (normalized.startsWith('XAU') || normalized.includes('GOLD')) return 'gold';
+    const cryptoAssets = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'ADA', 'DOGE', 'AVAX', 'DOT', 'LINK', 'LTC', 'TRX', 'TON'];
+    return cryptoAssets.some((asset) => normalized.startsWith(asset)) ? 'crypto' : 'forex';
+}
+
+// Unlocking is atomic and server-authoritative: the client cannot choose a free unlock.
+export const unlockSignal = onCall({ region: "asia-southeast1" }, async (request) => {
+    const userId = request.auth?.uid;
+    const signalId = request.data?.signalId;
+    if (!userId) throw new HttpsError('unauthenticated', 'Người dùng chưa đăng nhập.');
+    if (typeof signalId !== 'string' || signalId.trim().length === 0) {
+        throw new HttpsError('invalid-argument', 'signalId không hợp lệ.');
+    }
+
+    const userRef = firestore.collection('users').doc(userId);
+    const signalRef = firestore.collection('signals').doc(signalId);
+    return firestore.runTransaction(async (transaction) => {
+        const [userSnapshot, signalSnapshot] = await Promise.all([
+            transaction.get(userRef),
+            transaction.get(signalRef),
+        ]);
+        if (!userSnapshot.exists) throw new HttpsError('not-found', 'Không tìm thấy tài khoản.');
+        if (!signalSnapshot.exists) throw new HttpsError('not-found', 'Không tìm thấy tín hiệu.');
+
+        const user = userSnapshot.data() ?? {};
+        const signal = signalSnapshot.data() ?? {};
+        const unlocked = Array.isArray(user.unlockedSignals) ? user.unlockedSignals : [];
+        const currentBalance = Number(user.tokenBalance ?? 0);
+        if (unlocked.includes(signalId)) {
+            return { unlocked: true, charged: false, tokenBalance: currentBalance };
+        }
+
+        const now = Date.now();
+        const tier = String(user.subscriptionTier ?? 'free').toLowerCase();
+        const eliteExpiry = user.subscriptionExpiryDate as admin.firestore.Timestamp | undefined;
+        const eliteActive = tier === 'elite' && (!eliteExpiry || eliteExpiry.toMillis() > now);
+        const category = signalCategoryKey(String(signal.symbol ?? ''));
+        const activeSubscriptions = Array.isArray(user.activeSubscriptions)
+            ? user.activeSubscriptions.map((value: unknown) => String(value).toLowerCase())
+            : [];
+        const categoryExpiry = user.subscriptionsExpiry?.[category] as admin.firestore.Timestamp | undefined;
+        const categoryActive = activeSubscriptions.includes(category) &&
+            !!categoryExpiry && categoryExpiry.toMillis() > now;
+        const hasEntitlement = eliteActive || categoryActive;
+
+        if (hasEntitlement) {
+            transaction.update(userRef, {
+                unlockedSignals: admin.firestore.FieldValue.arrayUnion(signalId),
+            });
+            return { unlocked: true, charged: false, tokenBalance: currentBalance };
+        }
+        if (!Number.isFinite(currentBalance) || currentBalance < 1) {
+            throw new HttpsError('failed-precondition', 'Không đủ token.');
+        }
+
+        transaction.update(userRef, {
+            tokenBalance: currentBalance - 1,
+            unlockedSignals: admin.firestore.FieldValue.arrayUnion(signalId),
+        });
+        return { unlocked: true, charged: true, tokenBalance: currentBalance - 1 };
+    });
+});
+
 // =================================================================
 // === FUNCTION XÁC THỰC GIAO DỊCH IN-APP PURCHASE ===
 // =================================================================
 export const verifyPurchase = onCall(
     { region: "asia-southeast1", secrets: ["APPLE_SHARED_SECRET"] },
     async (request) => {
-        const { productId, transactionData, platform, orderId } = request.data;
+        const { productId, transactionData, platform } = request.data;
         const userId = request.auth?.uid;
 
         if (!userId) throw new HttpsError("unauthenticated", "Người dùng chưa đăng nhập.");
@@ -395,6 +484,7 @@ export const verifyPurchase = onCall(
             let expiryDate: Date | null = null;
             let transactionId: string | null = null;
             let verifiedProductId = productId;
+            let androidPurchaseToken: string | null = null;
 
             if (platform === 'ios') {
                 const receipt = transactionData.receiptData;
@@ -421,65 +511,44 @@ export const verifyPurchase = onCall(
                     if (!sharedSecret) throw new HttpsError("internal", "Lỗi cấu hình phía server.");
                     const appleResponse = await verifyAppleLegacyReceipt(receipt, sharedSecret);
                     if (appleResponse.status !== 0) throw new Error(`Xác thực biên lai thất bại với mã trạng thái: ${appleResponse.status}`);
-                    const latestReceipt = appleResponse.latest_receipt_info?.sort((a: any, b: any) => Number(b.purchase_date_ms) - Number(a.purchase_date_ms))[0];
-                    if (latestReceipt && latestReceipt.product_id === productId) {
+                    if (appleResponse.receipt?.bundle_id !== 'com.minvest.aisignals') {
+                        throw new Error('Bundle ID trong biên lai Apple không khớp.');
+                    }
+                    const receiptItems = [
+                        ...(appleResponse.latest_receipt_info ?? []),
+                        ...(appleResponse.receipt?.in_app ?? []),
+                    ].filter((item: any) => item.product_id === productId && !item.cancellation_date_ms)
+                     .sort((a: any, b: any) => Number(b.expires_date_ms ?? b.purchase_date_ms) - Number(a.expires_date_ms ?? a.purchase_date_ms));
+                    const latestReceipt = receiptItems[0];
+                    if (latestReceipt) {
                         isValid = true;
-                        const parsedExpiry = new Date(Number(latestReceipt.expires_date_ms));
-                        expiryDate = !isNaN(parsedExpiry.getTime()) ? parsedExpiry : calculateExpiryDate(productId);
+                        expiryDate = productId.includes('lifetime')
+                            ? calculateExpiryDate(productId)
+                            : new Date(Number(latestReceipt.expires_date_ms));
+                        if (!expiryDate || !Number.isFinite(expiryDate.getTime()) || expiryDate.getTime() <= Date.now()) {
+                            throw new Error('Gói Apple đã hết hạn.');
+                        }
                         transactionId = latestReceipt.transaction_id || latestReceipt.original_transaction_id;
                     }
                 }
             } else if (platform === 'android') {
-                const { purchaseToken } = transactionData;
-                
-                const calculateExpiryDate = (pid: string) => {
-                    const now = new Date();
-                    if (pid.includes('lifetime')) {
-                        now.setFullYear(now.getFullYear() + 100);
-                    } else if (pid.includes('12_months') || pid.includes('yearly')) {
-                        now.setFullYear(now.getFullYear() + 1);
-                    } else {
-                        now.setMonth(now.getMonth() + 1);
-                    }
-                    return now;
-                };
-
-                // ================================================================
-                // FLAG: Đặt thành true khi chủ tài khoản Google Play đã cấp quyền
-                // API access cho Service Account. Xem hướng dẫn trong implementation_plan.md
-                // ================================================================
-                const ENABLE_GOOGLE_PLAY_VERIFICATION = false;
-
-                if (ENABLE_GOOGLE_PLAY_VERIFICATION) {
-                    // --- XÁC THỰC ĐẦY ĐỦ QUA GOOGLE PLAY API ---
-                    const packageName = "com.signalgpt.ai";
-                    const auth = new GoogleAuth({ scopes: "https://www.googleapis.com/auth/androidpublisher" });
-                    const authClient = await auth.getClient();
-                    const url = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${packageName}/purchases/products/${productId}/tokens/${purchaseToken}`;
-                    const res = await authClient.request({ url });
-                    const purchase = res.data as any;
-
-                    if (purchase && purchase.purchaseState === 0) {
-                        isValid = true;
-                        const parsedExpiry = new Date(Number(purchase.expiryTimeMillis));
-                        expiryDate = !isNaN(parsedExpiry.getTime()) ? parsedExpiry : calculateExpiryDate(productId);
-                        transactionId = purchase.orderId || purchaseToken;
-                    }
-                } else {
-                    // --- CHẾ ĐỘ TẠM THỜI: Tin tưởng dữ liệu từ client ---
-                    // Google Play đã xác thực giao dịch ở phía client trước khi gửi lên.
-                    // purchaseToken tồn tại = Google Play đã xử lý thanh toán thành công.
-                    // Chống trùng lặp bằng processedTransactions collection.
-                    functions.logger.warn("[verifyPurchase] Android: Đang dùng chế độ tạm thời (không xác thực qua Google Play API).");
-                    
-                    if (purchaseToken && purchaseToken.length > 0) {
-                        isValid = true;
-                        expiryDate = calculateExpiryDate(productId);
-                        // Sử dụng orderId (ví dụ: GPA.xxx) nếu có để phân biệt các lần gia hạn, nếu không fallback về purchaseToken
-                        const uniqueId = orderId || purchaseToken.slice(-20);
-                        transactionId = `android_${productId}_${uniqueId}`;
-                    }
+                const purchaseToken = transactionData.purchaseToken;
+                if (typeof purchaseToken !== 'string' || purchaseToken.length === 0) {
+                    throw new HttpsError('invalid-argument', 'Google Play purchase token không hợp lệ.');
                 }
+                const googlePurchase = await verifyGooglePlayPurchase(productId, purchaseToken, userId);
+                isValid = true;
+                expiryDate = googlePurchase.expiryDate;
+                transactionId = `android_${createHash('sha256').update(purchaseToken).digest('hex')}`;
+                verifiedProductId = googlePurchase.productId;
+                androidPurchaseToken = purchaseToken;
+            }
+
+            const allowedProducts = platform === 'ios'
+                ? new Set(['elite.monthly', 'elite.yearly', 'elite.lifetime'])
+                : new Set(['elite_1_month', 'elite_12_months', 'elite_lifetime']);
+            if (!allowedProducts.has(verifiedProductId) || verifiedProductId !== productId) {
+                throw new HttpsError('permission-denied', 'Sản phẩm đã xác thực không khớp yêu cầu.');
             }
 
             if (isValid && expiryDate && transactionId) {
@@ -489,6 +558,9 @@ export const verifyPurchase = onCall(
                 await firestore.runTransaction(async (transaction) => {
                     const processedDoc = await transaction.get(processedTxRef);
                     if (processedDoc.exists) {
+                        if (processedDoc.data()?.userId !== userId) {
+                            throw new HttpsError('permission-denied', 'Giao dịch này đã thuộc về tài khoản khác.');
+                        }
                         functions.logger.warn(`Giao dịch ${transactionId} đã được xử lý trong một transaction khác. Bỏ qua.`);
                         return;
                     }
@@ -528,6 +600,7 @@ export const verifyPurchase = onCall(
                         updateData.elitePackageType = elitePackageType;
                         updateData.eliteProductId = verifiedProductId;
                         updateData.purchasePlatform = platform;
+                        updateData.subscriptionUpdateSource = 'iap';
 
                         // Mua bất kỳ gói nào cũng mở khóa cả 3 gói (gold, forex, crypto) + elite
                         updateData.activeSubscriptions = admin.firestore.FieldValue.arrayUnion('gold', 'forex', 'crypto', 'elite');
@@ -581,6 +654,11 @@ export const verifyPurchase = onCall(
                         productId: verifiedProductId,
                         paymentMethod: `in_app_purchase_${platform}`,
                         transactionDate: admin.firestore.FieldValue.serverTimestamp(),
+                        status: 'success',
+                        currency: 'USD',
+                        platform,
+                        subscriptionStartDate: admin.firestore.FieldValue.serverTimestamp(),
+                        subscriptionExpiryDate: admin.firestore.Timestamp.fromDate(expiryDate!),
                     });
                     transaction.set(processedTxRef, {
                         userId,
@@ -605,6 +683,9 @@ export const verifyPurchase = onCall(
                     transaction.set(notifRef, notifData);
                     // ▲▲▲ KẾT THÚC THÊM ▼▼▼
                 });
+                if (platform === 'android' && androidPurchaseToken) {
+                    await acknowledgeGooglePlayPurchase(verifiedProductId, androidPurchaseToken);
+                }
                 functions.logger.log(`Giao dịch ${transactionId} đã được xử lý thành công.`);
                 return { success: true, message: "Tài khoản đã được nâng cấp thành công." };
             } else {
@@ -618,50 +699,109 @@ export const verifyPurchase = onCall(
     }
 );
 
-async function verifyAppleJwsReceipt(jwsRepresentation: string) {
-    functions.logger.log("🍎 JWS: Bắt đầu xác thực biên lai kiểu mới...");
+async function verifyGooglePlayPurchase(productId: string, purchaseToken: string, userId: string) {
+    const packageName = 'com.signalgpt.ai';
+    const auth = new GoogleAuth({ scopes: 'https://www.googleapis.com/auth/androidpublisher' });
+    const authClient = await auth.getClient();
+    const baseUrl = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${packageName}/purchases`;
+    const expectedAccountId = createHash('sha256').update(userId).digest('hex');
+
+    if (productId === 'elite_lifetime') {
+        const response = await authClient.request({ url: `${baseUrl}/productsv2/tokens/${encodeURIComponent(purchaseToken)}` });
+        const purchase = response.data as any;
+        const purchasedProductIds = (purchase.productLineItem ?? []).map((item: any) => item.productId);
+        if (purchase.purchaseStateContext?.purchaseState !== 'PURCHASED' || !purchasedProductIds.includes(productId)) {
+            throw new HttpsError('permission-denied', 'Google Play chưa xác nhận giao dịch hoàn tất.');
+        }
+        if (purchase.obfuscatedExternalAccountId && purchase.obfuscatedExternalAccountId !== expectedAccountId) {
+            throw new HttpsError('permission-denied', 'Giao dịch Google Play không thuộc tài khoản này.');
+        }
+        const expiryDate = new Date();
+        expiryDate.setUTCFullYear(expiryDate.getUTCFullYear() + 100);
+        return { productId, expiryDate };
+    }
+
+    const response = await authClient.request({ url: `${baseUrl}/subscriptionsv2/tokens/${encodeURIComponent(purchaseToken)}` });
+    const purchase = response.data as any;
+    const validStates = new Set([
+        'SUBSCRIPTION_STATE_ACTIVE',
+        'SUBSCRIPTION_STATE_IN_GRACE_PERIOD',
+        'SUBSCRIPTION_STATE_CANCELED',
+    ]);
+    const matchingItems = (purchase.lineItems ?? []).filter((item: any) => item.productId === productId);
+    const expiryMillis = Math.max(...matchingItems.map((item: any) => Date.parse(item.expiryTime)));
+    if (!validStates.has(purchase.subscriptionState) || matchingItems.length === 0 || !Number.isFinite(expiryMillis) || expiryMillis <= Date.now()) {
+        throw new HttpsError('permission-denied', 'Gói Google Play không còn hiệu lực.');
+    }
+    const accountId = purchase.externalAccountIdentifiers?.obfuscatedExternalAccountId;
+    if (accountId && accountId !== expectedAccountId) {
+        throw new HttpsError('permission-denied', 'Giao dịch Google Play không thuộc tài khoản này.');
+    }
+    return { productId, expiryDate: new Date(expiryMillis) };
+}
+
+async function acknowledgeGooglePlayPurchase(productId: string, purchaseToken: string) {
     try {
-        // 1. Giải mã header để lấy chuỗi chứng thực (x5c)
-        const header = JSON.parse(Buffer.from(jwsRepresentation.split('.')[0], 'base64').toString('utf8'));
-        const x5c = header.x5c;
-        if (!x5c || x5c.length === 0) {
-            throw new Error("Không tìm thấy chuỗi chứng thực (x5c) trong header của JWS.");
+        const packageName = 'com.signalgpt.ai';
+        const auth = new GoogleAuth({ scopes: 'https://www.googleapis.com/auth/androidpublisher' });
+        const authClient = await auth.getClient();
+        const resource = productId === 'elite_lifetime' ? 'products' : 'subscriptions';
+        const url = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${packageName}/purchases/${resource}/${encodeURIComponent(productId)}/tokens/${encodeURIComponent(purchaseToken)}:acknowledge`;
+        await authClient.request({ url, method: 'POST', data: {} });
+    } catch (error) {
+        // The client also acknowledges after a successful server response. Do not revoke an already granted entitlement solely because acknowledgement was already done.
+        functions.logger.warn('[verifyPurchase] Google Play acknowledgement failed or was already completed.', error);
+    }
+}
+
+async function verifyAppleJwsReceipt(jwsRepresentation: string) {
+    try {
+        const parts = jwsRepresentation.split('.');
+        if (parts.length !== 3) throw new Error('JWS không hợp lệ.');
+        const untrustedPayload = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'));
+        const environment = untrustedPayload.environment === Environment.SANDBOX
+            ? Environment.SANDBOX
+            : Environment.PRODUCTION;
+        const rootDirectory = path.join(__dirname, '..', 'certs', 'apple');
+        const roots = [
+            'AppleIncRootCertificate.cer',
+            'AppleRootCA-G2.cer',
+            'AppleRootCA-G3.cer',
+        ].map((fileName) => fs.readFileSync(path.join(rootDirectory, fileName)));
+        const appAppleIdValue = process.env.APPLE_APP_ID;
+        const appAppleId = appAppleIdValue ? Number(appAppleIdValue) : undefined;
+        if (environment === Environment.PRODUCTION && (!appAppleId || !Number.isInteger(appAppleId))) {
+            throw new Error('APPLE_APP_ID chưa được cấu hình cho môi trường production.');
         }
-
-        // --- THAY ĐỔI QUAN TRỌNG: THÊM TẤT CẢ CHỨNG THỰC VÀO KEYSTORE ---
-        const keystore = jose.JWK.createKeyStore();
-        for (const certStr of x5c) {
-            const cert = `-----BEGIN CERTIFICATE-----\n${certStr}\n-----END CERTIFICATE-----`;
-            const key = await jose.JWK.asKey(cert, 'pem');
-            await keystore.add(key);
+        const verifier = new SignedDataVerifier(
+            roots,
+            true,
+            environment,
+            'com.minvest.aisignals',
+            appAppleId,
+        );
+        const payload = await verifier.verifyAndDecodeTransaction(jwsRepresentation);
+        if (!payload.productId || !payload.transactionId) {
+            throw new Error('Biên lai Apple thiếu thông tin giao dịch bắt buộc.');
         }
-        // --- KẾT THÚC THAY ĐỔI ---
-
-        // 3. Xác thực chữ ký của JWS bằng keystore đã chứa đầy đủ chứng thực
-        const verificationResult = await jose.JWS.createVerify(keystore).verify(jwsRepresentation);
-
-        // 4. Lấy payload sau khi đã xác thực thành công
-        const verifiedPayload = JSON.parse(Buffer.from(verificationResult.payload).toString());
-        functions.logger.log("   JWS: Payload đã xác thực:", verifiedPayload);
-
-        // 5. Kiểm tra các thông tin quan trọng trong payload
-        const bundleId = "com.minvest.aisignals"; // !!! QUAN TRỌNG: Bundle ID chính xác trên App Store Connect
-        if (verifiedPayload.bundleId !== bundleId) {
-            throw new Error(`Bundle ID không khớp. Mong muốn: ${bundleId}, Thực tế: ${verifiedPayload.bundleId}`);
+        if (payload.revocationDate) throw new Error('Giao dịch Apple đã bị thu hồi.');
+        const expiryDate = payload.expiresDate ? new Date(payload.expiresDate) : new Date();
+        if (!payload.expiresDate && payload.productId.includes('lifetime')) {
+            expiryDate.setUTCFullYear(expiryDate.getUTCFullYear() + 100);
         }
-
-        functions.logger.log("   JWS: Xác thực chữ ký và Bundle ID thành công!");
-
-        // Trả về thông tin cần thiết để xử lý
+        if (!Number.isFinite(expiryDate.getTime())) throw new Error('Ngày hết hạn Apple không hợp lệ.');
+        if (!payload.productId.includes('lifetime') && expiryDate.getTime() <= Date.now()) {
+            throw new Error('Gói Apple đã hết hạn.');
+        }
         return {
             isValid: true,
-            productId: verifiedPayload.productId,
-            transactionId: verifiedPayload.transactionId,
-            expiryDate: new Date(verifiedPayload.expiresDate),
+            productId: payload.productId,
+            transactionId: payload.transactionId,
+            expiryDate,
         };
     } catch (error) {
-        functions.logger.error("🔥 JWS: Lỗi nghiêm trọng khi xác thực JWS:", error);
-        throw new Error("Xác thực biên lai JWS thất bại.");
+        functions.logger.error('Apple JWS verification failed.', error);
+        throw new HttpsError('permission-denied', 'Xác thực biên lai App Store thất bại.');
     }
 }
 
@@ -775,6 +915,16 @@ async function triggerNotifications(payload: any) {
 
   const eliteSnapshot = await firestore.collection("users").where("subscriptionTier", "==", "elite").get();
   eliteSnapshot.forEach((doc) => allEligibleUsersDocs.push(doc));
+  const category = payload.signalCategory as string | undefined;
+  if (category) {
+      const categorySnapshot = await firestore.collection('users')
+          .where('activeSubscriptions', 'array-contains', category)
+          .get();
+      const existingIds = new Set(allEligibleUsersDocs.map((doc) => doc.id));
+      categorySnapshot.forEach((doc) => {
+          if (!existingIds.has(doc.id)) allEligibleUsersDocs.push(doc);
+      });
+  }
 
   if (allEligibleUsersDocs.length === 0) {
       functions.logger.warn("[triggerNotifications] Không có người dùng nào đủ điều kiện nhận thông báo.");
@@ -787,6 +937,9 @@ async function triggerNotifications(payload: any) {
       .map((doc): UserNotificationData | null => {
           const data = doc.data();
           if (!data) return null;
+          const category = payload.signalCategory as string | undefined;
+          const settings = data.notificationSettings ?? {};
+          if (settings.all === false || (category && settings[category] === false)) return null;
           
           let langCode = (data.languageCode || 'en').toLowerCase();
           const supportedLangs = ['vi', 'en', 'zh', 'fr', 'ja', 'ko'];
@@ -843,6 +996,7 @@ export const onNewSignalCreated = onDocumentCreated({ document: "signals/{signal
         const finalPayload = {
           type: "new_signal",
           signalId: event.params.signalId,
+          signalCategory: signalCategoryKey(signalData.symbol),
           ...localizedPayload,
         };
 
@@ -890,6 +1044,7 @@ export const onSignalUpdated = onDocumentUpdated({ document: "signals/{signalId}
             const finalPayload = {
                 type: notificationType,
                 signalId: event.params.signalId,
+                signalCategory: signalCategoryKey(symbol),
                 ...localizedPayload
             };
             await triggerNotifications(finalPayload);
@@ -1231,6 +1386,15 @@ export const onUserSubscriptionUpdated = onDocumentUpdated(
         const userId = event.params.userId;
 
         if (!beforeData || !afterData) return;
+
+        // IAP already records commission inside the verified purchase transaction.
+        // Remove the one-shot marker and do not create three extra commissions for its package expiry fields.
+        if (afterData.subscriptionUpdateSource === 'iap' && beforeData.subscriptionUpdateSource !== 'iap') {
+            await event.data?.after.ref.update({
+                subscriptionUpdateSource: admin.firestore.FieldValue.delete(),
+            });
+            return;
+        }
 
         const packages = ["gold", "forex", "crypto"];
         
@@ -1594,7 +1758,7 @@ export const checkExpiredSubscriptions = onSchedule (
     async (event) => {
         functions.logger.log("⏰ Bắt đầu kiểm tra các gói đăng ký hết hạn...");
         const now = admin.firestore.Timestamp.now();
-        const batch = firestore.batch();
+        const bulkWriter = firestore.bulkWriter();
         let operationCount = 0;
 
         // 1. Kiểm tra gói ELITE hết hạn
@@ -1605,16 +1769,17 @@ export const checkExpiredSubscriptions = onSchedule (
 
         eliteQuery.forEach((doc) => {
             functions.logger.log(`User ${doc.id} hết hạn gói ELITE. Hạ cấp về FREE.`);
-            batch.update(doc.ref, {
+            bulkWriter.update(doc.ref, {
                 subscriptionTier: "free",
                 subscriptionExpiryDate: admin.firestore.FieldValue.delete(),
-                // Reset activeSubscriptions
-                activeSubscriptions: admin.firestore.FieldValue.arrayRemove('elite', 'gold', 'forex', 'crypto'),
+                activeSubscriptions: admin.firestore.FieldValue.arrayRemove('elite'),
+                'subscriptionsExpiry.elite': admin.firestore.FieldValue.delete(),
+                'subscriptionsStart.elite': admin.firestore.FieldValue.delete(),
             });
 
             // ▼▼▼ THÊM THÔNG BÁO HẾT HẠN (ELITE) ▼▼▼
             const notifRef = doc.ref.collection("notifications").doc();
-            batch.set(notifRef, {
+            bulkWriter.set(notifRef, {
                 type: "subscription_expired",
                 title_loc: { en: "Elite Plan Expired", vi: "Elite Plan Expired" },
                 body_loc: {
@@ -1634,6 +1799,7 @@ export const checkExpiredSubscriptions = onSchedule (
         const packages = ['gold', 'forex', 'crypto'];
         
         for (const pkg of packages) {
+            const packageLabel = pkg === 'forex' ? 'Currency Pair' : pkg[0].toUpperCase() + pkg.slice(1);
             // Tìm những user có gói này đang active NHƯNG ngày hết hạn đã qua
             const expiredQuery = await firestore.collection("users")
                 .where("activeSubscriptions", "array-contains", pkg)
@@ -1646,7 +1812,7 @@ export const checkExpiredSubscriptions = onSchedule (
 
             expiredQuery.forEach((doc) => {
                 functions.logger.log(`User ${doc.id} hết hạn gói ${pkg.toUpperCase()}. Gỡ bỏ khỏi activeSubscriptions.`);
-                batch.update(doc.ref, {
+                bulkWriter.update(doc.ref, {
                     activeSubscriptions: admin.firestore.FieldValue.arrayRemove(pkg),
                     [`subscriptionsExpiry.${pkg}`]: admin.firestore.FieldValue.delete(), // Xóa ngày hết hạn để sạch data
                     [`subscriptionsStart.${pkg}`]: admin.firestore.FieldValue.delete(), // Xóa ngày bắt đầu
@@ -1654,12 +1820,12 @@ export const checkExpiredSubscriptions = onSchedule (
 
                 // ▼▼▼ THÊM THÔNG BÁO HẾT HẠN (GÓI LẺ) ▼▼▼
                 const notifRef = doc.ref.collection("notifications").doc();
-                batch.set(notifRef, {
+                bulkWriter.set(notifRef, {
                     type: "subscription_expired",
-                    title_loc: { en: `${pkg.toUpperCase()} Plan Expired`, vi: `${pkg.toUpperCase()} Plan Expired` },
+                    title_loc: { en: `${packageLabel} Plan Expired`, vi: `Gói ${packageLabel} đã hết hạn` },
                     body_loc: {
-                        en: `Your ${pkg.toUpperCase()} subscription has expired.`,
-                        vi: `Your ${pkg.toUpperCase()} subscription has expired.`,
+                        en: `Your ${packageLabel} subscription has expired.`,
+                        vi: `Gói ${packageLabel} của bạn đã hết hạn.`,
                     },
                     timestamp: admin.firestore.FieldValue.serverTimestamp(),
                     isRead: false,
@@ -1671,9 +1837,10 @@ export const checkExpiredSubscriptions = onSchedule (
         }
 
         if (operationCount > 0) {
-            await batch.commit();
+            await bulkWriter.close();
             functions.logger.log(`✅ Đã xử lý ${operationCount} trường hợp hết hạn.`);
         } else {
+            await bulkWriter.close();
             functions.logger.log("Không tìm thấy gói nào hết hạn trong đợt quét này.");
         }
     }
@@ -1707,6 +1874,7 @@ export const generateAndSendResetCode = onCall({ region: "asia-southeast1" }, as
         await firestore.collection("password_reset_codes").doc(email).set({
             code,
             expiresAt,
+            failedAttempts: 0,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
 
@@ -1721,7 +1889,7 @@ export const generateAndSendResetCode = onCall({ region: "asia-southeast1" }, as
             },
         });
 
-        functions.logger.log(`Đã tạo mã reset cho ${email}: ${code}`);
+        functions.logger.log(`Đã tạo mã reset cho ${email}.`);
         return { success: true };
     } catch (error) {
         functions.logger.error("Lỗi generateAndSendResetCode:", error);
@@ -1745,7 +1913,11 @@ export const resetPasswordWithCode = onCall({ region: "asia-southeast1" }, async
         const data = resetDoc.data()!;
         const now = admin.firestore.Timestamp.now();
 
+        if ((data.failedAttempts ?? 0) >= 5) {
+            throw new HttpsError("resource-exhausted", "Đã nhập sai quá nhiều lần. Vui lòng yêu cầu mã mới.");
+        }
         if (data.code !== code) {
+            await resetDoc.ref.update({ failedAttempts: admin.firestore.FieldValue.increment(1) });
             throw new HttpsError("permission-denied", "Mã xác nhận không đúng.");
         }
 
@@ -1770,6 +1942,29 @@ export const resetPasswordWithCode = onCall({ region: "asia-southeast1" }, async
         if (error instanceof HttpsError) throw error;
         throw new HttpsError("internal", error.message || "Lỗi khi đổi mật khẩu.");
     }
+});
+
+export const verifyResetCode = onCall({ region: "asia-southeast1" }, async (request) => {
+    const { email, code } = request.data;
+    if (typeof email !== 'string' || typeof code !== 'string' || code.length !== 6) {
+        throw new HttpsError('invalid-argument', 'Mã xác nhận không hợp lệ.');
+    }
+    const ref = firestore.collection('password_reset_codes').doc(email);
+    return firestore.runTransaction(async (transaction) => {
+        const snapshot = await transaction.get(ref);
+        const data = snapshot.data();
+        if (!snapshot.exists || !data || data.expiresAt.toMillis() <= Date.now()) {
+            throw new HttpsError('deadline-exceeded', 'Mã xác nhận không tồn tại hoặc đã hết hạn.');
+        }
+        if ((data.failedAttempts ?? 0) >= 5) {
+            throw new HttpsError('resource-exhausted', 'Đã nhập sai quá nhiều lần. Vui lòng yêu cầu mã mới.');
+        }
+        if (data.code !== code) {
+            transaction.update(ref, { failedAttempts: admin.firestore.FieldValue.increment(1) });
+            throw new HttpsError('permission-denied', 'Mã xác nhận không đúng.');
+        }
+        return { success: true };
+    });
 });
 
 export const generateAndSendSignupCode = onCall({ region: "asia-southeast1" }, async (request) => {
@@ -1797,6 +1992,7 @@ export const generateAndSendSignupCode = onCall({ region: "asia-southeast1" }, a
         await firestore.collection("signup_verification_codes").doc(email).set({
             code,
             expiresAt,
+            failedAttempts: 0,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
 
@@ -1808,7 +2004,7 @@ export const generateAndSendSignupCode = onCall({ region: "asia-southeast1" }, a
             },
         });
 
-        functions.logger.log(`Đã tạo mã xác minh đăng ký cho ${email}: ${code}`);
+        functions.logger.log(`Đã tạo mã xác minh đăng ký cho ${email}.`);
         return { success: true };
     } catch (error: any) {
         functions.logger.error("Lỗi generateAndSendSignupCode:", error);
@@ -1817,19 +2013,43 @@ export const generateAndSendSignupCode = onCall({ region: "asia-southeast1" }, a
     }
 });
 
+export const verifySignupCode = onCall({ region: "asia-southeast1" }, async (request) => {
+    const { email, code } = request.data;
+    if (typeof email !== 'string' || typeof code !== 'string' || code.length !== 6) {
+        throw new HttpsError('invalid-argument', 'Mã xác minh không hợp lệ.');
+    }
+    const ref = firestore.collection('signup_verification_codes').doc(email);
+    return firestore.runTransaction(async (transaction) => {
+        const snapshot = await transaction.get(ref);
+        const data = snapshot.data();
+        if (!snapshot.exists || !data || data.expiresAt.toMillis() <= Date.now()) {
+            throw new HttpsError('deadline-exceeded', 'Mã xác minh không tồn tại hoặc đã hết hạn.');
+        }
+        if ((data.failedAttempts ?? 0) >= 5) {
+            throw new HttpsError('resource-exhausted', 'Đã nhập sai quá nhiều lần. Vui lòng yêu cầu mã mới.');
+        }
+        if (data.code !== code) {
+            transaction.update(ref, { failedAttempts: admin.firestore.FieldValue.increment(1) });
+            return { success: false };
+        }
+        return { success: true };
+    });
+});
+
 // =================================================================
 // === STATS WEBHOOK CHO TELEGRAM BOT (BÁO CÁO LỢI NHUẬN) ===
 // =================================================================
 const STATS_CHAT_ID = "-1003103146104";
 
 export const telegramStatsWebhook = functions.https.onRequest(
-    { region: "asia-southeast1", timeoutSeconds: 30, memory: "256MiB" },
+    { region: "asia-southeast1", timeoutSeconds: 30, memory: "256MiB", secrets: ["TELEGRAM_WEBHOOK_SECRET"] },
     async (req: functions.https.Request, res: Response) => {
-        // FORCE LOG: Log toàn bộ body để debug
-        functions.logger.info("🔥 WEBHOOK TRIGGERED! Body:", JSON.stringify(req.body));
-
         if (req.method !== "POST") {
             res.status(403).send("Forbidden!");
+            return;
+        }
+        if (!hasValidTelegramSecret(req)) {
+            res.status(401).send("Unauthorized");
             return;
         }
         const update = req.body;

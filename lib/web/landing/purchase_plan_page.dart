@@ -12,8 +12,9 @@ enum PlanDuration { monthly, annually, lifetime }
 
 class PurchasePlanPage extends StatefulWidget {
   final String? initialPlan;
+  final String? initialDuration;
 
-  const PurchasePlanPage({super.key, this.initialPlan});
+  const PurchasePlanPage({super.key, this.initialPlan, this.initialDuration});
 
   @override
   State<PurchasePlanPage> createState() => _PurchasePlanPageState();
@@ -26,6 +27,11 @@ class _PurchasePlanPageState extends State<PurchasePlanPage> {
   @override
   void initState() {
     super.initState();
+    _selectedDuration = switch (widget.initialDuration) {
+      'monthly' => PlanDuration.monthly,
+      'lifetime' => PlanDuration.lifetime,
+      _ => PlanDuration.annually,
+    };
     if (widget.initialPlan != null) {
       _selectedPlans.add(widget.initialPlan!.toLowerCase());
     } else {
@@ -55,7 +61,7 @@ class _PurchasePlanPageState extends State<PurchasePlanPage> {
   String _getPlanTitle(String planId, AppLocalizations l10n) {
     switch (planId) {
       case 'forex':
-        return 'Forex Signals';
+        return 'Currency Pair Signals';
       case 'gold':
         return 'Gold Signals';
       case 'crypto':
@@ -217,7 +223,7 @@ class _PurchasePlanPageState extends State<PurchasePlanPage> {
           ),
         ),
         const SizedBox(height: 24),
-        _buildPlanItem('forex', 'Forex Signals', l10n),
+        _buildPlanItem('forex', 'Currency Pair Signals', l10n),
         const SizedBox(height: 12),
         _buildPlanItem('gold', 'Gold Signals', l10n),
         const SizedBox(height: 12),
@@ -425,6 +431,7 @@ class _PurchasePlanPageState extends State<PurchasePlanPage> {
                   arguments: {
                     'totalAmount': total,
                     'selectedPlans': _selectedPlans.toList(),
+                    'duration': _selectedDuration.name,
                   },
                 );
               },

@@ -1201,7 +1201,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get cryptoSignals => '仮想通貨シグナル';
 
   @override
-  String get forexSignals => '外国為替シグナル';
+  String get forexSignals => '通貨ペアシグナル';
 
   @override
   String get goldSignals => 'ゴールドシグナル';
