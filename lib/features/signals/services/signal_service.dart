@@ -45,14 +45,15 @@ class SignalService {
     });
   }
 
-  /// Lấy tất cả tín hiệu (không lọc status) để Web tự chia tách Live mới nhất và Lịch sử.
+  /// Lấy tín hiệu gần nhất (không lọc status) để Web/mobile chia Live & History.
+  /// Luôn có trần `limit` — không bao giờ đọc cả collection (~20k+ docs).
   Stream<List<Signal>> getAllSignals({int? limit = 200}) {
+    final effectiveLimit = (limit == null || limit <= 0) ? 500 : limit;
     Query query = _firestore
         .collection('signals')
-        .orderBy('createdAt', descending: true);
-    if (limit != null) query = query.limit(limit);
-    return query.snapshots()
-        .map((snapshot) {
+        .orderBy('createdAt', descending: true)
+        .limit(effectiveLimit);
+    return query.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) => Signal.fromFirestore(doc)).toList();
     });
   }

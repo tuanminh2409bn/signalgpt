@@ -55,33 +55,44 @@ class Signal {
 
   factory Signal.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    double asDouble(dynamic value) {
+      if (value is num) return value.toDouble();
+      if (value is String) return double.tryParse(value) ?? 0.0;
+      return 0.0;
+    }
+
     return Signal(
       id: doc.id,
       symbol: data['symbol'] ?? '',
       type: data['type'] ?? 'buy',
       status: data['status'] ?? 'running',
-      entryPrice: (data['entryPrice'] ?? 0.0).toDouble(),
-      stopLoss: (data['stopLoss'] ?? 0.0).toDouble(),
+      entryPrice: asDouble(data['entryPrice']),
+      stopLoss: asDouble(data['stopLoss']),
       takeProfits: (data['takeProfits'] as List<dynamic>? ?? const [])
           .whereType<num>()
           .map((value) => value.toDouble())
           .toList(growable: false),
-      createdAt: data['createdAt'] ?? Timestamp.now(),
-      matchedAt: data['matchedAt'],
-      tp1HitAt: data['tp1HitAt'],
-      tp2HitAt: data['tp2HitAt'],
-      tp3HitAt: data['tp3HitAt'],
-      slHitAt: data['slHitAt'],
-      closedAt: data['closedAt'],
+      createdAt: data['createdAt'] is Timestamp
+          ? data['createdAt'] as Timestamp
+          : Timestamp.now(),
+      matchedAt: data['matchedAt'] is Timestamp ? data['matchedAt'] as Timestamp : null,
+      tp1HitAt: data['tp1HitAt'] is Timestamp ? data['tp1HitAt'] as Timestamp : null,
+      tp2HitAt: data['tp2HitAt'] is Timestamp ? data['tp2HitAt'] as Timestamp : null,
+      tp3HitAt: data['tp3HitAt'] is Timestamp ? data['tp3HitAt'] as Timestamp : null,
+      slHitAt: data['slHitAt'] is Timestamp ? data['slHitAt'] as Timestamp : null,
+      closedAt: data['closedAt'] is Timestamp ? data['closedAt'] as Timestamp : null,
       result: data['result'],
-      pips: data['pips'],
+      pips: data['pips'] is num ? data['pips'] as num : null,
       reason: data['reason'],
       matchStatus: data['matchStatus'] ?? 'NOT MATCHED',
-      hitTps: List<int>.from(data['hitTps'] ?? []),
-      isMatched: data['isMatched'] ?? false,
-      leverage: data['leverage'],
-      closedPrice: data['closedPrice'] != null ? (data['closedPrice'] as num).toDouble() : null,
-      closedPips: data['closedPips'] != null ? (data['closedPips'] as num).toDouble() : null,
+      hitTps: (data['hitTps'] as List<dynamic>? ?? const [])
+          .map((value) => value is int ? value : int.tryParse('$value'))
+          .whereType<int>()
+          .toList(growable: false),
+      isMatched: data['isMatched'] == true,
+      leverage: data['leverage']?.toString(),
+      closedPrice: data['closedPrice'] != null ? asDouble(data['closedPrice']) : null,
+      closedPips: data['closedPips'] != null ? asDouble(data['closedPips']) : null,
     );
   }
 

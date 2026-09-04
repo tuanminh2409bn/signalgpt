@@ -11,6 +11,8 @@ import 'package:minvest_forex_app/services/device_info_service.dart';
 
 enum UserDataStatus { initial, loading, fromCache, fromServer, error }
 
+enum UnlockSignalResult { success, notEnoughTokens, notSignedIn, failed }
+
 class UserProvider with ChangeNotifier {
   final AuthService _authService;
 
@@ -199,23 +201,27 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> unlockSignal(String signalId) async {
-    if (_uid == null) return false;
+  /// Kết quả unlock để UI phân biệt hết token vs lỗi server/IAM.
+  Future<UnlockSignalResult> unlockSignal(String signalId) async {
+    if (_uid == null) return UnlockSignalResult.notSignedIn;
 
     try {
       // The server determines whether this unlock is free. Never trust a client flag.
       final callable = FirebaseFunctions.instanceFor(region: 'asia-southeast1')
           .httpsCallable('unlockSignal');
-      final response = await callable.call<Map<String, dynamic>>({'signalId': signalId});
-      return response.data['unlocked'] == true;
+      final response = await callable.call({'signalId': signalId});
+      final data = response.data;
+      final unlocked = data is Map && data['unlocked'] == true;
+      return unlocked ? UnlockSignalResult.success : UnlockSignalResult.failed;
     } on FirebaseFunctionsException catch (e) {
-      if (e.code != 'failed-precondition') {
-        print("Error unlocking signal: ${e.code} ${e.message}");
+      print("Error unlocking signal: ${e.code} ${e.message}");
+      if (e.code == 'failed-precondition') {
+        return UnlockSignalResult.notEnoughTokens;
       }
-      return false;
+      return UnlockSignalResult.failed;
     } catch (e) {
       print("Error unlocking signal: $e");
-      return false;
+      return UnlockSignalResult.failed;
     }
   }
 

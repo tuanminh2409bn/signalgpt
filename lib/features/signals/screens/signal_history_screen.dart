@@ -52,12 +52,22 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
   }
 
   void _initStream() {
-    _historyStream = _signalService.getAllSignals(limit: null);
+    // Chỉ lấy tín hiệu đã đóng gần nhất — tránh đọc cả collection (~20k docs)
+    // khiến StreamBuilder treo ở ConnectionState.waiting trên mobile.
+    _historyStream = _signalService.getSignals(
+      isLive: false,
+      userTier: 'free',
+      limit: 500,
+    );
   }
 
   void _updateStream() {
     setState(() {
-      _historyStream = _signalService.getAllSignals(limit: null);
+      _historyStream = _signalService.getSignals(
+        isLive: false,
+        userTier: 'free',
+        limit: 500,
+      );
     });
   }
 
@@ -495,13 +505,19 @@ class _SignalHistoryScreenState extends State<SignalHistoryScreen> with Automati
     
     return GestureDetector(
       onTap: () async {
-        if (!canViewLevels && !await userProvider.unlockSignal(signal.id)) {
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(l10n.notEnoughTokens)),
-            );
+        if (!canViewLevels) {
+          final result = await userProvider.unlockSignal(signal.id);
+          if (result != UnlockSignalResult.success) {
+            if (mounted) {
+              final message = result == UnlockSignalResult.notEnoughTokens
+                  ? l10n.notEnoughTokens
+                  : l10n.failedUnlockSignal;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message)),
+              );
+            }
+            return;
           }
-          return;
         }
         if (!mounted) return;
         Navigator.push(context, MaterialPageRoute(builder: (context) => SignalTradingHistoryScreen(signal: signal)));

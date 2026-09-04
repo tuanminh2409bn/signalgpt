@@ -2172,7 +2172,8 @@ class _SignalWebCard extends StatelessWidget {
     final userProvider = Provider.of<UserProvider?>(context, listen: false);
     if (userProvider == null) return false;
     try {
-      return await userProvider.unlockSignal(signal.id);
+      return await userProvider.unlockSignal(signal.id) ==
+          UnlockSignalResult.success;
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

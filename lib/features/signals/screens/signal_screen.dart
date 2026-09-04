@@ -620,10 +620,11 @@ class _SignalScreenState extends State<SignalScreen> {
 
                   if (_assetFilter == AssetFilter.all ||
                       _assetFilter == AssetFilter.forex) {
-                    if (assetWidgets.isNotEmpty) {
-                      assetWidgets.add(const SizedBox(height: 12));
-                    }
-                    assetWidgets.add(_buildCurrencyPairAssets(userProvider, l10n));
+                    assetWidgets.add(_buildCurrencyPairAssets(
+                      userProvider,
+                      l10n,
+                      topSpacing: assetWidgets.isNotEmpty ? 12 : 0,
+                    ));
                   }
 
                   return ListView(
@@ -837,15 +838,17 @@ class _SignalScreenState extends State<SignalScreen> {
     );
   }
 
-  Widget _buildCurrencyPairAssets(UserProvider userProvider, AppLocalizations l10n) {
+  Widget _buildCurrencyPairAssets(
+    UserProvider userProvider,
+    AppLocalizations l10n, {
+    double topSpacing = 0,
+  }) {
     return StreamBuilder<List<Signal>>(
       stream: _signalService.getAllSignals(limit: 200),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: Padding(
-            padding: EdgeInsets.all(24),
-            child: CircularProgressIndicator(strokeWidth: 2),
-          ));
+          // Avoid flashing empty-state text; keep layout compact while loading.
+          return const SizedBox.shrink();
         }
         final seen = <String>{};
         final signals = (snapshot.data ?? const <Signal>[])
@@ -853,28 +856,26 @@ class _SignalScreenState extends State<SignalScreen> {
             .where((signal) => seen.add(signal.symbol))
             .toList(growable: false);
         if (signals.isEmpty) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 24),
-              child: Text(l10n.noForexAssets, style: const TextStyle(color: Colors.white54)),
-            ),
-          );
+          return const SizedBox.shrink();
         }
         return Column(
-          children: signals.indexed.expand((entry) sync* {
-            if (entry.$1 > 0) yield const SizedBox(height: 12);
-            final signal = entry.$2;
-            yield _buildAssetItem(
-              symbol: signal.symbol,
-              price: signal.entryPrice,
-              priceText: 'Entry ${signal.formatPrice(signal.entryPrice)}',
-              iconPath: 'assets/icons/currency_pair.png',
-              color: const Color(0xFF276EFB),
-              priceColor: const Color(0xFF197DFF),
-              userProvider: userProvider,
-              l10n: l10n,
-            );
-          }).toList(growable: false),
+          children: [
+            if (topSpacing > 0) SizedBox(height: topSpacing),
+            ...signals.indexed.expand((entry) sync* {
+              if (entry.$1 > 0) yield const SizedBox(height: 12);
+              final signal = entry.$2;
+              yield _buildAssetItem(
+                symbol: signal.symbol,
+                price: signal.entryPrice,
+                priceText: 'Entry ${signal.formatPrice(signal.entryPrice)}',
+                iconPath: 'assets/icons/currency_pair.png',
+                color: const Color(0xFF276EFB),
+                priceColor: const Color(0xFF197DFF),
+                userProvider: userProvider,
+                l10n: l10n,
+              );
+            }),
+          ],
         );
       },
     );
@@ -1219,13 +1220,13 @@ class _SignalDetailExpandedViewState extends State<SignalDetailExpandedView> {
                           );
                           return;
                         }
-                        final success = await userProvider.unlockSignal(signal.id);
-                        if (!success && context.mounted) {
+                        final result = await userProvider.unlockSignal(signal.id);
+                        if (result != UnlockSignalResult.success && context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text(userProvider.tokenBalance > 0
-                                  ? l10n.failedUnlockSignal
-                                  : l10n.notEnoughTokens),
+                              content: Text(result == UnlockSignalResult.notEnoughTokens
+                                  ? l10n.notEnoughTokens
+                                  : l10n.failedUnlockSignal),
                             ),
                           );
                         }

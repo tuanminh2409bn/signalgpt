@@ -168,7 +168,9 @@ class _MyAppState extends State<MyApp> {
               subscriptionsExpiry: userProvider.subscriptionsExpiry,
               subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
             );
-            if (!hasAccess && !await userProvider.unlockSignal(signal.id)) {
+            if (!hasAccess &&
+                await userProvider.unlockSignal(signal.id) !=
+                    UnlockSignalResult.success) {
               scaffoldMessengerKey.currentState?.showSnackBar(
                 const SnackBar(content: Text('Not enough tokens to open this signal.')),
               );

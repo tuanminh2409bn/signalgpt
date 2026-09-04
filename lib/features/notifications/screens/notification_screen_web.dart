@@ -48,7 +48,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
         subscriptionsExpiry: userProvider.subscriptionsExpiry,
         subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
       );
-      if (!hasAccess && !await userProvider.unlockSignal(signal.id)) {
+      if (!hasAccess &&
+          await userProvider.unlockSignal(signal.id) !=
+              UnlockSignalResult.success) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(AppLocalizations.of(context)!.notEnoughTokens)),

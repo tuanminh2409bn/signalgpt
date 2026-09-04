@@ -45,7 +45,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
         subscriptionsExpiry: userProvider.subscriptionsExpiry,
         subscriptionExpiryDate: userProvider.subscriptionExpiryDate,
       );
-      if (!hasAccess && !await userProvider.unlockSignal(signal.id)) {
+      if (!hasAccess &&
+          await userProvider.unlockSignal(signal.id) !=
+              UnlockSignalResult.success) {
         if (mounted) {
           Navigator.push(context, MaterialPageRoute(builder: (_) => const UpgradeScreen()));
         }
